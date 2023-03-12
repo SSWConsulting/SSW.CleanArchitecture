@@ -1,0 +1,5 @@
+# Default Owners for all branches
+@SSWConsulting/cleanarchitecture
+
+# Wicksy to own the .github folder
+/.github/CODEOWNERS @wicksipedia @william-liebenberg
