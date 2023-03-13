@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "src\WebApi\WebApi.csproj", "{2881AC5A-3E80-4AF5-AC2B-A2C884CD12F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Tests", "tests\Architecture.Tests\Architecture.Tests.csproj", "{E8B3535F-A2CE-496F-A02F-7CA27B72E494}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9B5EEBBE-032E-4EE9-BC0B-08BA60A33AD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,8 +37,15 @@ Global
 		{2881AC5A-3E80-4AF5-AC2B-A2C884CD12F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2881AC5A-3E80-4AF5-AC2B-A2C884CD12F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2881AC5A-3E80-4AF5-AC2B-A2C884CD12F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8B3535F-A2CE-496F-A02F-7CA27B72E494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8B3535F-A2CE-496F-A02F-7CA27B72E494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8B3535F-A2CE-496F-A02F-7CA27B72E494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8B3535F-A2CE-496F-A02F-7CA27B72E494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8B3535F-A2CE-496F-A02F-7CA27B72E494} = {9B5EEBBE-032E-4EE9-BC0B-08BA60A33AD8}
 	EndGlobalSection
 EndGlobal
