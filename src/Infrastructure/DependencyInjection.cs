@@ -19,6 +19,7 @@ public static class DependencyInjection
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
             {
                 builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
+                builder.EnableRetryOnFailure();
             });
         });
 
