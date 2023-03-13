@@ -3,7 +3,6 @@ using Application.Common.Interfaces;
 using Infrastructure;
 using WebApi;
 using WebApi.Features;
-using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
