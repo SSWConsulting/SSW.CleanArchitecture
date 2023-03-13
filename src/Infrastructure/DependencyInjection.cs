@@ -21,7 +21,9 @@ public static class DependencyInjection
                 builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
             });
         });
-        
+
+        services.AddScoped<ApplicationDbContextInitializer>();
+
         services.AddSingleton<IDateTime, DateTimeService>();
 
         return services;
