@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Interceptors;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ public static class DependencyInjection
     {
         services.AddScoped<EntitySaveChangesInterceptor>();
         
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
         {
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
             {
@@ -21,8 +22,7 @@ public static class DependencyInjection
             });
         });
         
-        // TODO: Default interface implemetnation runs without an implementation ????
-        services.AddSingleton<IDateTime>();
+        services.AddSingleton<IDateTime, DateTimeService>();
 
         return services;
     }

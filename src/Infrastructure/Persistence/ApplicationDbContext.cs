@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Interceptors;
 using Microsoft.Data.SqlClient;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly EntitySaveChangesInterceptor _saveChangesInterceptor;
 
