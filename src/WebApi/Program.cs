@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Persistence;
 using WebApi;
 using WebApi.Features;
+using WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,8 @@ app.UseStaticFiles();
 app.UseSwaggerUi3(settings => settings.DocumentPath = "/api/specification.json");
 
 app.UseRouting();
+
+app.UseExceptionFilter();
 
 app.MapTodoItemEndpoints();
 
