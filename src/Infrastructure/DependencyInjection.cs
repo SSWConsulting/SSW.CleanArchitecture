@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Ardalis.Specification;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Services;
@@ -14,7 +15,7 @@ public static class DependencyInjection
     {
         services.AddScoped<EntitySaveChangesInterceptor>();
 
-        services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
             {
                 builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
@@ -22,6 +23,8 @@ public static class DependencyInjection
             }));
 
         services.AddScoped<ApplicationDbContextInitializer>();
+        services.AddScoped(typeof(IRepositoryBase<>), typeof(DbSetRepository<>));
+        services.AddScoped(typeof(IReadRepositoryBase<>), typeof(DbSetRepository<>));
 
         services.AddSingleton<IDateTime, DateTimeService>();
 
