@@ -26,7 +26,7 @@ public class DatabaseEntities
             .Should()
             .Inherit(typeof(BaseEntity));
         
-        result.GetTypes().Count().Should().BeGreaterThan(0);
+        result.GetTypes().Count().Should().BePositive();
         result.GetResult().IsSuccessful.Should().BeTrue();
     }
 }
