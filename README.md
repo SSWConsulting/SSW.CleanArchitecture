@@ -3,30 +3,26 @@
 ## Features
 
 - General
-  - EditorConfig best practices
+  - **EditorConfig best practices**
 
 - Web API
-  - Minimal APIs
   - NSwag / SwaggerUI
-  - Consistent REST API status codes and return types
+  - **Minimal APIs**
+  - **Consistent REST API status codes and response types**
 
 - Application
   - CQRS
   - Fluent Validation
   - Automapper
-  - Event publishing
+  - **Event publishing**
+  - **Specifications**
 
 - Domain
-  - Strongly Typed IDs
+  - **Strongly Typed IDs**
 
 - Infrastructure
   - EF Core
   - Migrations
   - Data Seeding
-  - Transient Fault Handling
   - Model Configuration
-
-## TODO:
-
- - [ ] Revisit Data Seeding
- - [ ] Revisit Auditable Entities in columns vs separate table
+  - **Transient Fault Handling**
