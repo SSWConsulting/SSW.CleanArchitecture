@@ -36,6 +36,6 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
 
         await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
 
-        return todoItem.Id;
+        return todoItem.Id.Value;
     }
 }

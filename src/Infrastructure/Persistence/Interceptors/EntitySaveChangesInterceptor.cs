@@ -17,6 +17,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         _dateTime = dateTime;
     }
 
+    // TODO: Don't think we wired this up
     public void UpdateEntities(DbContext? context)
     {
         if (context is null)
@@ -24,7 +25,8 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
             return;
         }
 
-        foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
+        // Any generic in base entity
+        foreach (var entry in context.ChangeTracker.Entries<BaseEntity<object>>())
         {
             if (entry.State is EntityState.Added)
             {

@@ -36,6 +36,11 @@ public class ApplicationDbContextInitializer
     {
         try
         {
+            if (_dbContext.TodoItems.Any())
+            {
+                return;
+            }
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Clean Architecture",

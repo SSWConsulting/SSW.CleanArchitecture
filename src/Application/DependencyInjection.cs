@@ -9,9 +9,13 @@ public static class DependencyInjection
         var applicationAssembly = typeof(DependencyInjection).Assembly;
 
         services.AddAutoMapper(applicationAssembly);
-        services.AddMediatR(x => x.RegisterServicesFromAssembly(applicationAssembly));
         services.AddValidatorsFromAssembly(applicationAssembly);
 
+        services.AddMediatR(x =>
+        {
+            x.RegisterServicesFromAssembly(applicationAssembly);
+            x.AddOpenBehavior<>();
+        });
         return services;
     }
 }
