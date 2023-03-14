@@ -1,9 +1,8 @@
 ﻿using Application.Common.Interfaces;
-using Domain.Entities;
 
 namespace Application.Features.TodoItems.Commands.CreateTodoItem;
 
-public record CreateTodoItemCommand(string? Title) : IRequest<TodoItemId>;
+public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {
@@ -15,7 +14,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
     }
 }
 
-public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, TodoItemId>
+public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
     private readonly IMapper _mapper;
     private readonly IPublisher _publisher;
@@ -27,7 +26,7 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         _dbContext = dbContext;
     }
 
-    public async Task<TodoItemId> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<Domain.Entities.TodoItem>(request);
 
@@ -37,6 +36,6 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
 
         await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
 
-        return todoItem.Id;
+        return todoItem.Id.Value;
     }
 }
