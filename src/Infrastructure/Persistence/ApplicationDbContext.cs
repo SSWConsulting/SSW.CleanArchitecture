@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Interceptors;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Persistence;
 
@@ -21,7 +20,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         base.OnModelCreating(modelBuilder);
     }
 

@@ -29,13 +29,13 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
     public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<Domain.Entities.TodoItem>(request);
-        
+
         _dbContext.TodoItems.Add(todoItem);
-        
+
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
-        
+
         return todoItem.Id;
     }
 }

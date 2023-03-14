@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Application.Features.TodoItems.Queries.GetAllTodoItems;
+﻿namespace Application.Features.TodoItems.Queries.GetAllTodoItems;
 
 public class GetAllTodoItemsMapping : Profile
 {

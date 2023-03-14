@@ -44,7 +44,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(1),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Blazor",
@@ -53,7 +53,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(2),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn ASP.NET Core",
@@ -62,7 +62,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(3),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Entity Framework Core",
@@ -71,7 +71,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(4),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Docker",
@@ -80,7 +80,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(5),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Kubernetes",
@@ -89,7 +89,7 @@ public class ApplicationDbContextInitializer
                 Reminder = DateTime.Now.AddDays(6),
                 Done = false
             });
-            
+
             _dbContext.TodoItems.Add(new TodoItem()
             {
                 Title = "Learn Azure",

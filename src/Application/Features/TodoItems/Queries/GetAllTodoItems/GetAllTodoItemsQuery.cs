@@ -1,8 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Entities;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.TodoItems.Queries.GetAllTodoItems;
@@ -13,7 +10,7 @@ public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery,
 {
     private readonly IMapper _mapper;
     private readonly IApplicationDbContext _dbContext;
-    
+
     public GetAllTodoItemsQueryHandler(IMapper mapper, IApplicationDbContext dbContext)
     {
         _mapper = mapper;

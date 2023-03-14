@@ -10,7 +10,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTime _dateTime;
-    
+
     public EntitySaveChangesInterceptor(ICurrentUserService currentUserService, IDateTime dateTime)
     {
         _currentUserService = currentUserService;
