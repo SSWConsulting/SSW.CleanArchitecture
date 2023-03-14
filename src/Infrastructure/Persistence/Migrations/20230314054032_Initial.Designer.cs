@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230314004649_Initial")]
+    [Migration("20230314054032_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -46,8 +46,8 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Reminder")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("Reminder")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Title")
                         .IsRequired()
