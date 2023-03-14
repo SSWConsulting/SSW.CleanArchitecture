@@ -2,5 +2,5 @@
 
 public abstract class BaseEntity<TId> : AuditableEntity
 {
-    public TId Id { get; set; }
+    public TId Id { get; set; } = default!;
 }

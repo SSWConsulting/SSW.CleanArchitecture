@@ -1,5 +1,6 @@
-﻿using Application.Common.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Application.Features.TodoItems.Specifications;
+using Ardalis.Specification;
+using Domain.Entities;
 
 namespace Application.Features.TodoItems.Commands.CreateTodoItem;
 
@@ -7,11 +8,12 @@ public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly IRepositoryBase<TodoItem> _repository;
 
-    public CreateTodoItemCommandValidator(IApplicationDbContext context)
+    public CreateTodoItemCommandValidator(
+        IRepositoryBase<TodoItem> repository)
     {
-        _context = context;
+        _repository = repository;
 
         RuleFor(p => p.Title)
             .NotEmpty()
@@ -19,10 +21,11 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
             .MustAsync(BeUniqueTitle).WithMessage("'{PropertyName}' must be unique");
     }
 
-    public async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)
+    private async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)
     {
-        return await _context.TodoItems
-            .AllAsync(l => l.Title != title, cancellationToken);
+        var spec = new TodoItemByTitleSpec(title);
+        var exists = await _repository.AnyAsync(spec, cancellationToken);
+        return !exists;
     }
 }
 
@@ -30,21 +33,25 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
 {
     private readonly IMapper _mapper;
     private readonly IPublisher _publisher;
-    private readonly IApplicationDbContext _dbContext;
-    public CreateTodoItemCommandHandler(IMapper mapper, IPublisher publisher, IApplicationDbContext dbContext)
+    private readonly IRepositoryBase<TodoItem> _repository;
+    public CreateTodoItemCommandHandler(
+        IMapper mapper,
+        IPublisher publisher,
+        IRepositoryBase<TodoItem> repository)
     {
         _mapper = mapper;
         _publisher = publisher;
-        _dbContext = dbContext;
+        _repository = repository;
     }
 
-    public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(
+        CreateTodoItemCommand request,
+        CancellationToken cancellationToken)
     {
-        var todoItem = _mapper.Map<Domain.Entities.TodoItem>(request);
+        var todoItem = _mapper.Map<TodoItem>(request);
 
-        _dbContext.TodoItems.Add(todoItem);
-
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await _repository.AddAsync(todoItem, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
 
         await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
 

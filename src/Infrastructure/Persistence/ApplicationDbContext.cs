@@ -1,12 +1,11 @@
-﻿using Application.Common.Interfaces;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+public class ApplicationDbContext : DbContext
 {
     private readonly EntitySaveChangesInterceptor _saveChangesInterceptor;
 
