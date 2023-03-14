@@ -24,7 +24,8 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
             return;
         }
 
-        foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
+        // Any generic in base entity
+        foreach (var entry in context.ChangeTracker.Entries<BaseEntity<object>>())
         {
             if (entry.State is EntityState.Added)
             {
