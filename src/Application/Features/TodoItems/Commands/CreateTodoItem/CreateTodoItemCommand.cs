@@ -1,4 +1,6 @@
-﻿namespace Application.Features.TodoItems.Commands.CreateTodoItem;
+﻿using Application.Common.Interfaces;
+
+namespace Application.Features.TodoItems.Commands.CreateTodoItem;
 
 public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 
@@ -16,24 +18,24 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
 {
     private readonly IMapper _mapper;
     private readonly IPublisher _publisher;
-
-    public CreateTodoItemCommandHandler(IMapper mapper, IPublisher publisher)
+    private readonly IApplicationDbContext _dbContext;
+    public CreateTodoItemCommandHandler(IMapper mapper, IPublisher publisher, IApplicationDbContext dbContext)
     {
         _mapper = mapper;
         _publisher = publisher;
+        _dbContext = dbContext;
     }
 
     public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<Domain.Entities.TodoItem>(request);
-        // ?????????????????????????????
-        
-        // _context.TodoItems.Add(todoItem);
-        
-        // await _context.SaveChangesAsync(cancellationToken);
+
+        _dbContext.TodoItems.Add(todoItem);
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
 
         await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
-        
-        return Guid.NewGuid(); // TODOL: return todoItem.Id;
+
+        return todoItem.Id;
     }
 }

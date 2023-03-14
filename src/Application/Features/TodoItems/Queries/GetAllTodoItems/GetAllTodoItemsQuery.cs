@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Domain.Entities;
-using MediatR;
+﻿using Application.Common.Interfaces;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.TodoItems.Queries.GetAllTodoItems;
 
@@ -9,13 +9,20 @@ public record GetAllTodoItemsQuery : IRequest<IReadOnlyList<TodoItemDto>>;
 public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery, IReadOnlyList<TodoItemDto>>
 {
     private readonly IMapper _mapper;
-    
-    public GetAllTodoItemsQueryHandler(IMapper mapper) => _mapper = mapper;
+    private readonly IApplicationDbContext _dbContext;
+
+    public GetAllTodoItemsQueryHandler(IMapper mapper, IApplicationDbContext dbContext)
+    {
+        _mapper = mapper;
+        _dbContext = dbContext;
+    }
 
     public async Task<IReadOnlyList<TodoItemDto>> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
     {
-        // _context.TodoItems.ToListAsync(cancellationToken);
-        
-        return _mapper.Map<IReadOnlyList<TodoItemDto>>(Array.Empty<TodoItem>());
+        var output = await _dbContext.TodoItems
+            .ProjectTo<TodoItemDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+
+        return output;
     }
 }

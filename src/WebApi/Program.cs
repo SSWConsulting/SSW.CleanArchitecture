@@ -1,9 +1,8 @@
 using Application;
-using Application.Common.Interfaces;
 using Infrastructure;
+using Infrastructure.Persistence;
 using WebApi;
 using WebApi.Features;
-using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +12,30 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+
+    // Initialise and seed database
+    using var scope = app.Services.CreateScope();
+    var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+    await initialiser.InitializeAsync();
+    await initialiser.SeedAsync();
+}
+else
+{
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseSwaggerUi3(settings => settings.DocumentPath = "/api/specification.json");
+
+app.UseRouting();
 
 app.MapTodoItemEndpoints();
 
