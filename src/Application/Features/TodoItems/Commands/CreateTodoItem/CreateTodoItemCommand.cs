@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.TodoItems.Commands.CreateTodoItem;
 
@@ -6,11 +7,22 @@ public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {
-    public CreateTodoItemCommandValidator()
+    private readonly IApplicationDbContext _context;
+
+    public CreateTodoItemCommandValidator(IApplicationDbContext context)
     {
+        _context = context;
+
         RuleFor(p => p.Title)
             .NotEmpty()
-            .MaximumLength(200);
+            .MaximumLength(200)
+            .MustAsync(BeUniqueTitle);
+    }
+
+    public async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)
+    {
+        return await _context.TodoItems
+            .AllAsync(l => l.Title != title, cancellationToken);
     }
 }
 
