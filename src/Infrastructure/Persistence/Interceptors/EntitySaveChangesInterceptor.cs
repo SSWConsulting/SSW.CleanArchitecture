@@ -40,8 +40,6 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 
         foreach (var entry in context.ChangeTracker.Entries<AuditableEntity>())
         {
-            if (entry.GetType() == typeof(BaseEntity<>))
-
             if (entry.State is EntityState.Added)
             {
                 entry.Entity.CreatedAt = _dateTime.Now;
