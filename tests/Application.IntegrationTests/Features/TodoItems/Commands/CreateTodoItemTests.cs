@@ -37,7 +37,6 @@ public class CreateTodoItemTests : IClassFixture<TestingSessionFixture>
 
         item.Should().NotBeNull();
         item.Title.Should().Be(command.Title);
-        // list.CreatedBy.Should().Be(userId);
-        // list.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(10000));
+        item.CreatedAt.Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(10000));
     }
 }
