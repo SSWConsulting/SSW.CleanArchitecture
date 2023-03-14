@@ -1,1 +1,1 @@
-# CleanArchitectureV2
+# SSW.CleanArchitectureV2
