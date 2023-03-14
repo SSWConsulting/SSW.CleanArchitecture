@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A388D69B-2789-4D2E-A6D9-331D8571DA7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture.Tests", "tests\Architecture.Tests\Architecture.Tests.csproj", "{526EDF1F-026F-41EC-9FC5-433243492515}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Architecture.Tests", "tests\Architecture.Tests\Architecture.Tests.csproj", "{526EDF1F-026F-41EC-9FC5-433243492515}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2ED0ACCC-DD45-4CED-BAC7-41597CB042E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +55,14 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D70033C-CE63-4A79-B39C-C1E8F63D304F} = {2ED0ACCC-DD45-4CED-BAC7-41597CB042E2}
+		{39F18333-2540-48D7-B98C-CD647FF4570F} = {2ED0ACCC-DD45-4CED-BAC7-41597CB042E2}
+		{CC3ECFD4-1BD5-4DAD-804C-C15C6CD4B16E} = {2ED0ACCC-DD45-4CED-BAC7-41597CB042E2}
+		{2881AC5A-3E80-4AF5-AC2B-A2C884CD12F6} = {2ED0ACCC-DD45-4CED-BAC7-41597CB042E2}
+		{526EDF1F-026F-41EC-9FC5-433243492515} = {A388D69B-2789-4D2E-A6D9-331D8571DA7E}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8975F724-46D1-4802-8C4B-6B386B69846F}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{526EDF1F-026F-41EC-9FC5-433243492515} = {A388D69B-2789-4D2E-A6D9-331D8571DA7E}
 	EndGlobalSection
 EndGlobal
