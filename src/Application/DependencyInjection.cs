@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CleanArchitecture.Application.Common.Behaviours;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
 
@@ -11,10 +12,12 @@ public static class DependencyInjection
         services.AddAutoMapper(applicationAssembly);
         services.AddValidatorsFromAssembly(applicationAssembly);
 
-        services.AddMediatR(x =>
+        services.AddMediatR(cfg =>
         {
-            x.RegisterServicesFromAssembly(applicationAssembly);
-            x.AddOpenBehavior<>();
+            cfg.RegisterServicesFromAssembly(applicationAssembly);
+            cfg.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
+            cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+            cfg.AddOpenBehavior(typeof(PerformanceBehaviour<,>));
         });
         return services;
     }
