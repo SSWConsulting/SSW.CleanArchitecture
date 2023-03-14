@@ -2,6 +2,7 @@
 
 
 public record TodoItemId(Guid Value);
+
 public class TodoItem : BaseEntity<TodoItemId>
 {
     public string? Title { get; set; }
