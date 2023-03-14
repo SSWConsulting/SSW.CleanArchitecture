@@ -12,12 +12,12 @@ public static class DependencyInjection
         services.AddAutoMapper(applicationAssembly);
         services.AddValidatorsFromAssembly(applicationAssembly);
 
-        services.AddMediatR(cfg =>
+        services.AddMediatR(config =>
         {
-            cfg.RegisterServicesFromAssembly(applicationAssembly);
-            cfg.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
-            cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
-            cfg.AddOpenBehavior(typeof(PerformanceBehaviour<,>));
+            config.RegisterServicesFromAssembly(applicationAssembly);
+            config.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
+            config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+            config.AddOpenBehavior(typeof(PerformanceBehaviour<,>));
         });
         return services;
     }
