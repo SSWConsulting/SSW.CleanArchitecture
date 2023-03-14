@@ -12,7 +12,7 @@ public class TodoItemCreatedEventHandler : INotificationHandler<TodoItemCreatedE
     public Task Handle(TodoItemCreatedEvent notification, CancellationToken cancellationToken)
     {
         _logger.LogInformation("TodoItemCreatedEventHandler: {Title} was created", notification.Item.Title);
-        
+
         return Task.CompletedTask;
     }
 }

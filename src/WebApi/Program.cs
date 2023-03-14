@@ -1,8 +1,6 @@
 using Application;
-
 using Infrastructure;
 using Infrastructure.Persistence;
-
 using WebApi;
 using WebApi.Features;
 
@@ -35,10 +33,7 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
-{
-    settings.DocumentPath = "/api/specification.json";
-});
+app.UseSwaggerUi3(settings => settings.DocumentPath = "/api/specification.json");
 
 app.UseRouting();
 

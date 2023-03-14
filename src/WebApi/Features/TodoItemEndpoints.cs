@@ -19,7 +19,7 @@ public static class TodoItemEndpoints
             .MapGet("/", (ISender sender, CancellationToken ct) => sender.Send(new GetAllTodoItemsQuery(), ct))
             .WithName("GetTodoItems")
             .ProducesGet<TodoItemDto[]>();
-        
+
         group
             .MapPost("/", (ISender sender, CreateTodoItemCommand command, CancellationToken ct) => sender.Send(command, ct))
             .WithName("CreateTodoItem")
