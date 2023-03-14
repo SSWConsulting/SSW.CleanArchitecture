@@ -1,5 +1,5 @@
 using Application;
-using Application.Common.Interfaces;
+
 using Infrastructure;
 using Infrastructure.Persistence;
 
@@ -18,15 +18,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    //app.UseMigrationsEndPoint();
 
     // Initialise and seed database
-    using (var scope = app.Services.CreateScope())
-    {
-        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-        await initialiser.InitializeAsync();
-        await initialiser.SeedAsync();
-    }
+    using var scope = app.Services.CreateScope();
+    var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+    await initialiser.InitializeAsync();
+    await initialiser.SeedAsync();
 }
 else
 {
@@ -34,7 +31,16 @@ else
     app.UseHsts();
 }
 
+app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseSwaggerUi3(settings =>
+{
+    settings.DocumentPath = "/api/specification.json";
+});
+
+app.UseRouting();
 
 app.MapTodoItemEndpoints();
 
