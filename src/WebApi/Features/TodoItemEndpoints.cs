@@ -16,13 +16,17 @@ public static class TodoItemEndpoints
             .WithOpenApi();
 
         group
-            .MapGet("/", (ISender sender, CancellationToken ct) => sender.Send(new GetAllTodoItemsQuery(), ct))
+            .MapGet("/", (ISender sender, CancellationToken ct)
+                => sender.Send(new GetAllTodoItemsQuery(), ct))
             .WithName("GetTodoItems")
             .ProducesGet<TodoItemDto[]>();
+        
+        // TODO: Investigate examples for swagger docs. i.e. better docs than:
+        // myWeirdField: "string" vs myWeirdField: "this-silly-string"
 
         group
             .MapPost("/", (ISender sender, CreateTodoItemCommand command, CancellationToken ct) => sender.Send(command, ct))
             .WithName("CreateTodoItem")
-            .ProducesPost(); ;
+            .ProducesPost();
     }
 }

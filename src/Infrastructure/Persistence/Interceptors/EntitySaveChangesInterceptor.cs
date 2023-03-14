@@ -17,6 +17,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         _dateTime = dateTime;
     }
 
+    // TODO: Don't think we wired this up
     public void UpdateEntities(DbContext? context)
     {
         if (context is null)
