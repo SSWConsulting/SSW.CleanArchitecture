@@ -38,6 +38,7 @@ public static class ExceptionFilter
             return ExceptionHandlers[type].Invoke(context, exception);
         }
 
+        // TODO: Testing around unhandled exceptions
         return Results.Problem(statusCode: StatusCodes.Status500InternalServerError,
             type: "https://tools.ietf.org/html/rfc7231#section-6.6.1");
     }
