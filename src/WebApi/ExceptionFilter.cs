@@ -13,7 +13,7 @@ public static class ExceptionFilter
         { typeof(NotFoundException), HandleNotFoundException }
     };
 
-    public static void AddExceptionFilter(this WebApplication app)
+    public static void UseExceptionFilter(this WebApplication app)
     {
         app.UseExceptionHandler(exceptionHandlerApp 
             => exceptionHandlerApp.Run(async context =>
