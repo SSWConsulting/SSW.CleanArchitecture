@@ -20,11 +20,11 @@ public class DatabaseEntities
             .Select(t => t.GetGenericArguments().FirstOrDefault()?.Name)
             .ToArray();
 
-        var result = Types.InAssembly(typeof(BaseEntity).Assembly)
+        var result = Types.InAssembly(typeof(BaseEntity<>).Assembly)
             .That()
             .HaveName(entityTypes)
             .Should()
-            .Inherit(typeof(BaseEntity));
+            .Inherit(typeof(BaseEntity<>));
         
         result.GetTypes().Count().Should().BePositive();
         result.GetResult().IsSuccessful.Should().BeTrue();
