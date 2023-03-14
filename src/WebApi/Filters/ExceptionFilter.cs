@@ -1,9 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace WebApi;
+namespace WebApi.Filters;
 
 public static class ExceptionFilter
 {
@@ -15,7 +13,7 @@ public static class ExceptionFilter
 
     public static void UseExceptionFilter(this WebApplication app)
     {
-        app.UseExceptionHandler(exceptionHandlerApp 
+        app.UseExceptionHandler(exceptionHandlerApp
             => exceptionHandlerApp.Run(async context =>
             {
                 var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
@@ -25,32 +23,30 @@ public static class ExceptionFilter
                     .ExecuteAsync(context);
             }));
     }
-    
-    
+
+
     private static IResult HandleException(this HttpContext context, Exception exception)
     {
         // TODO: Null exception possibly?
-        
+
         var type = exception.GetType();
-        
+
         if (ExceptionHandlers.ContainsKey(type))
-        {
             return ExceptionHandlers[type].Invoke(context, exception);
-        }
 
         // TODO: Testing around unhandled exceptions
         return Results.Problem(statusCode: StatusCodes.Status500InternalServerError,
             type: "https://tools.ietf.org/html/rfc7231#section-6.6.1");
     }
-    
+
     private static IResult HandleValidationException(HttpContext context, Exception exception)
     {
         var validationException = exception as ValidationException ?? throw new InvalidOperationException("Exception is not of type ValidationException");
 
-        return Results.ValidationProblem(validationException.Errors, 
+        return Results.ValidationProblem(validationException.Errors,
             type: "https://tools.ietf.org/html/rfc7231#section-6.5.1");
     }
-    
+
     private static IResult HandleNotFoundException(this HttpContext context, Exception exception) =>
         Results.Problem(statusCode: StatusCodes.Status404NotFound,
             title: "The specified resource was not found.",

@@ -16,7 +16,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
         RuleFor(p => p.Title)
             .NotEmpty()
             .MaximumLength(200)
-            .MustAsync(BeUniqueTitle);
+            .MustAsync(BeUniqueTitle).WithMessage("'{PropertyName}' must be unique");
     }
 
     public async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)

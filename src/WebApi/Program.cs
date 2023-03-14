@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Persistence;
 using WebApi;
 using WebApi.Features;
+using WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
