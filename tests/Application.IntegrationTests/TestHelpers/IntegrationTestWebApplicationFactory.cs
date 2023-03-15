@@ -10,7 +10,7 @@ namespace Application.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public DatabaseContainerFixture DatabaseFixture { get; set; }
+    public DatabaseContainerFixture DatabaseFixture { get; }
     
     public IntegrationTestWebApplicationFactory()
     {

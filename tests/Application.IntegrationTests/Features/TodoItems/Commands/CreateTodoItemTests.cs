@@ -5,25 +5,21 @@ using Domain.Entities;
 
 namespace Application.IntegrationTests.Features.TodoItems.Commands;
 
-[Collection(TestingDatabaseFixture.DatabaseCollectionDefinition)]
-public class CreateTodoItemTests : IClassFixture<TestingSessionFixture>
+public class CreateTodoItemTests : IntegrationTestBase
 {
-    private readonly TestingDatabaseFixture _fixture;
-
-    public CreateTodoItemTests(TestingDatabaseFixture fixture)
+    public CreateTodoItemTests(TestingDatabaseFixture fixture) : base(fixture)
     {
-        _fixture = fixture;
     }
-
+    
     [Fact]
     public async Task ShouldRequireUniqueTitle()
     {
-        await _fixture.SendAsync(new CreateTodoItemCommand("Shopping"));
+        await Fixture.SendAsync(new CreateTodoItemCommand("Shopping"));
 
         var command = new CreateTodoItemCommand("Shopping");
     
         await FluentActions.Invoking(() =>
-            _fixture.SendAsync(command)).Should().ThrowAsync<ValidationException>();
+            Fixture.SendAsync(command)).Should().ThrowAsync<ValidationException>();
     }
 
     [Fact]
@@ -31,9 +27,9 @@ public class CreateTodoItemTests : IClassFixture<TestingSessionFixture>
     {
         var command = new CreateTodoItemCommand("Tasks");
 
-        var id = await _fixture.SendAsync(command);
+        var id = await Fixture.SendAsync(command);
 
-        TodoItem item = (await _fixture.FindAsync<TodoItem>(new TodoItemId(id)))!;
+        TodoItem item = (await Fixture.FindAsync<TodoItem>(new TodoItemId(id)))!;
 
         item.Should().NotBeNull();
         item.Title.Should().Be(command.Title);
