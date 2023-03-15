@@ -1,4 +1,5 @@
 ﻿using Application.Features.TodoItems.Commands.CreateTodoItem;
+using Domain.Events;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Features.TodoItems.EventHandlers;
