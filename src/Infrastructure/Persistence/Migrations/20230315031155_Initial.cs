@@ -19,7 +19,7 @@ namespace Infrastructure.Persistence.Migrations
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Priority = table.Column<int>(type: "int", nullable: false),
-                    Reminder = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Reminder = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Done = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
