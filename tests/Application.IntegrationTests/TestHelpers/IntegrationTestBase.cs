@@ -1,7 +1,7 @@
 namespace Application.IntegrationTests.TestHelpers;
 
 [Collection(TestingDatabaseFixture.DatabaseCollectionDefinition)]
-public abstract class IntegrationTestBase : IAsyncLifetime, IClassFixture<TestingSessionFixture>
+public abstract class IntegrationTestBase : IAsyncLifetime
 {
     protected TestingDatabaseFixture Fixture { get; }
 

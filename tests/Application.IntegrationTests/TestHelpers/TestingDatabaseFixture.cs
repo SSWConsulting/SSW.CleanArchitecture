@@ -22,7 +22,6 @@ public class TestingDatabaseFixture : IAsyncLifetime
                             ?? throw new ArgumentNullException(nameof(_factory.DatabaseFixture.ConnectionString), "Missing connection string!");
         
         _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
-
     }
 
     public async Task InitializeAsync()
@@ -62,7 +61,7 @@ public class TestingDatabaseFixture : IAsyncLifetime
 }
 
 [CollectionDefinition(TestingDatabaseFixture.DatabaseCollectionDefinition)]
-public class DatabaseCollection : ICollectionFixture<TestingDatabaseFixture>
+public class TestingDatabaseFixtureCollection : ICollectionFixture<TestingDatabaseFixture>
 {
     // This class has no code, and is never created. Its purpose is simply
     // to be the place to apply [CollectionDefinition] and all the

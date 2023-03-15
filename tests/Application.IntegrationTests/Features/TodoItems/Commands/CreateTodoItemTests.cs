@@ -7,9 +7,7 @@ namespace Application.IntegrationTests.Features.TodoItems.Commands;
 
 public class CreateTodoItemTests : IntegrationTestBase
 {
-    public CreateTodoItemTests(TestingDatabaseFixture fixture) : base(fixture)
-    {
-    }
+    public CreateTodoItemTests(TestingDatabaseFixture fixture) : base(fixture) { }
     
     [Fact]
     public async Task ShouldRequireUniqueTitle()
