@@ -2,11 +2,11 @@ using Testcontainers.SqlEdge;
 
 namespace Application.IntegrationTests.TestHelpers;
 
-public class DatabaseContainerFixture : IAsyncLifetime
+public class DatabaseContainer
 {
     private readonly SqlEdgeContainer? _container;
 
-    public DatabaseContainerFixture()
+    public DatabaseContainer()
     {
         ConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
 

@@ -1,5 +1,3 @@
-using Infrastructure.Persistence;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
 
@@ -7,57 +5,36 @@ namespace Application.IntegrationTests.TestHelpers;
 
 public class TestingDatabaseFixture : IAsyncLifetime
 {
-    private readonly IntegrationTestWebApplicationFactory _factory;
-    private readonly IServiceScopeFactory _scopeFactory;
-    private Respawner _checkpoint = default!;
-    private readonly string _connectionString;
-
     public const string DatabaseCollectionDefinition = "Database collection";
+    
+    private readonly IntegrationTestWebApplicationFactory _factory;
+    private Respawner _checkpoint = default!;
+    
+    public IServiceScopeFactory ScopeFactory { get; private set; } = default!;
+
+    private string ConnectionString => _factory.Database.ConnectionString!;
 
     public TestingDatabaseFixture()
     {
         _factory = new IntegrationTestWebApplicationFactory();
-        _factory.DatabaseFixture.InitializeAsync().GetAwaiter().GetResult();
-        _connectionString = _factory.DatabaseFixture.ConnectionString
-                            ?? throw new ArgumentNullException(nameof(_factory.DatabaseFixture.ConnectionString), "Missing connection string!");
-        
-        _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
     }
 
     public async Task InitializeAsync()
     {
-        _checkpoint = await Respawner.CreateAsync(_connectionString);
+        await _factory.Database.InitializeAsync();
+        ScopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
+        _checkpoint = await Respawner.CreateAsync(ConnectionString);
     }
 
     public async Task DisposeAsync()
     {
-        await _factory.DatabaseFixture.DisposeAsync();
+        await _factory.Database.DisposeAsync();
     }
 
     public async Task ResetState()
     {
-        await _checkpoint.ResetAsync(_connectionString);
+        await _checkpoint.ResetAsync(ConnectionString);
     }
-
-    public async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)
-    {
-        using var scope = _scopeFactory.CreateScope();
-
-        var mediator = scope.ServiceProvider.GetRequiredService<ISender>();
-
-        return await mediator.Send(request);
-    }
-
-    public async Task<TEntity?> FindAsync<TEntity>(params object[] keyValues)
-        where TEntity : class
-    {
-        using var scope = _scopeFactory.CreateScope();
-
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-        return await context.FindAsync<TEntity>(keyValues);
-    }
-    
 }
 
 [CollectionDefinition(TestingDatabaseFixture.DatabaseCollectionDefinition)]

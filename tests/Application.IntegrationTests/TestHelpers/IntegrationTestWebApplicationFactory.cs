@@ -10,11 +10,11 @@ namespace Application.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public DatabaseContainerFixture DatabaseFixture { get; }
+    public DatabaseContainer Database { get; }
     
     public IntegrationTestWebApplicationFactory()
     {
-        DatabaseFixture = new DatabaseContainerFixture();
+        Database = new DatabaseContainer();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder webHostBuilder)
@@ -26,7 +26,7 @@ internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Prog
                 .RemoveAll<ApplicationDbContext>()
                 .AddDbContext<ApplicationDbContext>((_, options) =>
                     options.UseSqlServer(
-                        DatabaseFixture.ConnectionString, 
+                        Database.ConnectionString, 
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         });
     }

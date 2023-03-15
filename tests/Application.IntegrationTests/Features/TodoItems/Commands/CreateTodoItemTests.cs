@@ -12,12 +12,12 @@ public class CreateTodoItemTests : IntegrationTestBase
     [Fact]
     public async Task ShouldRequireUniqueTitle()
     {
-        await Fixture.SendAsync(new CreateTodoItemCommand("Shopping"));
+        await Mediator.Send(new CreateTodoItemCommand("Shopping"));
 
         var command = new CreateTodoItemCommand("Shopping");
     
         await FluentActions.Invoking(() =>
-            Fixture.SendAsync(command)).Should().ThrowAsync<ValidationException>();
+            Mediator.Send(command)).Should().ThrowAsync<ValidationException>();
     }
 
     [Fact]
@@ -25,12 +25,12 @@ public class CreateTodoItemTests : IntegrationTestBase
     {
         var command = new CreateTodoItemCommand("Tasks");
 
-        var id = await Fixture.SendAsync(command);
+        var id = await Mediator.Send(command);
 
-        TodoItem item = (await Fixture.FindAsync<TodoItem>(new TodoItemId(id)))!;
+        TodoItem item = (await Context.TodoItems.FindAsync(new TodoItemId(id)))!;
 
         item.Should().NotBeNull();
         item.Title.Should().Be(command.Title);
-        item.CreatedAt.Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(10000));
+        item.CreatedAt.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(10));
     }
 }
