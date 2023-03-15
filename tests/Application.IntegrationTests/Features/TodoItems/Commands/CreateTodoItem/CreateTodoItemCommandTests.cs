@@ -3,11 +3,11 @@ using Application.IntegrationTests.TestHelpers;
 using CleanArchitecture.Application.Common.Exceptions;
 using Domain.Entities;
 
-namespace Application.IntegrationTests.Features.TodoItems.Commands;
+namespace Application.IntegrationTests.Features.TodoItems.Commands.CreateTodoItem;
 
-public class CreateTodoItemTests : IntegrationTestBase
+public class CreateTodoItemCommandTests : IntegrationTestBase
 {
-    public CreateTodoItemTests(TestingDatabaseFixture fixture) : base(fixture) { }
+    public CreateTodoItemCommandTests(TestingDatabaseFixture fixture) : base(fixture) { }
     
     [Fact]
     public async Task ShouldRequireUniqueTitle()
