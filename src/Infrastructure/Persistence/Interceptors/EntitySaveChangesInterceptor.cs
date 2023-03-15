@@ -17,7 +17,20 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         _dateTime = dateTime;
     }
 
-    // TODO: Don't think we wired this up
+    public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
+    {
+        UpdateEntities(eventData.Context);
+
+        return base.SavingChanges(eventData, result);
+    }
+
+    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
+    {
+        UpdateEntities(eventData.Context);
+
+        return base.SavingChangesAsync(eventData, result, cancellationToken);
+    }
+
     public void UpdateEntities(DbContext? context)
     {
         if (context is null)
@@ -25,8 +38,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
             return;
         }
 
-        // Any generic in base entity
-        foreach (var entry in context.ChangeTracker.Entries<BaseEntity<object>>())
+        foreach (var entry in context.ChangeTracker.Entries<AuditableEntity>())
         {
             if (entry.State is EntityState.Added)
             {

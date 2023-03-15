@@ -16,7 +16,7 @@ public static class ExceptionFilter
         app.UseExceptionHandler(exceptionHandlerApp
             => exceptionHandlerApp.Run(async context =>
             {
-                var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+                var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error!;
 
                 await context
                     .HandleException(exception)
