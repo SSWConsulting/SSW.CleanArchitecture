@@ -43,8 +43,8 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.Property<DateTimeOffset?>("Reminder")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<DateTime>("Reminder")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
