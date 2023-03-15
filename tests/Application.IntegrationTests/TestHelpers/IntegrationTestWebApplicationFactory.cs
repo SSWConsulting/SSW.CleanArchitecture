@@ -1,33 +1,32 @@
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Application.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {
+    public DatabaseContainerFixture DatabaseFixture { get; set; }
+    
+    public IntegrationTestWebApplicationFactory()
+    {
+        DatabaseFixture = new DatabaseContainerFixture();
+    }
+
     protected override void ConfigureWebHost(IWebHostBuilder webHostBuilder)
     {
-        webHostBuilder.ConfigureAppConfiguration(configurationBuilder =>
-        {
-            var integrationConfig = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
-
-            configurationBuilder.AddConfiguration(integrationConfig);
-        });
-
-        webHostBuilder.ConfigureServices((builder, services) => 
+        webHostBuilder.ConfigureTestServices((services) => 
         {
             services
-                .Remove<DbContextOptions<ApplicationDbContext>>()
-                .Remove<ApplicationDbContext>()
+                .RemoveAll<DbContextOptions<ApplicationDbContext>>()
+                .RemoveAll<ApplicationDbContext>()
                 .AddDbContext<ApplicationDbContext>((_, options) =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                    options.UseSqlServer(
+                        DatabaseFixture.ConnectionString, 
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         });
     }

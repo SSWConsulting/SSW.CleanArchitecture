@@ -1,8 +1,8 @@
 using Infrastructure.Persistence;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
+using Respawn.Graph;
 
 namespace Application.IntegrationTests.TestHelpers;
 
@@ -18,19 +18,30 @@ public class TestingDatabaseFixture : IDisposable
     public TestingDatabaseFixture()
     {
         _factory = new IntegrationTestWebApplicationFactory();
-        _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
+        _factory.DatabaseFixture.InitializeAsync().GetAwaiter().GetResult();
+        _connectionString = _factory.DatabaseFixture.ConnectionString
+                            ?? throw new ArgumentNullException(nameof(_factory.DatabaseFixture.ConnectionString), "Missing connection string!");
         
-        IConfiguration configuration = _factory.Services.GetRequiredService<IConfiguration>();
-
-        _connectionString = configuration.GetConnectionString("DefaultConnection")
-                           ?? throw new ArgumentNullException(nameof(_connectionString), "Missing connection string");
+        _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
 
         _checkpoint = Respawner.CreateAsync(
             _connectionString,
             new RespawnerOptions
             {
-                TablesToIgnore = new Respawn.Graph.Table[] { "__EFMigrationsHistory" }
+                TablesToIgnore = new Table[] { "__EFMigrationsHistory" }
             }).GetAwaiter().GetResult();
+    }
+    
+    
+    public async Task InitializeAsync()
+    {
+        // await _factory.DatabaseFixture.InitializeAsync();
+
+        // using var scope = _scopeFactory.CreateScope();
+        // var scopedServices = scope.ServiceProvider;
+        // var context = scopedServices.GetRequiredService<ApplicationDbContext>();
+        //
+        // await context.Database.EnsureCreatedAsync();
     }
 
     public void Dispose()
