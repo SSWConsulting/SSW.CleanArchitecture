@@ -1,4 +1,3 @@
-using Application.IntegrationTests.TestHelpers;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -6,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.IntegrationTests;
+namespace Application.IntegrationTests.TestHelpers;
 
-internal class CustomWebApplicationFactory : WebApplicationFactory<Program>
+internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder webHostBuilder)
     {

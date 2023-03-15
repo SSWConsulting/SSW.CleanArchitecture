@@ -8,7 +8,7 @@ namespace Application.IntegrationTests.TestHelpers;
 
 public class TestingDatabaseFixture : IDisposable
 {
-    private readonly CustomWebApplicationFactory _factory;
+    private readonly IntegrationTestWebApplicationFactory _factory;
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly Respawner _checkpoint;
     private readonly string _connectionString;
@@ -17,7 +17,7 @@ public class TestingDatabaseFixture : IDisposable
 
     public TestingDatabaseFixture()
     {
-        _factory = new CustomWebApplicationFactory();
+        _factory = new IntegrationTestWebApplicationFactory();
         _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
         
         IConfiguration configuration = _factory.Services.GetRequiredService<IConfiguration>();
