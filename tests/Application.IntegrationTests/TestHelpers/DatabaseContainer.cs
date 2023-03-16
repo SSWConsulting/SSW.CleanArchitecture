@@ -8,16 +8,11 @@ public class DatabaseContainer
 
     public DatabaseContainer()
     {
-        ConnectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
-
-        if (string.IsNullOrWhiteSpace(ConnectionString))
-        {
-            _container = new SqlEdgeBuilder()
-                .WithName("db")
-                .WithPassword("sqledge!Strong")
-                .WithAutoRemove(true)
-                .Build();
-        }
+        _container = new SqlEdgeBuilder()
+            .WithName("db")
+            .WithPassword("sqledge!Strong")
+            .WithAutoRemove(true)
+            .Build();
     }
 
     public string? ConnectionString { get; private set; }
