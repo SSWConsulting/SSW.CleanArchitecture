@@ -18,16 +18,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
-    - name: Restore & Build
-      run: |
-        $DockerPullJob = Start-Job { docker pull mcr.microsoft.com/azure-sql-edge:1.0.7 }
-        dotnet restore
-        dotnet build --no-restore --configuration Release
-        while($DockerPullJob.State -eq "Running")
-        {
-          Write-Host "pulling docker image..."
-          Start-Sleep -Seconds 1
-        }
-      shell: pwsh
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --no-restore --configuration Release
