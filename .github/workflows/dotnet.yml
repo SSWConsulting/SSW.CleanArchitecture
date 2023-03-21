@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test --no-build --no-restore --configuration Release --logger trx
+      run: dotnet test --no-build --no-restore --configuration Release --logger trx;LogFileName=TestResults.trx
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: success() || failure()    # run this step even if previous step failed
