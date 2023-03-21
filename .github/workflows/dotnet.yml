@@ -28,5 +28,5 @@ jobs:
     - name: Test Summary
       uses: test-summary/action@v2
       with:
-        paths: "TestResults/*.trx"
+        paths: "/**/*.trx"
       if: always()
