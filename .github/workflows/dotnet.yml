@@ -25,8 +25,10 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --no-restore --configuration Release --logger trx
-    - name: Test Summary
-      uses: test-summary/action@v2
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()    # run this step even if previous step failed
       with:
-        paths: "**/*.trx"
-      if: always()
+        name: Tests             # Name of the check run which will be created
+        path: "**/*.trx"        # Path to test results
+        reporter: dotnet-trx    # Format of test results
