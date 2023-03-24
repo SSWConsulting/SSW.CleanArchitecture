@@ -1,6 +1,7 @@
 ﻿using Application.Features.TodoItems.Specifications;
 using Ardalis.Specification;
 using Domain.Entities;
+using Domain.Events;
 
 namespace Application.Features.TodoItems.Commands.CreateTodoItem;
 
@@ -49,12 +50,12 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<TodoItem>(request);
+        
+        todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));
 
         await _repository.AddAsync(todoItem, cancellationToken);
         await _repository.SaveChangesAsync(cancellationToken);
-
-        await _publisher.Publish(new TodoItemCreatedEvent(todoItem), cancellationToken);
-
+        
         return todoItem.Id.Value;
     }
 }
