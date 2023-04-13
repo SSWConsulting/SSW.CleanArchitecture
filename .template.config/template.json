@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "SSW",
+  "classifications": [
+    "Web",
+    "SPA",
+    "API",
+    ".NET",
+    "ASP.NET Core",
+    "Entity Framework Core",
+    "Clean Architecture"
+  ],
+  "name": "Clean Architecture Solution",
+  "description":  "",
+  "identity": "SSW.Clean.Architecture.Solution.CSharp",
+  "groupIdentity": "SSW.Clean.Architecture.Solution",
+  "shortName": "ssw-ca",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "CleanArchitecture",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "exclude": [
+        "README.md",
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        ".template.config/**/*",
+        ".vs/**/*",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/.git/**",
+        "*.nuspec",
+        "**/node_modules/**"
+      ]
+    }
+  ]
+}
