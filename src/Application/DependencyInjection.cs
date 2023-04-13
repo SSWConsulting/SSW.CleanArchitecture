@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application;
+namespace CleanArchitecture.Application;
 
 public static class DependencyInjection
 {

@@ -1,9 +1,9 @@
-using Application.Features.TodoItems.Queries.GetAllTodoItems;
-using Application.IntegrationTests.TestHelpers;
 using Bogus;
-using Domain.Entities;
+using CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+using CleanArchitecture.Application.IntegrationTests.TestHelpers;
+using CleanArchitecture.Domain.Entities;
 
-namespace Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
+namespace CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
 
 public class GetAllTodoItemsQueryTests : IntegrationTestBase
 {

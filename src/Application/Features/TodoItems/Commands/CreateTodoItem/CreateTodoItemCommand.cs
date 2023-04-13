@@ -1,9 +1,9 @@
-﻿using Application.Features.TodoItems.Specifications;
-using Ardalis.Specification;
-using Domain.Entities;
-using Domain.Events;
+﻿using Ardalis.Specification;
+using CleanArchitecture.Application.Features.TodoItems.Specifications;
+using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Domain.Events;
 
-namespace Application.Features.TodoItems.Commands.CreateTodoItem;
+namespace CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 
 public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 
@@ -50,12 +50,12 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<TodoItem>(request);
-        
+
         todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));
 
         await _repository.AddAsync(todoItem, cancellationToken);
         await _repository.SaveChangesAsync(cancellationToken);
-        
+
         return todoItem.Id.Value;
     }
 }

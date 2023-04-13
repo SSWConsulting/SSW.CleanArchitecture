@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities;
+﻿using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Enum;
+
+namespace CleanArchitecture.Domain.Entities;
 
 
 public record TodoItemId(Guid Value);

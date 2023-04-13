@@ -1,8 +1,8 @@
-using Application.Features.TodoItems.Specifications;
 using Bogus;
-using Domain.Entities;
+using CleanArchitecture.Application.Features.TodoItems.Specifications;
+using CleanArchitecture.Domain.Entities;
 
-namespace Application.UnitTests.Features.TodoItems.Specifications;
+namespace CleanArchitecture.Application.UnitTests.Features.TodoItems.Specifications;
 
 public class AllTodoItemSpecTests
 {

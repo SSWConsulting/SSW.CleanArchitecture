@@ -1,4 +1,4 @@
-﻿namespace Application.Features.TodoItems.Commands.CreateTodoItem;
+﻿namespace CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 
 public class CreateTodoItemMapping : Profile
 {

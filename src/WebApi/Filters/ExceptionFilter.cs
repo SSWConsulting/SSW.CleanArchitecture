@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace WebApi.Filters;
+namespace CleanArchitecture.WebApi.Filters;
 
 public static class ExceptionFilter
 {

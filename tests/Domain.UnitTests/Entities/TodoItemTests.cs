@@ -1,6 +1,6 @@
-using Domain.Entities;
+using CleanArchitecture.Domain.Entities;
 
-namespace Domain.UnitTests.Entities;
+namespace CleanArchitecture.Domain.UnitTests.Entities;
 
 public class TodoItemTests
 {

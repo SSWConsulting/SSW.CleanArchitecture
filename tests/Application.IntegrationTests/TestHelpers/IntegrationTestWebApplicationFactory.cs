@@ -1,17 +1,18 @@
-using Infrastructure.Persistence;
+using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 
-namespace Application.IntegrationTests.TestHelpers;
+namespace CleanArchitecture.Application.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {
     public DatabaseContainer Database { get; }
-    
+
     public IntegrationTestWebApplicationFactory()
     {
         Database = new DatabaseContainer();
@@ -19,14 +20,14 @@ internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Prog
 
     protected override void ConfigureWebHost(IWebHostBuilder webHostBuilder)
     {
-        webHostBuilder.ConfigureTestServices((services) => 
+        webHostBuilder.ConfigureTestServices((services) =>
         {
             services
                 .RemoveAll<DbContextOptions<ApplicationDbContext>>()
                 .RemoveAll<ApplicationDbContext>()
                 .AddDbContext<ApplicationDbContext>((_, options) =>
                     options.UseSqlServer(
-                        Database.ConnectionString, 
+                        Database.ConnectionString,
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         });
     }

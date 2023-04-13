@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Common;
+namespace CleanArchitecture.Domain.Common;
 
 public abstract class BaseEntity : AuditableEntity
 {
     private readonly List<BaseEvent> _domainEvents = new();
-    
+
     [NotMapped]
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
     public void AddDomainEvent(BaseEvent domainEvent) => _domainEvents.Add(domainEvent);

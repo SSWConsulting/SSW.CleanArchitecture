@@ -1,16 +1,17 @@
-using Domain.Common;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Infrastructure;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using NetArchTest.Rules;
 
-namespace Architecture.Tests;
+namespace CleanArchitecture.Architecture.UnitTests;
 
 public class DatabaseEntities
 {
     [Fact]
     public void Entities_Should_Inherits_BaseComponent()
     {
-        var entityTypes = Types.InAssembly(typeof(Infrastructure.DependencyInjection).Assembly)
+        var entityTypes = Types.InAssembly(typeof(DependencyInjection).Assembly)
             .That()
             .Inherit(typeof(DbContext))
             .GetTypes()
@@ -25,7 +26,7 @@ public class DatabaseEntities
             .HaveName(entityTypes)
             .Should()
             .Inherit(typeof(BaseEntity<>));
-        
+
         result.GetTypes().Count().Should().BePositive();
         result.GetResult().IsSuccessful.Should().BeTrue();
     }

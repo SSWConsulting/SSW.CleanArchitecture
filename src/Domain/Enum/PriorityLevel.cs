@@ -1,4 +1,4 @@
-﻿namespace Domain.Enum;
+﻿namespace CleanArchitecture.Domain.Enum;
 
 public enum PriorityLevel
 {

@@ -1,8 +1,7 @@
-﻿using Application.Features.TodoItems.Commands.CreateTodoItem;
-using Domain.Events;
+﻿using CleanArchitecture.Domain.Events;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Features.TodoItems.EventHandlers;
+namespace CleanArchitecture.Application.Features.TodoItems.EventHandlers;
 
 public class TodoItemCreatedEventHandler : INotificationHandler<TodoItemCreatedEvent>
 {

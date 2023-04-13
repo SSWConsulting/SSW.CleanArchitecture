@@ -1,11 +1,11 @@
-﻿using Domain.Entities;
-using Infrastructure.Common;
-using Infrastructure.Persistence.Interceptors;
+﻿using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.Common;
+using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Infrastructure.Persistence;
+namespace CleanArchitecture.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext
 {
@@ -31,7 +31,7 @@ public class ApplicationDbContext : DbContext
     {
         optionsBuilder.AddInterceptors(_saveChangesInterceptor);
     }
-    
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         await _mediator.DispatchDomainEvents(this);
