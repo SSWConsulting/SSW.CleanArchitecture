@@ -43,3 +43,5 @@ app.UseExceptionFilter();
 app.MapTodoItemEndpoints();
 
 app.Run();
+
+public partial class Program { }
