@@ -102,3 +102,13 @@
     - you will know when your tests pass when they should have failed
   - Inserts bugs into the production code to make sure our tests are effective and testing the right behavior
   - Using [Stryker Mutator](https://stryker-mutator.io/)
+
+## Publishing Template
+
+Template will be published to NuGet.org when changes are made to `CleanArchitecture.nuspec` on the `main` branch.
+
+### Process
+
+1. Update the `version` attribute in `CleanArchitecture.nuspec`
+2. Merge your PR
+3. `package` GitHub Action will run and publish the new version to NuGet.org
