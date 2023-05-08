@@ -1,6 +1,10 @@
 name: Package
 on:
-  workflow_dispatch:
+  #workflow_dispatch:
+  # TEMP
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
