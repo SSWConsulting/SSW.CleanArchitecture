@@ -52,7 +52,6 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));
 
         await _repository.AddAsync(todoItem, cancellationToken);
-        //await _repository.SaveChangesAsync(cancellationToken);
 
         return todoItem.Id.Value;
     }
