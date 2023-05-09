@@ -2,18 +2,18 @@
 
 namespace Domain.Common;
 
-public abstract class BaseEntity : AuditableEntity
+public abstract class BaseEntity<TId> : AuditableEntity, IDomainEvents
 {
     private readonly List<BaseEvent> _domainEvents = new();
-    
+
+    public TId Id { get; set; } = default!;
+
     [NotMapped]
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
-    public void AddDomainEvent(BaseEvent domainEvent) => _domainEvents.Add(domainEvent);
-    public void RemoveDomainEvent(BaseEvent domainEvent) => _domainEvents.Remove(domainEvent);
-    public void ClearDomainEvents() => _domainEvents.Clear();
-}
 
-public abstract class BaseEntity<TId> : BaseEntity
-{
-    public TId Id { get; set; } = default!;
+    public void AddDomainEvent(BaseEvent domainEvent) => _domainEvents.Add(domainEvent);
+
+    public void RemoveDomainEvent(BaseEvent domainEvent) => _domainEvents.Remove(domainEvent);
+
+    public void ClearDomainEvents() => _domainEvents.Clear();
 }
