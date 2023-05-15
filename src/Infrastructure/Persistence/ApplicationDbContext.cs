@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;

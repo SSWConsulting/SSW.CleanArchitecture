@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Domain.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CleanArchitecture.Domain.Common;
 
