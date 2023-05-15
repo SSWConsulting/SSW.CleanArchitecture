@@ -6,7 +6,7 @@
     <version>0.2.3</version>
     <title>SSW Clean Architecture Template</title>
     <authors>SSW</authors>
-    <description>SSW Clean Architecture Solution Template for and .NET.</description>
+    <description>SSW Clean Architecture Solution Template for .NET.</description>
     <summary>
       This is a solution template for creating a WebAPI with ASP.NET Core following the principles of Clean Architecture.
     </summary>
