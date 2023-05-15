@@ -18,7 +18,7 @@
 
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>clean-architecture project template csharp dotnet angular</tags>
+    <tags>clean-architecture project template csharp dotnet ssw</tags>
     <readme>README.md</readme>
 
     <packageTypes>
