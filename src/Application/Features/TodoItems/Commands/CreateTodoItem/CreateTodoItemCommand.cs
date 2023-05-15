@@ -33,15 +33,13 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
     private readonly IMapper _mapper;
-    private readonly IPublisher _publisher;
     private readonly IRepositoryBase<TodoItem> _repository;
+
     public CreateTodoItemCommandHandler(
         IMapper mapper,
-        IPublisher publisher,
         IRepositoryBase<TodoItem> repository)
     {
         _mapper = mapper;
-        _publisher = publisher;
         _repository = repository;
     }
 
@@ -54,7 +52,6 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));
 
         await _repository.AddAsync(todoItem, cancellationToken);
-        await _repository.SaveChangesAsync(cancellationToken);
 
         return todoItem.Id.Value;
     }
