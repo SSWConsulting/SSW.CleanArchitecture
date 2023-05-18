@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>SSW.CleanArchitecture.Application</RootNamespace>
-    <AssemblyName>CleanArchitecture.Application</AssemblyName>
+    <AssemblyName>SSW.CleanArchitecture.Application</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
