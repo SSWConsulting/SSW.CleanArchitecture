@@ -1,9 +1,9 @@
-using CleanArchitecture.Application;
-using CleanArchitecture.Infrastructure;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.WebApi;
-using CleanArchitecture.WebApi.Features;
-using CleanArchitecture.WebApi.Filters;
+using SSW.CleanArchitecture.Application;
+using SSW.CleanArchitecture.Infrastructure;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.WebApi;
+using SSW.CleanArchitecture.WebApi.Features;
+using SSW.CleanArchitecture.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 

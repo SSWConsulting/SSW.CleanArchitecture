@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
-using CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
-using CleanArchitecture.WebApi.Extensions;
-using MediatR;
+﻿using MediatR;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+using SSW.CleanArchitecture.WebApi.Extensions;
 
-namespace CleanArchitecture.WebApi.Features;
+namespace SSW.CleanArchitecture.WebApi.Features;
 
 public static class TodoItemEndpoints
 {

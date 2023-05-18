@@ -1,9 +1,10 @@
 using Bogus;
-using CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
-using CleanArchitecture.Application.IntegrationTests.TestHelpers;
-using CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+using SSW.CleanArchitecture.Application.IntegrationTests;
+using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
+namespace SSW.CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
 
 public class GetAllTodoItemsQueryTests : IntegrationTestBase
 {

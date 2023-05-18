@@ -1,14 +1,13 @@
 ﻿using Ardalis.Specification;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Persistence.Interceptors;
-using CleanArchitecture.Infrastructure.Services;
-using Infrastructure.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
+using SSW.CleanArchitecture.Infrastructure.Services;
 
-namespace CleanArchitecture.Infrastructure;
+namespace SSW.CleanArchitecture.Infrastructure;
 
 public static class DependencyInjection
 {

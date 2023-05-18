@@ -1,2 +1,2 @@
-﻿global using CleanArchitecture.Domain.Common;
-global using CleanArchitecture.Domain.Enum;
+﻿global using SSW.CleanArchitecture.Domain.Common;
+global using SSW.CleanArchitecture.Domain.Enum;

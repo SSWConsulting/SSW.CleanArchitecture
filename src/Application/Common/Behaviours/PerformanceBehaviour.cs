@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using CleanArchitecture.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Common.Behaviours;
+namespace SSW.CleanArchitecture.Application.Common.Behaviours;
 
 public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

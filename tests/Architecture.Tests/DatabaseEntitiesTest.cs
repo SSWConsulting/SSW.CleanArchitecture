@@ -1,10 +1,10 @@
-using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Infrastructure;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using NetArchTest.Rules;
+using SSW.CleanArchitecture.Domain.Common;
+using SSW.CleanArchitecture.Infrastructure;
 
-namespace CleanArchitecture.Architecture.UnitTests;
+namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class DatabaseEntities
 {

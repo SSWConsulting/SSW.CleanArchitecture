@@ -1,6 +1,6 @@
 using Ardalis.Specification.EntityFrameworkCore;
 
-namespace CleanArchitecture.Infrastructure.Persistence;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
 public class DbSetRepository<T> : RepositoryBase<T> where T : class
 {

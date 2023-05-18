@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.Services;
+namespace SSW.CleanArchitecture.Infrastructure.Services;
 
 public class DateTimeService : IDateTime { }

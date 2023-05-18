@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>CleanArchitecture.Application.UnitTests</RootNamespace>
-    <AssemblyName>CleanArchitecture.Application.UnitTests</AssemblyName>
+    <RootNamespace>SSW.CleanArchitecture.Application.UnitTests</RootNamespace>
+    <AssemblyName>SSW.CleanArchitecture.Application.UnitTests</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>

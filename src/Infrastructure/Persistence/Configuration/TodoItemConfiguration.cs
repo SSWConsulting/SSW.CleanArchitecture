@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Configuration;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 {

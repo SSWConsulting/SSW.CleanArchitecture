@@ -1,8 +1,8 @@
 using Ardalis.Specification;
-using CleanArchitecture.Application.Features.TodoItems.Specifications;
-using CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
 public record GetAllTodoItemsQuery : IRequest<IReadOnlyList<TodoItemDto>>;
 

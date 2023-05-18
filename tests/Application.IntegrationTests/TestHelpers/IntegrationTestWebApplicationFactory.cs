@@ -1,12 +1,12 @@
-using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace CleanArchitecture.Application.IntegrationTests.TestHelpers;
+namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {

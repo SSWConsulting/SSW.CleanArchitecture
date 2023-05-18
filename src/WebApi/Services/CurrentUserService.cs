@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Services;
+namespace SSW.CleanArchitecture.WebApi.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

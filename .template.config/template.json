@@ -6,9 +6,9 @@
     "SPA",
     "API",
     ".NET",
-    "SSW",
     "ASP.NET Core",
     "EF Core",
+    "SSW",
     "Clean Architecture"
   ],
   "name": "SSW Clean Architecture Solution",
@@ -20,7 +20,7 @@
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "CleanArchitecture",
+  "sourceName": "SSW.CleanArchitecture",
   "preferNameDirectory": true,
   "sources": [
     {

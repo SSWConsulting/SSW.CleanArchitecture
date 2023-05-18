@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>CleanArchitecture.WebApi</RootNamespace>
-    <AssemblyName>CleanArchitecture.WebApi</AssemblyName>
+    <RootNamespace>SSW.CleanArchitecture.WebApi</RootNamespace>
+    <AssemblyName>SSW.CleanArchitecture.WebApi</AssemblyName>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>fc525b0c-3d84-4847-9b4f-840f8db76d87</UserSecretsId>

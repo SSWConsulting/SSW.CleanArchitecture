@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Enum;
+﻿using SSW.CleanArchitecture.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Domain.Enum;
 
-namespace CleanArchitecture.Infrastructure.Persistence;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
 public class ApplicationDbContextInitializer
 {

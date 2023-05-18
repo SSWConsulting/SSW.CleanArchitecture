@@ -1,10 +1,12 @@
-﻿namespace CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+﻿using SSW.CleanArchitecture.Domain.Entities;
+
+namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
 public class GetAllTodoItemsMapping : Profile
 {
     public GetAllTodoItemsMapping()
     {
-        CreateMap<Domain.Entities.TodoItem, TodoItemDto>()
+        CreateMap<TodoItem, TodoItemDto>()
             .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id.Value));
     }
 }

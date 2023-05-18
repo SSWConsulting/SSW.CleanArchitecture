@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
 
-namespace CleanArchitecture.Application.IntegrationTests.TestHelpers;
+namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 
 public class TestingDatabaseFixture : IAsyncLifetime
 {

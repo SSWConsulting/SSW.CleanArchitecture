@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Common;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Interceptors;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
 public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 {
