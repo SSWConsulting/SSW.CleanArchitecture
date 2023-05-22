@@ -27,14 +27,11 @@ public static class ExceptionFilter
 
     private static IResult HandleException(this HttpContext context, Exception exception)
     {
-        // TODO: Null exception possibly?
-
         var type = exception.GetType();
 
         if (ExceptionHandlers.ContainsKey(type))
             return ExceptionHandlers[type].Invoke(context, exception);
 
-        // TODO: Testing around unhandled exceptions
         return Results.Problem(statusCode: StatusCodes.Status500InternalServerError,
             type: "https://tools.ietf.org/html/rfc7231#section-6.6.1");
     }
