@@ -1,8 +1,8 @@
-﻿using Application.Common.Interfaces;
-using Infrastructure.Persistence;
-using WebApi.Services;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.WebApi.Services;
 
-namespace WebApi;
+namespace SSW.CleanArchitecture.WebApi;
 
 public static class DependencyInjection
 {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Common;
+﻿namespace SSW.CleanArchitecture.Domain.Common;
 
 public abstract class AuditableEntity
 {

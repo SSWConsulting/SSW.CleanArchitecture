@@ -1,4 +1,4 @@
-﻿namespace WebApi.Extensions;
+﻿namespace SSW.CleanArchitecture.WebApi.Extensions;
 
 public static class EndpointRouteBuilderExt
 {

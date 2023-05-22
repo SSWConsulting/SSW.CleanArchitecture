@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+
+    <id>SSW.CleanArchitecture.Template</id>
+    <version>0.2.3</version>
+    <title>SSW Clean Architecture Template</title>
+    <authors>SSW</authors>
+    <description>SSW Clean Architecture Solution Template for .NET.</description>
+    <summary>
+      This is a solution template for creating a WebAPI with ASP.NET Core following the principles of Clean Architecture.
+    </summary>
+    <releaseNotes>
+    </releaseNotes>
+
+    <projectUrl>https://github.com/SSWConsulting/CleanArchitectureV2</projectUrl>
+    <repository type="git" url="https://github.com/SSWConsulting/CleanArchitectureV2.git" branch="main" />
+
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>clean-architecture project template csharp dotnet ssw</tags>
+    <readme>README.md</readme>
+
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+
+  </metadata>
+
+  <files>
+    <file src="README.md" />
+    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;" />
+  </files>
+
+</package>

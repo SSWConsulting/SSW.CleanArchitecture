@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
-using Domain.Enum;
+﻿using SSW.CleanArchitecture.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Domain.Enum;
 
-namespace Infrastructure.Persistence;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
 public class ApplicationDbContextInitializer
 {
@@ -21,9 +21,7 @@ public class ApplicationDbContextInitializer
         try
         {
             if (_dbContext.Database.IsSqlServer())
-            {
                 await _dbContext.Database.MigrateAsync();
-            }
         }
         catch (Exception e)
         {
@@ -37,9 +35,7 @@ public class ApplicationDbContextInitializer
         try
         {
             if (_dbContext.TodoItems.Any())
-            {
                 return;
-            }
 
             _dbContext.TodoItems.Add(new TodoItem()
             {

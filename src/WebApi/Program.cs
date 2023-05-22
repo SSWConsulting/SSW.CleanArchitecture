@@ -1,9 +1,9 @@
-using Application;
-using Infrastructure;
-using Infrastructure.Persistence;
-using WebApi;
-using WebApi.Features;
-using WebApi.Filters;
+using SSW.CleanArchitecture.Application;
+using SSW.CleanArchitecture.Infrastructure;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.WebApi;
+using SSW.CleanArchitecture.WebApi.Features;
+using SSW.CleanArchitecture.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,3 +43,5 @@ app.UseExceptionFilter();
 app.MapTodoItemEndpoints();
 
 app.Run();
+
+public partial class Program { }

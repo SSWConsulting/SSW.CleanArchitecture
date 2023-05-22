@@ -1,15 +1,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
 
-namespace Application.IntegrationTests.TestHelpers;
+namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 
 public class TestingDatabaseFixture : IAsyncLifetime
 {
     public const string DatabaseCollectionDefinition = "Database collection";
-    
+
     private readonly IntegrationTestWebApplicationFactory _factory;
     private Respawner _checkpoint = default!;
-    
+
     public IServiceScopeFactory ScopeFactory { get; private set; } = default!;
 
     private string ConnectionString => _factory.Database.ConnectionString!;

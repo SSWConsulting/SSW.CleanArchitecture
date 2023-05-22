@@ -1,6 +1,6 @@
-using Domain.Entities;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace Domain.UnitTests.Entities;
+namespace SSW.CleanArchitecture.Domain.UnitTests.Entities;
 
 public class TodoItemTests
 {

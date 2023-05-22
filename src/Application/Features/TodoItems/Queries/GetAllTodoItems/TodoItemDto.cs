@@ -1,4 +1,4 @@
-﻿namespace Application.Features.TodoItems.Queries.GetAllTodoItems;
+﻿namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
 public class TodoItemDto
 {

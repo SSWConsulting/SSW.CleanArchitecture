@@ -1,13 +1,12 @@
-using Application.Features.TodoItems.Specifications;
-using Bogus;
-using Domain.Entities;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace Application.UnitTests.Features.TodoItems.Specifications;
+namespace SSW.CleanArchitecture.Application.UnitTests.Features.TodoItems.Specifications;
 
 public class TodoItemByTitleSpecTests
 {
     private readonly List<TodoItem> _entities;
-    
+
     public TodoItemByTitleSpecTests()
     {
         _entities = new List<TodoItem>()

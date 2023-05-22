@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Behaviours;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.Common.Behaviours;
 
-namespace Application;
+namespace SSW.CleanArchitecture.Application;
 
 public static class DependencyInjection
 {

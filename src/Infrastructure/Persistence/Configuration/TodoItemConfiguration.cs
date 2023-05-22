@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace Infrastructure.Persistence.Configuration;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 {
@@ -14,10 +14,10 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     {
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id)
-            .HasConversion(x => x.Value, 
+            .HasConversion(x => x.Value,
                 x => new TodoItemId(x))
             .ValueGeneratedOnAdd();
-        
+
         builder.Property(t => t.Title)
             .HasMaxLength(200)
             .IsRequired();

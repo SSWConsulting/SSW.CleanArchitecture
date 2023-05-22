@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace Domain.Common;
+namespace SSW.CleanArchitecture.Domain.Common;
 
 public record BaseEvent : INotification;

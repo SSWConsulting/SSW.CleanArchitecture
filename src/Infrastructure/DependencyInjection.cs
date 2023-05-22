@@ -1,13 +1,13 @@
-﻿using Application.Common.Interfaces;
-using Ardalis.Specification;
-using Infrastructure.Persistence;
-using Infrastructure.Persistence.Interceptors;
-using Infrastructure.Services;
+﻿using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
+using SSW.CleanArchitecture.Infrastructure.Services;
 
-namespace Infrastructure;
+namespace SSW.CleanArchitecture.Infrastructure;
 
 public static class DependencyInjection
 {

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Common.Behaviours;
+﻿namespace SSW.CleanArchitecture.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
      where TRequest : notnull

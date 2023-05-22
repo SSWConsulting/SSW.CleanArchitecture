@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>SSW.CleanArchitecture.WebApi</RootNamespace>
+    <AssemblyName>SSW.CleanArchitecture.WebApi</AssemblyName>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>fc525b0c-3d84-4847-9b4f-840f8db76d87</UserSecretsId>
@@ -46,7 +48,6 @@
   <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent">
     <!-- nswag will run all *.nswag and nswag.json by default -->       
     <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net70) run /variables:Configuration=$(Configuration)"/>
-      
   </Target>
 
 </Project>

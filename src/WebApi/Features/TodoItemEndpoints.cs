@@ -1,10 +1,9 @@
-﻿using Application.Features.TodoItems.Commands.CreateTodoItem;
-using Application.Features.TodoItems.Queries.GetAllTodoItems;
-using MediatR;
+﻿using MediatR;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
+using SSW.CleanArchitecture.WebApi.Extensions;
 
-using WebApi.Extensions;
-
-namespace WebApi.Features;
+namespace SSW.CleanArchitecture.WebApi.Features;
 
 public static class TodoItemEndpoints
 {
@@ -20,7 +19,7 @@ public static class TodoItemEndpoints
                 => sender.Send(new GetAllTodoItemsQuery(), ct))
             .WithName("GetTodoItems")
             .ProducesGet<TodoItemDto[]>();
-        
+
         // TODO: Investigate examples for swagger docs. i.e. better docs than:
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
 

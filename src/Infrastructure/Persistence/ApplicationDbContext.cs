@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
-using Infrastructure.Persistence.Interceptors;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SSW.CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using System.Reflection;
 
-namespace Infrastructure.Persistence;
+namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
 public class ApplicationDbContext : DbContext
 {

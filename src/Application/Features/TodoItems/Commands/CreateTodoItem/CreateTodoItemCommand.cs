@@ -1,9 +1,9 @@
-﻿using Application.Features.TodoItems.Specifications;
-using Ardalis.Specification;
-using Domain.Entities;
-using Domain.Events;
+﻿using Ardalis.Specification;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
+using SSW.CleanArchitecture.Domain.Events;
+using SSW.CleanArchitecture.Domain.Entities;
 
-namespace Application.Features.TodoItems.Commands.CreateTodoItem;
+namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 
 public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
 

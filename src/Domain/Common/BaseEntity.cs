@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Common;
+namespace SSW.CleanArchitecture.Domain.Common;
 
 public abstract class BaseEntity<TId> : AuditableEntity, IDomainEvents
 {

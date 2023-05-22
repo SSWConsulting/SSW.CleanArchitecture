@@ -1,9 +1,9 @@
-using Application.IntegrationTests.TestHelpers;
-using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace Application.IntegrationTests;
+namespace SSW.CleanArchitecture.Application.IntegrationTests;
 
 [Collection(TestingDatabaseFixture.DatabaseCollectionDefinition)]
 public abstract class IntegrationTestBase : IAsyncLifetime
