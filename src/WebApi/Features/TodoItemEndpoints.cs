@@ -22,6 +22,7 @@ public static class TodoItemEndpoints
 
         // TODO: Investigate examples for swagger docs. i.e. better docs than:
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
+        // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
 
         group
             .MapPost("/", (ISender sender, CreateTodoItemCommand command, CancellationToken ct) => sender.Send(command, ct))

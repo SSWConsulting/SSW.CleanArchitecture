@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SSW.CleanArchitecture.Domain.Entities;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
 {
-    // TODO: Rip out the common pieces that are from BaseEntity
+    // TODO: Rip out the common pieces that are from BaseEntity (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/78)
     // virtual method, override 
     // Good marker to enforce that all entities have configuration defined via arch tests
     public void Configure(EntityTypeBuilder<TodoItem> builder)
