@@ -22,6 +22,7 @@
   * [✨ Features](#-features)
   * [🚀 Publishing Template](#-publishing-template)
     * [Process](#process)
+  * [🎉 Getting Started](#-getting-started)
 <!-- TOC -->
 
 ## 🤔 What is it?
@@ -65,18 +66,18 @@ This is a template for creating a new project using [Clean Architecture](https:/
     - Test Commands and Queries against a Real database
     - No Entity Framework mocking required
     - No need for In-memory database provider
-    - Using [Wire-Mock](https://wiremock.org/) to mock out external services for controlled Integration Tests
-      - e.g. grab real request and responses from external system and then replaying them in the tests
+<!-- Commenting out pending #100     - Using [Wire-Mock](https://wiremock.org/) to mock out external services for controlled Integration Tests
+      - e.g. grab real request and responses from external system and then replaying them in the tests -->
   - Architecture Tests
     - Using [NetArchTest](https://github.com/BenMorris/NetArchTest)
     - Know that the team is following the same Clean Architecture fundamentals
     - The tests are automated so discovering the defects is fast
-  - Mutation Testing
+<!-- Commenting out pending #101  - Mutation Testing
     - Test our tests!
     - Helps discover the false-positives in our tests
       - you will know when your tests pass when they should have failed
     - Inserts bugs into the production code to make sure our tests are effective and testing the right behavior
-    - Using [Stryker Mutator](https://stryker-mutator.io/)
+    - Using [Stryker Mutator](https://stryker-mutator.io/) -->
 
 ## 🚀 Publishing Template
 
@@ -89,3 +90,29 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 3. `package` GitHub Action will run and publish the new version to NuGet.org
 
 <!-- TODO Issue #99: Getting Started using the dotnet new template -->
+
+## 🎉 Getting Started
+
+1. Install the SSW CA template
+
+```bash
+dotnet new install SSW.CleanArchitecture.Template
+```
+
+> NOTE: The template only needs to be installed once. Running this command again will update your version of the template.
+
+2. Create a new directory
+
+```bash
+mkdir Northwind365
+cd Northwind365
+```
+
+3. Create a new solution
+
+```bash
+dotnet new ssw-ca
+```
+
+> NOTE: This will use the Directory name as the Solution name and project namespaces.
+
