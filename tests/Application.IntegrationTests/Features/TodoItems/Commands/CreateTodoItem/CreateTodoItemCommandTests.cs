@@ -1,8 +1,7 @@
-using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
-using SSW.CleanArchitecture.Domain.Entities;
 using SSW.CleanArchitecture.Application.Common.Exceptions;
-using SSW.CleanArchitecture.Application.IntegrationTests;
+using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+using SSW.CleanArchitecture.Domain.Entities;
 
 namespace SSW.CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Commands.CreateTodoItem;
 

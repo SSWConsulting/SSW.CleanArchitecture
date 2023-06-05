@@ -1,6 +1,8 @@
-﻿namespace SSW.CleanArchitecture.Domain.Common.Base;
+﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
-public abstract class AuditableEntity
+namespace SSW.CleanArchitecture.Domain.Common.Base;
+
+public abstract class AuditableEntity : IAuditableEntity
 {
     public DateTimeOffset CreatedAt { get; set; }
     public string? CreatedBy { get; set; }
