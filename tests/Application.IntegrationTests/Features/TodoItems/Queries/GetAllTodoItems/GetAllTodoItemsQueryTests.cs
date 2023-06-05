@@ -1,6 +1,5 @@
 using Bogus;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
-using SSW.CleanArchitecture.Application.IntegrationTests;
 using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 using SSW.CleanArchitecture.Domain.Entities;
 

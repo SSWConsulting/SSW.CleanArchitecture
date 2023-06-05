@@ -1,6 +1,7 @@
-using Ardalis.Specification;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
-using SSW.CleanArchitecture.Domain.Entities;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
@@ -9,14 +10,14 @@ public record GetAllTodoItemsQuery : IRequest<IReadOnlyList<TodoItemDto>>;
 public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery, IReadOnlyList<TodoItemDto>>
 {
     private readonly IMapper _mapper;
-    private readonly IReadRepositoryBase<TodoItem> _repository;
+    private readonly IApplicationDbContext _dbContext;
 
     public GetAllTodoItemsQueryHandler(
         IMapper mapper,
-        IReadRepositoryBase<TodoItem> repository)
+        IApplicationDbContext dbContext)
     {
         _mapper = mapper;
-        _repository = repository;
+        _dbContext = dbContext;
     }
 
     public async Task<IReadOnlyList<TodoItemDto>> Handle(
@@ -24,7 +25,10 @@ public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery,
         CancellationToken cancellationToken)
     {
         var spec = new AllTodoItemSpec();
-        var items = await _repository.ListAsync(spec, cancellationToken);
-        return items.Select(_mapper.Map<TodoItemDto>).ToList();
+
+        return await _dbContext.TodoItems
+            .WithSpecification(spec)
+            .ProjectTo<TodoItemDto>(_mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
     }
 }

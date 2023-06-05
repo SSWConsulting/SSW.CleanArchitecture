@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Entities;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using System.Reflection;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly EntitySaveChangesInterceptor _saveChangesInterceptor;
     private readonly DispatchDomainEventsInterceptor _dispatchDomainEventsInterceptor;
