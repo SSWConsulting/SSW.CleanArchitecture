@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Domain.Common;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
@@ -36,7 +36,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         if (context is null)
             return;
 
-        foreach (var entry in context.ChangeTracker.Entries<AuditableEntity>())
+        foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
             if (entry.State is EntityState.Added)
             {
                 entry.Entity.CreatedAt = _dateTime.Now;

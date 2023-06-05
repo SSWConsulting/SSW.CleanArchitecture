@@ -1,4 +1,7 @@
-﻿namespace SSW.CleanArchitecture.Domain.Entities;
+﻿using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Enum;
+
+namespace SSW.CleanArchitecture.Domain.Entities;
 
 
 public record TodoItemId(Guid Value);
