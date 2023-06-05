@@ -1,5 +1,4 @@
-﻿using SSW.CleanArchitecture.Domain.Common;
-using SSW.CleanArchitecture.Domain.Entities;
+﻿using SSW.CleanArchitecture.Domain.Entities;
 
 namespace SSW.CleanArchitecture.Domain.Events;
 
