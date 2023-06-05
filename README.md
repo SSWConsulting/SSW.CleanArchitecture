@@ -16,13 +16,21 @@
 
 </div>
 
+<!-- TOC -->
+* [SSW Clean Architecture Template](#ssw-clean-architecture-template)
+  * [🤔 What is it?](#-what-is-it)
+  * [✨ Features](#-features)
+  * [🚀 Publishing Template](#-publishing-template)
+    * [Process](#process)
+<!-- TOC -->
+
 ## 🤔 What is it?
 
 This is a template for creating a new project using [Clean Architecture](https://ssw.com.au/rules/rules-to-better-clean-architecture/), leveraging [SSW Rules](https://ssw.com.au/rules) & SSW's over 30 years of experience developing software in the Microsoft space. 
 
 ## ✨ Features
 
-- ⚖️ EditorConfig - comes with the SSW.EditorConfig
+- ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
   - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
 - 📦 Slim - no authentication provider, no authorization & no UI framework
   - You can add these yourself or use one of our reference architectures from [awesome-clean-architecture](https://github.com/SSWConsulting/awesome-clean-architecture)
@@ -79,3 +87,5 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 1. Update the `version` attribute in `CleanArchitecture.nuspec`
 2. Merge your PR
 3. `package` GitHub Action will run and publish the new version to NuGet.org
+
+<!-- TODO Issue #99: Getting Started using the dotnet new template -->
