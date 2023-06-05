@@ -9,7 +9,7 @@ public class DatabaseContainer
     public DatabaseContainer()
     {
         _container = new SqlEdgeBuilder()
-            .WithName("db")
+            .WithName("CleanArchitecture-IntegrationTests-DbContainer")
             .WithPassword("sqledge!Strong")
             .WithAutoRemove(true)
             .Build();

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
-using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace SSW.CleanArchitecture.Application.IntegrationTests;
 
@@ -12,7 +12,7 @@ public abstract class IntegrationTestBase : IAsyncLifetime
 
     protected TestingDatabaseFixture Fixture { get; }
     protected IMediator Mediator { get; }
-    protected ApplicationDbContext Context { get; }
+    protected IApplicationDbContext Context { get; }
 
 
     public IntegrationTestBase(TestingDatabaseFixture fixture)
@@ -21,7 +21,7 @@ public abstract class IntegrationTestBase : IAsyncLifetime
 
         _scope = Fixture.ScopeFactory.CreateScope();
         Mediator = _scope.ServiceProvider.GetRequiredService<IMediator>();
-        Context = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        Context = _scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
     }
 
     public async Task InitializeAsync()
