@@ -33,19 +33,25 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 - ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
   - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
+  - as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)
 - 📦 Slim - no authentication provider, no authorization & no UI framework
   - You can add these yourself or use one of our reference architectures from [awesome-clean-architecture](https://github.com/SSWConsulting/awesome-clean-architecture)
+  - as per [ssw.com.au/rules/choosing-authentication/](https://ssw.com.au/rules/choosing-authentication/)
 - 🌐 Minimal Endpoints - because it's fast & simple. ⚡
   - Extension methods to ensure consistent HTTP Verbs & Status Codes
 - 🔑 Global Exception Handling - it's important to handle exceptions in a consistent way & protect sensitive information
   - Transforms exceptions into a consistent format following the [RFC7231 memo](https://datatracker.ietf.org/doc/html/rfc7231#section-6.1) 
 - 📝 OpenAPI/Swagger - easily document your API
+  - as per [ssw.com.au/rules/do-you-document-your-webapi/](https://ssw.com.au/rules/do-you-document-your-webapi/) 
 - 🗄️ Entity Framework Core - for data access
   - Comes with Migrations & Data Seeding
+  - as per [ssw.com.au/rules/rules-to-better-entity-framework/](https://ssw.com.au/rules/rules-to-better-entity-framework/)
 - 🧩 Specification Pattern - abstract EF Core away from your business logic
 - 🔀 CQRS - for separation of concerns
+  - as per [ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/](https://ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/)
 - 📦 MediatR - for decoupling your application
 - 📦 FluentValidation - for validating requests
+  - as per [ssw.com.au/rules/use-fluent-validation/](https://ssw.com.au/rules/use-fluent-validation/) 
 - 📦 AutoMapper - for mapping between objects
 - 🆔 Strongly Typed IDs - to combat primitive obsession
   - e.g. pass `CustomerId` type into methods instead of `int`, or `Guid`
@@ -58,8 +64,10 @@ This is a template for creating a new project using [Clean Architecture](https:/
     - e.g. for all test projects we can ensure that the exact same versions of common packages are referenced
     - e.g. XUnit and NSubstitute packages for all test projects
 - 🧪 Testing
+  - as per [ssw.com.au/rules/rules-to-better-testing/](https://www.ssw.com.au/rules/rules-to-better-testing/) 
   - Simpler Unit Tests for Application
     - **No Entity Framework mocking required** thanks to **Specifications**
+    - as per [ssw.com.au/rules/rules-to-better-unit-tests/](https://www.ssw.com.au/rules/rules-to-better-unit-tests/)
   - Better Integration Tests
     - Using [Respawn](https://github.com/jbogard/Respawn) and [TestContainers](https://dotnet.testcontainers.org/)
     - Integration Tests at Unit Test speed
