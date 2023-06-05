@@ -18,7 +18,7 @@
 
 ## 🤔 What is it?
 
-This is a template for creating a new project using Clean Architecture, leveraging [SSW Rules](https://ssw.com.au/rules) & SSW's over 30 years of experience developing software in the Microsoft space. 
+This is a template for creating a new project using [Clean Architecture](https://ssw.com.au/rules/rules-to-better-clean-architecture/), leveraging [SSW Rules](https://ssw.com.au/rules) & SSW's over 30 years of experience developing software in the Microsoft space. 
 
 ## ✨ Features
 
