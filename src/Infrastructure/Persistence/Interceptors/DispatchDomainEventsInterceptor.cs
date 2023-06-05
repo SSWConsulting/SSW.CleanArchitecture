@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using SSW.CleanArchitecture.Domain.Common;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
