@@ -11,8 +11,7 @@ public class AllTodoItemSpecTests
     {
         const int dataCount = 10;
         var entities = new Faker<TodoItem>()
-            .RuleFor(t => t.Id, _ => new TodoItemId(Guid.NewGuid()))
-            .RuleFor(t => t.Title, f => f.Commerce.ProductName())
+            .CustomInstantiator(f => TodoItem.Create(f.Commerce.ProductName()))
             .Generate(dataCount);
 
         var query = new AllTodoItemSpec();

@@ -5,7 +5,7 @@ using SSW.CleanArchitecture.Domain.Entities;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 
-public record CreateTodoItemCommand(string? Title) : IRequest<Guid>;
+public record CreateTodoItemCommand(string Title) : IRequest<Guid>;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {
@@ -35,22 +35,16 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
 
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
-    private readonly IMapper _mapper;
     private readonly IApplicationDbContext _dbContext;
 
-    public CreateTodoItemCommandHandler(
-        IMapper mapper,
-        IApplicationDbContext dbContext)
+    public CreateTodoItemCommandHandler(IApplicationDbContext dbContext)
     {
-        _mapper = mapper;
         _dbContext = dbContext;
     }
 
-    public async Task<Guid> Handle(
-        CreateTodoItemCommand request,
-        CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
-        var todoItem = _mapper.Map<TodoItem>(request);
+        var todoItem = TodoItem.Create(request.Title!);
 
         await _dbContext.TodoItems.AddAsync(todoItem, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);

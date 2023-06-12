@@ -14,7 +14,7 @@ public class GetAllTodoItemsQueryTests : IntegrationTestBase
     {
         const int entityCount = 10;
         var entities = new Faker<TodoItem>()
-            .RuleFor(t => t.Title, f => f.UniqueIndex.ToString())
+            .CustomInstantiator(f => TodoItem.Create(f.UniqueIndex.ToString()))
             .Generate(entityCount);
 
         await Context.TodoItems.AddRangeAsync(entities);

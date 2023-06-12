@@ -180,8 +180,7 @@
         "additionalProperties": false,
         "properties": {
           "title": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       }
