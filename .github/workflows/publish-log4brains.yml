@@ -1,0 +1,29 @@
+name: Publish Log4brains
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false # required by JamesIves/github-pages-deploy-action
+          fetch-depth: 0 # required by Log4brains to work correctly (needs the whole Git history)
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: Install and Build Log4brains
+        run: |
+          npm install -g log4brains
+          log4brains build --basePath /${GITHUB_REPOSITORY#*/}/log4brains
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: .log4brains/out
+          TARGET_FOLDER: log4brains
