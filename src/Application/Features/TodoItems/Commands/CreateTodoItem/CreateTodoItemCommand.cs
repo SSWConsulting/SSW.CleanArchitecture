@@ -2,7 +2,6 @@
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
 using SSW.CleanArchitecture.Domain.Entities;
-using SSW.CleanArchitecture.Domain.Events;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 
@@ -52,8 +51,6 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
         CancellationToken cancellationToken)
     {
         var todoItem = _mapper.Map<TodoItem>(request);
-
-        todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));
 
         await _dbContext.TodoItems.AddAsync(todoItem, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);

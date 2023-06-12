@@ -12,10 +12,11 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     public void Configure(EntityTypeBuilder<TodoItem> builder)
     {
         builder.HasKey(t => t.Id);
+
         builder.Property(t => t.Id)
             .HasConversion(x => x.Value,
                 x => new TodoItemId(x))
-            .ValueGeneratedOnAdd();
+            .ValueGeneratedNever(); // TODO DM: Discuss this with SAW team
 
         builder.Property(t => t.Title)
             .HasMaxLength(200)
