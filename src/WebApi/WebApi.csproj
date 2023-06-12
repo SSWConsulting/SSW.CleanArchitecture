@@ -4,9 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>SSW.CleanArchitecture.WebApi</RootNamespace>
     <AssemblyName>SSW.CleanArchitecture.WebApi</AssemblyName>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>fc525b0c-3d84-4847-9b4f-840f8db76d87</UserSecretsId>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
