@@ -23,11 +23,9 @@ public class TodoItem : BaseEntity<TodoItemId>
 
         var todoItem = new TodoItem
         {
-            Id = new TodoItemId(Guid.NewGuid()),
             Title = title,
             Priority = PriorityLevel.None,
             Done = false
-
         };
 
         todoItem.AddDomainEvent(new TodoItemCreatedEvent(todoItem));

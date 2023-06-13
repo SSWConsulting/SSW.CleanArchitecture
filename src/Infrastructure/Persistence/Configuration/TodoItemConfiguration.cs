@@ -16,7 +16,7 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
         builder.Property(t => t.Id)
             .HasConversion(x => x.Value,
                 x => new TodoItemId(x))
-            .ValueGeneratedNever(); // TODO DM: Discuss this with SAW team
+            .ValueGeneratedOnAdd();
 
         builder.Property(t => t.Title)
             .HasMaxLength(200)
