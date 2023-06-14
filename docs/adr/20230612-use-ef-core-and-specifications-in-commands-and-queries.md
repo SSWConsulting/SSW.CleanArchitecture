@@ -28,9 +28,10 @@ Chosen **Option 2 - EF Core + Specifications**, because it provides a good balan
 
 ### Consequences
 
-- ❌ Unable to unit test commands and queries
+- ❌ Unable to unit test commands and queries.  Will need to leverage integration tests due to EF Core.
 - ❌ Application will depend on `Microsoft.EntityFrameworkCore`
 - ❌ Application will depend on `Ardalis.Specification.EntityFrameworkCore`
+- ⚖️ Specifications will live external to the command/query
 
 ## Pros and Cons of the Options
 
@@ -38,18 +39,17 @@ Chosen **Option 2 - EF Core + Specifications**, because it provides a good balan
 
 - ✅ Easy to load Aggregate Roots
 - ✅ Allows Unit testing of Commands and Queries
-- ✅ Queries can be reused
+- ✅ Specifications can be reused for queries
 - ✅ Specifications can be individually unit tested
-- ❌ Inefficient data retrieval and the whole entity needs to be loaded from the database
-- ❌ Query logic is abstracted away
+- ❌ Cannot efficiently project onto DTO.  Ardalis.Repository executes the query internally and returns back full entity.
 
 ### 2. EF Core + Specifications
 
 - ✅ Easy to load Aggregate Roots
-- ✅ Queries can be reused
+- ✅ Specifications can be reused for queries
 - ✅ Specifications can be individually unit tested
-- ✅ Efficient data retrieval
-- ❌ Commands/Queries Cannot be unit tested
+- ✅ Can efficiently project onto DTO
+- ❌ Commands/Queries cannot be unit tested
 - ❌ Dependency on EF Core added to Application
 
 ### 3. EF Core
