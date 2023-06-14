@@ -1,6 +1,6 @@
 # Use EF Core and Specifications in Commands and Queries
 
-- Status: proposed
+- Status: accepted
 - Deciders: Daniel Mackay, William Libenberg
 - Tags: ef-core, application, commands, queries
 

@@ -1,14 +1,17 @@
 # Use the Factory Pattern to Create Aggregates
 
 - Status: accepted
-- Deciders: Daniel Mackay
+- Deciders: Daniel Mackay, William Libenberg, Matt Goldman, Luke Parker, Chris Clements
+- Tags: ef-core, domain
+
+Technical Story: [SSW.CleanArchitecture | Issues | 111](https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/111)
 
 ## Context and Problem Statement
 
-Aggregate roots can be instantiated in a number of different ways.
+Aggregate roots can be instantiated in a way that satisfies all the decision drivers.  What is the best way to create aggregates?
 
 ## Decision Drivers
-[20230612-use-markdown-architectural-decision-records.md](20230612-use-markdown-architectural-decision-records.md)
+
 - Must work well with EF Core
 - Must be able to raise domain events on object creation
 - Must keep aggregate roots in a valid state at all times
@@ -21,11 +24,11 @@ Aggregate roots can be instantiated in a number of different ways.
 
 ## Decision Outcome
 
-Chosen option: "1. Factory Methods", because it is the only option that meets all the decision drivers.
+Chosen **Option 1. Factory Methods**, because it is the only option that meets all the decision drivers.
 
 ## Consequences
 
-- private constructors can be used to ensure that aggregates are always in a valid state
+- Private constructors can be used to ensure that aggregates are always in a valid state
 - Need to use `null!` to remove nullable warnings
 
 ## Pros and Cons of the Options
