@@ -1,0 +1,5 @@
+project:
+  name: SSW Clean Architecture Template
+  tz: Australia/Sydney
+  adrFolder: ./docs/adr
+  packages: []
