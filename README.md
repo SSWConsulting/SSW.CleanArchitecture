@@ -10,7 +10,7 @@
 [![Code Scanning](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml)
 [![Package](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
-[![ADRs-kjhsdfkjh](https://sswconsulting.github.io/SSW.CleanArchitecture/badge.svg)](https://sswconsulting.github.io/SSW.CleanArchitecture/)
+[![ADRs](https://sswconsulting.github.io/SSW.CleanArchitecture/badge.svg)](https://sswconsulting.github.io/SSW.CleanArchitecture/)
 
 </div>
 
