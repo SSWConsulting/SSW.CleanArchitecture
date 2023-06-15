@@ -27,4 +27,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: .log4brains/out
-          TARGET_FOLDER: log4brains
+          TARGET_FOLDER: ''
