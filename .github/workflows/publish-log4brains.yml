@@ -1,9 +1,8 @@
 name: Publish Log4brains
 on:
-  pull_request:
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
