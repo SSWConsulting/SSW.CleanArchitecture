@@ -12,6 +12,7 @@ public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     public void Configure(EntityTypeBuilder<TodoItem> builder)
     {
         builder.HasKey(t => t.Id);
+
         builder.Property(t => t.Id)
             .HasConversion(x => x.Value,
                 x => new TodoItemId(x))

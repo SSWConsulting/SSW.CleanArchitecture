@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SSW.CleanArchitecture.Domain.Enum;
+using FluentValidation.Validators;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
@@ -37,68 +38,13 @@ public class ApplicationDbContextInitializer
             if (_dbContext.TodoItems.Any())
                 return;
 
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Clean Architecture",
-                Note = "Learn how to build a Clean Architecture application",
-                Priority = PriorityLevel.High,
-                Reminder = DateTime.Now.AddDays(1),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Blazor",
-                Note = "Learn how to build a Blazor application",
-                Priority = PriorityLevel.Medium,
-                Reminder = DateTime.Now.AddDays(2),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn ASP.NET Core",
-                Note = "Learn how to build a ASP.NET Core application",
-                Priority = PriorityLevel.Low,
-                Reminder = DateTime.Now.AddDays(3),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Entity Framework Core",
-                Note = "Learn how to build a Entity Framework Core application",
-                Priority = PriorityLevel.Low,
-                Reminder = DateTime.Now.AddDays(4),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Docker",
-                Note = "Learn how to build a Docker application",
-                Priority = PriorityLevel.Low,
-                Reminder = DateTime.Now.AddDays(5),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Kubernetes",
-                Note = "Learn how to build a Kubernetes application",
-                Priority = PriorityLevel.Low,
-                Reminder = DateTime.Now.AddDays(6),
-                Done = false
-            });
-
-            _dbContext.TodoItems.Add(new TodoItem()
-            {
-                Title = "Learn Azure",
-                Note = "Learn how to build a Azure application",
-                Priority = PriorityLevel.Low,
-                Reminder = DateTime.Now.AddDays(7),
-                Done = false
-            });
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Clean Architecture", "Learn how to build a Clean Architecture application", PriorityLevel.High, DateTime.Now.AddDays(1)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Blazor", "Learn how to build a Blazor application", PriorityLevel.High, DateTime.Now.AddDays(2)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn ASP.NET Core", "Learn how to build a ASP.NET Core application", PriorityLevel.Medium, DateTime.Now.AddDays(3)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Entity Framework Core", "Learn how to build a Entity Framework Core application", PriorityLevel.Medium, DateTime.Now.AddDays(4)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Docker", "Learn how to build a Docker application", PriorityLevel.Low, DateTime.Now.AddDays(5)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Kubernetes", "Learn how to build a Kubernetes application", PriorityLevel.Low, DateTime.Now.AddDays(6)));
+            _dbContext.TodoItems.Add(TodoItem.Create("Learn Azure", "Learn how to build a Azure application", PriorityLevel.Low, DateTime.Now.AddDays(7)));
 
             await _dbContext.SaveChangesAsync();
         }

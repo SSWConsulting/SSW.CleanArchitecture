@@ -11,11 +11,11 @@ public class TodoItemByTitleSpecTests
     {
         _entities = new List<TodoItem>()
         {
-            new() { Id = new TodoItemId(Guid.NewGuid()), Title = "Apple", },
-            new() { Id = new TodoItemId(Guid.NewGuid()), Title = "Banana", },
-            new() { Id = new TodoItemId(Guid.NewGuid()), Title = "Apple 2", },
-            new() { Id = new TodoItemId(Guid.NewGuid()), Title = "Banana 2", },
-            new() { Id = new TodoItemId(Guid.NewGuid()), Title = "Hello world 2", },
+            TodoItem.Create("Apple"),
+            TodoItem.Create("Banana"),
+            TodoItem.Create("Apple 2"),
+            TodoItem.Create("Banana 2"),
+            TodoItem.Create("Hello world 2"),
         };
     }
 
