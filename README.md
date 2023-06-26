@@ -17,12 +17,12 @@
 </div>
 
 <!-- TOC -->
-* [SSW Clean Architecture Template](#ssw-clean-architecture-template)
-  * [🤔 What is it?](#-what-is-it)
-  * [✨ Features](#-features)
-  * [🚀 Publishing Template](#-publishing-template)
-    * [Process](#process)
-  * [🎉 Getting Started](#-getting-started)
+- [SSW Clean Architecture Template](#ssw-clean-architecture-template)
+  - [🤔 What is it?](#-what-is-it)
+  - [✨ Features](#-features)
+  - [🚀 Publishing Template](#-publishing-template)
+    - [Process](#process)
+  - [🎉 Getting Started](#-getting-started)
 <!-- TOC -->
 
 ## 🤔 What is it?
@@ -122,5 +122,19 @@ cd Northwind365
 dotnet new ssw-ca
 ```
 
-> NOTE: This will use the Directory name as the Solution name and project namespaces.
+> NOTE: Not specifying `name` will use the Directory name as the Solution name and project namespaces.
 
+Alternatively, you can specify the `name` and and `output` directory as follows:
+  
+```bash
+dotnet new ssw-ca --name {{SolutionName}} --output .\
+```
+
+4. Create a query
+
+```bash
+cd src/Application/Features
+mkdir {{FeatureName}}
+cd {{FeatureName}}
+dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --namespaceRoot {{Namespace}}
+```
