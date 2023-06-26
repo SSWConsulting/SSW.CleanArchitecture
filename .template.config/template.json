@@ -12,7 +12,7 @@
     "Clean Architecture"
   ],
   "name": "SSW Clean Architecture Solution",
-  "description":  "",
+  "description":  "Creates a new SSW Clean Architecture Solution",
   "identity": "SSW.Clean.Architecture.Solution.CSharp",
   "groupIdentity": "SSW.Clean.Architecture.Solution",
   "shortName": "ssw-ca",
