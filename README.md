@@ -120,7 +120,7 @@ cd Northwind365
 dotnet new ssw-ca
 ```
 
-> NOTE: Not specifying `name` will use the Directory name as the Solution name and project namespaces.
+> NOTE: `name` is optional; if you don't specify it, the directory name will be used as the solution name and project namespaces.
 
 Alternatively, you can specify the `name` and and `output` directory as follows:
   
