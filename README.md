@@ -122,7 +122,7 @@ dotnet new ssw-ca
 
 > NOTE: `name` is optional; if you don't specify it, the directory name will be used as the solution name and project namespaces.
 
-Alternatively, you can specify the `name` and and `output` directory as follows:
+Alternatively, you can specify the `name` and `output` directory as follows:
   
 ```bash
 dotnet new ssw-ca --name {{SolutionName}} --output .\
@@ -135,4 +135,13 @@ cd src/Application/Features
 mkdir {{FeatureName}}
 cd {{FeatureName}}
 dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --namespaceRoot {{Namespace}}
+```
+
+5. Create a command
+
+```bash
+cd src/Application/Features
+mkdir {{FeatureName}}
+cd {{FeatureName}}
+dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --namespaceRoot {{Namespace}}
 ```

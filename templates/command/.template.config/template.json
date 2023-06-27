@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "SSW",
+  "classifications": [
+    ".NET",
+    "EF Core",
+    "SSW",
+    "CQRS",
+    "Clean Architecture"
+  ],
+  "name": "SSW Clean Architecture Command",
+  "description": "Creates a new SSW Clean Architecture Command",
+  "identity": "SSW.Clean.Architecture.Command.CSharp",
+  "groupIdentity": "SSW.Clean.Architecture.Command",
+  "shortName": "ssw-ca-command",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "CommandName",
+  "preferNameDirectory": false,
+  "sources": [
+    {
+      "source": "./",
+      "target": "./"
+    }
+  ],
+  "symbols": {
+    "namespaceRoot": {
+      "type": "parameter",
+      "defaultValue": "SSW.CleanArchitecture",
+      "replaces": "SSW.CleanArchitecture",
+      "isRequired": true,
+      "description": "The root namespace for the project. e.g. SSW.CleanArchitecture"
+    },
+    "entityName": {
+      "type": "parameter",
+      "defaultValue": "EntityName",
+      "replaces": "EntityName",
+      "fileRename": "EntityName",
+      "isRequired": true,
+      "description": "The name of the entity. e.g. Customer"
+    }
+  }
+}
