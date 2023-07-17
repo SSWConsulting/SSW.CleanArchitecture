@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using SSW.CleanArchitecture.Domain.Events;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.EventHandlers;
 

@@ -1,6 +1,5 @@
 ﻿using SSW.CleanArchitecture.Domain.Common.Base;
-using SSW.CleanArchitecture.Domain.Entities;
 
-namespace SSW.CleanArchitecture.Domain.Events;
+namespace SSW.CleanArchitecture.Domain.TodoItems;
 
 public record TodoItemCreatedEvent(TodoItem Item) : DomainEvent;

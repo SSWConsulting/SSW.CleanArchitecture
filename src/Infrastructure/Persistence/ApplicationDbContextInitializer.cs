@@ -1,8 +1,7 @@
-﻿using SSW.CleanArchitecture.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SSW.CleanArchitecture.Domain.Enum;
 using FluentValidation.Validators;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 

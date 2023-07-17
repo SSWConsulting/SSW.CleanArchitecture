@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.Common.Interfaces;
 

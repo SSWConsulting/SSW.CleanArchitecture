@@ -1,5 +1,4 @@
-using SSW.CleanArchitecture.Domain.Entities;
-using SSW.CleanArchitecture.Domain.Events;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Domain.UnitTests.Entities;
 
@@ -17,7 +16,7 @@ public class TodoItemTests
         // Assert
         todoItem.Should().NotBeNull();
         todoItem.Title.Should().Be(title);
-        todoItem.Priority.Should().Be(Enum.PriorityLevel.None);
+        todoItem.Priority.Should().Be(PriorityLevel.None);
     }
 
     [Fact]

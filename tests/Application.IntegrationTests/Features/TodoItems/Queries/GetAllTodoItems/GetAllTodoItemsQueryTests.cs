@@ -1,7 +1,7 @@
 using Bogus;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
-using SSW.CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
 
