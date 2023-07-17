@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SSW.CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 

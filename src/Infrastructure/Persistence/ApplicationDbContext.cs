@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Domain.Entities;
+using SSW.CleanArchitecture.Domain.TodoItems;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using System.Reflection;
 

@@ -1,4 +1,4 @@
-﻿using SSW.CleanArchitecture.Domain.Entities;
+﻿using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
