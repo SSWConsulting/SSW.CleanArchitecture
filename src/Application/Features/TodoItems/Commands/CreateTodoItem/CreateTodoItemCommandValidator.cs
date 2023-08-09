@@ -18,6 +18,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
             .MustAsync(BeUniqueTitle).WithMessage("'{PropertyName}' must be unique");
     }
 
+    // TODO DM: Consider pushing this business validation to the Domain
     private async Task<bool> BeUniqueTitle(string title, CancellationToken cancellationToken)
     {
         var spec = new TodoItemByTitleSpec(title);
