@@ -2,14 +2,13 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "SSW",
   "classifications": [
-    "Web",
-    "SPA",
-    "API",
     ".NET",
-    "ASP.NET Core",
     "EF Core",
     "SSW",
-    "Clean Architecture"
+    "CQRS",
+    "Clean Architecture",
+    "API",
+    "ASP.NET Core"
   ],
   "name": "SSW Clean Architecture Solution",
   "description":  "Creates a new SSW Clean Architecture Solution",
