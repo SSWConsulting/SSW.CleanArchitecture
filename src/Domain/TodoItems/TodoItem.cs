@@ -14,6 +14,7 @@ public class TodoItem : BaseEntity<TodoItemId>
     public DateTime Reminder { get; set; }
     public bool Done { get; private set; }
 
+    // Needed for EF
     private TodoItem() { }
 
     public static TodoItem Create(string title)
