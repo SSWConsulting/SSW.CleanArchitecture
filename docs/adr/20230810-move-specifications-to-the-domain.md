@@ -26,12 +26,7 @@ The primary use cases for specifications are to:
 
 ## Decision Outcome
 
-Chosen option: **Option 1 - Store Specfications in the Domain Layer**, because TODO.
-
-### Consequences
-
-- ✅ [postive consequence 1]
-- ❌ Extra depdendency added to the Domain Layer
+Chosen option: **Option 1 - Store Specfications in the Domain Layer**, as it allows us to move more business logic to the Domain Layer in a persistent ignorant way, and makes it easier to keep the specs up to date when the aggregate root changes.
 
 ## Pros and Cons of the Options
 
