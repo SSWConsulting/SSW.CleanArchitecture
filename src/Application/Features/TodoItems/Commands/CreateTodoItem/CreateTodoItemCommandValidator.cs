@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
+using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 

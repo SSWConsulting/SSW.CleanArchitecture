@@ -1,7 +1,6 @@
 using Ardalis.Specification;
-using SSW.CleanArchitecture.Domain.TodoItems;
 
-namespace SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
+namespace SSW.CleanArchitecture.Domain.TodoItems;
 
 public sealed class TodoItemByTitleSpec : Specification<TodoItem>
 {

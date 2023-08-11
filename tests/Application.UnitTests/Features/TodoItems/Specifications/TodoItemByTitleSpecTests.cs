@@ -1,4 +1,3 @@
-using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
 using SSW.CleanArchitecture.Domain.TodoItems;
 
 namespace SSW.CleanArchitecture.Application.UnitTests.Features.TodoItems.Specifications;
