@@ -24,10 +24,7 @@ public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery,
         GetAllTodoItemsQuery request,
         CancellationToken cancellationToken)
     {
-        var spec = new AllTodoItemSpec();
-
         return await _dbContext.TodoItems
-            .WithSpecification(spec)
             .ProjectTo<TodoItemDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }
