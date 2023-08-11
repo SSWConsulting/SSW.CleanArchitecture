@@ -1,8 +1,8 @@
 # Move Specifications to the Domain Layer
 
-- Status: proposed
-- Deciders: SAW Team
-- Date: 2023-08-10
+- Status: accepted
+- Deciders: Daniel Mackay, William Libenberg, Matt Goldman, Luke Parker
+- Date: 2023-08-11
 - Tags: domain, specifications
 
 Technical Story: [SSW.CleanArchitecture | Issues | 139](https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/139)
