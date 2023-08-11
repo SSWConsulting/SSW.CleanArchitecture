@@ -34,7 +34,7 @@ Chosen option: **Option 1 - Store Specfications in the Domain Layer**, as it all
 
 - ✅ Move more business logic to the Domain Layer in a persistent ignorant way
 - ✅ Specs used to load entites are stored alongside the aggregate roots they are used to load.  This makes it easier to keep the specs up to date when the aggregate root changes.
-- ❌ Extra depdendency added to the Domain Layer
+- ❌ Added `Ardalis.Specfications` depdendency to the Domain Layer
 
 ### Option 2 - Store Specifications in the Application Layer
 
