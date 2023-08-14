@@ -3,18 +3,11 @@
 public static class EndpointRouteBuilderExt
 {
     /// <summary>
-    /// Used for GET endpoints that return a single entity.
+    /// Used for GET endpoints that return one or more items.
     /// </summary>
-    public static RouteHandlerBuilder ProducesGetSingle<T>(this RouteHandlerBuilder builder) => builder
+    public static RouteHandlerBuilder ProducesGet<T>(this RouteHandlerBuilder builder) => builder
         .Produces<T>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status404NotFound)
-        .ProducesProblem(StatusCodes.Status500InternalServerError);
-
-    /// <summary>
-    /// Used for GET endpoints that return a list of entities.
-    /// </summary>
-    public static RouteHandlerBuilder ProducesGetList<T>(this RouteHandlerBuilder builder) => builder
-        .Produces<T>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status500InternalServerError);
 
     /// <summary>
