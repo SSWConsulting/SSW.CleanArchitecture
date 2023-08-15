@@ -1,5 +1,3 @@
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
@@ -32,17 +30,8 @@ else
     app.UseHsts();
 }
 
-// Basic Healthy/Degraded/Unhealthy result
-app.UseHealthChecks("/health");
 
-// Detailed Report about each check
-// TODO: Because of the detailed information, this endpoint should be secured behind
-// an Authorization Policy (.RequireAuthorization()), or a specific secured port through firewall rules
-app.UseHealthChecks("/health-report", new HealthCheckOptions
-{
-    Predicate = _ => true,
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-});
+app.UseHealthChecks();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

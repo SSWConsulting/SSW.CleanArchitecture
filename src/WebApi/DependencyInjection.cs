@@ -14,6 +14,14 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+        services.AddOpenApiDocument(configure => configure.Title = "CleanArchitecture API");
+        services.AddEndpointsApiExplorer();
+
+        AddHealthChecks(services, config);
+    }
+
+    private static void AddHealthChecks(IServiceCollection services, IConfiguration config)
+    {
         services.AddHealthChecks()
             // Check 1: Check the SQL Server Connectivity (no EF, no DBContext, hardly anything to go wrong)
             .AddSqlServer(
@@ -45,9 +53,5 @@ public static class DependencyInjection
                         Message = "Database Context is healthy"
                     };
                 });
-
-        services.AddOpenApiDocument(configure => configure.Title = "CleanArchitecture API");
-
-        services.AddEndpointsApiExplorer();
     }
 }
