@@ -47,11 +47,7 @@ public static class DependencyInjection
                         .TagWith("HealthCheck")
                         .FirstOrDefaultAsync(ct);
 
-                    return new DbHealthCheckResult()
-                    {
-                        Success = true,
-                        Message = "Database Context is healthy"
-                    };
+                    return new DbHealthCheckResult("Database Context is healthy");
                 });
     }
 }

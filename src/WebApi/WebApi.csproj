@@ -42,9 +42,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <UserSecretsId>bd460878-05c9-44f3-8b88-0862bac60e0c</UserSecretsId>
-      
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent> 
   </PropertyGroup>
     
 
