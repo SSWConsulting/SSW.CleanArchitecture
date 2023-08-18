@@ -26,6 +26,19 @@
               }
             }
           },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoItemDto"
+                  }
+                }
+              }
+            }
+          },
           "500": {
             "description": "",
             "content": {

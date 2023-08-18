@@ -2,4 +2,4 @@
 
 namespace SSW.CleanArchitecture.Domain.TodoItems;
 
-public record TodoItemCompletedEvent(TodoItem Item) : DomainEvent;
+public readonly record struct TodoItemCompletedEvent(TodoItem Item) : IDomainEvent;

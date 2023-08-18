@@ -36,7 +36,11 @@ app.UseHealthChecks();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings => settings.DocumentPath = "/api/specification.json");
+app.UseSwaggerUi3(settings =>
+{
+    settings.DocumentPath = "/api/specification.json";
+    settings.AdditionalSettings.Add("displayRequestDuration ", true);
+});
 
 app.UseRouting();
 
