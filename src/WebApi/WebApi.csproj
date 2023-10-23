@@ -5,6 +5,7 @@
     <AssemblyName>SSW.CleanArchitecture.WebApi</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Application.IntegrationTests" />
