@@ -37,10 +37,9 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent> 
   </PropertyGroup>
     
-
-  <!--Condition="$(Configuration) == 'Release'"-->
-  <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent">
-    <!-- nswag will run all *.nswag and nswag.json by default -->       
+  <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent" Condition="'$(SkipNSwag)' != 'True'">
+    <Message Text="----- Start generating Swagger specification using NSwag -----" Importance="high" />
     <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run nswag.json /variables:Configuration=$(Configuration)" />
+    <Message Text="----- Completed generating Swagger specification using NSwag -----" Importance="high" />
   </Target>
 </Project>
