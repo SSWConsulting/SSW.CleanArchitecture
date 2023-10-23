@@ -14,8 +14,8 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.20.0" />
-    <PackageReference Include="NSwag.MSBuild" Version="13.20.0">
+    <PackageReference Include="NSwag.AspNetCore" Version="14.0.0-preview008" />
+    <PackageReference Include="NSwag.MSBuild" Version="14.0.0-preview008">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -37,5 +37,9 @@
   </PropertyGroup>
     
 
-  <!--Condition="$(Configuration) == 'Release'"--><Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent"><!-- nswag will run all *.nswag and nswag.json by default -->       
-    <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net70) run /variables:Configuration=$(Configuration)" /></Target></Project>
+  <!--Condition="$(Configuration) == 'Release'"-->
+  <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent">
+    <!-- nswag will run all *.nswag and nswag.json by default -->       
+    <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run nswag.json /variables:Configuration=$(Configuration)" />
+  </Target>
+</Project>
