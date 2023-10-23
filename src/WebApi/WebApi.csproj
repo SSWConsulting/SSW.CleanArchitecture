@@ -16,7 +16,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="14.0.0-preview008" />
-    <PackageReference Include="NSwag.MSBuild" Version="14.0.0-preview008">
+    <PackageReference Include="NSwag.MSBuild" Version="14.0.0-preview007">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
