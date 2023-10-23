@@ -21,6 +21,8 @@ public class TodoItemByTitleSpecTests
     [Theory]
     [InlineData("Apple")]
     [InlineData("Banana")]
+    [InlineData("Apple 2")]
+    [InlineData("Banana 2")]
     public void Should_Return_ByTitle(string textToSearch)
     {
         var query = new TodoItemByTitleSpec(textToSearch);
