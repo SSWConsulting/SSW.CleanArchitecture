@@ -7,7 +7,7 @@ using SSW.CleanArchitecture.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddWebApi();
+builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -30,7 +30,9 @@ else
     app.UseHsts();
 }
 
-app.UseHealthChecks("/health");
+
+app.UseHealthChecks();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

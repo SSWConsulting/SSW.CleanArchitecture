@@ -1,7 +1,6 @@
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Application.Features.TodoItems.Specifications;
 
 namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
 
@@ -24,10 +23,7 @@ public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery,
         GetAllTodoItemsQuery request,
         CancellationToken cancellationToken)
     {
-        var spec = new AllTodoItemSpec();
-
         return await _dbContext.TodoItems
-            .WithSpecification(spec)
             .ProjectTo<TodoItemDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }

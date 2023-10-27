@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using FluentValidation.Validators;
 using SSW.CleanArchitecture.Domain.TodoItems;
+using Bogus;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
@@ -9,6 +9,8 @@ public class ApplicationDbContextInitializer
 {
     private readonly ILogger<ApplicationDbContextInitializer> _logger;
     private readonly ApplicationDbContext _dbContext;
+
+    private const int NumTodoItems = 20;
 
     public ApplicationDbContextInitializer(ILogger<ApplicationDbContextInitializer> logger, ApplicationDbContext dbContext)
     {
@@ -21,7 +23,9 @@ public class ApplicationDbContextInitializer
         try
         {
             if (_dbContext.Database.IsSqlServer())
+            {
                 await _dbContext.Database.MigrateAsync();
+            }
         }
         catch (Exception e)
         {
@@ -37,14 +41,12 @@ public class ApplicationDbContextInitializer
             if (_dbContext.TodoItems.Any())
                 return;
 
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Clean Architecture", "Learn how to build a Clean Architecture application", PriorityLevel.High, DateTime.Now.AddDays(1)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Blazor", "Learn how to build a Blazor application", PriorityLevel.High, DateTime.Now.AddDays(2)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn ASP.NET Core", "Learn how to build a ASP.NET Core application", PriorityLevel.Medium, DateTime.Now.AddDays(3)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Entity Framework Core", "Learn how to build a Entity Framework Core application", PriorityLevel.Medium, DateTime.Now.AddDays(4)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Docker", "Learn how to build a Docker application", PriorityLevel.Low, DateTime.Now.AddDays(5)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Kubernetes", "Learn how to build a Kubernetes application", PriorityLevel.Low, DateTime.Now.AddDays(6)));
-            _dbContext.TodoItems.Add(TodoItem.Create("Learn Azure", "Learn how to build a Azure application", PriorityLevel.Low, DateTime.Now.AddDays(7)));
+            var faker = new Faker<TodoItem>()
+                .CustomInstantiator(f => TodoItem.Create(
+                    f.Lorem.Sentence(3), f.Lorem.Sentence(10), f.Random.Enum<PriorityLevel>(), f.Date.Future(1, DateTime.UtcNow)));
 
+            var todoItems = faker.Generate(NumTodoItems);
+            await _dbContext.TodoItems.AddRangeAsync(todoItems);
             await _dbContext.SaveChangesAsync();
         }
         catch (Exception e)

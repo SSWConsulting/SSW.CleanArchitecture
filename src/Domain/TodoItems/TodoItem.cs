@@ -2,7 +2,8 @@
 
 namespace SSW.CleanArchitecture.Domain.TodoItems;
 
-public record TodoItemId(Guid Value);
+// For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
+public readonly record struct TodoItemId(Guid Value);
 
 public class TodoItem : BaseEntity<TodoItemId>
 {
@@ -14,6 +15,7 @@ public class TodoItem : BaseEntity<TodoItemId>
     public DateTime Reminder { get; set; }
     public bool Done { get; private set; }
 
+    // Needed for EF
     private TodoItem() { }
 
     public static TodoItem Create(string title)

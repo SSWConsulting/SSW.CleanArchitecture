@@ -1,5 +1,5 @@
 {
-  "x-generator": "NSwag v13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v10.0.0.0))",
+  "x-generator": "NSwag v14.0.0.0 (NJsonSchema v11.0.0.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": "CleanArchitecture API",
@@ -14,6 +14,19 @@
         "operationId": "GetTodoItems",
         "responses": {
           "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TodoItemDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -45,7 +58,6 @@
         "operationId": "CreateTodoItem",
         "requestBody": {
           "x-name": "command",
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -109,15 +121,15 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
+          "Id": {
             "type": "string",
             "format": "guid"
           },
-          "title": {
+          "Title": {
             "type": "string",
             "nullable": true
           },
-          "done": {
+          "Done": {
             "type": "boolean"
           }
         }
@@ -128,24 +140,24 @@
           "nullable": true
         },
         "properties": {
-          "type": {
+          "Type": {
             "type": "string",
             "nullable": true
           },
-          "title": {
+          "Title": {
             "type": "string",
             "nullable": true
           },
-          "status": {
+          "Status": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "detail": {
+          "Detail": {
             "type": "string",
             "nullable": true
           },
-          "instance": {
+          "Instance": {
             "type": "string",
             "nullable": true
           }
@@ -162,7 +174,7 @@
               "nullable": true
             },
             "properties": {
-              "errors": {
+              "Errors": {
                 "type": "object",
                 "additionalProperties": {
                   "type": "array",
@@ -179,7 +191,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "title": {
+          "Title": {
             "type": "string"
           }
         }
