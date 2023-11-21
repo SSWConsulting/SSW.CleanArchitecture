@@ -1,8 +1,11 @@
 name: Publish Log4brains
 on:
-  push:
+  workflow_run:
+    workflows: ['.NET'] # runs after .NET workflow
+    types:
+      - completed
     branches:
-      - main
+      - 'main'
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest

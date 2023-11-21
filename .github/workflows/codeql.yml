@@ -1,8 +1,11 @@
 name: "Code Scanning - Action"
-
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ['.NET'] # runs after .NET workflow
+    types:
+      - completed
+    branches:
+      - 'main'
 
 jobs:
   CodeQL-Build:
