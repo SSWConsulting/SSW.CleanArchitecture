@@ -38,10 +38,10 @@ jobs:
     - name: Test
       run: dotnet test --no-build --no-restore --configuration Release --logger "trx;LogFileName=TestResults.trx"
 
+    # as per https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
     - name: Test Report
-      uses: dorny/test-reporter@v1
+      uses: actions/upload-artifact@v3
       if: success() || failure()    # run this step even if previous step failed
       with:
-        name: Tests             # Name of the check run which will be created
-        path: "**/*.trx"        # Path to test results
-        reporter: dotnet-trx    # Format of test results
+        name: test-results
+        path: "**/*.trx"
