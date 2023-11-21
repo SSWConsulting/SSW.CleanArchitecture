@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <!-- as per https://github.com/dotnet/aspnetcore/issues/50836#issuecomment-1819612514  -->
+    <!-- recommendation from msft is to disable AD0001 until first servicing release of .net8   -->
+    <NoWarn>$(NoWarn);AD0001</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Application.IntegrationTests" />
