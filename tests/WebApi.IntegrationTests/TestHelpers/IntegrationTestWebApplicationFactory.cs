@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+namespace WebApi.IntegrationTests.TestHelpers;
 
 internal class IntegrationTestWebApplicationFactory : WebApplicationFactory<Program>
 {

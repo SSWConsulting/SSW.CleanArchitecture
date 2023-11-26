@@ -1,9 +1,9 @@
 using SSW.CleanArchitecture.Application.Common.Exceptions;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
-using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 using SSW.CleanArchitecture.Domain.TodoItems;
+using WebApi.IntegrationTests.TestHelpers;
 
-namespace SSW.CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Commands.CreateTodoItem;
+namespace WebApi.IntegrationTests.Endpoints.TodoItems.Commands.CreateTodoItem;
 
 public class CreateTodoItemCommandTests : IntegrationTestBase
 {

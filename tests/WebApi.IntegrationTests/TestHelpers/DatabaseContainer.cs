@@ -1,6 +1,6 @@
 using Testcontainers.SqlEdge;
 
-namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+namespace WebApi.IntegrationTests.TestHelpers;
 
 public class DatabaseContainer
 {

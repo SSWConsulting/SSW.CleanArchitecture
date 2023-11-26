@@ -1,9 +1,9 @@
 using Bogus;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
-using SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
 using SSW.CleanArchitecture.Domain.TodoItems;
+using WebApi.IntegrationTests.TestHelpers;
 
-namespace SSW.CleanArchitecture.Application.IntegrationTests.Features.TodoItems.Queries.GetAllTodoItems;
+namespace WebApi.IntegrationTests.Endpoints.TodoItems.Queries.GetAllTodoItems;
 
 public class GetAllTodoItemsQueryTests : IntegrationTestBase
 {
