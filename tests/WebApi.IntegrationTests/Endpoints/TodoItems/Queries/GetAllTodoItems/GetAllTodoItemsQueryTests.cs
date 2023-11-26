@@ -1,27 +1,28 @@
-using Bogus;
+using NSubstitute.Core;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTodoItems;
-using SSW.CleanArchitecture.Domain.TodoItems;
-using WebApi.IntegrationTests.TestHelpers;
+using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common.Factories;
+using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.TodoItems.Queries.GetAllTodoItems;
 
-public class GetAllTodoItemsQueryTests : IntegrationTestBase
+public class GetAllTodoItemsQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
+    : IntegrationTestBase(fixture, output)
 {
-    public GetAllTodoItemsQueryTests(TestingDatabaseFixture fixture) : base(fixture) { }
-
     [Fact]
     public async Task Should_Return_All_TodoItems()
     {
+        // Arrange
         const int entityCount = 10;
-        var entities = new Faker<TodoItem>()
-            .CustomInstantiator(f => TodoItem.Create(f.UniqueIndex.ToString()))
-            .Generate(entityCount);
+        var entities = TodoItemFactory.Generate(entityCount);
+        await AddEntitiesAsync(entities);
+        var client = GetAnonymousClient();
 
-        await Context.TodoItems.AddRangeAsync(entities);
-        await Context.SaveChangesAsync();
+        // Act
+        var result = await client.GetFromJsonAsync<TodoItemDto[]>("/todoitems");
 
-        var result = await Mediator.Send(new GetAllTodoItemsQuery());
-
-        result.Count.Should().Be(entityCount);
+        // Assert
+        result.Should().NotBeNull();
+        result!.Length.Should().Be(entityCount);
     }
 }

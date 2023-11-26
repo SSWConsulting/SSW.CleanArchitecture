@@ -1,36 +1,46 @@
+using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Exceptions;
 using SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTodoItem;
 using SSW.CleanArchitecture.Domain.TodoItems;
-using WebApi.IntegrationTests.TestHelpers;
+using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.TodoItems.Commands.CreateTodoItem;
 
-public class CreateTodoItemCommandTests : IntegrationTestBase
+public class CreateTodoItemCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
+    : IntegrationTestBase(fixture, output)
 {
-    public CreateTodoItemCommandTests(TestingDatabaseFixture fixture) : base(fixture) { }
-
     [Fact]
     public async Task ShouldRequireUniqueTitle()
     {
-        await Mediator.Send(new CreateTodoItemCommand("Shopping"));
+        // Arrange
+        var cmd = new CreateTodoItemCommand("Shopping");
+        var client = GetAnonymousClient();
+        var createTodoItem = async () => await client.PostAsJsonAsync("/todoitems", cmd);
 
-        var command = new CreateTodoItemCommand("Shopping");
-
-        await FluentActions.Invoking(() =>
-            Mediator.Send(command)).Should().ThrowAsync<ValidationException>();
+        // Act & Assert
+        await FluentActions.Invoking(async () =>
+        {
+            await createTodoItem();
+            await createTodoItem();
+        }).Should().ThrowAsync<ValidationException>();
     }
 
     [Fact]
     public async Task ShouldCreateTodoItem()
     {
-        var command = new CreateTodoItemCommand("Tasks");
+        // Arrange
+        var cmd = new CreateTodoItemCommand("Shopping");
+        var client = GetAnonymousClient();
 
-        var id = await Mediator.Send(command);
+        // Act
+        var result = await client.PostAsJsonAsync("/todoitems", cmd);
 
-        var item = (await Context.TodoItems.FindAsync(new TodoItemId(id)))!;
+        // Assert
+        var item = await Context.TodoItems.FirstOrDefaultAsync(t => t.Title == cmd.Title);
 
         item.Should().NotBeNull();
-        item.Title.Should().Be(command.Title);
+        item!.Title.Should().Be(cmd.Title);
         item.CreatedAt.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(10));
     }
 }

@@ -1,6 +1,6 @@
 using Testcontainers.SqlEdge;
 
-namespace WebApi.IntegrationTests.TestHelpers;
+namespace WebApi.IntegrationTests.Common.Fixtures;
 
 public class DatabaseContainer
 {
