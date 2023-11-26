@@ -5,6 +5,7 @@ namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.CreateTo
 
 public record CreateTodoItemCommand(string Title) : IRequest<Guid>;
 
+// ReSharper disable once UnusedType.Global
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
     private readonly IApplicationDbContext _dbContext;

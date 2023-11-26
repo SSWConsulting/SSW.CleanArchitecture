@@ -1,6 +1,6 @@
 using SSW.CleanArchitecture.Domain.TodoItems;
 
-namespace SSW.CleanArchitecture.Domain.UnitTests.Entities;
+namespace SSW.CleanArchitecture.Domain.UnitTests.TodoItems;
 
 public class TodoItemTests
 {

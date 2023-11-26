@@ -1,34 +1,34 @@
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
 
-namespace SSW.CleanArchitecture.Application.IntegrationTests.TestHelpers;
+namespace WebApi.IntegrationTests.Common.Fixtures;
 
+/// <summary>
+/// Initializes and resets the database before and after each test
+/// </summary>
+// ReSharper disable once ClassNeverInstantiated.Global
 public class TestingDatabaseFixture : IAsyncLifetime
 {
-    public const string DatabaseCollectionDefinition = "Database collection";
+    private string ConnectionString => Factory.Database.ConnectionString!;
 
-    private readonly IntegrationTestWebApplicationFactory _factory;
     private Respawner _checkpoint = default!;
 
     public IServiceScopeFactory ScopeFactory { get; private set; } = default!;
 
-    private string ConnectionString => _factory.Database.ConnectionString!;
-
-    public TestingDatabaseFixture()
-    {
-        _factory = new IntegrationTestWebApplicationFactory();
-    }
+    public readonly WebApiTestFactory Factory = new();
 
     public async Task InitializeAsync()
     {
-        await _factory.Database.InitializeAsync();
-        ScopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
+        await Factory.Database.InitializeAsync();
+        ScopeFactory = Factory.Services.GetRequiredService<IServiceScopeFactory>();
+
+        // NOTE: If there are any tables you want to skip being reset, they can be configured here
         _checkpoint = await Respawner.CreateAsync(ConnectionString);
     }
 
     public async Task DisposeAsync()
     {
-        await _factory.Database.DisposeAsync();
+        await Factory.Database.DisposeAsync();
     }
 
     public async Task ResetState()
@@ -37,11 +37,12 @@ public class TestingDatabaseFixture : IAsyncLifetime
     }
 }
 
-[CollectionDefinition(TestingDatabaseFixture.DatabaseCollectionDefinition)]
+[CollectionDefinition(Name)]
 public class TestingDatabaseFixtureCollection : ICollectionFixture<TestingDatabaseFixture>
 {
     // This class has no code, and is never created. Its purpose is simply
     // to be the place to apply [CollectionDefinition] and all the
     // ICollectionFixture<> interfaces.
-}
 
+    public const string Name = nameof(TestingDatabaseFixtureCollection);
+}
