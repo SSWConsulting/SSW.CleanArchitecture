@@ -4,6 +4,9 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
+/// <summary>
+/// Integration tests inherit from this to access helper classes
+/// </summary>
 [Collection(TestingDatabaseFixtureCollection.Name)]
 public abstract class IntegrationTestBase : IAsyncLifetime
 {

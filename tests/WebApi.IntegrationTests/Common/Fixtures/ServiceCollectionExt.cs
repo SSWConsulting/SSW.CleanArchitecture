@@ -6,6 +6,9 @@ namespace WebApi.IntegrationTests.Common.Fixtures;
 
 internal static class ServiceCollectionExt
 {
+    /// <summary>
+    /// Replaces the DbContext with a new instance using the provided database container
+    /// </summary>
     internal static IServiceCollection ReplaceDbContext<T>(this IServiceCollection services,
         DatabaseContainer databaseContainer) where T : DbContext
     {

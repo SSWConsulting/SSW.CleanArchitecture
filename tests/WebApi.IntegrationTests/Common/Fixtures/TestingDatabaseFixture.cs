@@ -3,6 +3,9 @@ using Respawn;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
+/// <summary>
+/// Initializes and resets the database before and after each test
+/// </summary>
 // ReSharper disable once ClassNeverInstantiated.Global
 public class TestingDatabaseFixture : IAsyncLifetime
 {

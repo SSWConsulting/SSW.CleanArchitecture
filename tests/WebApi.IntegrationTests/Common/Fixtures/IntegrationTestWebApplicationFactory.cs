@@ -8,6 +8,9 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
+/// <summary>
+/// Host builder (services, DI and configuration) for integration tests
+/// </summary>
 public class WebApiTestFactory : WebApplicationFactory<Program>
 {
     public DatabaseContainer Database { get; } = new();
