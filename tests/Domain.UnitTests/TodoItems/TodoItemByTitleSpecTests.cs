@@ -1,22 +1,17 @@
 using SSW.CleanArchitecture.Domain.TodoItems;
 
-namespace SSW.CleanArchitecture.Application.UnitTests.Features.TodoItems.Specifications;
+namespace SSW.CleanArchitecture.Domain.UnitTests.TodoItems;
 
 public class TodoItemByTitleSpecTests
 {
-    private readonly List<TodoItem> _entities;
-
-    public TodoItemByTitleSpecTests()
-    {
-        _entities = new List<TodoItem>()
-        {
-            TodoItem.Create("Apple"),
-            TodoItem.Create("Banana"),
-            TodoItem.Create("Apple 2"),
-            TodoItem.Create("Banana 2"),
-            TodoItem.Create("Hello world 2"),
-        };
-    }
+    private readonly List<TodoItem> _entities =
+    [
+        TodoItem.Create("Apple"),
+        TodoItem.Create("Banana"),
+        TodoItem.Create("Apple 2"),
+        TodoItem.Create("Banana 2"),
+        TodoItem.Create("Hello world 2")
+    ];
 
     [Theory]
     [InlineData("Apple")]

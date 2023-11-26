@@ -7,6 +7,7 @@ namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.Complete
 
 public record CompleteTodoItemCommand(Guid TodoItemId) : IRequest;
 
+// ReSharper disable once UnusedType.Global
 public class CompleteTodoItemCommandHandler : IRequestHandler<CompleteTodoItemCommand>
 {
     private readonly IApplicationDbContext _dbContext;
