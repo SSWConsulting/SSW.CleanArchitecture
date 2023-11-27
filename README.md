@@ -94,6 +94,7 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 1. Update the `version` attribute in `CleanArchitecture.nuspec`
 2. Merge your PR
 3. `package` GitHub Action will run and publish the new version to NuGet.org
+4. Create a GitHub release to document the changes
 
 <!-- TODO Issue #99: Getting Started using the dotnet new template -->
 
