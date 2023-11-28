@@ -26,7 +26,6 @@
       "source": "./",
       "target": "./",
       "exclude": [
-        "README.md",
         "**/[Bb]in/**",
         "**/[Oo]bj/**",
         ".template.config/**/*",
@@ -38,7 +37,6 @@
         "*.nuspec",
         "**/node_modules/**",
         "templates/",
-        "docs/",
         "CODE_OF_CONDUCT.md"
       ]
     }
