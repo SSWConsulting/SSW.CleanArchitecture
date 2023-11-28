@@ -36,7 +36,10 @@
         "**/*.lock.json",
         "**/.git/**",
         "*.nuspec",
-        "**/node_modules/**"
+        "**/node_modules/**",
+        "templates/",
+        "docs/",
+        "CODE_OF_CONDUCT.md"
       ]
     }
   ]
