@@ -32,7 +32,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test --no-build --no-restore --configuration Release --logger "junit;LogFilePath=results/tests.xml"
+      run: dotnet test --no-build --no-restore --configuration Release --logger "junit;LogFilePath=test-result.xml"
 
     - name: Publish
       run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
@@ -47,7 +47,7 @@ jobs:
       uses: test-summary/action@v2
       if: success() || failure()
       with:
-        paths: results/**/*.xml
+        paths: ./**/test-result.xml
         output: test-summary.md
     - name: Output job summary
       if: success() || failure()
