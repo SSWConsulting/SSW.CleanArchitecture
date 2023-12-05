@@ -9,7 +9,7 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 public class DatabaseEntities
 {
     [Fact]
-    public void Entities_Should_Inherits_BaseComponent()
+    public void Entities_ShouldInheritsBaseComponent()
     {
         var entityTypes = Types.InAssembly(typeof(DependencyInjection).Assembly)
             .That()
