@@ -13,7 +13,7 @@ public class CreateTodoItemCommandTests(TestingDatabaseFixture fixture, ITestOut
     : IntegrationTestBase(fixture, output)
 {
     [Fact]
-    public async Task ShouldRequireUniqueTitle()
+    public async Task Command_ShouldRequireUniqueTitle()
     {
         // Arrange
         var cmd = new CreateTodoItemCommand("Shopping");
@@ -32,7 +32,7 @@ public class CreateTodoItemCommandTests(TestingDatabaseFixture fixture, ITestOut
     }
 
     [Fact]
-    public async Task ShouldCreateTodoItem()
+    public async Task Command_ShouldCreateTodoItem()
     {
         // Arrange
         var cmd = new CreateTodoItemCommand("Shopping");
