@@ -5,7 +5,7 @@ namespace SSW.CleanArchitecture.Domain.UnitTests.TodoItems;
 public class TodoItemTests
 {
     [Fact]
-    public void Create_WhenTitleValid_ShouldSucceed()
+    public void Create_WithValidTitle_ShouldSucceed()
     {
         // Arrange
         var title = "title";
@@ -20,7 +20,7 @@ public class TodoItemTests
     }
 
     [Fact]
-    public void Create_WhenTitleNull_ShouldThrow()
+    public void Create_WithNullTitle_ShouldThrow()
     {
         // Arrange
         string? title = null;
