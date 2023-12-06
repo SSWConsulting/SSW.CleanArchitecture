@@ -10,7 +10,7 @@ public class GetAllTodoItemsQueryTests(TestingDatabaseFixture fixture, ITestOutp
     : IntegrationTestBase(fixture, output)
 {
     [Fact]
-    public async Task Should_Return_All_TodoItems()
+    public async Task Query_ShouldReturnAllTodoItems()
     {
         // Arrange
         const int entityCount = 10;
