@@ -3,7 +3,7 @@
   <metadata>
 
     <id>SSW.CleanArchitecture.Template</id>
-    <version>0.7.0</version>
+    <version>0.7.3</version>
     <title>SSW Clean Architecture Template</title>
     <authors>SSW</authors>
     <description>SSW Clean Architecture Solution Template for .NET.</description>
@@ -20,7 +20,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>clean-architecture project template csharp dotnet ssw</tags>
     <icon>icon.png</icon>
-    <readme>README.md</readme>
 
     <packageTypes>
       <packageType name="Template" />
@@ -31,7 +30,7 @@
   <files>
     <file src=".template.config\icon.png" target="" />
     <file src="README.md" />
-    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;" />
+    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;**\.template.config\**;**\templates\**;**\.idea\**;CODE_OF_CONDUCT.yml" />
     <file src=".\.github\dependabot.yml" target="content" />
     <file src=".\.github\workflows\build-and-test.yml" target="content" />
     <file src=".\.github\workflows\codeql.yml" target="content" />
