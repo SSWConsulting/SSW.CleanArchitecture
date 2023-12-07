@@ -6,17 +6,9 @@ using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
-public class EntitySaveChangesInterceptor : SaveChangesInterceptor
+public class EntitySaveChangesInterceptor(ICurrentUserService currentUserService, IDateTime dateTime)
+    : SaveChangesInterceptor
 {
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IDateTime _dateTime;
-
-    public EntitySaveChangesInterceptor(ICurrentUserService currentUserService, IDateTime dateTime)
-    {
-        _currentUserService = currentUserService;
-        _dateTime = dateTime;
-    }
-
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
         UpdateEntities(eventData.Context);
@@ -39,14 +31,14 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
             if (entry.State is EntityState.Added)
             {
-                entry.Entity.CreatedAt = _dateTime.Now;
-                entry.Entity.CreatedBy = _currentUserService.UserId;
+                entry.Entity.CreatedAt = dateTime.Now;
+                entry.Entity.CreatedBy = currentUserService.UserId;
             }
             else if (entry.State is EntityState.Added or EntityState.Modified ||
                      entry.HasChangedOwnedEntities())
             {
-                entry.Entity.UpdatedAt = _dateTime.Now;
-                entry.Entity.UpdatedBy = _currentUserService.UserId;
+                entry.Entity.UpdatedAt = dateTime.Now;
+                entry.Entity.UpdatedBy = currentUserService.UserId;
             }
     }
 }
