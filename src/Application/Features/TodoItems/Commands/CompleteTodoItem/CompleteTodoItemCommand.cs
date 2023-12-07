@@ -8,7 +8,8 @@ namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.Complete
 public record CompleteTodoItemCommand(Guid TodoItemId) : IRequest;
 
 // ReSharper disable once UnusedType.Global
-public class CompleteTodoItemCommandHandler(IApplicationDbContext dbContext) : IRequestHandler<CompleteTodoItemCommand>
+public class CompleteTodoItemCommandHandler(IApplicationDbContext dbContext)
+    : IRequestHandler<CompleteTodoItemCommand>
 {
     public async Task Handle(CompleteTodoItemCommand request, CancellationToken cancellationToken)
     {

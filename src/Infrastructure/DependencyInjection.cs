@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
-using SSW.CleanArchitecture.Infrastructure.Services;
 
 namespace SSW.CleanArchitecture.Infrastructure;
 
@@ -24,7 +23,7 @@ public static class DependencyInjection
 
         services.AddScoped<ApplicationDbContextInitializer>();
 
-        services.AddSingleton<IDateTime, DateTimeService>();
+        services.AddSingleton(TimeProvider.System);
 
         return services;
     }
