@@ -4,16 +4,14 @@ using Microsoft.Extensions.Options;
 
 namespace SSW.CleanArchitecture.WebApi.HealthChecks.EntityFrameworkDbContextHealthCheck;
 
-public sealed class EntityFrameworkDbContextHealthCheck<TContext> : IHealthCheck where TContext : DbContext
+public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
+    TContext dbContext,
+    IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> options)
+    : IHealthCheck
+    where TContext : DbContext
 {
-    private readonly TContext _dbContext;
-    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options;
-
-    public EntityFrameworkDbContextHealthCheck(TContext dbContext, IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> options)
-    {
-        _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-        _options = options ?? throw new ArgumentNullException(nameof(options));
-    }
+    private readonly TContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options = options ?? throw new ArgumentNullException(nameof(options));
 
     public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {

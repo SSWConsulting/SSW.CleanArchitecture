@@ -6,21 +6,12 @@ using System.Reflection;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+public class ApplicationDbContext(
+    DbContextOptions options,
+    EntitySaveChangesInterceptor saveChangesInterceptor,
+    DispatchDomainEventsInterceptor dispatchDomainEventsInterceptor)
+    : DbContext(options), IApplicationDbContext
 {
-    private readonly EntitySaveChangesInterceptor _saveChangesInterceptor;
-    private readonly DispatchDomainEventsInterceptor _dispatchDomainEventsInterceptor;
-
-    public ApplicationDbContext(
-        DbContextOptions options,
-        EntitySaveChangesInterceptor saveChangesInterceptor,
-        DispatchDomainEventsInterceptor dispatchDomainEventsInterceptor)
-        : base(options)
-    {
-        _saveChangesInterceptor = saveChangesInterceptor;
-        _dispatchDomainEventsInterceptor = dispatchDomainEventsInterceptor;
-    }
-
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,6 +24,6 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Order of the interceptors is important
-        optionsBuilder.AddInterceptors(_saveChangesInterceptor, _dispatchDomainEventsInterceptor);
+        optionsBuilder.AddInterceptors(saveChangesInterceptor, dispatchDomainEventsInterceptor);
     }
 }
