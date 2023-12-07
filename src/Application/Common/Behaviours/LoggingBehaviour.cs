@@ -8,14 +8,12 @@ public class LoggingBehaviour<TRequest>(ILogger<TRequest> logger, ICurrentUserSe
     : IRequestPreProcessor<TRequest>
     where TRequest : notnull
 {
-    private readonly ILogger _logger = logger;
-
     public Task Process(TRequest request, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).Name;
         var userId = currentUserService.UserId ?? string.Empty;
 
-        _logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@Request}",
+        logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@Request}",
             requestName, userId, request);
 
         return Task.CompletedTask;
