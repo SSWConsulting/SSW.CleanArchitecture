@@ -14,6 +14,12 @@
 
 </div>
 
+<div align="center">
+
+  ![SSW.CleanArchitecture Repo Analytics](https://repobeats.axiom.co/api/embed/3abf953e88642f725e44f5b300f6eddaf8fd9bee.svg "SSW.CleanArchitecture Repo analytics")
+
+</div>
+
 <!-- TOC -->
 - [SSW Clean Architecture Template](#ssw-clean-architecture-template)
   - [🤔 What is it?](#-what-is-it)
