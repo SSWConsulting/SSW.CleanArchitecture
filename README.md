@@ -145,7 +145,7 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 cd src/Application/Features
 mkdir {{FeatureName}}
 cd {{FeatureName}}
-dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --namespaceRoot {{Namespace}}
+dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --slnName {{SolutionName}}
 ```
 
 2. Create a command
@@ -154,7 +154,7 @@ dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --namespace
 cd src/Application/Features
 mkdir {{FeatureName}}
 cd {{FeatureName}}
-dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --namespaceRoot {{Namespace}}
+dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnName {{SolutionName}}
 ```
 
 ### Running the Solution
