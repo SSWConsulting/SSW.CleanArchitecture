@@ -36,6 +36,8 @@ Chosen option: "Option 2: Change Subcutaneous tests to target the WebApi Layer",
 
 ### Option 2: Change Subcutaneous tests to target the WebApi Layer
 
+In this option specifically we've decided hardcode the API routes as opposed to use a generated client.  This provides us with a simple form of contract testing (routes only) and gives us some protection against breaking existing clients.
+
 - ✅ Logic and Internal Infrastructure tested
 - ✅ Serialization tested
 - ✅ Web Authentication/Authorization tested
