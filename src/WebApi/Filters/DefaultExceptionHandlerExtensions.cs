@@ -2,6 +2,7 @@
 
 public static class DefaultExceptionHandlerExtensions
 {
+    // NOTE: Usually app.UseExceptionHandler() is used in conjunction with IExceptionHandler, but this also requires the ProblemDetails service to be registered so that it can be used for unhandled exceptions.  This is not needed as we will handle all exceptions either via this middleware or KnownExceptionsHandler.
     public static void UseDefaultExceptionHandler(this WebApplication app)
     {
         app.UseExceptionHandler(exceptionHandlerApp
