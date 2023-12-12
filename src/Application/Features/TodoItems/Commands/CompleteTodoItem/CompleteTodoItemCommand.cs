@@ -7,20 +7,15 @@ namespace SSW.CleanArchitecture.Application.Features.TodoItems.Commands.Complete
 
 public record CompleteTodoItemCommand(Guid TodoItemId) : IRequest;
 
-public class CompleteTodoItemCommandHandler : IRequestHandler<CompleteTodoItemCommand>
+// ReSharper disable once UnusedType.Global
+public class CompleteTodoItemCommandHandler(IApplicationDbContext dbContext)
+    : IRequestHandler<CompleteTodoItemCommand>
 {
-    private readonly IApplicationDbContext _dbContext;
-
-    public CompleteTodoItemCommandHandler(IApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task Handle(CompleteTodoItemCommand request, CancellationToken cancellationToken)
     {
         var todoItemId = new TodoItemId(request.TodoItemId);
 
-        var todoItem = await _dbContext.TodoItems
+        var todoItem = await dbContext.TodoItems
             .WithSpecification(new TodoItemByIdSpec(todoItemId))
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -29,6 +24,6 @@ public class CompleteTodoItemCommandHandler : IRequestHandler<CompleteTodoItemCo
 
         todoItem.Complete();
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
     }
 }

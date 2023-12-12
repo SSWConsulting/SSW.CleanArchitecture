@@ -1,11 +1,11 @@
 using SSW.CleanArchitecture.Domain.TodoItems;
 
-namespace SSW.CleanArchitecture.Domain.UnitTests.Entities;
+namespace SSW.CleanArchitecture.Domain.UnitTests.TodoItems;
 
 public class TodoItemTests
 {
     [Fact]
-    public void Create_Should_Succeed_When_Title_Valid()
+    public void Create_WithValidTitle_ShouldSucceed()
     {
         // Arrange
         var title = "title";
@@ -20,7 +20,7 @@ public class TodoItemTests
     }
 
     [Fact]
-    public void Create_Should_Throw_When_Title_Null()
+    public void Create_WithNullTitle_ShouldThrow()
     {
         // Arrange
         string? title = null;
@@ -33,7 +33,7 @@ public class TodoItemTests
     }
 
     [Fact]
-    public void Create_Should_Raise_Domain_Event()
+    public void Create_ShouldRaiseDomainEvent()
     {
         // Act
         var todoItem = TodoItem.Create("title");
@@ -45,7 +45,7 @@ public class TodoItemTests
     }
 
     [Fact]
-    public void Complete_Should_Set_Done()
+    public void Complete_ShouldSetDone()
     {
         // Arrange
         var todoItem = TodoItem.Create("title");
@@ -58,7 +58,7 @@ public class TodoItemTests
     }
 
     [Fact]
-    public void Complete_Should_Raise_Domain_Event()
+    public void Complete_ShouldRaiseDomainEvent()
     {
         // Arrange
         var todoItem = TodoItem.Create("title");

@@ -6,25 +6,16 @@ namespace SSW.CleanArchitecture.Application.Features.TodoItems.Queries.GetAllTod
 
 public record GetAllTodoItemsQuery : IRequest<IReadOnlyList<TodoItemDto>>;
 
-public class GetAllTodoItemsQueryHandler : IRequestHandler<GetAllTodoItemsQuery, IReadOnlyList<TodoItemDto>>
+public class GetAllTodoItemsQueryHandler(
+    IMapper mapper,
+    IApplicationDbContext dbContext) : IRequestHandler<GetAllTodoItemsQuery, IReadOnlyList<TodoItemDto>>
 {
-    private readonly IMapper _mapper;
-    private readonly IApplicationDbContext _dbContext;
-
-    public GetAllTodoItemsQueryHandler(
-        IMapper mapper,
-        IApplicationDbContext dbContext)
-    {
-        _mapper = mapper;
-        _dbContext = dbContext;
-    }
-
     public async Task<IReadOnlyList<TodoItemDto>> Handle(
         GetAllTodoItemsQuery request,
         CancellationToken cancellationToken)
     {
-        return await _dbContext.TodoItems
-            .ProjectTo<TodoItemDto>(_mapper.ConfigurationProvider)
+        return await dbContext.TodoItems
+            .ProjectTo<TodoItemDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
     }
 }

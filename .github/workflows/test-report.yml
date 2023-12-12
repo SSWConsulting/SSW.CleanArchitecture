@@ -1,0 +1,24 @@
+# as per https://github.com/dorny/test-reporter?tab=readme-ov-file#recommended-setup-for-public-repositories
+name: 'Test Report'
+
+on:
+  workflow_run:
+    workflows: ['.NET'] # runs after .NET workflow
+    types:
+      - completed
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dorny/test-reporter@v1
+      with:
+        artifact: test-results  # artifact name
+        name: Tests             # Name of the check run which will be created
+        path: "**/*.trx"        # Path to test results
+        reporter: dotnet-trx    # Format of test results

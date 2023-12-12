@@ -26,12 +26,12 @@
     }
   ],
   "symbols": {
-    "namespaceRoot": {
+    "slnName": {
       "type": "parameter",
       "defaultValue": "SSW.CleanArchitecture",
       "replaces": "SSW.CleanArchitecture",
-      "isRequired": true,
-      "description": "The root namespace for the project. e.g. SSW.CleanArchitecture"
+      "isRequired": false,
+      "description": "The name of the solution (used for namespace prefix). e.g. SSW.CleanArchitecture"
     },
     "entityName": {
       "type": "parameter",
