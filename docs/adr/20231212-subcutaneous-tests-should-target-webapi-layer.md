@@ -11,7 +11,7 @@ Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/2
 
 Previously, the Subcutaneous tests were targeting the Application Layer. This was ok, but skipped the WebApi layer, which is the layer that the end user will be interacting with. This means that the tests were not testing the full stack, and we were not getting the full benefit of the Subcutaneous tests.
 
-## Decision Drivers <!-- optional -->
+## Decision Drivers
 
 - Subcutaneous tests should test as much of the stack as possible
 - Some element of contract testing is required
