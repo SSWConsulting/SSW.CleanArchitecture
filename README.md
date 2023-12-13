@@ -91,19 +91,6 @@ This is a template for creating a new project using [Clean Architecture](https:/
     - Inserts bugs into the production code to make sure our tests are effective and testing the right behavior
     - Using [Stryker Mutator](https://stryker-mutator.io/) -->
 
-## 🚀 Publishing Template
-
-Template will be published to NuGet.org when changes are made to `CleanArchitecture.nuspec` on the `main` branch.
-
-### Process
-
-1. Update the `version` attribute in `CleanArchitecture.nuspec`
-2. Merge your PR
-3. `package` GitHub Action will run and publish the new version to NuGet.org
-4. Create a GitHub release to document the changes
-
-<!-- TODO Issue #99: Getting Started using the dotnet new template -->
-
 ## 🎉 Getting Started
 
 ### Installing the Template
@@ -172,3 +159,23 @@ dotnet run
 ```
 
 > **NOTE:** The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
+
+## 🚀 Publishing Template
+
+Template will be published to NuGet.org when changes are made to `CleanArchitecture.nuspec` on the `main` branch.
+
+### Process
+
+1. Update the `version` attribute in `CleanArchitecture.nuspec`
+2. Merge your PR
+3. `package` GitHub Action will run and publish the new version to NuGet.org
+4. Create a GitHub release to document the changes
+
+<!-- TODO Issue #99: Getting Started using the dotnet new template -->
+
+## 🎓 Training
+
+If you're interested in learning more about Clean Architecture SSW offers two events:
+
+- [SSW 1-day Clean Architecture Superpowers Tour](https://www.ssw.com.au/events/clean-architecture-superpowers-tour)
+- [SSW 2-day Clean Architecture Workshop](https://www.ssw.com.au/events/clean-architecture-workshop)
