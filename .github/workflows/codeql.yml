@@ -1,11 +1,8 @@
 name: "Code Scanning - Action"
+
 on:
-  workflow_run:
-    workflows: ['.NET'] # runs after .NET workflow
-    types:
-      - completed
-    branches:
-      - 'main'
+  push:
+    branches: [ "main" ]
 
 jobs:
   CodeQL-Build:
@@ -16,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2

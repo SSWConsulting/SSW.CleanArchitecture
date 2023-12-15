@@ -20,7 +20,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>clean-architecture project template csharp dotnet ssw</tags>
     <icon>icon.png</icon>
-    <readme>README.md</readme>
 
     <packageTypes>
       <packageType name="Template" />
@@ -31,7 +30,8 @@
   <files>
     <file src=".template.config\icon.png" target="" />
     <file src="README.md" />
-    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;" />
+    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;**\.template.config\**;**\templates\**;**\.idea\**;CODE_OF_CONDUCT.yml" />
+    <file src=".\.github\**" target="content\.github" exclude="CODEOWNERS;settings.yml;workflows\package.yml;workflows\update-settings.yml" />
   </files>
 
 </package>

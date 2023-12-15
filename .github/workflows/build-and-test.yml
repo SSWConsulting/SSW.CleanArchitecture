@@ -1,0 +1,57 @@
+name: Build and test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: "Build" 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache
+      uses: actions/cache@v3
+      with:    
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}    
+        restore-keys: |      
+          ${{ runner.os }}-nuget-
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test --no-build --no-restore --configuration Release --logger "junit;LogFilePath=test-result.xml"
+
+    - name: Publish
+      run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: published-files
+        path: ./publish
+
+    - name: Test Report
+      uses: test-summary/action@v2
+      if: success() || failure()
+      with:
+        paths: ./**/test-result.xml
+        output: test-summary.md
+    - name: Output job summary
+      if: success() || failure()
+      run: |
+        cat test-summary.md >> $GITHUB_STEP_SUMMARY
+
+    
