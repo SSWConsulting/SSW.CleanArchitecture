@@ -173,12 +173,28 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 
 <!-- TODO Issue #99: Getting Started using the dotnet new template -->
 
-## 🎓 Training
+## 🎓 Learn More
+
+### Training
 
 If you're interested in learning more about Clean Architecture SSW offers two events:
 
 - [SSW 1-day Clean Architecture Superpowers Tour](https://www.ssw.com.au/events/clean-architecture-superpowers-tour)
 - [SSW 2-day Clean Architecture Workshop](https://www.ssw.com.au/events/clean-architecture-workshop)
+
+### Learning Resources
+
+You're interested learning more about Clean Architecture, please see this excellent video by Matt Goldman:
+
+* [Clean Architecture with ASP.NET Core and MAUI](https://www.youtube.com/live/K9ryHflmQJE?si=VC2FtSZiAA3CxSsK)
+
+Alternatively, SSW has many great rules about Clean Architecture:
+
+* [SSW Rules - Clean Architecture](https://www.ssw.com.au/rules/rules-to-better-clean-architecture/)
+
+You can also find a collection of commumity projects built on Clean Architecture here:
+
+* [Awesome Clean Architecture](https://github.com/SSWConsulting/awesome-clean-architecture)
 
 ## 🤝 Contributing
 
