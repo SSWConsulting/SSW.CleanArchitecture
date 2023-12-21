@@ -179,3 +179,7 @@ If you're interested in learning more about Clean Architecture SSW offers two ev
 
 - [SSW 1-day Clean Architecture Superpowers Tour](https://www.ssw.com.au/events/clean-architecture-superpowers-tour)
 - [SSW 2-day Clean Architecture Workshop](https://www.ssw.com.au/events/clean-architecture-workshop)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome! See [Contributing](contributing.md) for more information.
