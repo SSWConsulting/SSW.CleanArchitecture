@@ -8,6 +8,7 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <UserSecretsId>6893d2b2-792c-4bb6-a737-64aa9cd6e7a6</UserSecretsId>
   </PropertyGroup>
+  
   <ItemGroup>
     <InternalsVisibleTo Include="Application.IntegrationTests" />
   </ItemGroup>
@@ -29,12 +30,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\api\specification.json" />
-  </ItemGroup>
-  
-  <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-  </PropertyGroup>
 </Project>
