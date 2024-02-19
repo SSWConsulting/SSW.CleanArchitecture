@@ -7,9 +7,6 @@
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <UserSecretsId>6893d2b2-792c-4bb6-a737-64aa9cd6e7a6</UserSecretsId>
-    <!-- as per https://github.com/dotnet/aspnetcore/issues/50836#issuecomment-1819612514  -->
-    <!-- recommendation from msft is to disable AD0001 until first servicing release of .net8   -->
-    <NoWarn>$(NoWarn);AD0001</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Application.IntegrationTests" />
