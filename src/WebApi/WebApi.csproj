@@ -6,42 +6,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <!-- as per https://github.com/dotnet/aspnetcore/issues/50836#issuecomment-1819612514  -->
-    <!-- recommendation from msft is to disable AD0001 until first servicing release of .net8   -->
-    <NoWarn>$(NoWarn);AD0001</NoWarn>
   </PropertyGroup>
+
   <ItemGroup>
     <InternalsVisibleTo Include="Application.IntegrationTests" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.2" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="14.0.0-preview008" />
-    <PackageReference Include="NSwag.MSBuild" Version="14.0.0-preview008">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="NSwag.AspNetCore" Version="14.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\api\" />
-  </ItemGroup>
-  <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-  </PropertyGroup>
-  <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent" Condition="'$(SkipNSwag)' != 'True'">
-    <Message Text="----- Start generating Swagger specification using NSwag -----" Importance="high" />
-    <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run nswag.json /variables:Configuration=$(Configuration)" />
-    <Message Text="----- Completed generating Swagger specification using NSwag -----" Importance="high" />
-  </Target>
 </Project>

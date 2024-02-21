@@ -38,7 +38,8 @@ app.UseHealthChecks();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings => settings.DocumentPath = "/api/specification.json");
+app.UseOpenApi();
+app.UseSwaggerUi();
 
 app.UseRouting();
 
