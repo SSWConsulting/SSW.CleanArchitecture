@@ -37,9 +37,8 @@
     <Folder Include="wwwroot\api\" />
   </ItemGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent> 
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
-    
   <Target Name="SwaggerPostBuildClientAndSpec" AfterTargets="PostBuildEvent" Condition="'$(SkipNSwag)' != 'True'">
     <Message Text="----- Start generating Swagger specification using NSwag -----" Importance="high" />
     <Exec WorkingDirectory="$(ProjectDir)" Command="$(NSwagExe_Net80) run nswag.json /variables:Configuration=$(Configuration)" />
