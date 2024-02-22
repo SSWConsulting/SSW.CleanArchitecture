@@ -171,6 +171,8 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 3. `package` GitHub Action will run and publish the new version to NuGet.org
 4. Create a GitHub release to document the changes
 
+> **NOTE:** We are now using CalVer for versioning. The version number should be in the format `YYYY.M.D` (e.g. `2024.2.12`).
+
 <!-- TODO Issue #99: Getting Started using the dotnet new template -->
 
 ## 🎓 Learn More
