@@ -36,8 +36,11 @@
         "**/.git/**",
         "*.nuspec",
         "**/node_modules/**",
-        "templates/",
-        "CODE_OF_CONDUCT.md"
+        "CODE_OF_CONDUCT.md",
+        "templates/**",
+        "CONTRIBUTING.md",
+        "package.ps1",
+        "SECURITY.md"
       ]
     }
   ]
