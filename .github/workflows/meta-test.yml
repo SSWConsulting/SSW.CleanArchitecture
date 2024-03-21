@@ -62,12 +62,11 @@ jobs:
     - name: Create a command
       run: |
         cd src/Application/Features
-        mkdir Products
         cd Products
         dotnet new ssw-ca-command --name CreateProduct --entityName Product --slnName MyTestApp
       
     # Tests that a command leaves the app in a buildable state
-    - name: Build after a query
+    - name: Build after a command
       run: |
         cd ./temp/MyTestApp
         dotnet build --configuration Release
