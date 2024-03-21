@@ -1,12 +1,27 @@
 version: 2
 
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates
+
 updates:
+
   - package-ecosystem: "dotnet"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Australia/Sydney"
+    commit-message:
+      prefix: "⬆️ .NET"
+    rebase-strategy: auto
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Australia/Sydney"
+    commit-message:
+      prefix: "⬆️ Actions"
+    rebase-strategy: auto
