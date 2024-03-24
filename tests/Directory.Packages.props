@@ -15,7 +15,7 @@
     <PackageVersion Include="Respawn" Version="6.1.0" />
     <PackageVersion Include="Testcontainers" Version="3.6.0" />
     <PackageVersion Include="Testcontainers.SqlEdge" Version="3.6.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.3" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Meziantou.Extensions.Logging.Xunit" Version="1.0.7" />
   </ItemGroup>
