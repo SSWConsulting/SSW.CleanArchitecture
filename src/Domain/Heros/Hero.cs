@@ -7,7 +7,7 @@ namespace SSW.CleanArchitecture.Domain.Heros;
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct HeroId(Guid Value);
 
-public class Hero : BaseEntity<HeroId>, IAggregateRoot
+public class Hero : AggregateRoot<HeroId>
 {
     private readonly List<Power> _powers = [];
     public string Name { get; private set; } = null!;

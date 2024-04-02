@@ -6,7 +6,7 @@ namespace SSW.CleanArchitecture.Domain.Teams;
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct MissionId(Guid Value);
 
-public class Mission : BaseEntity<MissionId>
+public class Mission : Entity<MissionId>
 {
     public string Description { get; private set; } = null!;
 
@@ -20,5 +20,4 @@ public class Mission : BaseEntity<MissionId>
         Guard.Against.NullOrWhiteSpace(description);
         return new Mission { Description = description, Status = MissionStatus.InProgress };
     }
-
 }
