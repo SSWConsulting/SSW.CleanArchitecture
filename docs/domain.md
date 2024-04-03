@@ -44,3 +44,6 @@ classDiagram
     Team --> Hero: has many
     Team --> Mission: has many
 ```
+## Database Schema
+
+![SuperHero Database Schema](./database.png)
