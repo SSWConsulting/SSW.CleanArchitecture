@@ -15,9 +15,11 @@ public class Team : AggregateRoot<TeamId>
 
     private readonly List<Mission> _missions = [];
     public IEnumerable<Mission> Missions => _missions.AsReadOnly();
+    private Mission? CurrentMission => _missions.FirstOrDefault(m => m.Status == MissionStatus.InProgress);
 
     private readonly List<Hero> _heroes = [];
     public IEnumerable<Hero> Heroes => _heroes.AsReadOnly();
+
 
     private Team() { }
 
@@ -61,14 +63,19 @@ public class Team : AggregateRoot<TeamId>
         Status = TeamStatus.OnMission;
     }
 
-    public void CompleteMission(Mission mission)
+    public void CompleteCurrentMission()
     {
         if (Status != TeamStatus.OnMission)
         {
             throw new InvalidOperationException("The team is currently not on a mission.");
         }
 
-        mission.Complete();
+        if (CurrentMission is null)
+        {
+            throw new InvalidOperationException("There is no mission in progress.");
+        }
+
+        CurrentMission.Complete();
         Status = TeamStatus.Available;
     }
 }
