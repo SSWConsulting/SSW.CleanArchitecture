@@ -1,6 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using SSW.CleanArchitecture.Domain.Common.Base;
-using SSW.CleanArchitecture.Domain.Heros;
+using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
 
@@ -34,7 +34,7 @@ public class Team : AggregateRoot<TeamId>
     {
         Guard.Against.Null(hero, nameof(hero));
         _heroes.Add(hero);
-        TotalStrength += hero.Strength;
+        TotalStrength += hero.TotalStrength;
     }
 
     public void RemoveHero(Hero hero)
@@ -43,7 +43,7 @@ public class Team : AggregateRoot<TeamId>
         if (_heroes.Contains(hero))
         {
             _heroes.Remove(hero);
-            TotalStrength -= hero.Strength;
+            TotalStrength -= hero.TotalStrength;
         }
     }
 
@@ -59,5 +59,16 @@ public class Team : AggregateRoot<TeamId>
         var mission = Mission.Create(description);
         _missions.Add(mission);
         Status = TeamStatus.OnMission;
+    }
+
+    public void CompleteMission(Mission mission)
+    {
+        if (Status != TeamStatus.OnMission)
+        {
+            throw new InvalidOperationException("The team is currently not on a mission.");
+        }
+
+        mission.Complete();
+        Status = TeamStatus.Available;
     }
 }

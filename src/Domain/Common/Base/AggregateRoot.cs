@@ -5,7 +5,7 @@ namespace SSW.CleanArchitecture.Domain.Common.Base;
 /// <summary>
 /// Entity graph.  Can be created externally.  Can raise domain events.
 /// </summary>
-public abstract class AggregateRoot<TId> : Entity<TId>
+public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {
     private readonly List<DomainEvent> _domainEvents = [];
 
@@ -17,6 +17,10 @@ public abstract class AggregateRoot<TId> : Entity<TId>
     public void RemoveDomainEvent(DomainEvent domainEvent) => _domainEvents.Remove(domainEvent);
 
     public void ClearDomainEvents() => _domainEvents.Clear();
+}
+
+public interface IAggregateRoot
+{
 }
 
 // TODO: Delete this once TodoItems are removed
