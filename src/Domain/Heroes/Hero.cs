@@ -12,8 +12,7 @@ public class Hero : AggregateRoot<HeroId>
     private readonly List<Power> _powers = [];
     public string Name { get; private set; } = null!;
     public string Alias { get; private set; } = null!;
-    public int TotalStrength { get; private set; }
-
+    public int Strength { get; private set; }
     public IEnumerable<Power> Powers => _powers.AsReadOnly();
 
     public static Hero Create(string name, string alias)
@@ -38,7 +37,7 @@ public class Hero : AggregateRoot<HeroId>
             _powers.Add(power);
         }
 
-        TotalStrength += power.Strength;
+        Strength += power.Strength;
         AddDomainEvent(new StrengthUpdatedEvent(this));
     }
 
@@ -57,7 +56,7 @@ public class Hero : AggregateRoot<HeroId>
             _powers.Remove(power);
         }
 
-        TotalStrength -= power.Strength;
+        Strength -= power.Strength;
         AddDomainEvent(new StrengthUpdatedEvent(this));
     }
 }

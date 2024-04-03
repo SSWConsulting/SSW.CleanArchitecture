@@ -36,7 +36,7 @@ public class Team : AggregateRoot<TeamId>
     {
         Guard.Against.Null(hero, nameof(hero));
         _heroes.Add(hero);
-        TotalStrength += hero.TotalStrength;
+        TotalStrength += hero.Strength;
     }
 
     public void RemoveHero(Hero hero)
@@ -45,7 +45,7 @@ public class Team : AggregateRoot<TeamId>
         if (_heroes.Contains(hero))
         {
             _heroes.Remove(hero);
-            TotalStrength -= hero.TotalStrength;
+            TotalStrength -= hero.Strength;
         }
     }
 

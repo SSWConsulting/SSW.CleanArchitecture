@@ -9,31 +9,35 @@
 ```mermaid
 classDiagram
     class Hero {
-        string name
-        string alias
-        int PowerLevel
+        string Name
+        string Alias
+        int Strength
         Power[] Powers
+        void AddPower()
+        void RemovePower()
     }
 
     class Power {
-        string powerName
-        string description
+        string Name
+        string Strength
     }
 
     class Team {
         string Name
-        int TotalPowerLevel
+        int TotalStrength
         enum TeamStatus
         Mission[] Missions
         void AddHero()
         void RemoveHero()
         void ExecuteMission()
+        void CompleteCurrentMission()
     }
     
     class Mission {
         int MissionId
         string Description
         enum MissionStatus
+        void Complete()
     }
 
     Hero --> Power: has many
