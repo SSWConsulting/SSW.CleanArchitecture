@@ -3,7 +3,12 @@
 namespace SSW.CleanArchitecture.Domain.Common.Base;
 
 /// <summary>
-/// Entity graph.  Can be created externally.  Can raise domain events.
+/// Cluster of objects treated as a single unit.
+/// Can contain entities, value objects, and other aggregates.
+/// Enforce business rules (i.e. invariants)
+/// Can be created externally.
+/// Can raise domain events.
+/// Represent a transactional boundary (i.e. all changes are saved or none are saved)
 /// </summary>
 public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {
