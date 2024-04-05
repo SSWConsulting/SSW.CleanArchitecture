@@ -1,14 +1,11 @@
-using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using NetArchTest.Rules;
-using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Infrastructure;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class DatabaseEntities
 {
-    // TODO: Fix this test
+    // // TODO: Fix this test
     // [Fact]
     // public void Entities_ShouldInheritsBaseComponent()
     // {
