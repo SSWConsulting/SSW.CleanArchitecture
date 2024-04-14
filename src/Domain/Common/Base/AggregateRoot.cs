@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SSW.CleanArchitecture.Domain.Common.Base;
 
@@ -22,10 +23,6 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
     public void RemoveDomainEvent(DomainEvent domainEvent) => _domainEvents.Remove(domainEvent);
 
     public void ClearDomainEvents() => _domainEvents.Clear();
-}
-
-public interface IAggregateRoot
-{
 }
 
 // TODO: Delete this once TodoItems are removed

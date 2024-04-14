@@ -27,7 +27,7 @@ public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesIn
             return;
 
         var entities = context.ChangeTracker
-            .Entries<IDomainEvents>()
+            .Entries<IAggregateRoot>()
             .Where(e => e.Entity.DomainEvents.Any())
             .Select(e => e.Entity)
             .ToList();
