@@ -1,13 +1,14 @@
 ﻿using Ardalis.GuardClauses;
 using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct HeroId(Guid Value);
 
-public class Hero : AggregateRoot<HeroId>
+public class Hero : AggregateRoot<HeroId>, IAuditableEntity
 {
     private readonly List<Power> _powers = [];
     public string Name { get; private set; } = null!;

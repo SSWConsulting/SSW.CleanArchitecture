@@ -5,7 +5,7 @@
 /// They can be created within the domain, but not externally.
 /// Enforce business rules (i.e. invariants)
 /// </summary>
-public abstract class Entity<TId> : AuditableEntity
+public abstract class Entity<TId>
 {
     public TId Id { get; set; } = default!;
 }

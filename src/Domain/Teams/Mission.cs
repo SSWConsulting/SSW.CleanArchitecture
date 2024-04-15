@@ -1,13 +1,14 @@
 ﻿using Ardalis.GuardClauses;
 using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct MissionId(Guid Value);
 
-public class Mission : Entity<MissionId>
+public class Mission : Entity<MissionId>, IAuditableEntity
 {
     public string Description { get; private set; } = null!;
 

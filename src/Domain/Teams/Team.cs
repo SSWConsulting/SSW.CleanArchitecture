@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
@@ -7,7 +8,7 @@ namespace SSW.CleanArchitecture.Domain.Teams;
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct TeamId(Guid Value);
 
-public class Team : AggregateRoot<TeamId>
+public class Team : AggregateRoot<TeamId>, IAuditableEntity
 {
     public string Name { get; private set; } = null!;
     public int TotalPowerLevel { get; private set; }

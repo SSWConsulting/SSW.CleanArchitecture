@@ -46,6 +46,5 @@ public class CreateTodoItemCommandTests(TestingDatabaseFixture fixture, ITestOut
 
         item.Should().NotBeNull();
         item!.Title.Should().Be(cmd.Title);
-        item.CreatedAt.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(10));
     }
 }

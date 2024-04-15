@@ -1,5 +1,6 @@
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
+using SSW.CleanArchitecture.Infrastructure.Audit;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Features;
@@ -22,9 +23,11 @@ if (app.Environment.IsDevelopment())
 
     // Initialise and seed database
     using var scope = app.Services.CreateScope();
-    var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-    await initializer.InitializeAsync();
-    await initializer.SeedAsync();
+    var auditInitializer = scope.ServiceProvider.GetRequiredService<AuditDbContextInitializer>();
+    await auditInitializer.InitializeAsync();
+    var appInitializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+    await appInitializer.InitializeAsync();
+    await appInitializer.SeedAsync();
 }
 else
 {

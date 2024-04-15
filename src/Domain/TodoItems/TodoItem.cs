@@ -1,11 +1,12 @@
 ﻿using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Domain.TodoItems;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 public readonly record struct TodoItemId(Guid Value);
 
-public class TodoItem : BaseEntity<TodoItemId>
+public class TodoItem : BaseEntity<TodoItemId>, IAuditableEntity
 {
     // NOTE: private setters for behavior we want to encapsulate, and public setters for properties that don't have behavior
 

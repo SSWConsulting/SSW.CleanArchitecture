@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure.Audit;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
@@ -11,7 +12,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        services.AddScoped<EntitySaveChangesInterceptor>();
+        services.AddScoped<AuditEntityInterceptor>();
         services.AddScoped<DispatchDomainEventsInterceptor>();
 
         services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
@@ -22,6 +23,15 @@ public static class DependencyInjection
             }));
 
         services.AddScoped<ApplicationDbContextInitializer>();
+
+        services.AddDbContext<AuditDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
+            {
+                builder.MigrationsHistoryTable("__EFMigrationsHistory", "audit");
+                builder.EnableRetryOnFailure();
+            }));
+
+        services.AddScoped<AuditDbContextInitializer>();
 
         services.AddSingleton(TimeProvider.System);
 
