@@ -7,7 +7,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class MissionConfiguration : IEntityTypeConfiguration<Mission>
 {
-    // Good marker to enforce that all entities have configuration defined via arch tests
+    // TODO: Figure out a good marker (e.g. for recurring fields ID) to enforce that all entities have configuration defined via arch tests
     public void Configure(EntityTypeBuilder<Mission> builder)
     {
         builder.HasKey(t => t.Id);
