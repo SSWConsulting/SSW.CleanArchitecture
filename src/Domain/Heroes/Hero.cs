@@ -17,6 +17,7 @@ public class Hero : AggregateRoot<HeroId>
 
     public static Hero Create(string name, string alias)
     {
+        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
         Guard.Against.NullOrWhiteSpace(name);
         Guard.Against.StringTooLong(name, Constants.DefaultNameMaxLength);
 
@@ -45,16 +46,13 @@ public class Hero : AggregateRoot<HeroId>
     {
         Guard.Against.NullOrWhiteSpace(powerName, nameof(powerName));
 
-        var power = Powers.FirstOrDefault(p => p.Name == powerName);
+        var power = _powers.FirstOrDefault(p => p.Name == powerName);
         if (power is null)
         {
             return;
         }
 
-        if (_powers.Contains(power))
-        {
-            _powers.Remove(power);
-        }
+        _powers.Remove(power);
 
         PowerLevel -= power.PowerLevel;
         AddDomainEvent(new PowerLevelUpdatedEvent(this));
