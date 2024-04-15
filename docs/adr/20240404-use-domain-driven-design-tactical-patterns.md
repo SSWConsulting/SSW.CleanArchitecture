@@ -1,17 +1,19 @@
 # Use Domain-Driven Design Tactical Patterns
 
-- Status: Pending <!-- optional: draft | proposed | rejected | accepted | deprecated | … | superseded by [xxx](yyyymmdd-xxx.md) -->
-- Deciders: {{ TBC }} <!-- optional: list everyone involved in the decision -->
-- Date: 2024-04-04 <!-- optional. YYYY-MM-DD when the decision was last updated. To customize the ordering without relying on Git creation dates and filenames -->
-- Tags: ddd <!-- optional: space and/or comma-separated list of tags -->
+- Status: Accepted
+- Deciders: Daniel Mackay, Matt Goldman, Matt Wicks, Luke Parker, Chris Clement
+- Date: 2024-04-04
+- Tags: ddd
 
-Technical Story: {{ TECH STORY }} <!-- optional: description | ticket/issue URL -->
+Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/283
+
 
 ## Context and Problem Statement
 
-Currently, the template has is mostly geared towards building applications with an anemic Domain model.  This is fine for simple applications, but not for complex applications with many business rules.
+The current Clean Architecture framework relies on an anemic domain model, which simplifies initial development but increasingly hampers our ability to handle the complex interactions and business logic inherent in our domain. By incorporating Domain-Driven Design (DDD), projects with non-trivial logic can better accommodate complex workflows and business rule integrations without compromising maintainability or scalability.
 
-Instead, we would like to default to using DDD in the template and provide a good example of building applications in that manner.
+We would like to default to using DDD in the template and provide a good example of building applications in that manner.
+
 
 ## Considered Options
 
