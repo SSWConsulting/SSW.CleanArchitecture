@@ -27,6 +27,7 @@ public class HeroConfiguration : IEntityTypeConfiguration<Hero>
             .IsRequired()
             .HasMaxLength(Constants.DefaultNameMaxLength);
 
+        // This is to highlight that we can also serialise to JSON for simple content instead of adding a new table 
         builder.OwnsMany(t => t.Powers, b => b.ToJson());
     }
 }
