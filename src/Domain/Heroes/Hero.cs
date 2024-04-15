@@ -1,5 +1,4 @@
 ﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
@@ -19,10 +18,7 @@ public class Hero : AggregateRoot<HeroId>
     {
         Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
         Guard.Against.NullOrWhiteSpace(name);
-        Guard.Against.StringTooLong(name, Constants.DefaultNameMaxLength);
-
         Guard.Against.NullOrWhiteSpace(alias);
-        Guard.Against.StringTooLong(alias, Constants.DefaultNameMaxLength);
 
         var hero = new Hero { Id = new HeroId(Guid.NewGuid()), Name = name, Alias = alias, };
 

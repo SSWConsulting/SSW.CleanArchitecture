@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
@@ -18,12 +17,10 @@ public class HeroConfiguration : IEntityTypeConfiguration<Hero>
             .ValueGeneratedNever();
 
         builder.Property(t => t.Name)
-            .IsRequired()
-            .HasMaxLength(Constants.DefaultNameMaxLength);
+            .IsRequired();
 
         builder.Property(t => t.Alias)
-            .IsRequired()
-            .HasMaxLength(Constants.DefaultNameMaxLength);
+            .IsRequired();
 
         // This is to highlight that we can also serialise to JSON for simple content instead of adding a new table 
         builder.OwnsMany(t => t.Powers, b => b.ToJson());

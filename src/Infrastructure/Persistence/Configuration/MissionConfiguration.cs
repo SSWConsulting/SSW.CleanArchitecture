@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
@@ -18,7 +17,6 @@ public class MissionConfiguration : IEntityTypeConfiguration<Mission>
             .ValueGeneratedNever();
 
         builder.Property(t => t.Description)
-            .IsRequired()
-            .HasMaxLength(Constants.DefaultDescriptionMaxLength);
+            .IsRequired();
     }
 }

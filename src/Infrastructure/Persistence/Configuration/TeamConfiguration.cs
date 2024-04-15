@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
@@ -18,8 +17,7 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
             .ValueGeneratedNever();
 
         builder.Property(t => t.Name)
-            .IsRequired()
-            .HasMaxLength(Constants.DefaultNameMaxLength);
+            .IsRequired();
 
         // TODO: Check this works
         builder.HasMany(t => t.Missions)
