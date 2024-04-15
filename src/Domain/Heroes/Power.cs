@@ -10,11 +10,11 @@ public record Power : IValueObject
     public string Name { get; private set; }
 
     // Private setters needed for EF
-    public int Strength { get; private set; }
+    public int PowerLevel { get; private set; }
 
-    public Power(string name, int strength)
+    public Power(string name, int powerLevel)
     {
         Name = Guard.Against.StringTooLong(name, Constants.DefaultNameMaxLength);
-        Strength = Guard.Against.OutOfRange(strength, "Strength", 1, 10);
+        PowerLevel = Guard.Against.OutOfRange(powerLevel, nameof(PowerLevel), 1, 10);
     }
 }

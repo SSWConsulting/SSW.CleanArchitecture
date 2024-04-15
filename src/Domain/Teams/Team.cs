@@ -10,7 +10,7 @@ public readonly record struct TeamId(Guid Value);
 public class Team : AggregateRoot<TeamId>
 {
     public string Name { get; private set; } = null!;
-    public int TotalStrength { get; private set; }
+    public int TotalPowerLevel { get; private set; }
     public TeamStatus Status { get; private set; }
 
     private readonly List<Mission> _missions = [];
@@ -36,7 +36,7 @@ public class Team : AggregateRoot<TeamId>
     {
         Guard.Against.Null(hero, nameof(hero));
         _heroes.Add(hero);
-        TotalStrength += hero.Strength;
+        TotalPowerLevel += hero.PowerLevel;
     }
 
     public void RemoveHero(Hero hero)
@@ -45,7 +45,7 @@ public class Team : AggregateRoot<TeamId>
         if (_heroes.Contains(hero))
         {
             _heroes.Remove(hero);
-            TotalStrength -= hero.Strength;
+            TotalPowerLevel -= hero.PowerLevel;
         }
     }
 

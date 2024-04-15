@@ -3,18 +3,18 @@ using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
-public record StrengthUpdatedEvent : DomainEvent
+public record PowerLevelUpdatedEvent : DomainEvent
 {
     public HeroId Id { get; }
     public string Name { get; }
-    public int Strength { get; }
+    public int PowerLevel { get; }
 
-    public StrengthUpdatedEvent(Hero hero)
+    public PowerLevelUpdatedEvent(Hero hero)
     {
         Guard.Against.Null(hero);
 
         Id = hero.Id;
         Name = hero.Name;
-        Strength = hero.Strength;
+        PowerLevel = hero.PowerLevel;
     }
 }

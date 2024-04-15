@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class Heroes : Migration
@@ -17,7 +17,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    TotalStrength = table.Column<int>(type: "int", nullable: false),
+                    TotalPowerLevel = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -36,7 +36,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Alias = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    TotalStrength = table.Column<int>(type: "int", nullable: false),
+                    PowerLevel = table.Column<int>(type: "int", nullable: false),
                     TeamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),

@@ -9,10 +9,10 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240403033410_Heroes")]
+    [Migration("20240415010506_Heroes")]
     partial class Heroes
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -46,11 +46,11 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("PowerLevel")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("TotalStrength")
-                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
@@ -119,7 +119,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalStrength")
+                    b.Property<int>("TotalPowerLevel")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset?>("UpdatedAt")
@@ -194,7 +194,7 @@ namespace SSW.CleanArchitecture.Infrastructure.Infrastructure.Persistence.Migrat
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.Property<int>("Strength")
+                            b1.Property<int>("PowerLevel")
                                 .HasColumnType("int");
 
                             b1.HasKey("HeroId", "Id");
