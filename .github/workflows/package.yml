@@ -12,6 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Remove UserSecret tags from project files
+        run: |
+          find . -name '*.csproj' -type f -exec sed -i 's/<UserSecretsId>.*<\/UserSecretsId>//g' {} \;
+
       - uses: nuget/setup-nuget@v2
         with:
           nuget-version: '6.x'
