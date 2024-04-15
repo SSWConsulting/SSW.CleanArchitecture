@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;

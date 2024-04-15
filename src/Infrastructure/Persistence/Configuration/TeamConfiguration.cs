@@ -24,11 +24,5 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
             .WithOne()
             //.HasForeignKey(m => m.Id)
             .IsRequired();
-
-        // TODO: Check this works
-        builder.HasMany(t => t.Heroes)
-            .WithOne()
-            //.HasForeignKey(m => m.Id)
-            .IsRequired();
     }
 }

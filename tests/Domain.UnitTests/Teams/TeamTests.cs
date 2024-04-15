@@ -63,8 +63,8 @@ public class TeamTests
         var team = Team.Create("name");
         
         // Act
-        team.AddHero(hero1);
-        team.AddHero(hero2);
+        team.AddHero(hero1.Id, hero1.PowerLevel);
+        team.AddHero(hero2.Id, hero2.PowerLevel);
 
         // Assert
         team.TotalPowerLevel.Should().Be(14);
@@ -79,11 +79,11 @@ public class TeamTests
         hero1.AddPower(new Power("Foo", 10));
         hero2.AddPower(new Power("Bar", 4));
         var team = Team.Create("name");
-        team.AddHero(hero1);
-        team.AddHero(hero2);
+        team.AddHero(hero1.Id, hero1.PowerLevel);
+        team.AddHero(hero2.Id, hero2.PowerLevel);
         
         // Act
-        team.RemoveHero(hero1);
+        team.RemoveHero(hero1.Id, hero1.PowerLevel);
 
         // Assert
         team.TotalPowerLevel.Should().Be(4);
