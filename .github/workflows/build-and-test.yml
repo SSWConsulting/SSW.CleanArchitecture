@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:    
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}    
@@ -38,7 +38,7 @@ jobs:
       run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: published-files
         path: ./publish
