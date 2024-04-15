@@ -31,14 +31,12 @@ public class EntitySaveChangesInterceptor(ICurrentUserService currentUserService
         foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
             if (entry.State is EntityState.Added)
             {
-                entry.Entity.CreatedAt = timeProvider.GetUtcNow();
-                entry.Entity.CreatedBy = currentUserService.UserId;
+                entry.Entity.SetCreated(timeProvider.GetUtcNow(), currentUserService.UserId);
             }
             else if (entry.State is EntityState.Added or EntityState.Modified ||
                      entry.HasChangedOwnedEntities())
             {
-                entry.Entity.UpdatedAt = timeProvider.GetUtcNow();
-                entry.Entity.UpdatedBy = currentUserService.UserId;
+                entry.Entity.SetUpdated(timeProvider.GetUtcNow(), currentUserService.UserId);
             }
     }
 }

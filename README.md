@@ -35,6 +35,12 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 ## ✨ Features
 
+- 🎯 Domain Driven Design Patterns
+  - [Super Hero Domain](./docs/domain.md)
+  - AggregateRoot
+  - Entity
+  - ValueObject
+  - DomainEvent
 - ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
     - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
     - as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)
