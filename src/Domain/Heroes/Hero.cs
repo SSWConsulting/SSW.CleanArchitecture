@@ -16,9 +16,9 @@ public class Hero : AggregateRoot<HeroId>
 
     public static Hero Create(string name, string alias)
     {
-        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
         Guard.Against.NullOrWhiteSpace(name);
         Guard.Against.NullOrWhiteSpace(alias);
+        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
 
         var hero = new Hero { Id = new HeroId(Guid.NewGuid()), Name = name, Alias = alias, };
 
