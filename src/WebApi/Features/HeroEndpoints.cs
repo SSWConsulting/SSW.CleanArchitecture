@@ -14,6 +14,12 @@ public static class HeroEndpoints
             .WithTags("Heroes")
             .WithOpenApi();
 
+        group
+            .MapGet("/", (ISender sender, CancellationToken ct)
+                => sender.Send(new GetAllHeroesQuery(), ct))
+            .WithName("GetAllHeroes")
+            .ProducesGet<HeroDto[]>();
+
         // TODO: Investigate examples for swagger docs. i.e. better docs than:
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
         // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
