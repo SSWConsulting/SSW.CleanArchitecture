@@ -34,8 +34,10 @@ public class Hero : AggregateRoot<HeroId>
             _powers.Add(power);
         }
 
-        PowerLevel += power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
+        var oldLevel = PowerLevel;
+        var newLevel = PowerLevel + power.PowerLevel;
+        PowerLevel = newLevel;
+        AddDomainEvent(new PowerLevelUpdatedEvent(Id, Name, oldLevel, newLevel));
     }
 
     public void RemovePower(string powerName)
@@ -50,7 +52,9 @@ public class Hero : AggregateRoot<HeroId>
 
         _powers.Remove(power);
 
-        PowerLevel -= power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
+        var oldLevel = PowerLevel;
+        var newLevel = PowerLevel - power.PowerLevel;
+        PowerLevel = newLevel;
+        AddDomainEvent(new PowerLevelUpdatedEvent(Id, Name, oldLevel, newLevel));
     }
 }
