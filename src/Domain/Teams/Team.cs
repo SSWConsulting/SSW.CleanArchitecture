@@ -17,8 +17,8 @@ public class Team : AggregateRoot<TeamId>
     public IEnumerable<Mission> Missions => _missions.AsReadOnly();
     private Mission? CurrentMission => _missions.FirstOrDefault(m => m.Status == MissionStatus.InProgress);
 
-    private readonly List<Hero> _heroes = [];
-    public IEnumerable<Hero> Heroes => _heroes.AsReadOnly();
+    private readonly List<HeroId> _heroes = [];
+    public IEnumerable<HeroId> Heroes => _heroes.AsReadOnly();
 
 
     private Team() { }
@@ -32,20 +32,30 @@ public class Team : AggregateRoot<TeamId>
         return team;
     }
 
-    public void AddHero(Hero hero)
+    public void AddHero(HeroId hero, int powerLevel)
     {
         Guard.Against.Null(hero, nameof(hero));
+        Guard.Against.InvalidInput(hero, nameof(hero), h => _heroes.Contains(h), "Hero is already in the team.");
+
         _heroes.Add(hero);
-        TotalPowerLevel += hero.PowerLevel;
+        TotalPowerLevel += powerLevel;
     }
 
-    public void RemoveHero(Hero hero)
+    public void RemoveHero(HeroId hero, int powerLevel)
     {
         Guard.Against.Null(hero, nameof(hero));
         if (_heroes.Contains(hero))
         {
             _heroes.Remove(hero);
-            TotalPowerLevel -= hero.PowerLevel;
+            TotalPowerLevel -= powerLevel;
+        }
+    }
+
+    public void AdjustPowerLevel(HeroId id, int powerLevelDifference)
+    {
+        if (Heroes.Any(h => h == id))
+        {
+            TotalPowerLevel += powerLevelDifference;
         }
     }
 
