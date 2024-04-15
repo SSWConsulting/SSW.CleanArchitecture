@@ -14,6 +14,6 @@ public record Power : IValueObject
     public Power(string name, int powerLevel)
     {
         Name = name;
-        PowerLevel = Guard.Against.OutOfRange(powerLevel, nameof(PowerLevel), 1, 10);
+        PowerLevel = Guard.Against.OutOfRange(powerLevel, nameof(powerLevel), 1, 10);
     }
 }
