@@ -1,5 +1,4 @@
 ﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
@@ -19,7 +18,6 @@ public class Mission : Entity<MissionId>
     internal static Mission Create(string description)
     {
         Guard.Against.NullOrWhiteSpace(description);
-        Guard.Against.StringTooLong(description, Constants.DefaultDescriptionMaxLength);
         return new Mission { Description = description, Status = MissionStatus.InProgress };
     }
 

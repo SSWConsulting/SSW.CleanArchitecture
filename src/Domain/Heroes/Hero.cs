@@ -1,5 +1,4 @@
 ﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
@@ -18,10 +17,8 @@ public class Hero : AggregateRoot<HeroId>
     public static Hero Create(string name, string alias)
     {
         Guard.Against.NullOrWhiteSpace(name);
-        Guard.Against.StringTooLong(name, Constants.DefaultNameMaxLength);
-
         Guard.Against.NullOrWhiteSpace(alias);
-        Guard.Against.StringTooLong(alias, Constants.DefaultNameMaxLength);
+        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
 
         var hero = new Hero { Id = new HeroId(Guid.NewGuid()), Name = name, Alias = alias, };
 
@@ -45,16 +42,13 @@ public class Hero : AggregateRoot<HeroId>
     {
         Guard.Against.NullOrWhiteSpace(powerName, nameof(powerName));
 
-        var power = Powers.FirstOrDefault(p => p.Name == powerName);
+        var power = _powers.FirstOrDefault(p => p.Name == powerName);
         if (power is null)
         {
             return;
         }
 
-        if (_powers.Contains(power))
-        {
-            _powers.Remove(power);
-        }
+        _powers.Remove(power);
 
         PowerLevel -= power.PowerLevel;
         AddDomainEvent(new PowerLevelUpdatedEvent(this));
