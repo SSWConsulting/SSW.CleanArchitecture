@@ -2,7 +2,7 @@ using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Domain.UnitTests.Heroes;
 
-public class HeroesTests
+public class HeroTests
 {
     [Fact]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
