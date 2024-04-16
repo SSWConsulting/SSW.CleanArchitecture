@@ -29,7 +29,7 @@ public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);
-        var item = await Context.Heroes.FirstAsync();
+        var item = await Context.Heroes.AsNoTracking().FirstAsync();
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);
