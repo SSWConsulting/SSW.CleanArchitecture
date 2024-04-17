@@ -44,6 +44,7 @@ app.UseSwaggerUi();
 app.UseRouting();
 
 app.UseDefaultExceptionHandler();
+app.MapHeroEndpoints();
 app.MapTodoItemEndpoints();
 
 app.Run();

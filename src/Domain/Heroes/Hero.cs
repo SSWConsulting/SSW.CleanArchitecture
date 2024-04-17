@@ -13,19 +13,45 @@ public class Hero : AggregateRoot<HeroId>
     public string Alias { get; private set; } = null!;
     public int PowerLevel { get; private set; }
     public IEnumerable<Power> Powers => _powers.AsReadOnly();
+    
+    private Hero() { }
 
     public static Hero Create(string name, string alias)
     {
-        Guard.Against.NullOrWhiteSpace(name);
-        Guard.Against.NullOrWhiteSpace(alias);
-        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-        var hero = new Hero { Id = new HeroId(Guid.NewGuid()), Name = name, Alias = alias, };
+        var hero = new Hero { Id = new HeroId(Guid.NewGuid()) };
+        hero.UpdateName(name);
+        hero.UpdateAlias(alias);
 
         return hero;
     }
+    
+    public void UpdateName(string name)
+    {
+        Guard.Against.NullOrWhiteSpace(name);
+        Name = name;
+    }
+    
+    public void UpdateAlias(string alias)
+    {
+        Guard.Against.NullOrWhiteSpace(alias);
+        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(Name, StringComparison.OrdinalIgnoreCase));
+        Alias = alias;
+    }
 
-    public void AddPower(Power power)
+    public void UpdatePowers(IEnumerable<Power> updatedPowers)
+    {
+        _powers.Clear();
+        PowerLevel = 0;
+
+        foreach (var heroPowerModel in updatedPowers)
+        {
+            AddPower(new Power(heroPowerModel.Name, heroPowerModel.PowerLevel));
+        }
+
+        AddDomainEvent(new PowerLevelUpdatedEvent(this));
+    }
+
+    private void AddPower(Power power)
     {
         Guard.Against.Null(power);
 
@@ -35,22 +61,5 @@ public class Hero : AggregateRoot<HeroId>
         }
 
         PowerLevel += power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
-    }
-
-    public void RemovePower(string powerName)
-    {
-        Guard.Against.NullOrWhiteSpace(powerName, nameof(powerName));
-
-        var power = _powers.FirstOrDefault(p => p.Name == powerName);
-        if (power is null)
-        {
-            return;
-        }
-
-        _powers.Remove(power);
-
-        PowerLevel -= power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
     }
 }
