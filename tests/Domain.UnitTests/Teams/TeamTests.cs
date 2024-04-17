@@ -56,10 +56,12 @@ public class TeamTests
     public void AddHero_ShouldUpdateTeamPowerLevel()
     {
         // Arrange
-        Hero hero1 = Hero.Create("hero1", "alias1");
-        Hero hero2 = Hero.Create("hero2", "alias2");
-        hero1.AddPower(new Power("Foo", 10));
-        hero2.AddPower(new Power("Bar", 4));
+        var hero1 = Hero.Create("hero1", "alias1");
+        var hero2 = Hero.Create("hero2", "alias2");
+        var power1 = new Power("Foo", 10);
+        var power2 = new Power("Bar", 4);
+        hero1.UpdatePowers([power1]);
+        hero2.UpdatePowers([power2]);
         var team = Team.Create("name");
         
         // Act
@@ -74,10 +76,12 @@ public class TeamTests
     public void RemoveHero_ShouldUpdateTeamPowerLevel()
     {
         // Arrange
-        Hero hero1 = Hero.Create("hero1", "alias1");
-        Hero hero2 = Hero.Create("hero2", "alias2");
-        hero1.AddPower(new Power("Foo", 10));
-        hero2.AddPower(new Power("Bar", 4));
+        var hero1 = Hero.Create("hero1", "alias1");
+        var hero2 = Hero.Create("hero2", "alias2");
+        var power1 = new Power("Foo", 10);
+        var power2 = new Power("Bar", 4);
+        hero1.UpdatePowers([power1]);
+        hero2.UpdatePowers([power2]);
         var team = Team.Create("name");
         team.AddHero(hero1);
         team.AddHero(hero2);

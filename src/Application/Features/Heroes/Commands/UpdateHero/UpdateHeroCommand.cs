@@ -28,16 +28,8 @@ public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
         
         hero.UpdateName(request.Name);
         hero.UpdateAlias(request.Alias);
-        var existingPowers = hero.Powers.Select(p => p.Name).ToList();
-        foreach (var existingPower in existingPowers)
-        {
-            hero.RemovePower(existingPower);
-        }
-        
-        foreach (var heroPowerModel in request.Powers)
-        {
-            hero.AddPower(new Power(heroPowerModel.Name, heroPowerModel.PowerLevel));
-        }
+        var powers = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
+        hero.UpdatePowers(powers);
 
         await dbContext.SaveChangesAsync(cancellationToken);
 

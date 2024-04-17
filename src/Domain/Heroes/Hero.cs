@@ -24,35 +24,6 @@ public class Hero : AggregateRoot<HeroId>
 
         return hero;
     }
-
-    public void AddPower(Power power)
-    {
-        Guard.Against.Null(power);
-
-        if (!_powers.Contains(power))
-        {
-            _powers.Add(power);
-        }
-
-        PowerLevel += power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
-    }
-
-    public void RemovePower(string powerName)
-    {
-        Guard.Against.NullOrWhiteSpace(powerName, nameof(powerName));
-
-        var power = _powers.FirstOrDefault(p => p.Name == powerName);
-        if (power is null)
-        {
-            return;
-        }
-
-        _powers.Remove(power);
-
-        PowerLevel -= power.PowerLevel;
-        AddDomainEvent(new PowerLevelUpdatedEvent(this));
-    }
     
     public void UpdateName(string name)
     {
@@ -65,5 +36,30 @@ public class Hero : AggregateRoot<HeroId>
         Guard.Against.NullOrWhiteSpace(alias);
         Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(Name, StringComparison.OrdinalIgnoreCase));
         Alias = alias;
+    }
+
+    public void UpdatePowers(IEnumerable<Power> updatedPowers)
+    {
+        _powers.Clear();
+        PowerLevel = 0;
+
+        foreach (var heroPowerModel in updatedPowers)
+        {
+            AddPower(new Power(heroPowerModel.Name, heroPowerModel.PowerLevel));
+        }
+
+        AddDomainEvent(new PowerLevelUpdatedEvent(this));
+    }
+
+    private void AddPower(Power power)
+    {
+        Guard.Against.Null(power);
+
+        if (!_powers.Contains(power))
+        {
+            _powers.Add(power);
+        }
+
+        PowerLevel += power.PowerLevel;
     }
 }

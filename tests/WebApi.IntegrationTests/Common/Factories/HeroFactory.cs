@@ -15,9 +15,11 @@ public static class HeroFactory
             f.Company.Bs()
         );
 
-        PowerFaker
-            .Generate(f.Random.Number(1, 5))
-            .ForEach(power => hero.AddPower(power));
+        var powers = PowerFaker
+            .Generate(f.Random.Number(1, 5));
+
+        hero.UpdatePowers(powers);
+
         return hero;
     });
 

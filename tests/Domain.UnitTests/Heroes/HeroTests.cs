@@ -23,7 +23,7 @@ public class HeroTests
         id1.Value.Should().Be(guid1);
         id2.Value.Should().Be(guid2);
     }
-    
+
     [Fact]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
     {
@@ -78,8 +78,8 @@ public class HeroTests
     {
         // Act
         var hero = Hero.Create("name", "alias");
-        hero.AddPower(new Power("Super-strength", 10));
-        hero.AddPower(new Power("Super-speed", 5));
+        var powers = new List<Power> { new("Super-strength", 10), new("Super-speed", 5) };
+        hero.UpdatePowers(powers);
 
         // Assert
         hero.PowerLevel.Should().Be(15);
@@ -91,9 +91,11 @@ public class HeroTests
     {
         // Act
         var hero = Hero.Create("name", "alias");
-        hero.AddPower(new Power("Super-strength", 10));
-        hero.AddPower(new Power("Super-speed", 5));
-        hero.RemovePower("Super-strength");
+        var powers = new List<Power> { new("Super-strength", 10), new("Super-speed", 5) };
+        hero.UpdatePowers(powers);
+
+        // Act
+        hero.UpdatePowers([new("Super-strength", 5)]);
 
         // Assert
         hero.PowerLevel.Should().Be(5);
@@ -106,7 +108,7 @@ public class HeroTests
         // Act
         var hero = Hero.Create("name", "alias");
         hero.Id = new HeroId(Guid.NewGuid());
-        hero.AddPower(new Power("Super-strength", 10));
+        hero.UpdatePowers([new Power("Super-strength", 10)]);
 
         // Assert
         hero.DomainEvents.Should().NotBeNull();
@@ -126,33 +128,16 @@ public class HeroTests
     {
         // Act
         var hero = Hero.Create("name", "alias");
-        var powerName = "Super-strength";
-        hero.AddPower(new Power(powerName, 10));
-        hero.RemovePower(powerName);
+        var power = new Power("Super-strength", 10);
+        hero.UpdatePowers([power]);
 
         // Assert
         hero.DomainEvents.Should().NotBeNull();
-        hero.DomainEvents.Should().HaveCount(2);
+        hero.DomainEvents.Should().HaveCount(1);
         hero.DomainEvents.Should().AllSatisfy(e => e.Should().BeOfType<PowerLevelUpdatedEvent>());
         hero.DomainEvents.Last()
             .As<PowerLevelUpdatedEvent>()
-            .PowerLevel.Should().Be(0);
-        hero.Powers.Should().HaveCount(0);
-    }
-
-    [Fact]
-    public void RemovePower_WhenPowerDoesNotExists_ShouldDoNothing()
-    {
-        // Act
-        var hero = Hero.Create("name", "alias");
-        var powerName = "Super-strength";
-        hero.AddPower(new Power(powerName, 10));
-        var act = () => hero.RemovePower("Super-speed");
-
-        // Assert
-        act.Should().NotThrow();
-        hero.PowerLevel.Should().Be(10);
-        hero.DomainEvents.Should().HaveCount(1);
+            .PowerLevel.Should().Be(10);
         hero.Powers.Should().HaveCount(1);
     }
 }

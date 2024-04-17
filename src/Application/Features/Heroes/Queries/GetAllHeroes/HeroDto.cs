@@ -6,7 +6,7 @@ public class HeroDto
     public required string Name { get; set; }
     public required string Alias { get; set; }
     public int PowerLevel { get; set; }
-    public IEnumerable<HeroPowerDto> Powers { get; set; } = Enumerable.Empty<HeroPowerDto>();
+    public IEnumerable<HeroPowerDto> Powers { get; set; } = [];
 }
 
 public class HeroPowerDto
