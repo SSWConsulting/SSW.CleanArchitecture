@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SSW.CleanArchitecture.Domain.TodoItems;
-using Bogus;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace SSW.CleanArchitecture.Infrastructure.Persistence;
+namespace Database;
 
 public class ApplicationDbContextInitializer(
     ILogger<ApplicationDbContextInitializer> logger,
@@ -93,7 +93,6 @@ public class ApplicationDbContextInitializer(
             throw;
         }
     }
-
 
     private async Task<List<Hero>> SeedHeroes()
     {

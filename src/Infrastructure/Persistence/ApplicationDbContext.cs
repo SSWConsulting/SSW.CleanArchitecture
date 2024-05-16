@@ -11,9 +11,7 @@ using System.Reflection;
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
 public class ApplicationDbContext(
-    DbContextOptions options,
-    EntitySaveChangesInterceptor saveChangesInterceptor,
-    DispatchDomainEventsInterceptor dispatchDomainEventsInterceptor)
+    DbContextOptions options)
     : DbContext(options), IApplicationDbContext
 {
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
@@ -27,12 +25,6 @@ public class ApplicationDbContext(
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         base.OnModelCreating(modelBuilder);
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        // Order of the interceptors is important
-        optionsBuilder.AddInterceptors(saveChangesInterceptor, dispatchDomainEventsInterceptor);
     }
 
     private DbSet<T> AggregateRootSet<T>() where T : class, IAggregateRoot => Set<T>();
