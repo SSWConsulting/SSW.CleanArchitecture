@@ -18,7 +18,10 @@ public class Mission : Entity<MissionId>
     internal static Mission Create(string description)
     {
         Guard.Against.NullOrWhiteSpace(description);
-        return new Mission { Description = description, Status = MissionStatus.InProgress };
+        return new Mission
+        {
+            Id = new MissionId(Guid.NewGuid()), Description = description, Status = MissionStatus.InProgress
+        };
     }
 
     internal void Complete()
