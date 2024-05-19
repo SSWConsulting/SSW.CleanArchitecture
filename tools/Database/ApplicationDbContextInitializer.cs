@@ -43,15 +43,6 @@ public class ApplicationDbContextInitializer(
         "Intelligence"
     ];
 
-    private readonly string[] _teamNames =
-    [
-        "Marvel",
-        "Avengers",
-        "DC",
-        "Justice League",
-        "X-Men"
-    ];
-
     private readonly string[] _missionNames =
     [
         "Save the world",
@@ -61,7 +52,17 @@ public class ApplicationDbContextInitializer(
         "Protect the city"
     ];
 
-    private const int NumHeroes = 20;
+    private readonly string[] _teamNames =
+    [
+        "Marvel",
+        "Avengers",
+        "DC",
+        "Justice League",
+        "X-Men"
+    ];
+
+    private const int NumHeroes = 1000;
+
     private const int NumTeams = 5;
 
     public async Task InitializeAsync()
