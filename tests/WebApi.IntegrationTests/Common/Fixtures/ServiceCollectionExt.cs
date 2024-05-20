@@ -25,7 +25,6 @@ internal static class ServiceCollectionExt
 
                 options.AddInterceptors(
                     services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>()
-                    //services.BuildServiceProvider().GetRequiredService<DispatchDomainEventsInterceptor>()
                 );
             });
 
