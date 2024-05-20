@@ -5,7 +5,7 @@ using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace Database;
+namespace SSW.CleanArchitecture.Database;
 
 public class ApplicationDbContextInitializer(
     ILogger<ApplicationDbContextInitializer> logger,
@@ -61,7 +61,7 @@ public class ApplicationDbContextInitializer(
         "X-Men"
     ];
 
-    private const int NumHeroes = 1000;
+    private const int NumHeroes = 20;
 
     private const int NumTeams = 5;
 

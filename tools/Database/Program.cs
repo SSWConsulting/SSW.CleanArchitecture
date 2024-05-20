@@ -1,9 +1,9 @@
-﻿using Database;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Database;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
