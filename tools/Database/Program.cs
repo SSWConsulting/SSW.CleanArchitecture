@@ -6,6 +6,7 @@ using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Database;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
 var builder = Host.CreateDefaultBuilder(args);
 
@@ -14,10 +15,15 @@ builder.ConfigureServices((context, services) =>
     var connection = context.Configuration.GetConnectionString("DefaultConnection");
 
     services.AddDbContext<ApplicationDbContext>(options =>
+    {
         options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection"), opt =>
         {
             opt.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
-        }));
+        });
+
+        options.AddInterceptors(services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>());
+    });
+
 
     services.AddScoped<ApplicationDbContextInitializer>();
 });
