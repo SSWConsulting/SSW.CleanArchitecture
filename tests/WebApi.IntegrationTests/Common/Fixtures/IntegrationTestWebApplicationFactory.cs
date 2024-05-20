@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Database;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
@@ -33,6 +34,10 @@ public class WebApiTestFactory : WebApplicationFactory<Program>
         });
 
         // Override default DB registration to use out Test Container instead
-        builder.ConfigureTestServices(services => services.ReplaceDbContext<ApplicationDbContext>(Database));
+        builder.ConfigureTestServices(services =>
+        {
+            services.ReplaceDbContext<ApplicationDbContext>(Database);
+            services.AddScoped<ApplicationDbContextInitializer>();
+        });
     }
 }
