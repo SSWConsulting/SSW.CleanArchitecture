@@ -12,8 +12,6 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices((context, services) =>
 {
-    var connection = context.Configuration.GetConnectionString("DefaultConnection");
-
     services.AddDbContext<ApplicationDbContext>(options =>
     {
         options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection"), opt =>
