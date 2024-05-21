@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Respawn;
+using SSW.CleanArchitecture.Database;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
@@ -19,8 +20,15 @@ public class TestingDatabaseFixture : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        // Initialize DB Container
         await Factory.Database.InitializeAsync();
         ScopeFactory = Factory.Services.GetRequiredService<IServiceScopeFactory>();
+
+        // Create and seed database
+        using var scope = ScopeFactory.CreateScope();
+        var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+        await initializer.InitializeAsync();
+        // await initializer.SeedAsync();
 
         // NOTE: If there are any tables you want to skip being reset, they can be configured here
         _checkpoint = await Respawner.CreateAsync(ConnectionString);

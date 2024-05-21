@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SSW.CleanArchitecture.Domain.TodoItems;
-using Bogus;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace SSW.CleanArchitecture.Infrastructure.Persistence;
+namespace SSW.CleanArchitecture.Database;
 
 public class ApplicationDbContextInitializer(
     ILogger<ApplicationDbContextInitializer> logger,
@@ -43,15 +43,6 @@ public class ApplicationDbContextInitializer(
         "Intelligence"
     ];
 
-    private readonly string[] _teamNames =
-    [
-        "Marvel",
-        "Avengers",
-        "DC",
-        "Justice League",
-        "X-Men"
-    ];
-
     private readonly string[] _missionNames =
     [
         "Save the world",
@@ -61,7 +52,17 @@ public class ApplicationDbContextInitializer(
         "Protect the city"
     ];
 
+    private readonly string[] _teamNames =
+    [
+        "Marvel",
+        "Avengers",
+        "DC",
+        "Justice League",
+        "X-Men"
+    ];
+
     private const int NumHeroes = 20;
+
     private const int NumTeams = 5;
 
     public async Task InitializeAsync()
@@ -93,7 +94,6 @@ public class ApplicationDbContextInitializer(
             throw;
         }
     }
-
 
     private async Task<List<Hero>> SeedHeroes()
     {

@@ -154,10 +154,16 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
 
 ### Running the Solution
 
-1. Start dockerized SQL Server
+1. Start dockerized SQL Server, create and seed the database.
 
+Windows:
+```ps
+.\up.ps1
+```
+
+Mac/Linux:
 ```bash
-docker compose up
+pwsh ./up.ps1
 ```
 
 2. Run the solution
