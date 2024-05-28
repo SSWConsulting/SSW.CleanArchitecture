@@ -25,7 +25,7 @@ public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsJsonAsync("/heroes", cmd);
+        var result = await client.PostAsJsonAsync("/api/heroes", cmd);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);

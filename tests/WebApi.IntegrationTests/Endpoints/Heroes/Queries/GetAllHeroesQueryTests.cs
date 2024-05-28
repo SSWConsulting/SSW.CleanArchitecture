@@ -18,7 +18,7 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<HeroDto[]>("/heroes");
+        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes");
 
         // Assert
         result.Should().NotBeNull();

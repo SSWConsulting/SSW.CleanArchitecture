@@ -16,7 +16,7 @@ public static class TeamEndpoints
                 await sender.Send(command, ct);
                 return Results.Created();
             })
-            .WithName("CreateHero")
+            .WithName("CreateTeam")
             .ProducesPost();
     }
 }
