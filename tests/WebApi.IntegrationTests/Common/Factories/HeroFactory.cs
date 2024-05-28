@@ -11,8 +11,8 @@ public static class HeroFactory
     private static readonly Faker<Hero> HeroFaker = new Faker<Hero>().CustomInstantiator(f =>
     {
         var hero = Hero.Create(
-            f.Company.CompanyName(),
-            f.Company.Bs()
+            f.Person.FullName,
+            f.Person.FirstName
         );
 
         var powers = PowerFaker
