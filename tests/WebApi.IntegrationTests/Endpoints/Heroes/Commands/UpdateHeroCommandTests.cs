@@ -33,7 +33,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var createdTimeStamp = DateTime.Now;
 
         // Act
-        var result = await client.PutAsJsonAsync("/heroes", cmd);
+        var result = await client.PutAsJsonAsync("/api/heroes", cmd);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
