@@ -10,10 +10,7 @@ public static class HeroEndpoints
 {
     public static void MapHeroEndpoints(this WebApplication app)
     {
-        var group = app
-            .MapGroup("heroes")
-            .WithTags("Heroes")
-            .WithOpenApi();
+        var group = app.MapApiGroup("heroes");
 
         group
             .MapGet("/", (ISender sender, CancellationToken ct)

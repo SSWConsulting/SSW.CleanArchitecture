@@ -39,6 +39,7 @@ app.UseRouting();
 
 app.UseDefaultExceptionHandler();
 app.MapHeroEndpoints();
+app.MapTeamEndpoints();
 app.MapTodoItemEndpoints();
 
 app.Run();

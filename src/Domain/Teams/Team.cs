@@ -20,7 +20,6 @@ public class Team : AggregateRoot<TeamId>
     private readonly List<Hero> _heroes = [];
     public IEnumerable<Hero> Heroes => _heroes.AsReadOnly();
 
-
     private Team() { }
 
     public static Team Create(string name)
