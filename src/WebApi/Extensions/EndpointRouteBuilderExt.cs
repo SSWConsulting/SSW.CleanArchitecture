@@ -34,14 +34,4 @@ public static class EndpointRouteBuilderExt
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status500InternalServerError);
-
-    public static RouteGroupBuilder MapApiGroup(this IEndpointRouteBuilder app, string groupName)
-    {
-        var group = app
-            .MapGroup($"api/{groupName}")
-            .WithTags(groupName)
-            .WithOpenApi();
-
-        return group;
-    }
 }
