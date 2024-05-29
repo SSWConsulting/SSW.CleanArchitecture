@@ -12,7 +12,7 @@ public class Hero : AggregateRoot<HeroId>
     public string Name { get; private set; } = null!;
     public string Alias { get; private set; } = null!;
     public int PowerLevel { get; private set; }
-    public IEnumerable<Power> Powers => _powers.AsReadOnly();
+    public IReadOnlyList<Power> Powers => _powers.AsReadOnly();
     
     private Hero() { }
 
