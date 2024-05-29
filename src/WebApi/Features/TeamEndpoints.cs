@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
+using SSW.CleanArchitecture.Application.Features.Teams.Commands.CompleteMission;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
@@ -59,14 +60,25 @@ public static class TeamEndpoints
             .ProducesGet<TeamDto>();
 
         group
-            .MapPost("/{teamId:guid}/missions",
-                async (ISender sender, Guid teamId, [FromBody]ExcuteMissionRequest request, CancellationToken ct) =>
+            .MapPost("/{teamId:guid}/execute-mission",
+                async (ISender sender, Guid teamId, [FromBody] ExcuteMissionRequest request, CancellationToken ct) =>
                 {
                     var command = new ExecuteMissionCommand(teamId, request.Description);
                     var response = await sender.Send(command, ct);
                     return Results.Ok(response);
                 })
             .WithName("ExecuteMission")
+            .ProducesPost();
+
+        group
+            .MapPost("/{teamId:guid}/complete-mission",
+                async (ISender sender, Guid teamId, CancellationToken ct) =>
+                {
+                    var command = new CompleteMissionCommand(teamId);
+                    await sender.Send(command, ct);
+                    return Results.Ok();
+                })
+            .WithName("CompleteMission")
             .ProducesPost();
     }
 }
