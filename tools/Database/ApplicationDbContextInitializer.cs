@@ -61,7 +61,7 @@ public class ApplicationDbContextInitializer(
         "X-Men"
     ];
 
-    private const int NumHeroes = 3;
+    private const int NumHeroes = 5;
 
     private const int NumTeams = 1;
 

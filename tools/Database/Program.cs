@@ -12,6 +12,10 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureServices((context, services) =>
 {
+    services.AddSingleton(TimeProvider.System);
+    services.AddScoped<ICurrentUserService, MockCurrentUserService>();
+    services.AddScoped<EntitySaveChangesInterceptor>();
+
     services.AddDbContext<ApplicationDbContext>(options =>
     {
         options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection"), opt =>
