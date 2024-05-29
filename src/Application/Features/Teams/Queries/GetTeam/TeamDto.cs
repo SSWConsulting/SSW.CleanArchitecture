@@ -1,0 +1,1 @@
+namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;

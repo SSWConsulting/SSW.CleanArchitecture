@@ -25,6 +25,8 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
             //.HasForeignKey(m => m.Id)
             .IsRequired();
 
+        // TODO: Check this works
+        // TODO: Try shadow property
         builder.HasMany(t => t.Heroes)
             .WithOne();
     }

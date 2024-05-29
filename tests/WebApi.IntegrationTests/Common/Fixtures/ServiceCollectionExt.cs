@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
+using System.Diagnostics;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
@@ -22,6 +23,9 @@ internal static class ServiceCollectionExt
             {
                 options.UseSqlServer(databaseContainer.ConnectionString,
                     b => b.MigrationsAssembly(typeof(T).Assembly.FullName));
+
+                options.LogTo(m => Debug.WriteLine(m));
+                options.EnableSensitiveDataLogging();
 
                 options.AddInterceptors(
                     services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>()
