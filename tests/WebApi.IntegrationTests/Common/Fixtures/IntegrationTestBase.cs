@@ -14,6 +14,10 @@ public abstract class IntegrationTestBase : IAsyncLifetime
 
     private readonly TestingDatabaseFixture _fixture;
     protected IMediator Mediator { get; }
+
+    // TODO: Consider removing this as query results can be cached and cause bad test results
+    //       Also, consider encapsulating this and only exposing a `Query` method that internally uses `AsNoTracking()`
+    //       see: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/324
     protected ApplicationDbContext Context { get; }
 
     protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
