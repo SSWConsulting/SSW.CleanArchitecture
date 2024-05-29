@@ -43,7 +43,7 @@ public static class TeamEndpoints
                 {
                     var command = new AddHeroToTeamCommand(teamId, heroId);
                     await sender.Send(command, ct);
-                    return Results.Created();
+                    return Results.Ok();
                 })
             .WithName("AddHeroToTeam")
             .ProducesPost();
@@ -63,9 +63,8 @@ public static class TeamEndpoints
             .MapPost("/{teamId:guid}/execute-mission",
                 async (ISender sender, Guid teamId, [FromBody] ExcuteMissionRequest request, CancellationToken ct) =>
                 {
-                    var command = new ExecuteMissionCommand(teamId, request.Description);
-                    var response = await sender.Send(command, ct);
-                    return Results.Ok(response);
+                    var command = new ExecuteMissionCommand(teamId, request.Description); await sender.Send(command, ct);
+                    return Results.Ok();
                 })
             .WithName("ExecuteMission")
             .ProducesPost();

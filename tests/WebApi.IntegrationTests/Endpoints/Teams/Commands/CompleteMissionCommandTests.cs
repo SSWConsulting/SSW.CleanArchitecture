@@ -1,31 +1,29 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Domain.Teams;
-using SSW.CleanArchitecture.WebApi.Features;
 using System.Net;
-using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
+public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
     [Fact]
-    public async Task Command_ShouldExecuteMission()
+    public async Task Command_ShouldCompleteMission()
     {
         // Arrange
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
         team.AddHero(hero);
+        team.ExecuteMission("Save the world");
         await AddEntityAsync(team);
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
-        var request = new ExcuteMissionRequest("Save the world");
 
         // Act
-        var result = await client.PostAsJsonAsync($"/api/teams/{teamId}/execute-mission", request);
+        var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
@@ -35,7 +33,7 @@ public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOut
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);
         updatedTeam!.Missions.Should().HaveCount(1);
-        updatedTeam.Status.Should().Be(TeamStatus.OnMission);
-        mission.Status.Should().Be(MissionStatus.InProgress);
+        updatedTeam.Status.Should().Be(TeamStatus.Available);
+        mission.Status.Should().Be(MissionStatus.Complete);
     }
 }
