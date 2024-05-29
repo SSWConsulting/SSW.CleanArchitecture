@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
@@ -19,6 +20,8 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     //       Also, consider encapsulating this and only exposing a `Query` method that internally uses `AsNoTracking()`
     //       see: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/324
     protected ApplicationDbContext Context { get; }
+
+    protected IQueryable<T> GetQueryable<T>() where T : class => Context.Set<T>().AsNoTracking();
 
     protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
     {

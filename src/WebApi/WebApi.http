@@ -36,3 +36,11 @@ Content-Type: application/json
         }
       ]
 }
+
+### Execute Mission
+POST {{baseUrl}}/teams/{{teamId}}/missions
+Content-Type: application/json
+
+{
+    "description": "Save the world from the evil villains"
+}
