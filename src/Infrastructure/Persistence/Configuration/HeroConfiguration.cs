@@ -17,11 +17,6 @@ public class HeroConfiguration : IEntityTypeConfiguration<Hero>
                 x => new HeroId(x))
             .ValueGeneratedNever();
 
-        // builder.Property(t => t.TeamId)
-        //     .HasConversion(x => x.Value,
-        //         x => new TeamId(x))
-        //     .ValueGeneratedNever();
-
         builder.Property(t => t.Name)
             .IsRequired();
 
