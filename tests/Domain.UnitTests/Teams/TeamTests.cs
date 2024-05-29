@@ -1,3 +1,4 @@
+using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
@@ -132,6 +133,6 @@ public class TeamTests
         var act = () => team.CompleteCurrentMission();
 
         // Assert
-        act.Should().Throw<InvalidOperationException>().WithMessage("The team is currently not on a mission.");
+        act.Should().Throw<DomainException>().WithMessage("The team is currently not on a mission.");
     }
 }

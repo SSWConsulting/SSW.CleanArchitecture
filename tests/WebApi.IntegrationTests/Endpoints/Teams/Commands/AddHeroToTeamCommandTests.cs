@@ -30,11 +30,13 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null);
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.Created);
+        var updatedTeam = await GetQueryable<Team>()
+            .WithSpecification(new TeamByIdSpec(team.Id))
+            .FirstOrDefaultAsync();
 
-        var updatedTeam = await client.GetFromJsonAsync<TeamDto>($"/api/teams/{teamId}");
+        result.StatusCode.Should().Be(HttpStatusCode.OK);
         updatedTeam.Should().NotBeNull();
         updatedTeam!.Heroes.Should().HaveCount(1);
-        updatedTeam.Heroes.First().Id.Should().Be(heroId);
+        updatedTeam.Heroes.First().Id.Should().Be(hero.Id);
     }
 }

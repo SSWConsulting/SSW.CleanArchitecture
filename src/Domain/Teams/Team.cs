@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Heroes;
 
@@ -54,7 +55,7 @@ public class Team : AggregateRoot<TeamId>
 
         if (Status != TeamStatus.Available)
         {
-            throw new InvalidOperationException("The team is currently not available for a new mission.");
+            throw new DomainException("The team is currently not available for a new mission.");
         }
 
         var mission = Mission.Create(description);
@@ -66,12 +67,12 @@ public class Team : AggregateRoot<TeamId>
     {
         if (Status != TeamStatus.OnMission)
         {
-            throw new InvalidOperationException("The team is currently not on a mission.");
+            throw new DomainException("The team is currently not on a mission.");
         }
 
         if (CurrentMission is null)
         {
-            throw new InvalidOperationException("There is no mission in progress.");
+            throw new DomainException("There is no mission in progress.");
         }
 
         CurrentMission.Complete();

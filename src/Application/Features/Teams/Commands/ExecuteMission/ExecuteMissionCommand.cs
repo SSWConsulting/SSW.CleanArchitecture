@@ -4,13 +4,13 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
 
-public sealed record ExecuteMissionCommand(Guid TeamId, string Description) : IRequest<Guid>;
+public sealed record ExecuteMissionCommand(Guid TeamId, string Description) : IRequest;
 
 // ReSharper disable once UnusedType.Global
 public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<ExecuteMissionCommand, Guid>
+    : IRequestHandler<ExecuteMissionCommand>
 {
-    public async Task<Guid> Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)
+    public async Task Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)
     {
         var teamId = new TeamId(request.TeamId);
         var team = dbContext.Teams
@@ -24,8 +24,6 @@ public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext
         
         team.ExecuteMission(request.Description);
         await dbContext.SaveChangesAsync(cancellationToken);
-
-        return team.Missions.First().Id.Value;
     }
 }
 

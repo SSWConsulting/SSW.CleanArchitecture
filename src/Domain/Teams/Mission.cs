@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
@@ -28,7 +29,7 @@ public class Mission : Entity<MissionId>
     {
         if (Status == MissionStatus.Complete)
         {
-            throw new InvalidOperationException("Mission is already completed");
+            throw new DomainException("Mission is already completed");
         }
 
         Status = MissionStatus.Complete;
