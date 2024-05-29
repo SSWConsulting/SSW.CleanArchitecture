@@ -42,7 +42,7 @@ public static class DependencyInjection
                 {
                     // TODO: Replace the custom test query below with something appropriate for your project that is always expected to be valid
                     _ = await ctx
-                        .TodoItems
+                        .Heroes
                         // allows you to understand why you might see constant db queries in sql profile
                         .TagWith("HealthCheck")
                         .FirstOrDefaultAsync(ct);
