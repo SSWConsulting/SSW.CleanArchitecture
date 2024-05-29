@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SSW.CleanArchitecture.Domain.Heroes;
+using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
@@ -15,6 +16,11 @@ public class HeroConfiguration : IEntityTypeConfiguration<Hero>
             .HasConversion(x => x.Value,
                 x => new HeroId(x))
             .ValueGeneratedNever();
+
+        // builder.Property(t => t.TeamId)
+        //     .HasConversion(x => x.Value,
+        //         x => new TeamId(x))
+        //     .ValueGeneratedNever();
 
         builder.Property(t => t.Name)
             .IsRequired();

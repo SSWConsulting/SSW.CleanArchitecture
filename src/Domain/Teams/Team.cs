@@ -6,7 +6,7 @@ using SSW.CleanArchitecture.Domain.Heroes;
 namespace SSW.CleanArchitecture.Domain.Teams;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
-public readonly record struct TeamId(Guid Value);
+public sealed record TeamId(Guid Value);
 
 public class Team : AggregateRoot<TeamId>
 {
@@ -77,5 +77,10 @@ public class Team : AggregateRoot<TeamId>
 
         CurrentMission.Complete();
         Status = TeamStatus.Available;
+    }
+
+    public void ReCalculatePowerLevel()
+    {
+        TotalPowerLevel = _heroes.Sum(h => h.PowerLevel);
     }
 }
