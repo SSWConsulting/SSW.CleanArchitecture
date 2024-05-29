@@ -61,9 +61,9 @@ public class ApplicationDbContextInitializer(
         "X-Men"
     ];
 
-    private const int NumHeroes = 5;
+    private const int NumHeroes = 20;
 
-    private const int NumTeams = 1;
+    private const int NumTeams = 5;
 
     public async Task InitializeAsync()
     {
