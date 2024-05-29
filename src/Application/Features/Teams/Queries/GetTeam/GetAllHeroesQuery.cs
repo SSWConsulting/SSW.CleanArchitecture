@@ -9,7 +9,7 @@ namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
 public record GetTeamQuery(Guid TeamId) : IRequest<IReadOnlyList<TeamDto>>;
 
 public sealed class GetAllTeamsQueryHandler(
-    IMapper mapper,
+    // IMapper mapper,
     IApplicationDbContext dbContext) : IRequestHandler<GetTeamQuery, IReadOnlyList<TeamDto>>
 {
     public async Task<IReadOnlyList<TeamDto>> Handle(
