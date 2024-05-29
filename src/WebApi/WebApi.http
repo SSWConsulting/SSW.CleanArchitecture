@@ -1,16 +1,11 @@
 @baseUrl = https://localhost:7255/api
-# Dan's A Team
-#@teamId = 586d22ef-8bd7-4db0-826a-bfdabfb1742e
+@teamId = a3e403bb-082e-494c-81a4-1b1eac2d1d5c
+@heroId = d6771ee7-d844-472c-90a0-6ccabf488630
 
-# Marvel
-@teamId = 1dd5d1f1-764f-4e9c-95dd-141acf8c2ec7
-
-@heroId = 502b268c-1bcf-4ebd-a5e1-00a1967c87f2
-
-### GET Heroes
+### Get Heroes
 GET {{baseUrl}}/heroes
 
-### GET Teams
+### Get Teams
 GET {{baseUrl}}/teams
 
 ### Add Hero to Team
@@ -25,4 +20,19 @@ Content-Type: application/json
 
 {
     "name": "Dans A-Team"
+}
+
+### Create Hero
+POST {{baseUrl}}/heroes
+Content-Type: application/json
+
+{
+    "name": "Super Dan",
+      "alias": "Dan",
+      "powers": [
+        {
+          "name": "Super Strength",
+          "powerLevel": 1
+        }
+      ]
 }

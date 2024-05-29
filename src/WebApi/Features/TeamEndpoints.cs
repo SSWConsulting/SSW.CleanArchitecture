@@ -54,6 +54,6 @@ public static class TeamEndpoints
                     return Results.Ok(results);
                 })
             .WithName("GetTeam")
-            .ProducesGet<TeamDto[]>();
+            .ProducesGet<TeamDto>();
     }
 }

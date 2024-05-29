@@ -6,13 +6,13 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
 
-public record GetTeamQuery(Guid TeamId) : IRequest<IReadOnlyList<TeamDto>>;
+public record GetTeamQuery(Guid TeamId) : IRequest<TeamDto?>;
 
 public sealed class GetAllTeamsQueryHandler(
     // IMapper mapper,
-    IApplicationDbContext dbContext) : IRequestHandler<GetTeamQuery, IReadOnlyList<TeamDto>>
+    IApplicationDbContext dbContext) : IRequestHandler<GetTeamQuery,TeamDto?>
 {
-    public async Task<IReadOnlyList<TeamDto>> Handle(
+    public async Task<TeamDto?> Handle(
         GetTeamQuery request,
         CancellationToken cancellationToken)
     {
@@ -32,7 +32,7 @@ public sealed class GetAllTeamsQueryHandler(
 
             })
             //.ProjectTo<TeamDto>(mapper.ConfigurationProvider)
-            .ToListAsync(cancellationToken);
+            .FirstOrDefaultAsync(cancellationToken);
     }
 }
 

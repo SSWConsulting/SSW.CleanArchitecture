@@ -18,7 +18,7 @@ public class Team : AggregateRoot<TeamId>
     private Mission? CurrentMission => _missions.FirstOrDefault(m => m.Status == MissionStatus.InProgress);
 
     private readonly List<Hero> _heroes = [];
-    public IEnumerable<Hero> Heroes => _heroes.AsReadOnly();
+    public IReadOnlyList<Hero> Heroes => _heroes.AsReadOnly();
 
     private Team() { }
 
