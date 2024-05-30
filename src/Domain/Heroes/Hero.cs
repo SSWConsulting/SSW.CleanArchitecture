@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
@@ -12,6 +13,8 @@ public class Hero : AggregateRoot<HeroId>
     public string Name { get; private set; } = null!;
     public string Alias { get; private set; } = null!;
     public int PowerLevel { get; private set; }
+    public TeamId? TeamId { get; private set; }
+    
     public IReadOnlyList<Power> Powers => _powers.AsReadOnly();
     
     private Hero() { }

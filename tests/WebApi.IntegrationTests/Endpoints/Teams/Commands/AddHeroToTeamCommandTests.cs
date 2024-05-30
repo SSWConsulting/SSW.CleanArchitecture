@@ -1,11 +1,7 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
-using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
-using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
@@ -38,5 +34,6 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         updatedTeam.Should().NotBeNull();
         updatedTeam!.Heroes.Should().HaveCount(1);
         updatedTeam.Heroes.First().Id.Should().Be(hero.Id);
+        updatedTeam.TotalPowerLevel.Should().Be(hero.PowerLevel);
     }
 }

@@ -22,6 +22,7 @@ public static class HeroEndpoints
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
         // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
 
+        // TODO: PUT should take Hero ID in the URL, not in the body
         group
             .MapPut("/", async (ISender sender, UpdateHeroCommand command, CancellationToken ct) =>
             {

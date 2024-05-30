@@ -28,7 +28,8 @@ internal static class ServiceCollectionExt
                 options.EnableSensitiveDataLogging();
 
                 options.AddInterceptors(
-                    services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>()
+                    services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>(),
+                    services.BuildServiceProvider().GetRequiredService<DispatchDomainEventsInterceptor>()
                 );
             });
 

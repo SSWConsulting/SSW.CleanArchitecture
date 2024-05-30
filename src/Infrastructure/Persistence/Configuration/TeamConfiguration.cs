@@ -19,13 +19,13 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
         builder.Property(t => t.Name)
             .IsRequired();
 
-        // TODO: Check this works
         builder.HasMany(t => t.Missions)
             .WithOne()
-            //.HasForeignKey(m => m.Id)
             .IsRequired();
 
         builder.HasMany(t => t.Heroes)
-            .WithOne();
+            .WithOne()
+            .HasForeignKey(h => h.TeamId)
+            .IsRequired(false);
     }
 }
