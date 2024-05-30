@@ -16,7 +16,8 @@ public class ApplicationDbContextInitializer(
         "Superman",
         "Batman",
         "Wonder Woman",
-        "Flash", "Aquaman",
+        "Flash",
+        "Aquaman",
         "Cyborg",
         "Green Lantern",
         "Shazam",
@@ -128,7 +129,7 @@ public class ApplicationDbContextInitializer(
             {
                 var name = f.PickRandom(_teamNames);
                 var team = Team.Create(name);
-                var heroesToAdd = f.PickRandom(heroes, f.Random.Number(2, 5));
+                var heroesToAdd = f.PickRandom(heroes, f.Random.Number(1, 3));
 
                 foreach (var hero in heroesToAdd)
                     team.AddHero(hero);
