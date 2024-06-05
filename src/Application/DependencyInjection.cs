@@ -16,7 +16,11 @@ public static class DependencyInjection
         {
             config.RegisterServicesFromAssembly(applicationAssembly);
             config.AddOpenBehavior(typeof(UnhandledExceptionBehaviour<,>));
-            config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+
+            // NOTE: Switch to ValidationExceptionBehavior if you want to use exceptions over the result pattern for flow control
+            //config.AddOpenBehavior(typeof(ValidationExceptionBehaviour<,>));
+            config.AddOpenBehavior(typeof(ValidationResultBehavior<,>));
+
             config.AddOpenBehavior(typeof(PerformanceBehaviour<,>));
         });
         return services;
