@@ -156,21 +156,33 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
 
 1. Start dockerized SQL Server, create and seed the database.
 
-Windows:
-```ps
-.\up.ps1
-```
+    Windows:
+    ```ps
+    .\up.ps1
+    ```
 
-Mac/Linux:
-```bash
-pwsh ./up.ps1
-```
+    Mac/Linux:
+    ```bash
+    pwsh ./up.ps1
+    ```
 
-2. Run the solution
+2. Change directory
 
-```bash
-dotnet run
-```
+    Windows:
+    ```ps
+    cd src\WebApi\
+    ```
+
+    Mac/Linux:
+    ```bash
+    cd src/WebApi/
+    ```
+
+3. Run the solution
+
+    ```bash
+    dotnet run
+    ```
 
 > **NOTE:** The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
 
