@@ -1,6 +1,6 @@
 ﻿namespace SSW.CleanArchitecture.Domain.Common.Interfaces;
 
-public interface IAuditableEntity
+public interface IAuditable
 {
     public DateTimeOffset CreatedAt { get; }
     public string? CreatedBy { get; } // TODO: String as userId? (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/76)

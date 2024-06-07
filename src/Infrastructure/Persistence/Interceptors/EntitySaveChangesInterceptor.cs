@@ -28,7 +28,7 @@ public class EntitySaveChangesInterceptor(ICurrentUserService currentUserService
         if (context is null)
             return;
 
-        foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
+        foreach (var entry in context.ChangeTracker.Entries<IAuditable>())
             if (entry.State is EntityState.Added)
             {
                 entry.Entity.SetCreated(timeProvider.GetUtcNow(), currentUserService.UserId);
