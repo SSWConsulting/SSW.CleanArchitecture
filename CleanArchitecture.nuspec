@@ -13,8 +13,8 @@
     <releaseNotes>
     </releaseNotes>
 
-    <projectUrl>https://github.com/SSWConsulting/CleanArchitecture</projectUrl>
-    <repository type="git" url="https://github.com/SSWConsulting/CleanArchitecture.git" branch="main" />
+    <projectUrl>https://github.com/SSWConsulting/SSW.CleanArchitecture</projectUrl>
+    <repository type="git" url="https://github.com/SSWConsulting/SSW.CleanArchitecture.git" branch="main" />
 
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
