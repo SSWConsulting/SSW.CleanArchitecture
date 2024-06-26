@@ -6,7 +6,7 @@
 
 [![SSW TV | YouTube](https://img.shields.io/youtube/channel/views/UCBFgwtV9lIIhvoNh0xoQ7Pg?label=SSW%20TV%20%7C%20Views&style=social)](https://youtube.com/@SSWTV)
 
-[![.NET](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/dotnet.yml)
+[![Build and Test](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/build-and-test.yml)
 [![Code Scanning](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml)
 [![Package](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
