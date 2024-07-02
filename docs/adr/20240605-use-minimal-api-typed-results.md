@@ -1,7 +1,7 @@
 # Use Minimal API Typed Results
 
-- Status: proposed
-- Deciders: {{ DECIDERS }} <!-- optional: list everyone involved in the decision -->
+- Status: accepted
+- Deciders: Daniel Mackay, William Liebenberg
 - Date: 2024-06-05
 - Tags: minimal-api, typed-results <!-- optional: space and/or comma-separated list of tags -->
 

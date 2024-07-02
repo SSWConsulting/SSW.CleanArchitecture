@@ -1,7 +1,7 @@
 # Use Results Pattern Over Exceptions
 
-- Status: proposed
-- Deciders: {{ DECIDERS }} <!-- optional: list everyone involved in the decision -->
+- Status: accepted
+- Deciders: Daniel Mackay, William Liebenberg
 - Date: 2024-06-05
 - Tags: result-pattern, exceptions <!-- optional: space and/or comma-separated list of tags -->
 
@@ -13,7 +13,7 @@ Using exceptions allows us to have global handling for certain types of errors (
 
 The problem with this approach is that we're using exceptions as flow control. In other words, if a behavior is expected in your application (like a validation error), this is not an exceptional circumstance.
 
-According to David Fowler exceptions are **very expensive** in ASP.NET Core.
+According to David Fowler exceptions are [very expensive](https://github.com/dotnet/aspnetcore/issues/46280#issuecomment-1527898867) in ASP.NET Core.
 
 There are several problems with using exceptions as flow control:
 
