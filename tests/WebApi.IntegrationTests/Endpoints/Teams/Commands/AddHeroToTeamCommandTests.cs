@@ -30,7 +30,7 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
 
-        result.StatusCode.Should().Be(HttpStatusCode.OK);
+        result.StatusCode.Should().Be(HttpStatusCode.Created);
         updatedTeam.Should().NotBeNull();
         updatedTeam!.Heroes.Should().HaveCount(1);
         updatedTeam.Heroes.First().Id.Should().Be(hero.Id);
