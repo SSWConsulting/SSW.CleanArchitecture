@@ -1,4 +1,7 @@
+using Ardalis.Result;
+using IdentityModel.OidcClient.Browser;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.CompleteMission;
@@ -39,14 +42,29 @@ public static class TeamEndpoints
 
         group
             .MapPost("/{teamId:guid}/heroes/{heroId:guid}",
-                async (ISender sender, Guid teamId, Guid heroId, CancellationToken ct) =>
+                async Task<Results<ValidationProblem, NotFound<string>, Created>> (
+                    ISender sender,
+                    Guid teamId,
+                    Guid heroId,
+                    CancellationToken ct) =>
                 {
                     var command = new AddHeroToTeamCommand(teamId, heroId);
-                    await sender.Send(command, ct);
-                    return Results.Ok();
+                    var result = await sender.Send(command, ct);
+
+                    if (result.IsInvalid())
+                    {
+                        return TypedResultsExt.ValidationProblem(result);
+                    }
+
+                    if (result.IsNotFound())
+                    {
+                        return TypedResultsExt.NotFound(result); // TODO: Add not found details
+                    }
+
+                    return TypedResults.Created();
                 })
             .WithName("AddHeroToTeam")
-            .ProducesPost();
+            .ProducesProblem(StatusCodes.Status500InternalServerError); // TODO: Can we simplify this?
 
         group
             .MapGet("/{teamId:guid}",
@@ -63,7 +81,8 @@ public static class TeamEndpoints
             .MapPost("/{teamId:guid}/execute-mission",
                 async (ISender sender, Guid teamId, [FromBody] ExcuteMissionRequest request, CancellationToken ct) =>
                 {
-                    var command = new ExecuteMissionCommand(teamId, request.Description); await sender.Send(command, ct);
+                    var command = new ExecuteMissionCommand(teamId, request.Description);
+                    await sender.Send(command, ct);
                     return Results.Ok();
                 })
             .WithName("ExecuteMission")

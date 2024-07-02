@@ -1,5 +1,6 @@
 ﻿namespace SSW.CleanArchitecture.WebApi.Extensions;
 
+// TODO: Remove once result pattern is fully implemented
 public static class EndpointRouteBuilderExt
 {
     /// <summary>
