@@ -29,7 +29,7 @@ public static class HeroEndpoints
 
         // TODO: PUT should take Hero ID in the URL, not in the body
         group
-            .MapPut("/", async Task<Results<NotFound, NoContent>> (
+            .MapPut("/", async Task<Results<NotFound, NoContent, ValidationProblem>> (
                 ISender sender,
                 UpdateHeroCommand command,
                 CancellationToken ct) =>
@@ -37,6 +37,9 @@ public static class HeroEndpoints
                 var result = await sender.Send(command, ct);
                 if (result.IsNotFound())
                     return TypedResults.NotFound();
+
+                if (result.IsInvalid())
+                    return TypedResultsExt.ValidationProblem(result);
 
                 return TypedResults.NoContent();
             })
@@ -46,7 +49,7 @@ public static class HeroEndpoints
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
-                await sender.Send(command, ct);
+                var result = await sender.Send(command, ct);
                 return TypedResults.Created();
             })
             .WithName("CreateHero")

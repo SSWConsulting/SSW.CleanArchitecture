@@ -32,3 +32,18 @@ public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
         return hero.Id.Value;
     }
 }
+
+public class UpdateHeroCommandValidator : AbstractValidator<UpdateHeroCommand>
+{
+    public UpdateHeroCommandValidator()
+    {
+        RuleFor(v => v.HeroId)
+            .NotEmpty();
+
+        RuleFor(v => v.Name)
+            .NotEmpty();
+
+        RuleFor(v => v.Alias)
+            .NotEmpty();
+    }
+}
