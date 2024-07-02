@@ -10,8 +10,9 @@ services:
     # If you really want to use MS SQL Server, uncomment the following line
     #image: mcr.microsoft.com/mssql/server
     ports:
-      - 1433:1433
-    restart: always
+      - 1500:1433
+    # restart the container unless it's been manually stopped
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P yourStrong(!)Password -Q 'SELECT 1' || exit 1"]
       interval: 10s

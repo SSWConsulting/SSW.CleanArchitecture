@@ -32,7 +32,6 @@ public class DomainModelTests
             .Should()
             .Inherit(typeof(AggregateRoot<>))
             .Or().Inherit(typeof(Entity<>))
-            .Or().Inherit(typeof(BaseEntity<>))
             .Or().Inherit(typeof(DomainEvent))
             .Or().ImplementInterface(typeof(IValueObject));
 

@@ -6,7 +6,7 @@
 
 [![SSW TV | YouTube](https://img.shields.io/youtube/channel/views/UCBFgwtV9lIIhvoNh0xoQ7Pg?label=SSW%20TV%20%7C%20Views&style=social)](https://youtube.com/@SSWTV)
 
-[![.NET](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/dotnet.yml)
+[![Build and Test](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/build-and-test.yml)
 [![Code Scanning](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/codeql.yml)
 [![Package](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml/badge.svg)](https://github.com/SSWConsulting/SSW.CleanArchitecture/actions/workflows/package.yml)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
@@ -156,23 +156,37 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
 
 1. Start dockerized SQL Server, create and seed the database.
 
-Windows:
-```ps
-.\up.ps1
-```
+    Windows:
+    ```ps
+    .\up.ps1
+    ```
 
-Mac/Linux:
-```bash
-pwsh ./up.ps1
-```
+    Mac/Linux:
+    ```bash
+    pwsh ./up.ps1
+    ```
 
-2. Run the solution
+2. Change directory
 
-```bash
-dotnet run
-```
+    Windows:
+    ```ps
+    cd src\WebApi\
+    ```
+
+    Mac/Linux:
+    ```bash
+    cd src/WebApi/
+    ```
+
+3. Run the solution
+
+    ```bash
+    dotnet run
+    ```
 
 > **NOTE:** The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
+
+4. Open http://localhost:5024/swagger/index.html in your browser to see it running ️🏃‍♂️
 
 ## 🚀 Publishing Template
 

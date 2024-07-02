@@ -3,9 +3,9 @@
 namespace SSW.CleanArchitecture.Domain.Common.Base;
 
 /// <summary>
-/// Tracks creation and modification of an entity.
+/// Tracks creation and modification of objects.
 /// </summary>
-public abstract class AuditableEntity : IAuditableEntity
+public abstract class Auditable : IAuditable
 {
     public DateTimeOffset CreatedAt { get; private set; }
     public string? CreatedBy { get; private set; }

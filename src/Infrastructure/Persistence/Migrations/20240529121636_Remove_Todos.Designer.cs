@@ -9,7 +9,7 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace SSW.CleanArchitecture.Infrastructure.Migrations
+namespace Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240529121636_Remove_Todos")]
