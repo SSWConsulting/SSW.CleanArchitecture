@@ -9,7 +9,7 @@ Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/1
 
 ## Context and Problem Statement
 
-Currently, are APIs use the `Result` pattern to return a `Result<T>` object. This works OK, but additional metadata is required to determine the status code of the response. We need to add the metadata manually which means there is a chance of inconsistency between the response and the status code.
+Currently, our APIs use the `Result` pattern to return a `Result<T>` object. This works OK, but additional metadata is required to determine the status code of the response. We need to add the metadata manually which means there is a chance of inconsistency between the response and the status code.
 
 We have tried to get around this by using helper methods to create the consistent OpenAI metadata for each REST verb.  This was an improvement, but we still have the problem of the API status codes not being consistent with the response.
 
