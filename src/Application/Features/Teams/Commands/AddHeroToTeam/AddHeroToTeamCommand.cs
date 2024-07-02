@@ -21,18 +21,14 @@ public sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContext)
             .FirstOrDefault();
 
         if (team is null)
-        {
             return Result.NotFound($"Team {teamId.Value}");
-        }
 
         var hero = dbContext.Heroes
             .WithSpecification(new HeroByIdSpec(heroId))
             .FirstOrDefault();
 
         if (hero is null)
-        {
             return Result.NotFound($"Hero {heroId.Value}");
-        }
 
         team.AddHero(hero);
         await dbContext.SaveChangesAsync(cancellationToken);

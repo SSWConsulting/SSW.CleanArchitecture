@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
 using SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
@@ -13,10 +15,13 @@ public static class HeroEndpoints
         var group = app.MapApiGroup("heroes");
 
         group
-            .MapGet("/", (ISender sender, CancellationToken ct)
-                => sender.Send(new GetAllHeroesQuery(), ct))
+            .MapGet("/", async (ISender sender, CancellationToken ct) =>
+            {
+                var results = await sender.Send(new GetAllHeroesQuery(), ct);
+                return TypedResults.Ok(results);
+            })
             .WithName("GetAllHeroes")
-            .ProducesGet<HeroDto[]>();
+            .ProducesProblem();
 
         // TODO: Investigate examples for swagger docs. i.e. better docs than:
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
@@ -24,21 +29,27 @@ public static class HeroEndpoints
 
         // TODO: PUT should take Hero ID in the URL, not in the body
         group
-            .MapPut("/", async (ISender sender, UpdateHeroCommand command, CancellationToken ct) =>
+            .MapPut("/", async Task<Results<NotFound, NoContent>> (
+                ISender sender,
+                UpdateHeroCommand command,
+                CancellationToken ct) =>
             {
-                await sender.Send(command, ct);
-                return Results.NoContent();
+                var result = await sender.Send(command, ct);
+                if (result.IsNotFound())
+                    return TypedResults.NotFound();
+
+                return TypedResults.NoContent();
             })
             .WithName("UpdateHero")
-            .ProducesPut();
+            .ProducesProblem();
 
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
                 await sender.Send(command, ct);
-                return Results.Created();
+                return TypedResults.Created();
             })
             .WithName("CreateHero")
-            .ProducesPost();
+            .ProducesProblem();
     }
 }

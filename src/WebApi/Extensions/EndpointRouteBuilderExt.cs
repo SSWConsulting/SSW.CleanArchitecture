@@ -1,6 +1,6 @@
 ﻿namespace SSW.CleanArchitecture.WebApi.Extensions;
 
-// TODO: Remove once result pattern is fully implemented
+// TODO: Remove once result pattern is fully implemented - THIS PR!!!
 public static class EndpointRouteBuilderExt
 {
     /// <summary>
@@ -34,5 +34,11 @@ public static class EndpointRouteBuilderExt
     public static RouteHandlerBuilder ProducesDelete(this RouteHandlerBuilder builder) => builder
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status500InternalServerError);
+
+    /// <summary>
+    /// TODO: Remove once we have a global way to configure Open API with a 500 response for all endpoints
+    /// </summary>
+    public static RouteHandlerBuilder ProducesProblem(this RouteHandlerBuilder builder) => builder
         .ProducesProblem(StatusCodes.Status500InternalServerError);
 }

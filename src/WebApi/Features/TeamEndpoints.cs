@@ -1,5 +1,4 @@
 using Ardalis.Result;
-using IdentityModel.OidcClient.Browser;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +8,6 @@ using SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
 using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
-using SSW.CleanArchitecture.Domain.Heroes;
-using SSW.CleanArchitecture.Domain.Teams;
 using SSW.CleanArchitecture.WebApi.Extensions;
 using TeamDto = SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams.TeamDto;
 
@@ -52,14 +49,10 @@ public static class TeamEndpoints
                     var result = await sender.Send(command, ct);
 
                     if (result.IsInvalid())
-                    {
                         return TypedResultsExt.ValidationProblem(result);
-                    }
 
                     if (result.IsNotFound())
-                    {
                         return TypedResultsExt.NotFound(result); // TODO: Add not found details
-                    }
 
                     return TypedResults.Created();
                 })

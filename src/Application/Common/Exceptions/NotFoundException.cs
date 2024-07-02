@@ -1,6 +1,6 @@
 ﻿namespace SSW.CleanArchitecture.Application.Common.Exceptions;
 
-// TODO: Remove
+// TODO: Remove in this PR!!!
 public class NotFoundException : Exception
 {
     public NotFoundException()

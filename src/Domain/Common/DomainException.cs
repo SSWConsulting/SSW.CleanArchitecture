@@ -1,5 +1,6 @@
 namespace SSW.CleanArchitecture.Domain.Common;
 
+// TODO: Replace this with the Result Pattern
 public class DomainException : Exception
 {
     public DomainException()
