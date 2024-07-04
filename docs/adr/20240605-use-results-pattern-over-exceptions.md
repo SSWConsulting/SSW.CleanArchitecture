@@ -3,9 +3,9 @@
 - Status: accepted
 - Deciders: Daniel Mackay, William Liebenberg
 - Date: 2024-06-05
-- Tags: result-pattern, exceptions <!-- optional: space and/or comma-separated list of tags -->
+- Tags: result-pattern, exceptions
 
-Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/242 <!-- optional: description | ticket/issue URL -->
+Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/242
 
 ## Context and Problem Statement
 
