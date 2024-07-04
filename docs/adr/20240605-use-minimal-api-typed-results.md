@@ -3,9 +3,9 @@
 - Status: accepted
 - Deciders: Daniel Mackay, William Liebenberg
 - Date: 2024-06-05
-- Tags: minimal-api, typed-results <!-- optional: space and/or comma-separated list of tags -->
+- Tags: minimal-api, typed-results
 
-Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/137 <!-- optional: description | ticket/issue URL -->
+Technical Story: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/137
 
 ## Context and Problem Statement
 
