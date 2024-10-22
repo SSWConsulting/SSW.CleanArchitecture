@@ -2,12 +2,12 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sqlServer = builder
+var db = builder
     .AddSqlServer("sql")
-    .WithLifetime(ContainerLifetime.Persistent);
+    .WithLifetime(ContainerLifetime.Persistent)
+    .AddDatabase("clean-architecture");
 
-var db = sqlServer.AddDatabase("CleanArchitecture");
-
+// TODO: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/226
 // var migrationService = builder.AddProject<MigrationService>("migrations")
 //     .WithReference(warehouseDb)
 //     .WithReference(catalogDb)
