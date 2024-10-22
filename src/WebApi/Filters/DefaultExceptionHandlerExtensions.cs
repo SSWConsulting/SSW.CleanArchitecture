@@ -8,7 +8,7 @@ public static class DefaultExceptionHandlerExtensions
         app.UseExceptionHandler(exceptionHandlerApp
             => exceptionHandlerApp.Run(async context =>
             {
-                IResult defaultExceptionResponse = Results.Problem(statusCode: StatusCodes.Status500InternalServerError,
+                var defaultExceptionResponse = Results.Problem(statusCode: StatusCodes.Status500InternalServerError,
                     type: "https://tools.ietf.org/html/rfc7231#section-6.6.1");
 
                 await defaultExceptionResponse.ExecuteAsync(context);

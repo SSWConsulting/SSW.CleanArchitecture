@@ -1,6 +1,4 @@
-﻿using ErrorOr;
-
-namespace SSW.CleanArchitecture.Application.Common.Behaviours;
+﻿namespace SSW.CleanArchitecture.Application.Common.Behaviours;
 
 public class ValidationErrorOrResultBehavior<TRequest, TResponse>(IValidator<TRequest>? validator = null)
     : IPipelineBehavior<TRequest, TResponse>

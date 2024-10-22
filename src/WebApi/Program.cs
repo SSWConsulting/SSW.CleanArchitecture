@@ -26,7 +26,6 @@ else
     app.UseHsts();
 }
 
-
 app.UseHealthChecks();
 
 app.UseHttpsRedirection();
