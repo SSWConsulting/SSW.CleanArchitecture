@@ -78,7 +78,10 @@ public class Team : AggregateRoot<TeamId>
             return TeamErrors.NotOnMission;
         }
 
-        CurrentMission.Complete();
+        var result = CurrentMission.Complete();
+        if (result.IsError)
+            return result;
+
         Status = TeamStatus.Available;
 
         return new Success();

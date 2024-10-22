@@ -108,6 +108,21 @@ public class TeamTests
         team.Missions.Should().HaveCount(1);
         team.Missions.Should().ContainSingle(x => x.Description == "Mission");
     }
+
+    [Fact]
+    public void ExecuteMission_WhenTeamNotAvailable_ShouldError()
+    {
+        // Arrange
+        var team = Team.Create("name");
+        team.ExecuteMission("Mission1");
+
+        // Act
+        var result = team.ExecuteMission("Mission2");
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Should().Be(TeamErrors.NotAvailable);
+    }
     
     [Fact]
     public void CompleteCurrentMission_ShouldUpdateTeamStatus()
@@ -130,9 +145,26 @@ public class TeamTests
         var team = Team.Create("name");
         
         // Act
-        var act = () => team.CompleteCurrentMission();
+        var result = team.CompleteCurrentMission();
 
         // Assert
-        act.Should().Throw<DomainException>().WithMessage("The team is currently not on a mission.");
+        result.IsError.Should().BeTrue();
+        result.FirstError.Should().Be(TeamErrors.NotOnMission);
+    }
+
+    [Fact]
+    public void CompleteCurrentMission_WhenNotOnMission_ShouldError()
+    {
+        // Arrange
+        var team = Team.Create("name");
+        team.ExecuteMission("Mission1");
+        team.CompleteCurrentMission();
+
+        // Act
+        var result = team.CompleteCurrentMission();
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Should().Be(TeamErrors.NotOnMission);
     }
 }
