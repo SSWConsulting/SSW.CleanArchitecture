@@ -5,19 +5,6 @@ namespace SSW.CleanArchitecture.WebApi.Extensions;
 
 public static class ErrorOrExt
 {
-    public static IResult Problem(this IErrorOr error)
-    {
-        ArgumentOutOfRangeException.ThrowIfEqual(error.IsError, false);
-
-        if (error.Errors is null)
-            return Problem(Error.Unexpected());
-
-        if (error.Errors.All(e => e.Type == ErrorType.Validation))
-            return ValidationProblem(error.Errors);
-
-        return Problem(error.Errors[0]);
-    }
-
     public static IResult Problem(List<Error> errors)
     {
         if (errors.Count is 0)

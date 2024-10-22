@@ -7,7 +7,6 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-<!--    <PackageReference Include="Ardalis.Result.FluentValidation" Version="9.1.0" />-->
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="ErrorOr" Version="2.0.1" />
@@ -16,8 +15,5 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-rc.2.24474.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-rc.2.24473.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0-rc.2.24473.5" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Features\Heroes\Commands\CreateHero\CreateHeroCommandValidator.cs" />
   </ItemGroup>
 </Project>
