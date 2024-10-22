@@ -1,17 +1,16 @@
-﻿using Ardalis.Result;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
 
-public sealed record AddHeroToTeamCommand(Guid TeamId, Guid HeroId) : IRequest<Result>;
+public sealed record AddHeroToTeamCommand(Guid TeamId, Guid HeroId) : IRequest<ErrorOr<Success>>;
 
 // ReSharper disable once UnusedType.Global
 public sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<AddHeroToTeamCommand, Result>
+    : IRequestHandler<AddHeroToTeamCommand, ErrorOr<Success>>
 {
-    public async Task<Result> Handle(AddHeroToTeamCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Success>> Handle(AddHeroToTeamCommand request, CancellationToken cancellationToken)
     {
         var teamId = new TeamId(request.TeamId);
         var heroId = new HeroId(request.HeroId);
@@ -21,18 +20,19 @@ public sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContext)
             .FirstOrDefault();
 
         if (team is null)
-            return Result.NotFound($"Team {teamId.Value}");
+            return Error.NotFound($"Team {teamId.Value}");
 
         var hero = dbContext.Heroes
             .WithSpecification(new HeroByIdSpec(heroId))
             .FirstOrDefault();
 
         if (hero is null)
-            return Result.NotFound($"Hero {heroId.Value}");
+            return Error.NotFound($"Hero {heroId.Value}");
 
         team.AddHero(hero);
         await dbContext.SaveChangesAsync(cancellationToken);
-        return Result.Success();
+
+        return new Success();
     }
 }
 

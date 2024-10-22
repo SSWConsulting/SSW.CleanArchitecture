@@ -7,7 +7,7 @@ namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
 public sealed record UpdateHeroCommand(
     string Name,
     string Alias,
-    IEnumerable<UpdateHeroPowerDto> Powers) : IRequest<Result<Guid>>
+    IEnumerable<UpdateHeroPowerDto> Powers) : IRequest<ErrorOr<Guid>>
 {
     [JsonIgnore]
     public Guid HeroId { get; set; }
@@ -15,9 +15,9 @@ public sealed record UpdateHeroCommand(
 
 // ReSharper disable once UnusedType.Global
 public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<UpdateHeroCommand, Result<Guid>>
+    : IRequestHandler<UpdateHeroCommand, ErrorOr<Guid>>
 {
-    public async Task<Result<Guid>> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)
     {
         var heroId = new HeroId(request.HeroId);
         var hero = await dbContext.Heroes
@@ -25,7 +25,7 @@ public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
             .FirstOrDefaultAsync(h => h.Id == heroId, cancellationToken);
 
         if (hero is null)
-            return Result.NotFound($"Hero {request.HeroId}");
+            return Error.NotFound($"Hero {request.HeroId}");
 
         hero.UpdateName(request.Name);
         hero.UpdateAlias(request.Alias);

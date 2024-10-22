@@ -1,6 +1,4 @@
-﻿using Ardalis.Result;
-using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using MediatR;
 using SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
 using SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
@@ -23,12 +21,8 @@ public static class HeroEndpoints
             .WithName("GetAllHeroes")
             .ProducesProblem();
 
-        // TODO: Investigate examples for swagger docs. i.e. better docs than:
-        // myWeirdField: "string" vs myWeirdField: "this-silly-string"
-        // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
-
         group
-            .MapPut("/{heroId:guid}", async Task<Results<NotFound, NoContent, ValidationProblem>> (
+            .MapPut("/{heroId:guid}", async (
                 Guid heroId,
                 UpdateHeroCommand command,
                 ISender sender,
@@ -36,14 +30,7 @@ public static class HeroEndpoints
             {
                 command.HeroId = heroId;
                 var result = await sender.Send(command, ct);
-
-                if (result.IsNotFound())
-                    return TypedResults.NotFound();
-
-                if (result.IsInvalid())
-                    return TypedResultsExt.ValidationProblem(result);
-
-                return TypedResults.NoContent();
+                return result.Match(_ => TypedResults.NoContent(), ErrorOrExt.Problem);
             })
             .WithName("UpdateHero")
             .ProducesProblem();
@@ -51,8 +38,8 @@ public static class HeroEndpoints
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
-                _ = await sender.Send(command, ct);
-                return TypedResults.Created();
+                var result = await sender.Send(command, ct);
+                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
             })
             .WithName("CreateHero")
             .ProducesProblem();

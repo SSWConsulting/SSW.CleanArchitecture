@@ -6,13 +6,13 @@ namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
 public sealed record CreateHeroCommand(
     string Name,
     string Alias,
-    IEnumerable<CreateHeroPowerDto> Powers) : IRequest<Result<Guid>>;
+    IEnumerable<CreateHeroPowerDto> Powers) : IRequest<ErrorOr<Guid>>;
 
 // ReSharper disable once UnusedType.Global
 public sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<CreateHeroCommand, Result<Guid>>
+    : IRequestHandler<CreateHeroCommand, ErrorOr<Guid>>
 {
-    public async Task<Result<Guid>> Handle(CreateHeroCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> Handle(CreateHeroCommand request, CancellationToken cancellationToken)
     {
         var hero = Hero.Create(request.Name, request.Alias);
         var powers  = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));

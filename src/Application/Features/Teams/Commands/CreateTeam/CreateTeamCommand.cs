@@ -3,20 +3,20 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
 
-public sealed record CreateTeamCommand(string Name) : IRequest<Result>;
+public sealed record CreateTeamCommand(string Name) : IRequest<ErrorOr<Success>>;
 
 // ReSharper disable once UnusedType.Global
 public sealed class CreateTeamCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<CreateTeamCommand, Result>
+    : IRequestHandler<CreateTeamCommand, ErrorOr<Success>>
 {
-    public async Task<Result> Handle(CreateTeamCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Success>> Handle(CreateTeamCommand request, CancellationToken cancellationToken)
     {
         var team = Team.Create(request.Name);
 
         await dbContext.Teams.AddAsync(team, cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
 
-        return Result.Success();
+        return new Success();
     }
 }
 

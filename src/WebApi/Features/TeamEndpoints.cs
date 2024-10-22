@@ -1,6 +1,4 @@
-using Ardalis.Result;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
 using SSW.CleanArchitecture.Application.Features.Teams.Commands.CompleteMission;
@@ -22,8 +20,8 @@ public static class TeamEndpoints
         group
             .MapPost("/", async (ISender sender, CreateTeamCommand command, CancellationToken ct) =>
             {
-                await sender.Send(command, ct);
-                return Results.Created();
+                var result = await sender.Send(command, ct);
+                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
             })
             .WithName("CreateTeam")
             .ProducesPost();
@@ -38,24 +36,16 @@ public static class TeamEndpoints
             .ProducesGet<TeamDto[]>();
 
         group
-            .MapPost("/{teamId:guid}/heroes/{heroId:guid}",
-                async Task<Results<ValidationProblem, NotFound<string>, Created>> (
-                    ISender sender,
-                    Guid teamId,
-                    Guid heroId,
-                    CancellationToken ct) =>
-                {
-                    var command = new AddHeroToTeamCommand(teamId, heroId);
-                    var result = await sender.Send(command, ct);
-
-                    if (result.IsInvalid())
-                        return TypedResultsExt.ValidationProblem(result);
-
-                    if (result.IsNotFound())
-                        return TypedResultsExt.NotFound(result); // TODO: Add not found details
-
-                    return TypedResults.Created();
-                })
+            .MapPost("/{teamId:guid}/heroes/{heroId:guid}", async (
+                ISender sender,
+                Guid teamId,
+                Guid heroId,
+                CancellationToken ct) =>
+            {
+                var command = new AddHeroToTeamCommand(teamId, heroId);
+                var result = await sender.Send(command, ct);
+                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
+            })
             .WithName("AddHeroToTeam")
             .ProducesProblem(StatusCodes.Status500InternalServerError); // TODO: Can we simplify this?
 
@@ -65,18 +55,18 @@ public static class TeamEndpoints
                 {
                     var query = new GetTeamQuery(teamId);
                     var results = await sender.Send(query, ct);
-                    return Results.Ok(results);
+                    return TypedResults.Ok(results);
                 })
             .WithName("GetTeam")
             .ProducesGet<TeamDto>();
 
         group
             .MapPost("/{teamId:guid}/execute-mission",
-                async (ISender sender, Guid teamId, [FromBody] ExcuteMissionRequest request, CancellationToken ct) =>
+                async (ISender sender, Guid teamId, [FromBody] ExecuteMissionCommand command, CancellationToken ct) =>
                 {
-                    var command = new ExecuteMissionCommand(teamId, request.Description);
-                    await sender.Send(command, ct);
-                    return Results.Ok();
+                    command.TeamId = teamId;
+                    var result = await sender.Send(command, ct);
+                    return result.Match(TypedResults.Ok, ErrorOrExt.Problem);
                 })
             .WithName("ExecuteMission")
             .ProducesPost();
@@ -86,12 +76,10 @@ public static class TeamEndpoints
                 async (ISender sender, Guid teamId, CancellationToken ct) =>
                 {
                     var command = new CompleteMissionCommand(teamId);
-                    await sender.Send(command, ct);
-                    return Results.Ok();
+                    var result = await sender.Send(command, ct);
+                    return result.Match(TypedResults.Ok, ErrorOrExt.Problem);
                 })
             .WithName("CompleteMission")
             .ProducesPost();
     }
 }
-
-public record ExcuteMissionRequest(string Description);
