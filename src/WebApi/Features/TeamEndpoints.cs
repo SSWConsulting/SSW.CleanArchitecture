@@ -47,7 +47,7 @@ public static class TeamEndpoints
                 return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
             })
             .WithName("AddHeroToTeam")
-            .ProducesProblem(StatusCodes.Status500InternalServerError); // TODO: Can we simplify this?
+            .ProducesPost();
 
         group
             .MapGet("/{teamId:guid}",

@@ -19,7 +19,7 @@ public static class HeroEndpoints
                 return TypedResults.Ok(results);
             })
             .WithName("GetAllHeroes")
-            .ProducesProblem();
+            .ProducesGet<HeroDto[]>();
 
         group
             .MapPut("/{heroId:guid}", async (
@@ -33,7 +33,7 @@ public static class HeroEndpoints
                 return result.Match(_ => TypedResults.NoContent(), ErrorOrExt.Problem);
             })
             .WithName("UpdateHero")
-            .ProducesProblem();
+            .ProducesPut();
 
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
@@ -42,6 +42,6 @@ public static class HeroEndpoints
                 return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
             })
             .WithName("CreateHero")
-            .ProducesProblem();
+            .ProducesPost();
     }
 }
