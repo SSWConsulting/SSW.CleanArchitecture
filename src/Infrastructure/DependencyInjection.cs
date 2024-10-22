@@ -8,30 +8,6 @@ namespace SSW.CleanArchitecture.Infrastructure;
 
 public static class DependencyInjection
 {
-    // public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
-    // {
-    //     services.AddScoped<EntitySaveChangesInterceptor>();
-    //     services.AddScoped<DispatchDomainEventsInterceptor>();
-    //
-    //     services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
-    //     {
-    //         options.AddInterceptors(
-    //             services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>(),
-    //             services.BuildServiceProvider().GetRequiredService<DispatchDomainEventsInterceptor>()
-    //         );
-    //
-    //         options.UseSqlServer(config.GetConnectionString("DefaultConnection"), builder =>
-    //         {
-    //             builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
-    //             builder.EnableRetryOnFailure();
-    //         });
-    //     });
-    //
-    //     services.AddSingleton(TimeProvider.System);
-    //
-    //     return services;
-    // }
-
     public static void AddInfrastructure(this IHostApplicationBuilder builder)
     {
         builder.AddSqlServerDbContext<ApplicationDbContext>("clean-architecture",
