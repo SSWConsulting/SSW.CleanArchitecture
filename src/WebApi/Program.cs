@@ -1,6 +1,5 @@
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
-using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Features;
 using SSW.CleanArchitecture.WebApi.Filters;

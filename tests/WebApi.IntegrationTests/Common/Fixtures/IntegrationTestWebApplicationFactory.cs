@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SSW.CleanArchitecture.Database;
-using SSW.CleanArchitecture.Infrastructure.Persistence;
-using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using SSW.CleanArchitecture.WebApi;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
@@ -38,7 +36,6 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
         // Override default DB registration to use out Test Container instead
         builder.ConfigureTestServices(services =>
         {
-            // services.ReplaceDbContext<ApplicationDbContext>(Database);
             services.AddScoped<ApplicationDbContextInitializer>();
         });
 
