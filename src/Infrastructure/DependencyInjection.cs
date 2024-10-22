@@ -35,19 +35,19 @@ public static class DependencyInjection
     public static void AddInfrastructure(this IHostApplicationBuilder builder)
     {
         builder.AddSqlServerDbContext<ApplicationDbContext>("clean-architecture",
-            null,
+            settings => settings.ConnectionString = "kjhsdfkjh",
             options =>
             {
                 var serviceProvider = builder.Services.BuildServiceProvider();
                 options.AddInterceptors(
                     serviceProvider.GetRequiredService<EntitySaveChangesInterceptor>(),
                     serviceProvider.GetRequiredService<DispatchDomainEventsInterceptor>());
+
                 // TODO: Add this
                 // options.UseExceptionProcessor();
             });
 
-        builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>(sp =>
-            sp.GetRequiredService<ApplicationDbContext>());
+        builder.Services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
         builder.Services.AddScoped<EntitySaveChangesInterceptor>();
         builder.Services.AddScoped<DispatchDomainEventsInterceptor>();

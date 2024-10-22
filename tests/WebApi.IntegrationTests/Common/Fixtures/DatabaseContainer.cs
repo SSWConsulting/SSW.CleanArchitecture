@@ -1,28 +1,44 @@
-using Testcontainers.SqlEdge;
+using Polly;
+using Testcontainers.MsSql;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
 /// <summary>
 /// Wraper for SQL edge container
 /// </summary>
-public class DatabaseContainer
+public class DatabaseContainer : IAsyncDisposable
 {
-    private readonly SqlEdgeContainer? _container = new SqlEdgeBuilder()
-        .WithName("CleanArchitecture-IntegrationTests-DbContainer")
-        .WithPassword("sqledge!Strong")
+    private readonly MsSqlContainer _container = new MsSqlBuilder()
+        .WithImage("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
+        .WithName($"CleanArchitecture-IntegrationTests-{Guid.NewGuid()}")
+        .WithPassword("Password123")
+        .WithPortBinding(1433, true)
         .WithAutoRemove(true)
         .Build();
+
+    private const int MaxRetries = 5;
 
     public string? ConnectionString { get; private set; }
 
     public async Task InitializeAsync()
     {
-        if (_container != null)
-        {
-            await _container.StartAsync();
-            ConnectionString = _container.GetConnectionString();
-        }
+        await StartWithRetry();
+        ConnectionString = _container.GetConnectionString();
     }
 
-    public Task DisposeAsync() => _container?.StopAsync() ?? Task.CompletedTask;
+    private async Task StartWithRetry()
+    {
+        // NOTE: For some reason the container sometimes fails to start up.  Add in a retry to protect against this
+        var policy = Policy.Handle<InvalidOperationException>()
+            .WaitAndRetryAsync(MaxRetries, _ => TimeSpan.FromSeconds(5));
+
+        await policy.ExecuteAsync(async () => { await _container.StartAsync(); });
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _container.StopAsync();
+        await _container.DisposeAsync();
+        GC.SuppressFinalize(this);
+    }
 }

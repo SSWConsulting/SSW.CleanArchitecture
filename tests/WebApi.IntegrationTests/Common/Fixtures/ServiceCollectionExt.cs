@@ -19,7 +19,7 @@ internal static class ServiceCollectionExt
         services
             .RemoveAll<DbContextOptions<T>>()
             .RemoveAll<T>()
-            .AddDbContext<T>((_, options) =>
+            .AddDbContextPool<T>((_, options) =>
             {
                 options.UseSqlServer(databaseContainer.ConnectionString,
                     b => b.MigrationsAssembly(typeof(T).Assembly.FullName));
@@ -27,10 +27,14 @@ internal static class ServiceCollectionExt
                 options.LogTo(m => Debug.WriteLine(m));
                 options.EnableSensitiveDataLogging();
 
+                var serviceProvider = services.BuildServiceProvider();
+
                 options.AddInterceptors(
-                    services.BuildServiceProvider().GetRequiredService<EntitySaveChangesInterceptor>(),
-                    services.BuildServiceProvider().GetRequiredService<DispatchDomainEventsInterceptor>()
+                    serviceProvider.GetRequiredService<EntitySaveChangesInterceptor>(),
+                    serviceProvider.GetRequiredService<DispatchDomainEventsInterceptor>()
                 );
+
+                // options.UseExceptionProcessor();
             });
 
         return services;
