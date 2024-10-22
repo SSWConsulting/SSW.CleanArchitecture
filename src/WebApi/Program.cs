@@ -7,6 +7,8 @@ using SSW.CleanArchitecture.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
 builder.AddInfrastructure();
@@ -37,6 +39,8 @@ app.UseRouting();
 app.UseDefaultExceptionHandler();
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();
+
+app.MapDefaultEndpoints();
 
 app.Run();
 
