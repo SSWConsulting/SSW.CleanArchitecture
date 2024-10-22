@@ -6,13 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SSW.CleanArchitecture.Database;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
+using SSW.CleanArchitecture.WebApi;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
 /// <summary>
 /// Host builder (services, DI and configuration) for integration tests
 /// </summary>
-public class WebApiTestFactory : WebApplicationFactory<Program>
+public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
 {
     public DatabaseContainer Database { get; } = new();
 

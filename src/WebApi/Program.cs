@@ -39,5 +39,3 @@ app.MapHeroEndpoints();
 app.MapTeamEndpoints();
 
 app.Run();
-
-public partial class Program { }
