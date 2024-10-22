@@ -19,7 +19,8 @@
     <PackageReference Include="NSubstitute" />
     <PackageReference Include="Respawn" />
     <PackageReference Include="Testcontainers" />
-    <PackageReference Include="Testcontainers.SqlEdge" />
+    <PackageReference Include="Testcontainers.MsSql" />
+    <PackageReference Include="Polly" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

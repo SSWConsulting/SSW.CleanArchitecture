@@ -1,15 +1,16 @@
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
-using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Features;
 using SSW.CleanArchitecture.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.AddInfrastructure();
 
 var app = builder.Build();
 
@@ -37,5 +38,7 @@ app.UseRouting();
 app.UseDefaultExceptionHandler();
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();
+
+app.MapDefaultEndpoints();
 
 app.Run();
