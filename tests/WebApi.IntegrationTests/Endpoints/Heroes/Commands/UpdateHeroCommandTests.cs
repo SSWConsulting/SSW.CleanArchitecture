@@ -25,15 +25,15 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
             ("Flight", 8),
         ];
         var cmd = new UpdateHeroCommand(
-            hero.Id, 
             heroName,
             heroAlias,
             powers.Select(p => new UpdateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel }));
+        cmd.HeroId = hero.Id.Value;
         var client = GetAnonymousClient();
         var createdTimeStamp = DateTime.Now;
 
         // Act
-        var result = await client.PutAsJsonAsync("/api/heroes", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
@@ -54,10 +54,10 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         // Arrange
         var heroId = new HeroId(Guid.NewGuid());
         var cmd = new UpdateHeroCommand(
-            heroId, 
             "foo",
             "bar",
             new [] { new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 } });
+        cmd.HeroId = heroId.Value;
         var client = GetAnonymousClient();
 
         // Act
