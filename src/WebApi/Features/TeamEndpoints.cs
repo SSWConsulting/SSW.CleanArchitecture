@@ -21,7 +21,7 @@ public static class TeamEndpoints
             .MapPost("/", async (ISender sender, CreateTeamCommand command, CancellationToken ct) =>
             {
                 var result = await sender.Send(command, ct);
-                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
+                return result.Match(_ => TypedResults.Created(), CustomResult.Problem);
             })
             .WithName("CreateTeam")
             .ProducesPost();
@@ -44,7 +44,7 @@ public static class TeamEndpoints
             {
                 var command = new AddHeroToTeamCommand(teamId, heroId);
                 var result = await sender.Send(command, ct);
-                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
+                return result.Match(_ => TypedResults.Created(), CustomResult.Problem);
             })
             .WithName("AddHeroToTeam")
             .ProducesPost();
@@ -66,7 +66,7 @@ public static class TeamEndpoints
                 {
                     command.TeamId = teamId;
                     var result = await sender.Send(command, ct);
-                    return result.Match(TypedResults.Ok, ErrorOrExt.Problem);
+                    return result.Match(TypedResults.Ok, CustomResult.Problem);
                 })
             .WithName("ExecuteMission")
             .ProducesPost();
@@ -77,7 +77,7 @@ public static class TeamEndpoints
                 {
                     var command = new CompleteMissionCommand(teamId);
                     var result = await sender.Send(command, ct);
-                    return result.Match(TypedResults.Ok, ErrorOrExt.Problem);
+                    return result.Match(TypedResults.Ok, CustomResult.Problem);
                 })
             .WithName("CompleteMission")
             .ProducesPost();

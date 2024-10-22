@@ -34,10 +34,4 @@ public static class EndpointRouteBuilderExt
         .Produces(StatusCodes.Status204NoContent)
         .Produces(StatusCodes.Status404NotFound)
         .ProducesProblem(StatusCodes.Status500InternalServerError);
-
-    /// <summary>
-    /// TODO: Remove once we have a global way to configure Open API with a 500 response for all endpoints
-    /// </summary>
-    public static RouteHandlerBuilder ProducesProblem(this RouteHandlerBuilder builder) => builder
-        .ProducesProblem(StatusCodes.Status500InternalServerError);
 }

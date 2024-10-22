@@ -30,7 +30,7 @@ public static class HeroEndpoints
             {
                 command.HeroId = heroId;
                 var result = await sender.Send(command, ct);
-                return result.Match(_ => TypedResults.NoContent(), ErrorOrExt.Problem);
+                return result.Match(_ => TypedResults.NoContent(), CustomResult.Problem);
             })
             .WithName("UpdateHero")
             .ProducesPut();
@@ -39,7 +39,7 @@ public static class HeroEndpoints
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
                 var result = await sender.Send(command, ct);
-                return result.Match(_ => TypedResults.Created(), ErrorOrExt.Problem);
+                return result.Match(_ => TypedResults.Created(), CustomResult.Problem);
             })
             .WithName("CreateHero")
             .ProducesPost();

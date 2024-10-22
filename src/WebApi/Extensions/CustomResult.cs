@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace SSW.CleanArchitecture.WebApi.Extensions;
 
-public static class ErrorOrExt
+public static class CustomResult
 {
     public static IResult Problem(List<Error> errors)
     {
