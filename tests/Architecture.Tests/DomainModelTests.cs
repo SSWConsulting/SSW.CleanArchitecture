@@ -25,6 +25,7 @@ public class DomainModelTests
             .DoNotResideInNamespaceContaining("Common")
             .And().DoNotHaveNameEndingWith("Id")
             .And().DoNotHaveNameEndingWith("Spec")
+            .And().DoNotHaveNameEndingWith("Errors")
             .And().MeetCustomRule(new IsNotEnumRule());
 
         // Act

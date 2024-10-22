@@ -1,5 +1,6 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Domain.Teams;
 using SSW.CleanArchitecture.WebApi.Features;
 using System.Net;
@@ -22,7 +23,7 @@ public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOut
         await AddEntityAsync(team);
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
-        var request = new ExcuteMissionRequest("Save the world");
+        var request = new ExecuteMissionCommand("Save the world");
 
         // Act
         var result = await client.PostAsJsonAsync($"/api/teams/{teamId}/execute-mission", request);

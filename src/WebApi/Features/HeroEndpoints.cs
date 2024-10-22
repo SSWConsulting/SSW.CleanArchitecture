@@ -13,21 +13,24 @@ public static class HeroEndpoints
         var group = app.MapApiGroup("heroes");
 
         group
-            .MapGet("/", (ISender sender, CancellationToken ct)
-                => sender.Send(new GetAllHeroesQuery(), ct))
+            .MapGet("/", async (ISender sender, CancellationToken ct) =>
+            {
+                var results = await sender.Send(new GetAllHeroesQuery(), ct);
+                return TypedResults.Ok(results);
+            })
             .WithName("GetAllHeroes")
             .ProducesGet<HeroDto[]>();
 
-        // TODO: Investigate examples for swagger docs. i.e. better docs than:
-        // myWeirdField: "string" vs myWeirdField: "this-silly-string"
-        // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
-
-        // TODO: PUT should take Hero ID in the URL, not in the body
         group
-            .MapPut("/", async (ISender sender, UpdateHeroCommand command, CancellationToken ct) =>
+            .MapPut("/{heroId:guid}", async (
+                Guid heroId,
+                UpdateHeroCommand command,
+                ISender sender,
+                CancellationToken ct) =>
             {
-                await sender.Send(command, ct);
-                return Results.NoContent();
+                command.HeroId = heroId;
+                var result = await sender.Send(command, ct);
+                return result.Match(_ => TypedResults.NoContent(), CustomResult.Problem);
             })
             .WithName("UpdateHero")
             .ProducesPut();
@@ -35,8 +38,8 @@ public static class HeroEndpoints
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
-                await sender.Send(command, ct);
-                return Results.Created();
+                var result = await sender.Send(command, ct);
+                return result.Match(_ => TypedResults.Created(), CustomResult.Problem);
             })
             .WithName("CreateHero")
             .ProducesPost();

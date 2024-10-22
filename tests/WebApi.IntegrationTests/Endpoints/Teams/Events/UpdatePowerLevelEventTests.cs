@@ -25,11 +25,12 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
         await AddEntityAsync(team);
         powers.Add(new Power("Speed", 5));
         var powerDtos = powers.Select(p => new UpdateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel });
-        var command = new UpdateHeroCommand(hero.Id, hero.Name, hero.Alias, powerDtos);
+        var cmd = new UpdateHeroCommand(hero.Name, hero.Alias, powerDtos);
+        cmd.HeroId = hero.Id.Value;
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes", command);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()

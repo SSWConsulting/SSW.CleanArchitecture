@@ -1,31 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Common.Exceptions;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
+using System.Text.Json.Serialization;
 
 namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
 
 public sealed record UpdateHeroCommand(
-    HeroId HeroId,
     string Name,
     string Alias,
-    IEnumerable<UpdateHeroPowerDto> Powers) : IRequest<Guid>;
+    IEnumerable<UpdateHeroPowerDto> Powers) : IRequest<ErrorOr<Guid>>
+{
+    [JsonIgnore]
+    public Guid HeroId { get; set; }
+}
 
 // ReSharper disable once UnusedType.Global
 public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<UpdateHeroCommand, Guid>
+    : IRequestHandler<UpdateHeroCommand, ErrorOr<Guid>>
 {
-    public async Task<Guid> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Guid>> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)
     {
+        var heroId = new HeroId(request.HeroId);
         var hero = await dbContext.Heroes
             .Include(h => h.Powers)
-            .FirstOrDefaultAsync(h => h.Id == request.HeroId, cancellationToken);
+            .FirstOrDefaultAsync(h => h.Id == heroId, cancellationToken);
 
         if (hero is null)
-        {
-            throw new NotFoundException(nameof(Hero), request.HeroId);
-        }
-        
+            return HeroErrors.NotFound;
+
         hero.UpdateName(request.Name);
         hero.UpdateAlias(request.Alias);
         var powers = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
@@ -34,5 +35,20 @@ public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
         await dbContext.SaveChangesAsync(cancellationToken);
 
         return hero.Id.Value;
+    }
+}
+
+public class UpdateHeroCommandValidator : AbstractValidator<UpdateHeroCommand>
+{
+    public UpdateHeroCommandValidator()
+    {
+        RuleFor(v => v.HeroId)
+            .NotEmpty();
+
+        RuleFor(v => v.Name)
+            .NotEmpty();
+
+        RuleFor(v => v.Alias)
+            .NotEmpty();
     }
 }

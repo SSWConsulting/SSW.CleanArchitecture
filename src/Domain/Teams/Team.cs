@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Heroes;
@@ -49,34 +50,41 @@ public class Team : AggregateRoot<TeamId>
         }
     }
 
-    public void ExecuteMission(string description)
+    public ErrorOr<Success> ExecuteMission(string description)
     {
         Guard.Against.NullOrWhiteSpace(description, nameof(description));
 
         if (Status != TeamStatus.Available)
         {
-            throw new DomainException("The team is currently not available for a new mission.");
+            return TeamErrors.NotAvailable;
         }
 
         var mission = Mission.Create(description);
         _missions.Add(mission);
         Status = TeamStatus.OnMission;
+
+        return new Success();
     }
 
-    public void CompleteCurrentMission()
+    public ErrorOr<Success> CompleteCurrentMission()
     {
         if (Status != TeamStatus.OnMission)
         {
-            throw new DomainException("The team is currently not on a mission.");
+            return TeamErrors.NotOnMission;
         }
 
         if (CurrentMission is null)
         {
-            throw new DomainException("There is no mission in progress.");
+            return TeamErrors.NotOnMission;
         }
 
-        CurrentMission.Complete();
+        var result = CurrentMission.Complete();
+        if (result.IsError)
+            return result;
+
         Status = TeamStatus.Available;
+
+        return new Success();
     }
 
     public void ReCalculatePowerLevel()
