@@ -11,8 +11,6 @@ builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddExceptionHandler<KnownExceptionsHandler>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
