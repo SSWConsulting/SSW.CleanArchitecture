@@ -27,14 +27,16 @@ public static class HeroEndpoints
         // myWeirdField: "string" vs myWeirdField: "this-silly-string"
         // (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/79)
 
-        // TODO: PUT should take Hero ID in the URL, not in the body
         group
-            .MapPut("/", async Task<Results<NotFound, NoContent, ValidationProblem>> (
-                ISender sender,
+            .MapPut("/{heroId:guid}", async Task<Results<NotFound, NoContent, ValidationProblem>> (
+                Guid heroId,
                 UpdateHeroCommand command,
+                ISender sender,
                 CancellationToken ct) =>
             {
+                command.HeroId = heroId;
                 var result = await sender.Send(command, ct);
+
                 if (result.IsNotFound())
                     return TypedResults.NotFound();
 
@@ -49,7 +51,7 @@ public static class HeroEndpoints
         group
             .MapPost("/", async (ISender sender, CreateHeroCommand command, CancellationToken ct) =>
             {
-                var result = await sender.Send(command, ct);
+                _ = await sender.Send(command, ct);
                 return TypedResults.Created();
             })
             .WithName("CreateHero")
