@@ -18,7 +18,7 @@ public sealed class CompleteMissionCommandHandler(IApplicationDbContext dbContex
             .FirstOrDefault();
 
         if (team is null)
-            return Error.NotFound($"Team {teamId.Value}");
+            return TeamErrors.NotFound;
 
         team.CompleteCurrentMission();
         await dbContext.SaveChangesAsync(cancellationToken);

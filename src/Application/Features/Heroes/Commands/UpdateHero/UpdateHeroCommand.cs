@@ -25,7 +25,7 @@ public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
             .FirstOrDefaultAsync(h => h.Id == heroId, cancellationToken);
 
         if (hero is null)
-            return Error.NotFound($"Hero {request.HeroId}");
+            return HeroErrors.NotFound;
 
         hero.UpdateName(request.Name);
         hero.UpdateAlias(request.Alias);

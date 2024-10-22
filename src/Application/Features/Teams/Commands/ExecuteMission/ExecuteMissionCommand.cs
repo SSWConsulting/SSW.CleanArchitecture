@@ -22,7 +22,7 @@ public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext
             .FirstOrDefault();
 
         if (team is null)
-            return Error.NotFound($"Team {teamId.Value}");
+            return TeamErrors.NotFound;
 
         team.ExecuteMission(request.Description);
         await dbContext.SaveChangesAsync(cancellationToken);

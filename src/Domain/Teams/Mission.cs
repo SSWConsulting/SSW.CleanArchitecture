@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
@@ -25,13 +26,15 @@ public class Mission : Entity<MissionId>
         };
     }
 
-    internal void Complete()
+    internal ErrorOr<Success> Complete()
     {
         if (Status == MissionStatus.Complete)
         {
-            throw new DomainException("Mission is already completed");
+            return MissionErrors.AlreadyCompleted;
         }
 
         Status = MissionStatus.Complete;
+
+        return new Success();
     }
 }
