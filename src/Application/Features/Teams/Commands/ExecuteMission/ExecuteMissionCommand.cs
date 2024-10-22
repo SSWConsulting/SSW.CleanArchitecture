@@ -1,16 +1,15 @@
-﻿using SSW.CleanArchitecture.Application.Common.Exceptions;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
 
-public sealed record ExecuteMissionCommand(Guid TeamId, string Description) : IRequest;
+public sealed record ExecuteMissionCommand(Guid TeamId, string Description) : IRequest<Result>;
 
 // ReSharper disable once UnusedType.Global
 public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext)
-    : IRequestHandler<ExecuteMissionCommand>
+    : IRequestHandler<ExecuteMissionCommand, Result>
 {
-    public async Task Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)
     {
         var teamId = new TeamId(request.TeamId);
         var team = dbContext.Teams
@@ -18,12 +17,12 @@ public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext
             .FirstOrDefault();
 
         if (team is null)
-        {
-            throw new NotFoundException(nameof(Team), teamId);
-        }
-        
+            return Result.NotFound($"Team {teamId.Value}");
+
         team.ExecuteMission(request.Description);
         await dbContext.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
     }
 }
 

@@ -16,4 +16,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-rc.2.24473.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0-rc.2.24473.5" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Features\Heroes\Commands\CreateHero\CreateHeroCommandValidator.cs" />
+  </ItemGroup>
 </Project>
