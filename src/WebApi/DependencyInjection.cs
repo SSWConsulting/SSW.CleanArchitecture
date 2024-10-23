@@ -28,7 +28,7 @@ public static class DependencyInjection
                 connectionString: config["ConnectionStrings:DefaultConnection"]!,
                 healthQuery: $"-- SqlServerHealthCheck{Environment.NewLine}SELECT 123;",
                 failureStatus: HealthStatus.Unhealthy,
-                tags: new string[] { "db", "sql", "sqlserver" })
+                tags: ["db", "sql", "sqlserver"])
 
             // Check 2: Check the Entity Framework DbContext (requires the DbContext Options, DI, Interceptors, Configurations, etc. to all be correct), and 
             // then run a sample query to test important data
@@ -36,7 +36,7 @@ public static class DependencyInjection
             // for the health check of the current application and not something strange/unidentified.
             .AddEntityFrameworkDbContextCheck<ApplicationDbContext>(
                 name: "Entity Framework DbContext",
-                tags: new string[] { "db", "dbContext", "sql" },
+                tags: ["db", "dbContext", "sql"],
                 testQuery: async (ctx, ct) =>
                 {
                     // TODO: Replace the custom test query below with something appropriate for your project that is always expected to be valid

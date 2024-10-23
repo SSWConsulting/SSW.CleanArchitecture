@@ -43,8 +43,8 @@ public class Team : AggregateRoot<TeamId>
         ThrowIfNull(hero);
         if (_heroes.Contains(hero))
         {
-            _heroes.Remove(hero);
             TotalPowerLevel -= hero.PowerLevel;
+            _heroes.Remove(hero);
         }
     }
 

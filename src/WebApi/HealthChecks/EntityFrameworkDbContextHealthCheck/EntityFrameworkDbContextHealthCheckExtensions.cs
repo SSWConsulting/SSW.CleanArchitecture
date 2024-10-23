@@ -12,8 +12,7 @@ public static class EntityFrameworkDbContextHealthCheckExtensions
     IEnumerable<string>? tags = default)
     where TContext : DbContext
     {
-        if (builder == null)
-            throw new ArgumentNullException(nameof(builder));
+        ArgumentNullException.ThrowIfNull(testQuery, nameof(testQuery));
 
         name ??= typeof(TContext).Name;
 

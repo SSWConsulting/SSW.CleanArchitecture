@@ -32,6 +32,9 @@ insert_final_newline = false
 #### .NET Coding Conventions ####
 [*.{cs,vb}]
 
+# Suppressed warnings
+dotnet_diagnostic.CA1848.severity = suggestion
+
 # Organize usings
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = false

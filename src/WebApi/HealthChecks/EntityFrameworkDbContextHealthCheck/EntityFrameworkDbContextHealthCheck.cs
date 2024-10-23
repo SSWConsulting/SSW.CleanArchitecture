@@ -15,10 +15,7 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
 
     public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {
-        if (context == null)
-        {
-            throw new ArgumentNullException(nameof(context));
-        }
+        ArgumentNullException.ThrowIfNull(context, nameof(context));
 
         var options = _options.Get(context.Registration.Name);
         var testQuery = options.TestQuery;

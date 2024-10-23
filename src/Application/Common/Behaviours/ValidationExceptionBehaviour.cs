@@ -15,11 +15,11 @@ public class ValidationExceptionBehaviour<TRequest, TResponse>(IEnumerable<IVali
                     v.ValidateAsync(context, cancellationToken)));
 
             var failures = validationResults
-                .Where(r => r.Errors.Any())
+                .Where(r => r.Errors.Count is not 0)
                 .SelectMany(r => r.Errors)
                 .ToList();
 
-            if (failures.Any())
+            if (failures.Count is not 0)
                 throw new Exceptions.ValidationException(failures);
         }
         return await next();
