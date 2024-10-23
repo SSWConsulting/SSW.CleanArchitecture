@@ -28,7 +28,10 @@ public class Mission : Entity<MissionId>
 
     internal ErrorOr<Success> Complete()
     {
-        if (Status == MissionStatus.Complete) return MissionErrors.AlreadyCompleted;
+        if (Status == MissionStatus.Complete)
+        {
+            return MissionErrors.AlreadyCompleted;
+        }
 
         Status = MissionStatus.Complete;
 
