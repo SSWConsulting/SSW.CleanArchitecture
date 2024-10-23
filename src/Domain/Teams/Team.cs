@@ -26,7 +26,7 @@ public class Team : AggregateRoot<TeamId>
     {
         ThrowIfNullOrWhiteSpace(name);
 
-        var team = new Team { Id = new TeamId(Guid.NewGuid()), Name = name, Status = TeamStatus.Available };
+        var team = new Team { Id = new TeamId(Guid.CreateVersion7()), Name = name, Status = TeamStatus.Available };
 
         return team;
     }
