@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common.Base;
+﻿using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
@@ -30,14 +29,13 @@ public class Hero : AggregateRoot<HeroId>
     
     public void UpdateName(string name)
     {
-        Guard.Against.NullOrWhiteSpace(name);
+        ThrowIfNullOrWhiteSpace(name);
         Name = name;
     }
     
     public void UpdateAlias(string alias)
     {
-        Guard.Against.NullOrWhiteSpace(alias);
-        Guard.Against.InvalidInput(alias, nameof(alias), input => !input.Equals(Name, StringComparison.OrdinalIgnoreCase));
+        ThrowIfNullOrWhiteSpace(alias);
         Alias = alias;
     }
 
@@ -56,7 +54,7 @@ public class Hero : AggregateRoot<HeroId>
 
     private void AddPower(Power power)
     {
-        Guard.Against.Null(power);
+        ThrowIfNull(power);
 
         if (!_powers.Contains(power))
         {

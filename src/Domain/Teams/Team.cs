@@ -1,6 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using ErrorOr;
-using SSW.CleanArchitecture.Domain.Common;
+﻿using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Heroes;
 
@@ -26,7 +24,7 @@ public class Team : AggregateRoot<TeamId>
 
     public static Team Create(string name)
     {
-        Guard.Against.NullOrWhiteSpace(name);
+        ThrowIfNullOrWhiteSpace(name);
 
         var team = new Team { Id = new TeamId(Guid.NewGuid()), Name = name, Status = TeamStatus.Available };
 
@@ -35,14 +33,14 @@ public class Team : AggregateRoot<TeamId>
 
     public void AddHero(Hero hero)
     {
-        Guard.Against.Null(hero, nameof(hero));
+        ThrowIfNull(hero);
         _heroes.Add(hero);
         TotalPowerLevel += hero.PowerLevel;
     }
 
     public void RemoveHero(Hero hero)
     {
-        Guard.Against.Null(hero, nameof(hero));
+        ThrowIfNull(hero);
         if (_heroes.Contains(hero))
         {
             _heroes.Remove(hero);
@@ -52,7 +50,7 @@ public class Team : AggregateRoot<TeamId>
 
     public ErrorOr<Success> ExecuteMission(string description)
     {
-        Guard.Against.NullOrWhiteSpace(description, nameof(description));
+        ThrowIfNullOrWhiteSpace(description);
 
         if (Status != TeamStatus.Available)
         {

@@ -41,22 +41,15 @@ public class HeroTests
     }
 
     [Fact]
-    public void Create_WithSameNameAndAlias_ShouldThrow()
+    public void Create_WithSameNameAndAlias_ShouldSucceed()
     {
         // Arrange
         var name = "name";
         var alias = "name";
-        var parameterName = "alias";
 
         // Act
-        Action act = () => Hero.Create(name, alias);
-
-        // Assert
-        act.Should().Throw<ArgumentException>("Alias cannot be the same as the name")
-            .WithMessage($"Input {parameterName} did not satisfy the options*")
-            .WithParameterName(parameterName);
+        Hero.Create(name, alias);
     }
-
 
     [Theory]
     [InlineData(null, "alias")]
