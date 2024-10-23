@@ -9,7 +9,7 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
     : IntegrationTestBase(fixture, output)
 {
     [Fact]
-    public async Task Query_ShouldReturnAllTodoItems()
+    public async Task Query_ShouldReturnAllHeroes()
     {
         // Arrange
         const int entityCount = 10;
