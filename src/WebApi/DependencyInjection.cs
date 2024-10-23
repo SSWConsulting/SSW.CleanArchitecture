@@ -13,9 +13,9 @@ public static class DependencyInjection
     {
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
-
-        services.AddOpenApiDocument(configure => configure.Title = "CleanArchitecture API");
+        
         services.AddEndpointsApiExplorer();
+        services.AddOpenApi();
 
         AddHealthChecks(services, config);
     }
