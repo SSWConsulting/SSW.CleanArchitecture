@@ -1,4 +1,3 @@
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Domain.Heroes;
+﻿using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Common.Interfaces;
