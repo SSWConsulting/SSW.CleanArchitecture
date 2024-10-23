@@ -1,6 +1,7 @@
 name: "Code Scanning - Action"
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
 
