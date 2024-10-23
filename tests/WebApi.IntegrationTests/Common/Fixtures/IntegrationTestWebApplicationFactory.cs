@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SSW.CleanArchitecture.Database;
+using MigrationService.Initializers;
 using SSW.CleanArchitecture.WebApi;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
