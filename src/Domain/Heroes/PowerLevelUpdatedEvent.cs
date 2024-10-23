@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common.Base;
+﻿using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
@@ -13,7 +12,7 @@ public record PowerLevelUpdatedEvent : DomainEvent
 
     public PowerLevelUpdatedEvent(Hero hero)
     {
-        Guard.Against.Null(hero);
+        ThrowIfNull(hero);
 
         Id = hero.Id;
         TeamId = hero.TeamId;

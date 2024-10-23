@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using SSW.CleanArchitecture.Domain.Common.Interfaces;
+﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
@@ -13,7 +12,9 @@ public record Power : IValueObject
 
     public Power(string name, int powerLevel)
     {
+        ThrowIfLessThan(powerLevel, 1);
+        ThrowIfGreaterThan(powerLevel, 10);
         Name = name;
-        PowerLevel = Guard.Against.OutOfRange(powerLevel, nameof(powerLevel), 1, 10);
+        PowerLevel = powerLevel;
     }
 }

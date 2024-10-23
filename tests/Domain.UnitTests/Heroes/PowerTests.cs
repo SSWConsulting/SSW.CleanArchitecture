@@ -54,7 +54,7 @@ public class PowerTests
         // Assert
         if (shouldThrow)
         {
-            act.Should().Throw<ArgumentOutOfRangeException>().WithMessage("input powerLevel was out of range*");
+            act.Should().Throw<ArgumentOutOfRangeException>();
         }
         else
         {

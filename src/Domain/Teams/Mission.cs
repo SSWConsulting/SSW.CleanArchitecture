@@ -1,6 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using ErrorOr;
-using SSW.CleanArchitecture.Domain.Common;
+﻿using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
@@ -19,7 +17,7 @@ public class Mission : Entity<MissionId>
     // NOTE: Internal so that missions can only be created by the aggregate
     internal static Mission Create(string description)
     {
-        Guard.Against.NullOrWhiteSpace(description);
+        ThrowIfNullOrWhiteSpace(description);
         return new Mission
         {
             Id = new MissionId(Guid.NewGuid()), Description = description, Status = MissionStatus.InProgress
