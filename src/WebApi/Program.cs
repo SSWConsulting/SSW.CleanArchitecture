@@ -4,6 +4,7 @@ using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Features;
 using SSW.CleanArchitecture.WebApi.Filters;
+using SSW.CleanArchitecture.WebApi.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 

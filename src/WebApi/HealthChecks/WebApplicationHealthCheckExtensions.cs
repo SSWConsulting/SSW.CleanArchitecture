@@ -1,6 +1,8 @@
 ﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
+namespace SSW.CleanArchitecture.WebApi.HealthChecks;
+
 public static class WebApplicationHealthCheckExtensions
 {
     public static WebApplication UseHealthChecks(this WebApplication app)
@@ -14,7 +16,8 @@ public static class WebApplicationHealthCheckExtensions
         app.UseHealthChecks("/health-report",
             new HealthCheckOptions
             {
-                Predicate = _ => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 
         return app;
