@@ -35,6 +35,9 @@ insert_final_newline = false
 # Suppressed warnings
 dotnet_diagnostic.CA1848.severity = suggestion
 
+resharper_csharp_force_attribute_style = join
+resharper_csharp_keep_existing_attribute_arrangement = true
+
 # Organize usings
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = false
