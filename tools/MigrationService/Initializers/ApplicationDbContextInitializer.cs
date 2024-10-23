@@ -64,7 +64,7 @@ public class ApplicationDbContextInitializer : DbContextInitializerBase<Applicat
     ];
 
 
-    public ApplicationDbContextInitializer(ApplicationDbContext DbContext) : base(DbContext)
+    public ApplicationDbContextInitializer(ApplicationDbContext dbContext) : base(dbContext)
     {
     }
 
