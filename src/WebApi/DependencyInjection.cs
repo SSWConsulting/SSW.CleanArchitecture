@@ -14,7 +14,6 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         
-        services.AddEndpointsApiExplorer();
         services.AddOpenApi();
 
         AddHealthChecks(services, config);
