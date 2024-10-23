@@ -17,17 +17,6 @@ public static class DependencyInjection
         services.AddOpenApi();
 
         AddHealthChecks(services, config);
-
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowLocalhost",
-                policy =>
-                {
-                    policy.WithOrigins("https://localhost:7255") // Replace with the appropriate port or URL
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
-        });
     }
 
     private static void AddHealthChecks(IServiceCollection services, IConfiguration config)
