@@ -2,7 +2,7 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// TODO: Double check that persistent DB code works
+// NOTE: Double check that persistent DB code works
 var sqlServer = builder
     .AddSqlServer("sql")
     .WithLifetime(ContainerLifetime.Persistent);
