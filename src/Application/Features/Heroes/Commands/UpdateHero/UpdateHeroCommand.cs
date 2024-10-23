@@ -9,8 +9,7 @@ public sealed record UpdateHeroCommand(
     string Alias,
     IEnumerable<UpdateHeroPowerDto> Powers) : IRequest<ErrorOr<Guid>>
 {
-    [JsonIgnore]
-    public Guid HeroId { get; set; }
+    [JsonIgnore] public Guid HeroId { get; set; }
 }
 
 // ReSharper disable once UnusedType.Global

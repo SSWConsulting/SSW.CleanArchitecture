@@ -6,7 +6,8 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse>(ILogger<TRequest> 
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         try
         {
@@ -16,7 +17,8 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse>(ILogger<TRequest> 
         {
             var requestName = typeof(TRequest).Name;
 
-            logger.LogError(ex, "CleanArchitecture Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+            logger.LogError(ex, "CleanArchitecture Request: Unhandled Exception for Request {Name} {@Request}",
+                requestName, request);
 
             throw;
         }

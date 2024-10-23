@@ -9,6 +9,6 @@
         <AnalysisLevel>latest</AnalysisLevel>
         <AnalysisMode>Recommended</AnalysisMode>
         
-<!--        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>-->
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     </PropertyGroup>
 </Project>

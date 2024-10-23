@@ -4,7 +4,8 @@ public class ValidationExceptionBehaviour<TRequest, TResponse>(IEnumerable<IVali
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         if (validators.Any())
         {
@@ -22,6 +23,7 @@ public class ValidationExceptionBehaviour<TRequest, TResponse>(IEnumerable<IVali
             if (failures.Count is not 0)
                 throw new Exceptions.ValidationException(failures);
         }
+
         return await next();
     }
 }

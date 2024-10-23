@@ -6,8 +6,7 @@ namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMissi
 
 public sealed record ExecuteMissionCommand(string Description) : IRequest<ErrorOr<Success>>
 {
-    [JsonIgnore]
-    public Guid TeamId { get; set; }
+    [JsonIgnore] public Guid TeamId { get; set; }
 }
 
 // ReSharper disable once UnusedType.Global

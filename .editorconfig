@@ -403,7 +403,7 @@ dotnet_diagnostic.IDE0004.severity = warning
 #   <GenerateDocumentationFile>true</GenerateDocumentationFile>
 #   <NoWarn>$(NoWarn);1591</NoWarn>
 # </ProjectGroup>
-dotnet_diagnostic.IDE0005.severity = warning
+dotnet_diagnostic.IDE0005.severity = suggestion
 
 # IDE0007: Use implicit type
 dotnet_diagnostic.IDE0007.severity = suggestion # leave as suggestion
