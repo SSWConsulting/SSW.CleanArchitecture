@@ -19,6 +19,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    app.UseCors("AllowLocalhost");
 }
 else
 {
@@ -27,16 +28,20 @@ else
 }
 
 app.MapOpenApi();
-app.MapScalarApiReference(options => options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient));
+app.MapScalarApiReference(options =>
+{
+    options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+});
+
 app.UseHealthChecks();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseDefaultExceptionHandler();
+
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();
-
 app.MapDefaultEndpoints();
 
 app.Run();
