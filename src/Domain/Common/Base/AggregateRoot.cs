@@ -15,7 +15,8 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {
     private readonly List<DomainEvent> _domainEvents = [];
 
-    [NotMapped] public IReadOnlyList<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+    [NotMapped]
+    public IReadOnlyList<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     public void AddDomainEvent(DomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 
