@@ -2,24 +2,22 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var db = builder
+// NOTE: Double check that persistent DB code works
+var sqlServer = builder
     .AddSqlServer("sql")
-    .WithLifetime(ContainerLifetime.Persistent)
+    .WithLifetime(ContainerLifetime.Persistent);
+
+var db = sqlServer
     .AddDatabase("clean-architecture");
 
-// TODO: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/226
-// var migrationService = builder.AddProject<MigrationService>("migrations")
-//     .WithReference(warehouseDb)
-//     .WithReference(catalogDb)
-//     .WithReference(customersDb)
-//     .WithReference(ordersDb)
-//     .WaitFor(sqlServer);
+var migrationService = builder.AddProject<MigrationService>("migrations")
+    .WithReference(db)
+    .WaitFor(sqlServer);
 
 builder
     .AddProject<WebApi>("api")
     .WithExternalHttpEndpoints()
     .WithReference(db)
-    // .WaitForCompletion(migrationService)
-    ;
+    .WaitForCompletion(migrationService);
 
 builder.Build().Run();

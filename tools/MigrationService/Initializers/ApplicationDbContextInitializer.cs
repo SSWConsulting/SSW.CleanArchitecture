@@ -1,16 +1,17 @@
-﻿using Bogus;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace SSW.CleanArchitecture.Database;
+namespace MigrationService.Initializers;
 
-public class ApplicationDbContextInitializer(
-    ILogger<ApplicationDbContextInitializer> logger,
-    ApplicationDbContext dbContext)
+public class ApplicationDbContextInitializer : DbContextInitializerBase<ApplicationDbContext>
 {
+    private const int NumHeroes = 20;
+
+    private const int NumTeams = 5;
+
     private readonly string[] _superHeroNames =
     [
         "Superman",
@@ -62,43 +63,28 @@ public class ApplicationDbContextInitializer(
         "X-Men"
     ];
 
-    private const int NumHeroes = 20;
 
-    private const int NumTeams = 5;
-
-    public async Task InitializeAsync()
+    public ApplicationDbContextInitializer(ApplicationDbContext DbContext) : base(DbContext)
     {
-        try
-        {
-            if (dbContext.Database.IsSqlServer())
-            {
-                await dbContext.Database.MigrateAsync();
-            }
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "An error occurred while migrating or initializing the database");
-            throw;
-        }
     }
 
-    public async Task SeedAsync()
+    public async Task SeedDataAsync(CancellationToken cancellationToken)
     {
-        try
+        var strategy = DbContext.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(async () =>
         {
+            // Seed the database
+            await using var transaction = await DbContext.Database.BeginTransactionAsync(cancellationToken);
             var heroes = await SeedHeroes();
             await SeedTeams(heroes);
-        }
-        catch (Exception e)
-        {
-            logger.LogError(e, "An error occurred while seeding the database");
-            throw;
-        }
+            // await DbContext.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
+        });
     }
 
     private async Task<List<Hero>> SeedHeroes()
     {
-        if (dbContext.Heroes.Any())
+        if (DbContext.Heroes.Any())
             return [];
 
         var faker = new Faker<Hero>()
@@ -113,15 +99,15 @@ public class ApplicationDbContextInitializer(
             });
 
         var heroes = faker.Generate(NumHeroes);
-        await dbContext.Heroes.AddRangeAsync(heroes);
-        await dbContext.SaveChangesAsync();
+        await DbContext.Heroes.AddRangeAsync(heroes);
+        await DbContext.SaveChangesAsync();
 
         return heroes;
     }
 
     private async Task SeedTeams(List<Hero> heroes)
     {
-        if (dbContext.Teams.Any())
+        if (DbContext.Teams.Any())
             return;
 
         var faker = new Faker<Team>()
@@ -146,7 +132,7 @@ public class ApplicationDbContextInitializer(
             });
 
         var teams = faker.Generate(NumTeams);
-        await dbContext.Teams.AddRangeAsync(teams);
-        await dbContext.SaveChangesAsync();
+        await DbContext.Teams.AddRangeAsync(teams);
+        await DbContext.SaveChangesAsync();
     }
 }
