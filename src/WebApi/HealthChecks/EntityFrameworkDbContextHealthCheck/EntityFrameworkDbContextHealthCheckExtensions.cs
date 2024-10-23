@@ -16,10 +16,8 @@ public static class EntityFrameworkDbContextHealthCheckExtensions
 
         name ??= typeof(TContext).Name;
 
-        builder.Services.Configure<EntityFrameworkDbContextHealthCheckOptions<TContext>>(name,
-            options => options.TestQuery = testQuery);
+        builder.Services.Configure<EntityFrameworkDbContextHealthCheckOptions<TContext>>(name, options => options.TestQuery = testQuery);
 
-        return builder.AddCheck<EntityFrameworkDbContextHealthCheck<TContext>>(name, HealthStatus.Unhealthy,
-            tags ?? []);
+        return builder.AddCheck<EntityFrameworkDbContextHealthCheck<TContext>>(name, HealthStatus.Unhealthy, tags ?? []);
     }
 }
