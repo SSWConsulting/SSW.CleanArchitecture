@@ -16,7 +16,6 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.1" />
     <!-- Need to explictly reference Azure.Identity to remove vulnerability as Respawn uses a vulnerable version -->
     <PackageReference Include="Azure.Identity" Version="1.13.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="14.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0-rc.2.24474.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-rc.2.24474.1">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +23,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0-rc.2.24474.3" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.0-rc.2.24474.3" />
+    <PackageReference Include="Scalar.AspNetCore" Version="1.2.20" />
   </ItemGroup>
 
   <ItemGroup>

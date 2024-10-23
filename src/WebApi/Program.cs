@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
@@ -25,15 +26,12 @@ else
     app.UseHsts();
 }
 
+app.MapOpenApi();
+app.MapScalarApiReference(options => options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient));
 app.UseHealthChecks();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-app.UseOpenApi();
-app.UseSwaggerUi();
-
-app.UseRouting();
 
 app.UseDefaultExceptionHandler();
 app.MapHeroEndpoints();
