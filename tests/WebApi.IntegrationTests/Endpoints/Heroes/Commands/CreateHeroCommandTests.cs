@@ -13,13 +13,14 @@ public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
     public async Task Command_ShouldCreateHero()
     {
         // Arrange
-        (string Name, int PowerLevel)[] powers = [
+        (string Name, int PowerLevel)[] powers =
+        [
             ("Heat vision", 7),
             ("Super-strength", 10),
             ("Flight", 8),
         ];
         var cmd = new CreateHeroCommand(
-            "Clark Kent", 
+            "Clark Kent",
             "Superman",
             powers.Select(p => new CreateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel }));
         var client = GetAnonymousClient();

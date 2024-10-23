@@ -19,7 +19,8 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var heroAlias = "2021-01-01T00:00:00Z-alias";
         var hero = HeroFactory.Generate();
         await AddEntityAsync(hero);
-        (string Name, int PowerLevel)[] powers = [
+        (string Name, int PowerLevel)[] powers =
+        [
             ("Heat vision", 7),
             ("Super-strength", 10),
             ("Flight", 8),
@@ -47,7 +48,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         item.UpdatedAt.Should().NotBe(hero.CreatedAt);
         item.UpdatedAt.Should().BeCloseTo(createdTimeStamp, TimeSpan.FromSeconds(10));
     }
-    
+
     [Fact]
     public async Task Command_WhenHeroDoesNotExist_ShouldReturnNotFound()
     {

@@ -13,7 +13,7 @@ public static class DependencyInjection
     {
         services.AddHttpContextAccessor();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
-        
+
         services.AddOpenApi();
 
         AddHealthChecks(services, config);

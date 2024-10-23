@@ -11,9 +11,12 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
     where TContext : DbContext
 {
     private readonly TContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options = options ?? throw new ArgumentNullException(nameof(options));
 
-    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options =
+        options ?? throw new ArgumentNullException(nameof(options));
+
+    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(context, nameof(context));
 
@@ -25,7 +28,8 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
         var canConnect = await _dbContext.Database.CanConnectAsync(cancellationToken);
         if (!canConnect)
         {
-            return new HealthCheckResult(HealthStatus.Unhealthy, "Failed to connect to Database - Please check Connection String details or Network configuration.");
+            return new HealthCheckResult(HealthStatus.Unhealthy,
+                "Failed to connect to Database - Please check Connection String details or Network configuration.");
         }
 
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -38,7 +42,8 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
             }
 
             var result = await testQuery(_dbContext, cancellationToken);
-            return new HealthCheckResult(result.Success ? HealthStatus.Healthy : HealthStatus.Unhealthy, result.Message, exception: result.Exception, data);
+            return new HealthCheckResult(result.Success ? HealthStatus.Healthy : HealthStatus.Unhealthy, result.Message,
+                exception: result.Exception, data);
         }
         catch (Exception ex)
         {

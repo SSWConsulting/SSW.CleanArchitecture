@@ -27,7 +27,7 @@ public class ApplicationDbContext(
         base.ConfigureConventions(configurationBuilder);
 
         configurationBuilder.Properties<string>()
-        .HaveMaxLength(256);
+            .HaveMaxLength(256);
     }
 
     private DbSet<T> AggregateRootSet<T>() where T : class, IAggregateRoot => Set<T>();

@@ -13,6 +13,6 @@ public static class TeamErrors
         "The team is currently not available for a new mission");
 
     public static readonly Error NotFound = Error.NotFound(
-            "Team.NotFound",
-            "Team is not found");
+        "Team.NotFound",
+        "Team is not found");
 }
