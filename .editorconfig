@@ -571,7 +571,7 @@ dotnet_diagnostic.IDE0070.severity = warning
 dotnet_diagnostic.IDE0071.severity = warning
 
 # IDE0072: Add missing cases
-dotnet_diagnostic.IDE0072.severity = warning
+dotnet_diagnostic.IDE0072.severity = suggestion
 
 # IDE0073: The file header is missing or not located at the top of the file
 dotnet_diagnostic.IDE0073.severity = none

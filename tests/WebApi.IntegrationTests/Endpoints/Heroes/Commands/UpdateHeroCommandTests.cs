@@ -56,7 +56,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var cmd = new UpdateHeroCommand(
             "foo",
             "bar",
-            new [] { new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 } });
+            [new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 }]);
         cmd.HeroId = heroId.Value;
         var client = GetAnonymousClient();
 
