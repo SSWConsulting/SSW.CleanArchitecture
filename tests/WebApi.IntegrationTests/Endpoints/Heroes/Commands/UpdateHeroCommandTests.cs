@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
-namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands.UpdateHero;
+namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
 public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)

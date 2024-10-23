@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Fixtures;
 
-namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands.CreateHero;
+namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
 public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
