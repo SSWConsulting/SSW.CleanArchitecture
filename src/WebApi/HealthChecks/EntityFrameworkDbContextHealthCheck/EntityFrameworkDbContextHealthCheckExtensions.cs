@@ -18,6 +18,6 @@ public static class EntityFrameworkDbContextHealthCheckExtensions
 
         builder.Services.Configure<EntityFrameworkDbContextHealthCheckOptions<TContext>>(name, options => options.TestQuery = testQuery);
 
-        return builder.AddCheck<EntityFrameworkDbContextHealthCheck<TContext>>(name, HealthStatus.Unhealthy, tags ?? Enumerable.Empty<string>());
+        return builder.AddCheck<EntityFrameworkDbContextHealthCheck<TContext>>(name, HealthStatus.Unhealthy, tags ?? []);
     }
 }

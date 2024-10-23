@@ -6,7 +6,7 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace MigrationService.Initializers;
 
-public class ApplicationDbContextInitializer : DbContextInitializerBase<ApplicationDbContext>
+public class ApplicationDbContextInitializer(ApplicationDbContext dbContext) : DbContextInitializerBase<ApplicationDbContext>(dbContext)
 {
     private const int NumHeroes = 20;
 
@@ -63,11 +63,6 @@ public class ApplicationDbContextInitializer : DbContextInitializerBase<Applicat
         "X-Men"
     ];
 
-
-    public ApplicationDbContextInitializer(ApplicationDbContext dbContext) : base(dbContext)
-    {
-    }
-
     public async Task SeedDataAsync(CancellationToken cancellationToken)
     {
         var strategy = DbContext.Database.CreateExecutionStrategy();
@@ -91,7 +86,7 @@ public class ApplicationDbContextInitializer : DbContextInitializerBase<Applicat
             .CustomInstantiator(f =>
             {
                 var name = f.PickRandom(_superHeroNames);
-                var hero = Hero.Create(name, name.Substring(0, 2));
+                var hero = Hero.Create(name, name[..2]);
                 var powers = f.PickRandom(_superPowers, f.Random.Number(1, 3))
                     .Select(p => new Power(p, f.Random.Number(1, 10)));
                 hero.UpdatePowers(powers);
