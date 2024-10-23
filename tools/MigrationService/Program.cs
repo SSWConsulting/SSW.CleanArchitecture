@@ -17,4 +17,4 @@ builder.AddSqlServerDbContext<ApplicationDbContext>("clean-architecture");
 
 var host = builder.Build();
 
-host.Run();
+await host.RunAsync();
