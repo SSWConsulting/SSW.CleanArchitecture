@@ -54,7 +54,7 @@ public class PowerTests
         // Assert
         if (shouldThrow)
         {
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().ThrowExactly<ArgumentOutOfRangeException>();
         }
         else
         {
