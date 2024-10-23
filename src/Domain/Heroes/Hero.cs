@@ -54,7 +54,10 @@ public class Hero : AggregateRoot<HeroId>
     {
         ThrowIfNull(power);
 
-        if (!_powers.Contains(power)) _powers.Add(power);
+        if (!_powers.Contains(power))
+        {
+            _powers.Add(power);
+        }
 
         PowerLevel += power.PowerLevel;
     }
