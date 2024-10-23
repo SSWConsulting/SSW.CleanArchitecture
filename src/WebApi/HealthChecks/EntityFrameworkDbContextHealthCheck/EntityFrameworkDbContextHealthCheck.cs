@@ -11,12 +11,9 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
     where TContext : DbContext
 {
     private readonly TContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options = options ?? throw new ArgumentNullException(nameof(options));
 
-    private readonly IOptionsMonitor<EntityFrameworkDbContextHealthCheckOptions<TContext>> _options =
-        options ?? throw new ArgumentNullException(nameof(options));
-
-    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context,
-        CancellationToken cancellationToken = default)
+    public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(context, nameof(context));
 
@@ -41,8 +38,7 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
             }
 
             var result = await testQuery(_dbContext, cancellationToken);
-            return new HealthCheckResult(result.Success ? HealthStatus.Healthy : HealthStatus.Unhealthy, result.Message,
-                exception: result.Exception, data);
+            return new HealthCheckResult(result.Success ? HealthStatus.Healthy : HealthStatus.Unhealthy, result.Message, exception: result.Exception, data);
         }
         catch (Exception ex)
         {
