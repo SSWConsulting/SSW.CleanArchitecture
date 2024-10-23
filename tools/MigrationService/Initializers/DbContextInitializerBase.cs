@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace MigrationService.Initializers;
 
-internal abstract class DbContextInitializerBase<T> where T : DbContext
+public abstract class DbContextInitializerBase<T> where T : DbContext
 {
     protected readonly T DbContext;
 
@@ -14,7 +14,7 @@ internal abstract class DbContextInitializerBase<T> where T : DbContext
         DbContext = dbContext;
     }
 
-    internal async Task EnsureDatabaseAsync(CancellationToken cancellationToken)
+    public async Task EnsureDatabaseAsync(CancellationToken cancellationToken)
     {
         var dbCreator = DbContext.GetService<IRelationalDatabaseCreator>();
 
@@ -30,7 +30,7 @@ internal abstract class DbContextInitializerBase<T> where T : DbContext
         });
     }
 
-    internal async Task RunMigrationAsync(CancellationToken cancellationToken)
+    public async Task RunMigrationAsync(CancellationToken cancellationToken)
     {
         var strategy = DbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>

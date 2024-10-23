@@ -6,7 +6,7 @@ using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace MigrationService.Initializers;
 
-internal class ApplicationDbContextInitializer : DbContextInitializerBase<ApplicationDbContext>
+public class ApplicationDbContextInitializer : DbContextInitializerBase<ApplicationDbContext>
 {
     private const int NumHeroes = 20;
 
