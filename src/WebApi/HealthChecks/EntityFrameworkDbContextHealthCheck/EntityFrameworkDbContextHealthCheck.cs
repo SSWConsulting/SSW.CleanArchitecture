@@ -28,8 +28,7 @@ public sealed class EntityFrameworkDbContextHealthCheck<TContext>(
         var canConnect = await _dbContext.Database.CanConnectAsync(cancellationToken);
         if (!canConnect)
         {
-            return new HealthCheckResult(HealthStatus.Unhealthy,
-                "Failed to connect to Database - Please check Connection String details or Network configuration.");
+            return new HealthCheckResult(HealthStatus.Unhealthy, "Failed to connect to Database - Please check Connection String details or Network configuration.");
         }
 
 #pragma warning disable CA1031 // Do not catch general exception types
