@@ -15,6 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
 
