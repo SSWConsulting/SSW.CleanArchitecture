@@ -22,5 +22,13 @@ public class ApplicationDbContext(
         base.OnModelCreating(modelBuilder);
     }
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        base.ConfigureConventions(configurationBuilder);
+
+        configurationBuilder.Properties<string>()
+        .HaveMaxLength(256);
+    }
+
     private DbSet<T> AggregateRootSet<T>() where T : class, IAggregateRoot => Set<T>();
 }
