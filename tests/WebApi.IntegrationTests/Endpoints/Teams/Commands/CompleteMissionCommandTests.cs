@@ -18,7 +18,8 @@ public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOu
         var team = TeamFactory.Generate();
         team.AddHero(hero);
         team.ExecuteMission("Save the world");
-        await AddEntityAsync(team);
+        Context.Teams.Add(team);
+        await Context.SaveChangesAsync();
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
 
@@ -26,7 +27,7 @@ public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOu
         var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null);
 
         // Assert
-        var updatedTeam = await GetQueryable<Team>()
+        var updatedTeam = await Context.Teams
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
         var mission = updatedTeam!.Missions.First();

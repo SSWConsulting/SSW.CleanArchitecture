@@ -18,7 +18,8 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var heroName = "2021-01-01T00:00:00Z";
         var heroAlias = "2021-01-01T00:00:00Z-alias";
         var hero = HeroFactory.Generate();
-        await AddEntityAsync(hero);
+        Context.Heroes.Add(hero);
+        await Context.SaveChangesAsync();
         (string Name, int PowerLevel)[] powers =
         [
             ("Heat vision", 7),

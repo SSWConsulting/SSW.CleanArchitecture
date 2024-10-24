@@ -16,8 +16,8 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         // Arrange
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
-        Context.Add(hero);
-        Context.Add(team);
+        Context.Heroes.Add(hero);
+        Context.Teams.Add(team);
         await Context.SaveChangesAsync();
 
         var teamId = team.Id.Value;
@@ -28,7 +28,7 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null);
 
         // Assert
-        var updatedTeam = await GetQueryable<Team>()
+        var updatedTeam = await Context.Teams
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
 
