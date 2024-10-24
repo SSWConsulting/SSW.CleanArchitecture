@@ -6,6 +6,7 @@ using SSW.CleanArchitecture.WebApi.HealthChecks.EntityFrameworkDbContextHealthCh
 using SSW.CleanArchitecture.WebApi.Services;
 
 namespace SSW.CleanArchitecture.WebApi;
+#pragma warning disable IDE0055
 
 public static class DependencyInjection
 {
@@ -50,3 +51,4 @@ public static class DependencyInjection
                 });
     }
 }
+#pragma warning restore IDE0055
