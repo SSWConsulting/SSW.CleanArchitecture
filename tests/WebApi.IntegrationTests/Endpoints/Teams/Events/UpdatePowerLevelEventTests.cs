@@ -32,9 +32,10 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
 
         // Act
         var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        await Task.Delay(5000);
 
         // Assert
-        var updatedTeam = await Context.Teams
+        var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
 

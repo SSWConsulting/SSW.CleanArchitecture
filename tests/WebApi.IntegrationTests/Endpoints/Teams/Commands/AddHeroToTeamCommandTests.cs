@@ -28,7 +28,7 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null);
 
         // Assert
-        var updatedTeam = await Context.Teams
+        var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
 

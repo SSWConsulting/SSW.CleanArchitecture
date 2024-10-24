@@ -24,6 +24,8 @@ public abstract class IntegrationTestBase : IAsyncLifetime
 
     private readonly ApplicationDbContext _dbContext;
 
+    protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();
+
     protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
     {
         _fixture = fixture;

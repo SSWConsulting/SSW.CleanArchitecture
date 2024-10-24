@@ -29,7 +29,7 @@ public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOut
         var result = await client.PostAsJsonAsync($"/api/teams/{teamId}/execute-mission", request);
 
         // Assert
-        var updatedTeam = await Context.Teams
+        var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
         var mission = updatedTeam!.Missions.First();

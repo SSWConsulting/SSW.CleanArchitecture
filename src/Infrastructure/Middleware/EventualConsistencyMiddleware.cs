@@ -27,23 +27,28 @@ public class EventualConsistencyMiddleware
             var strategy = dbContext.Database.CreateExecutionStrategy();
             await strategy.ExecuteInTransactionAsync(async () =>
             {
-                try
-                {
-                    if (context.Items.TryGetValue(DomainEventsKey, out var value) &&
-                        value is Queue<IDomainEvent> domainEvents)
-                    {
-                        while (domainEvents.TryDequeue(out var nextEvent))
-                            await publisher.Publish(nextEvent);
-                    }
-                }
-                catch (EventualConsistencyException ex)
-                {
-                    // TODO: handle eventual consistency exception
-                    throw;
-                }
+                await PublishEvents(context, publisher);
             }, null!);
         });
 
         await _next(context);
+    }
+
+    private static async Task PublishEvents(HttpContext context, IPublisher publisher)
+    {
+        try
+        {
+            if (context.Items.TryGetValue(DomainEventsKey, out var value) &&
+                value is Queue<IDomainEvent> domainEvents)
+            {
+                while (domainEvents.TryDequeue(out var nextEvent))
+                    await publisher.Publish(nextEvent);
+            }
+        }
+        catch (EventualConsistencyException ex)
+        {
+            // TODO: handle eventual consistency exception
+            throw;
+        }
     }
 }

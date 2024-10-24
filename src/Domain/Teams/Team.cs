@@ -89,8 +89,5 @@ public class Team : AggregateRoot<TeamId>
     public void ReCalculatePowerLevel()
     {
         TotalPowerLevel = _heroes.Sum(h => h.PowerLevel);
-        AddDomainEvent(new TeamPowerLevelUpdatedEvent(this));
     }
 }
-
-public record TeamPowerLevelUpdatedEvent(Team Team) : IDomainEvent;

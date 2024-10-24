@@ -27,7 +27,7 @@ public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOu
         var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null);
 
         // Assert
-        var updatedTeam = await Context.Teams
+        var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
         var mission = updatedTeam!.Missions.First();
