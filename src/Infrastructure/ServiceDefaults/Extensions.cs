@@ -7,6 +7,9 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
+// TODO: Investigate and fix IDE0055 warnings on Unix (runners)
+#pragma warning disable IDE0055
+
 // ReSharper disable once CheckNamespace
 #pragma warning disable IDE0130
 namespace Microsoft.Extensions.Hosting;
