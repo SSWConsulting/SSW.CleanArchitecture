@@ -27,6 +27,7 @@ public class PowerLevelUpdatedEventHandler(
 
         if (team is null)
         {
+            // TODO: Throw EventualConsistencyException (Check with Amichai's DDD solution)
             logger.LogError("Team {TeamId} not found", notification.TeamId);
             return;
         }

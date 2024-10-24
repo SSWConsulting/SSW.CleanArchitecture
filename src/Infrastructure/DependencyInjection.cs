@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Modules.Warehouse.Common.Middleware;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
@@ -30,4 +32,5 @@ public static class DependencyInjection
 
         builder.Services.AddSingleton(TimeProvider.System);
     }
+
 }

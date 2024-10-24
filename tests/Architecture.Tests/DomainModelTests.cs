@@ -28,7 +28,7 @@ public class DomainModelTests(ITestOutputHelper outputHelper)
             .Should()
             .Inherit(typeof(AggregateRoot<>))
             .Or().Inherit(typeof(Entity<>))
-            .Or().Inherit(typeof(DomainEvent))
+            .Or().Inherit(typeof(IDomainEvent))
             .Or().ImplementInterface(typeof(IValueObject));
 
         // Assert

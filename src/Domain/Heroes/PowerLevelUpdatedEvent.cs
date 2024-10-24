@@ -1,9 +1,9 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Base;
+﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
-public record PowerLevelUpdatedEvent : DomainEvent
+public record PowerLevelUpdatedEvent : IDomainEvent
 {
     public HeroId Id { get; }
     public TeamId? TeamId { get; }

@@ -104,9 +104,10 @@ public class HeroTests
         hero.UpdatePowers([new Power("Super-strength", 10)]);
 
         // Assert
-        hero.DomainEvents.Should().NotBeNull();
-        hero.DomainEvents.Should().HaveCount(1);
-        hero.DomainEvents.First().Should().BeOfType<PowerLevelUpdatedEvent>()
+        var domainEvents = hero.PopDomainEvents();
+        domainEvents.Should().NotBeNull();
+        domainEvents.Should().HaveCount(1);
+        domainEvents.First().Should().BeOfType<PowerLevelUpdatedEvent>()
             .Which.Invoking(e =>
             {
                 e.HeroPowerLevel.Should().Be(10);
@@ -125,10 +126,11 @@ public class HeroTests
         hero.UpdatePowers([power]);
 
         // Assert
-        hero.DomainEvents.Should().NotBeNull();
-        hero.DomainEvents.Should().HaveCount(1);
-        hero.DomainEvents.Should().AllSatisfy(e => e.Should().BeOfType<PowerLevelUpdatedEvent>());
-        hero.DomainEvents.Last()
+        var domainEvents = hero.PopDomainEvents();
+        domainEvents.Should().NotBeNull();
+        domainEvents.Should().HaveCount(1);
+        domainEvents.Should().AllSatisfy(e => e.Should().BeOfType<PowerLevelUpdatedEvent>());
+        domainEvents.Last()
             .As<PowerLevelUpdatedEvent>()
             .HeroPowerLevel.Should().Be(10);
         hero.Powers.Should().HaveCount(1);

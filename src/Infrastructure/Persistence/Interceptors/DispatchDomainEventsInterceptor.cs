@@ -1,12 +1,22 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
-public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesInterceptor
+public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
 {
+    private readonly IPublisher _publisher;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public DispatchDomainEventsInterceptor(IPublisher publisher, IHttpContextAccessor httpContextAccessor)
+    {
+        _publisher = publisher;
+        _httpContextAccessor = httpContextAccessor;
+    }
+
     // NOTE: There are two options for dispatching domain events:
     // Option 1. Before changes are saved to the database (SavingChanges)
     // Option 2. After changes are saved to the database (SavedChanges)
@@ -19,7 +29,6 @@ public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesIn
     // The downside of this is that we may have multiple calls to save changes in a single DB request.
     // This means we no longer have a single write to the DB, so may need to wrap the entire operation
     // in a transaction to ensure consistency.
-    // TODO: Add ADR for this decision
     public override int SavedChanges(SaveChangesCompletedEventData eventData, int result)
     {
         DispatchDomainEvents(eventData.Context).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -29,30 +38,50 @@ public class DispatchDomainEventsInterceptor(IMediator mediator) : SaveChangesIn
     public async override ValueTask<int> SavedChangesAsync(
         SaveChangesCompletedEventData eventData,
         int result,
-        CancellationToken cancellationToken = new CancellationToken())
+        CancellationToken cancellationToken = default)
     {
         await DispatchDomainEvents(eventData.Context);
         return await base.SavedChangesAsync(eventData, result, cancellationToken);
     }
 
-    public async Task DispatchDomainEvents(DbContext? context)
+    private async Task DispatchDomainEvents(DbContext? context)
     {
         if (context is null)
             return;
 
-        var entities = context.ChangeTracker
-            .Entries<IAggregateRoot>()
-            .Where(e => e.Entity.DomainEvents.Any())
-            .Select(e => e.Entity)
+        var domainEvents = context.ChangeTracker.Entries<IAggregateRoot>()
+            .Select(entry => entry.Entity.PopDomainEvents())
+            .SelectMany(x => x)
             .ToList();
 
-        var domainEvents = entities
-            .SelectMany(e => e.DomainEvents)
-            .ToList();
+        if (IsUserWaitingOnline())
+        {
+            AddDomainEventsToOfflineProcessingQueue(domainEvents);
+        }
+        else
+        {
+            await PublishDomainEvents(domainEvents);
+        }
+    }
 
-        entities.ForEach(e => e.ClearDomainEvents());
+    private bool IsUserWaitingOnline() => _httpContextAccessor.HttpContext is not null;
+
+    private async Task PublishDomainEvents(IEnumerable<IDomainEvent> domainEvents)
+    {
+        foreach (var domainEvent in domainEvents)
+            await _publisher.Publish(domainEvent);
+    }
+
+    private void AddDomainEventsToOfflineProcessingQueue(IEnumerable<IDomainEvent> domainEvents)
+    {
+        var domainEventsQueue = _httpContextAccessor.HttpContext!.Items.TryGetValue("DomainEventsKey", out var value) &&
+                                value is Queue<IDomainEvent> existingDomainEvents
+            ? existingDomainEvents
+            : new Queue<IDomainEvent>();
 
         foreach (var domainEvent in domainEvents)
-            await mediator.Publish(domainEvent);
+            domainEventsQueue.Enqueue(domainEvent);
+
+        _httpContextAccessor.HttpContext.Items["DomainEventsKey"] = domainEventsQueue;
     }
 }
