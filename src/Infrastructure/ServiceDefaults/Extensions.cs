@@ -120,3 +120,4 @@ public static class Extensions
         return app;
     }
 }
+#pragma warning restore IDE0055
