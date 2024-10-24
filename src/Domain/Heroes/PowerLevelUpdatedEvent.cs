@@ -1,22 +1,16 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
-using SSW.CleanArchitecture.Domain.Teams;
+﻿using ErrorOr;
+using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
-public record PowerLevelUpdatedEvent : IDomainEvent
+public record PowerLevelUpdatedEvent(Hero Hero) : IDomainEvent
 {
-    public HeroId Id { get; }
-    public TeamId? TeamId { get; }
-    public string HeroName { get; }
-    public int HeroPowerLevel { get; }
+    public static readonly Error HeroNotOnATeam = EventualConsistencyError.From(
+        code: "PowerLeveUpdated.HeroNotOnATeam",
+        description: "Hero is not on a team");
 
-    public PowerLevelUpdatedEvent(Hero hero)
-    {
-        ThrowIfNull(hero);
-
-        Id = hero.Id;
-        TeamId = hero.TeamId;
-        HeroName = hero.Name;
-        HeroPowerLevel = hero.PowerLevel;
-    }
+    public static readonly Error TeamNotFound = EventualConsistencyError.From(
+        code: "PowerLeveUpdated.TeamNotFound",
+        description: "Team not found");
 }

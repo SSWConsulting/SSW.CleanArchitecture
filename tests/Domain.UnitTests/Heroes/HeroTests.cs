@@ -110,9 +110,9 @@ public class HeroTests
         domainEvents.First().Should().BeOfType<PowerLevelUpdatedEvent>()
             .Which.Invoking(e =>
             {
-                e.HeroPowerLevel.Should().Be(10);
-                e.Id.Should().Be(hero.Id);
-                e.HeroName.Should().Be(hero.Name);
+                e.Hero.PowerLevel.Should().Be(10);
+                e.Hero.Id.Should().Be(hero.Id);
+                e.Hero.Name.Should().Be(hero.Name);
             }).Invoke();
         hero.Powers.Should().ContainSingle("Super-strength");
     }
@@ -132,7 +132,7 @@ public class HeroTests
         domainEvents.Should().AllSatisfy(e => e.Should().BeOfType<PowerLevelUpdatedEvent>());
         domainEvents.Last()
             .As<PowerLevelUpdatedEvent>()
-            .HeroPowerLevel.Should().Be(10);
+            .Hero.PowerLevel.Should().Be(10);
         hero.Powers.Should().HaveCount(1);
     }
 }
