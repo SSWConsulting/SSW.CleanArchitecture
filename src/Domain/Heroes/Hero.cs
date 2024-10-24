@@ -13,9 +13,9 @@ public class Hero : AggregateRoot<HeroId>
     public string Alias { get; private set; } = null!;
     public int PowerLevel { get; private set; }
     public TeamId? TeamId { get; private set; }
-    
+
     public IReadOnlyList<Power> Powers => _powers.AsReadOnly();
-    
+
     private Hero() { }
 
     public static Hero Create(string name, string alias)
@@ -26,13 +26,13 @@ public class Hero : AggregateRoot<HeroId>
 
         return hero;
     }
-    
+
     public void UpdateName(string name)
     {
         ThrowIfNullOrWhiteSpace(name);
         Name = name;
     }
-    
+
     public void UpdateAlias(string alias)
     {
         ThrowIfNullOrWhiteSpace(alias);
@@ -45,9 +45,7 @@ public class Hero : AggregateRoot<HeroId>
         PowerLevel = 0;
 
         foreach (var heroPowerModel in updatedPowers)
-        {
             AddPower(new Power(heroPowerModel.Name, heroPowerModel.PowerLevel));
-        }
 
         AddDomainEvent(new PowerLevelUpdatedEvent(this));
     }

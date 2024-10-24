@@ -12,7 +12,8 @@ public class PerformanceBehaviour<TRequest, TResponse>(
 {
     private readonly Stopwatch _timer = new();
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
     {
         _timer.Start();
 
@@ -27,7 +28,8 @@ public class PerformanceBehaviour<TRequest, TResponse>(
             var requestName = typeof(TRequest).Name;
             var userId = currentUserService.UserId ?? string.Empty;
 
-            logger.LogWarning("CleanArchitecture Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
+            logger.LogWarning(
+                "CleanArchitecture Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
                 requestName, elapsedMilliseconds, userId, request);
         }
 

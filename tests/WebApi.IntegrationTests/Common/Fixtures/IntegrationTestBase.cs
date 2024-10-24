@@ -39,7 +39,8 @@ public abstract class IntegrationTestBase : IAsyncLifetime
         await Context.SaveChangesAsync(cancellationToken);
     }
 
-    protected async Task AddEntitiesAsync<T>(IEnumerable<T> entities, CancellationToken cancellationToken = default) where T : class
+    protected async Task AddEntitiesAsync<T>(IEnumerable<T> entities, CancellationToken cancellationToken = default)
+        where T : class
     {
         await Context.Set<T>().AddRangeAsync(entities, cancellationToken);
         await Context.SaveChangesAsync(cancellationToken);

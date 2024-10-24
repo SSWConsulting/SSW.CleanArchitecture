@@ -26,11 +26,16 @@ indent_size = 4
 tab_width = 4
 
 # New line preferences
-end_of_line = crlf
 insert_final_newline = false
 
 #### .NET Coding Conventions ####
 [*.{cs,vb}]
+
+# Suppressed warnings
+dotnet_diagnostic.CA1848.severity = suggestion
+
+resharper_csharp_force_attribute_style = join
+resharper_csharp_keep_existing_attribute_arrangement = true
 
 # Organize usings
 dotnet_separate_import_directive_groups = false
@@ -94,7 +99,7 @@ csharp_style_var_when_type_is_apparent = true:suggestion # leave as suggestion
 csharp_style_expression_bodied_accessors = true:silent
 csharp_style_expression_bodied_constructors = false:silent
 csharp_style_expression_bodied_indexers = true:silent
-csharp_style_expression_bodied_lambdas = true:warning
+csharp_style_expression_bodied_lambdas = true:suggestion
 csharp_style_expression_bodied_local_functions = when_on_single_line:warning
 csharp_style_expression_bodied_methods = false:silent
 csharp_style_expression_bodied_operators = false:silent
@@ -115,7 +120,7 @@ csharp_prefer_static_local_function = true:warning
 csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:silent
 
 # Code-block preferences
-csharp_prefer_braces = false:warning
+csharp_prefer_braces = true:suggestion
 csharp_prefer_simple_using_statement = true:warning
 
 # Expression-level preferences
@@ -400,7 +405,7 @@ dotnet_diagnostic.IDE0004.severity = warning
 #   <GenerateDocumentationFile>true</GenerateDocumentationFile>
 #   <NoWarn>$(NoWarn);1591</NoWarn>
 # </ProjectGroup>
-dotnet_diagnostic.IDE0005.severity = warning
+dotnet_diagnostic.IDE0005.severity = suggestion
 
 # IDE0007: Use implicit type
 dotnet_diagnostic.IDE0007.severity = suggestion # leave as suggestion
@@ -523,7 +528,7 @@ dotnet_diagnostic.IDE0051.severity = warning
 dotnet_diagnostic.IDE0052.severity = warning
 
 # IDE0053: Use expression body for lambdas
-dotnet_diagnostic.IDE0053.severity = warning
+dotnet_diagnostic.IDE0053.severity = suggestion
 
 # IDE0054: Use compound assignment
 dotnet_diagnostic.IDE0054.severity = warning
@@ -568,7 +573,7 @@ dotnet_diagnostic.IDE0070.severity = warning
 dotnet_diagnostic.IDE0071.severity = warning
 
 # IDE0072: Add missing cases
-dotnet_diagnostic.IDE0072.severity = warning
+dotnet_diagnostic.IDE0072.severity = suggestion
 
 # IDE0073: The file header is missing or not located at the top of the file
 dotnet_diagnostic.IDE0073.severity = none

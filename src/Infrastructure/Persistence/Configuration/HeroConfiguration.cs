@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SSW.CleanArchitecture.Domain.Heroes;
-using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 

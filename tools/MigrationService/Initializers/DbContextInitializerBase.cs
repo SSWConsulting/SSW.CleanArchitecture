@@ -6,7 +6,7 @@ namespace MigrationService.Initializers;
 
 public abstract class DbContextInitializerBase<T> where T : DbContext
 {
-    protected readonly T DbContext;
+    protected T DbContext { get; }
 
     // public constructor needed for DI
     internal DbContextInitializerBase(T dbContext)

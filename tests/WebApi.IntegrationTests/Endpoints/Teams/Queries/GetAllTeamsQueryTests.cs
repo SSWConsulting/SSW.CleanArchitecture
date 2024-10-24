@@ -1,4 +1,3 @@
-using SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
 using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;

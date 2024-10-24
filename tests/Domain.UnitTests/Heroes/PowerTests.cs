@@ -19,7 +19,7 @@ public class PowerTests
         power.Name.Should().Be(name);
         power.PowerLevel.Should().Be(powerLevel);
     }
-    
+
     [Fact]
     public void Power_ShouldBeComparable()
     {

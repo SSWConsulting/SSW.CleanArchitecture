@@ -5,7 +5,9 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Events;
 
-public class PowerLevelUpdatedEventHandler(IApplicationDbContext dbContext, ILogger<PowerLevelUpdatedEventHandler> logger)
+public class PowerLevelUpdatedEventHandler(
+    IApplicationDbContext dbContext,
+    ILogger<PowerLevelUpdatedEventHandler> logger)
     : INotificationHandler<PowerLevelUpdatedEvent>
 {
     public async Task Handle(PowerLevelUpdatedEvent notification, CancellationToken cancellationToken)
