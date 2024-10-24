@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
@@ -88,5 +89,8 @@ public class Team : AggregateRoot<TeamId>
     public void ReCalculatePowerLevel()
     {
         TotalPowerLevel = _heroes.Sum(h => h.PowerLevel);
+        AddDomainEvent(new TeamPowerLevelUpdatedEvent(this));
     }
 }
+
+public record TeamPowerLevelUpdatedEvent(Team Team) : IDomainEvent;

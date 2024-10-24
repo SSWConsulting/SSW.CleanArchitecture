@@ -55,6 +55,9 @@ public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
             .SelectMany(x => x)
             .ToList();
 
+        if (domainEvents.Count is 0)
+            return;
+
         if (IsUserWaitingOnline())
         {
             AddDomainEventsToOfflineProcessingQueue(domainEvents);

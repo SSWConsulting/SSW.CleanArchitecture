@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
+using System.Transactions;
 
 namespace SSW.CleanArchitecture.Infrastructure.Middleware;
 
@@ -23,32 +24,24 @@ public class EventualConsistencyMiddleware
     {
         context.Response.OnCompleted(async () =>
         {
-            if (context.Items.TryGetValue(DomainEventsKey, out var value) && value is Queue<IDomainEvent> domainEvents)
+            var strategy = dbContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteInTransactionAsync(async () =>
             {
-                IDbContextTransaction? transaction = null;
                 try
                 {
-                    var strategy = dbContext.Database.CreateExecutionStrategy();
-                    await strategy.ExecuteAsync(async () =>
+                    if (context.Items.TryGetValue(DomainEventsKey, out var value) &&
+                        value is Queue<IDomainEvent> domainEvents)
                     {
-                        transaction = await dbContext.Database.BeginTransactionAsync();
-
                         while (domainEvents.TryDequeue(out var nextEvent))
                             await publisher.Publish(nextEvent);
-
-                        await transaction.CommitAsync();
-                    });
+                    }
                 }
-                catch (EventualConsistencyException)
+                catch (EventualConsistencyException ex)
                 {
-                    // handle eventual consistency exception
+                    // TODO: handle eventual consistency exception
+                    throw;
                 }
-                finally
-                {
-                    if (transaction is not null)
-                        await transaction.DisposeAsync();
-                }
-            }
+            }, null!);
         });
 
         await _next(context);

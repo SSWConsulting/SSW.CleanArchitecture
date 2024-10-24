@@ -16,11 +16,17 @@ public class PowerLevelUpdatedEventHandler(
         logger.LogInformation("PowerLevelUpdatedEventHandler: {HeroName} power updated to {PowerLevel}",
             notification.Hero.Name, notification.Hero.PowerLevel);
 
-        if (notification.Hero.TeamId is null)
-            throw new EventualConsistencyException(PowerLevelUpdatedEvent.HeroNotOnATeam);
+        var hero = await dbContext.Heroes.FirstAsync(h => h.Id == notification.Hero.Id);
+
+        if (hero.TeamId is null)
+        {
+            // nothing to do
+            return;
+        }
+            // throw new EventualConsistencyException(PowerLevelUpdatedEvent.HeroNotOnATeam);
 
         var team = dbContext.Teams
-            .WithSpecification(new TeamByIdSpec(notification.Hero.TeamId))
+            .WithSpecification(new TeamByIdSpec(hero.TeamId))
             .FirstOrDefault();
 
         if (team is null)
