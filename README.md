@@ -35,9 +35,11 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 ## ✨ Features
 - 🔨 `dotnet new` cli template - to get you started quickly
-- 📦 Slim - no authentication provider, no authorization & no UI framework
-    - You can add these yourself or use one of our reference architectures from [awesome-clean-architecture](https://github.com/SSWConsulting/awesome-clean-architecture)
-    - as per [ssw.com.au/rules/choosing-authentication/](https://ssw.com.au/rules/choosing-authentication/)
+- 🚀 Aspire
+  - Dashboard
+  - Resource orchestration
+  - Observability
+  - Simple dev setup - automatic provisioning of database server, schema, and data
 - 🎯 Domain Driven Design Patterns
   - [Super Hero Domain](./docs/domain.md)
   - AggregateRoot
@@ -46,7 +48,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
   - DomainEvent
 - 🌐 Minimal Endpoints - because it's fast & simple. ⚡
     - Extension methods to ensure consistent HTTP Verbs & Status Codes
-- 📝 OpenAPI/Swagger - easily document your API
+- 📝 OpenAPI/Scalar - easily document your API
     - as per [ssw.com.au/rules/do-you-document-your-webapi/](https://ssw.com.au/rules/do-you-document-your-webapi/)
 - 🔑 Global Exception Handling - it's important to handle exceptions in a consistent way & protect sensitive information
     - Transforms exceptions into a consistent format following the [RFC7231 memo](https://datatracker.ietf.org/doc/html/rfc7231#section-6.1)
@@ -57,6 +59,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
 - 🔀 CQRS - for separation of concerns
     - as per [ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/](https://ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/)
 - 📦 MediatR - for decoupling your application
+- 📦 ErrorOr - fluent result pattern (instead of exceptions)
 - 📦 FluentValidation - for validating requests
     - as per [ssw.com.au/rules/use-fluent-validation/](https://ssw.com.au/rules/use-fluent-validation/)
 - 📦 AutoMapper - for mapping between objects
@@ -72,8 +75,6 @@ This is a template for creating a new project using [Clean Architecture](https:/
 - ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
     - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
     - as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)
-
-
 
 - 🧪 Testing
     - as per [ssw.com.au/rules/rules-to-better-testing/](https://www.ssw.com.au/rules/rules-to-better-testing/)
@@ -154,31 +155,19 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
 
 ### Running the Solution
 
-1. Start dockerized SQL Server, create and seed the database.
+1. Change directory
 
     Windows:
     ```ps
-    .\up.ps1
+    cd tools\AppHost\
     ```
 
     Mac/Linux:
     ```bash
-    pwsh ./up.ps1
+    cd tools/AppHost/
     ```
 
-2. Change directory
-
-    Windows:
-    ```ps
-    cd src\WebApi\
-    ```
-
-    Mac/Linux:
-    ```bash
-    cd src/WebApi/
-    ```
-
-3. Run the solution
+2. Run the solution
 
     ```bash
     dotnet run
