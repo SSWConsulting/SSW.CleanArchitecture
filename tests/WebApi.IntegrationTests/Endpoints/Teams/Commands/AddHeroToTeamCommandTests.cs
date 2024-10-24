@@ -32,8 +32,6 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
 
-        // await Task.Delay(100000);
-
         result.StatusCode.Should().Be(HttpStatusCode.Created);
         updatedTeam.Should().NotBeNull();
         updatedTeam!.Heroes.Should().HaveCount(1);

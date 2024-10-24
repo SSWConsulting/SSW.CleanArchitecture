@@ -20,10 +20,9 @@ public class PowerLevelUpdatedEventHandler(
 
         if (hero.TeamId is null)
         {
-            // nothing to do
+            logger.LogInformation("Hero {HeroName} is not on a team - nothing to do", notification.Hero.Name);
             return;
         }
-            // throw new EventualConsistencyException(PowerLevelUpdatedEvent.HeroNotOnATeam);
 
         var team = dbContext.Teams
             .WithSpecification(new TeamByIdSpec(hero.TeamId))
