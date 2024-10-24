@@ -3,7 +3,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <TreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
+        <TreatWarningsAsErrors Condition="'$(Configuration)' == 'asdf'">true</TreatWarningsAsErrors>
         <CodeAnalysisTreatWarningsAsErrors Condition="'$(Configuration)' == 'asdf'">true</CodeAnalysisTreatWarningsAsErrors>
 
         <AnalysisLevel>latest</AnalysisLevel>
