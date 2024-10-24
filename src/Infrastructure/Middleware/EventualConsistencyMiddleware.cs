@@ -45,7 +45,8 @@ public class EventualConsistencyMiddleware
                     await publisher.Publish(nextEvent);
             }
         }
-        catch (EventualConsistencyException ex)
+        // ReSharper disable once RedundantCatchClause
+        catch (EventualConsistencyException)
         {
             // TODO: handle eventual consistency exception
             throw;

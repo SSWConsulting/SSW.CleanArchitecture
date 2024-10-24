@@ -16,7 +16,8 @@ public class PowerLevelUpdatedEventHandler(
         logger.LogInformation("PowerLevelUpdatedEventHandler: {HeroName} power updated to {PowerLevel}",
             notification.Hero.Name, notification.Hero.PowerLevel);
 
-        var hero = await dbContext.Heroes.FirstAsync(h => h.Id == notification.Hero.Id);
+        var hero = await dbContext.Heroes.FirstAsync(h => h.Id == notification.Hero.Id,
+            cancellationToken: cancellationToken);
 
         if (hero.TeamId is null)
         {
