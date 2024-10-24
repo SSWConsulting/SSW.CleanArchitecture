@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Modules.Warehouse.Common.Middleware;
+using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 

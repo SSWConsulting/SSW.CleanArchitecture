@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure.Middleware;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
@@ -74,14 +75,15 @@ public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
 
     private void AddDomainEventsToOfflineProcessingQueue(IEnumerable<IDomainEvent> domainEvents)
     {
-        var domainEventsQueue = _httpContextAccessor.HttpContext!.Items.TryGetValue("DomainEventsKey", out var value) &&
+        var domainEventsQueue = _httpContextAccessor.HttpContext!.Items.TryGetValue(EventualConsistencyMiddleware.DomainEventsKey, out var value) &&
                                 value is Queue<IDomainEvent> existingDomainEvents
             ? existingDomainEvents
             : new Queue<IDomainEvent>();
 
+        // Queue is processed by EventualConsistencyMiddleware
         foreach (var domainEvent in domainEvents)
             domainEventsQueue.Enqueue(domainEvent);
 
-        _httpContextAccessor.HttpContext.Items["DomainEventsKey"] = domainEventsQueue;
+        _httpContextAccessor.HttpContext.Items[EventualConsistencyMiddleware.DomainEventsKey] = domainEventsQueue;
     }
 }

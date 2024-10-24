@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Modules.Warehouse.Common.Middleware;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;

@@ -1,6 +1,6 @@
 using ErrorOr;
 
-namespace Modules.Warehouse.Common.Middleware;
+namespace SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 
 public class EventualConsistencyException : Exception
 {
