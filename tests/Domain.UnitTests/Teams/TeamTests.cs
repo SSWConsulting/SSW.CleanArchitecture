@@ -1,4 +1,3 @@
-using SSW.CleanArchitecture.Domain.Common;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
@@ -39,7 +38,7 @@ public class TeamTests
         team.Should().NotBeNull();
         team.Name.Should().Be(name);
     }
-    
+
     [Fact]
     public void Create_WithNullNameAndAlias_ShouldThrow()
     {
@@ -52,7 +51,7 @@ public class TeamTests
         // Assert
         act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'name')");
     }
-    
+
     [Fact]
     public void AddHero_ShouldUpdateTeamPowerLevel()
     {
@@ -64,7 +63,7 @@ public class TeamTests
         hero1.UpdatePowers([power1]);
         hero2.UpdatePowers([power2]);
         var team = Team.Create("name");
-        
+
         // Act
         team.AddHero(hero1);
         team.AddHero(hero2);
@@ -72,7 +71,7 @@ public class TeamTests
         // Assert
         team.TotalPowerLevel.Should().Be(14);
     }
-    
+
     [Fact]
     public void RemoveHero_ShouldUpdateTeamPowerLevel()
     {
@@ -86,7 +85,7 @@ public class TeamTests
         var team = Team.Create("name");
         team.AddHero(hero1);
         team.AddHero(hero2);
-        
+
         // Act
         team.RemoveHero(hero1);
 
@@ -99,7 +98,7 @@ public class TeamTests
     {
         // Arrange
         var team = Team.Create("name");
-        
+
         // Act
         team.ExecuteMission("Mission");
 
@@ -123,27 +122,27 @@ public class TeamTests
         result.IsError.Should().BeTrue();
         result.FirstError.Should().Be(TeamErrors.NotAvailable);
     }
-    
+
     [Fact]
     public void CompleteCurrentMission_ShouldUpdateTeamStatus()
     {
         // Arrange
         var team = Team.Create("name");
         team.ExecuteMission("Mission");
-        
+
         // Act
         team.CompleteCurrentMission();
 
         // Assert
         team.Status.Should().Be(TeamStatus.Available);
     }
-    
+
     [Fact]
     public void CompleteCurrentMission_WhenNoMissionHasBeenExecuted_ShouldThrow()
     {
         // Arrange
         var team = Team.Create("name");
-        
+
         // Act
         var result = team.CompleteCurrentMission();
 

@@ -49,9 +49,7 @@ public class Hero : AggregateRoot<HeroId>
         PowerLevel = 0;
 
         foreach (var heroPowerModel in updatedPowers)
-        {
             AddPower(new Power(heroPowerModel.Name, heroPowerModel.PowerLevel));
-        }
 
         AddDomainEvent(new PowerLevelUpdatedEvent(this));
     }

@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
-namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands.UpdateHero;
+namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
 public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
@@ -19,7 +19,8 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var heroAlias = "2021-01-01T00:00:00Z-alias";
         var hero = HeroFactory.Generate();
         await AddEntityAsync(hero);
-        (string Name, int PowerLevel)[] powers = [
+        (string Name, int PowerLevel)[] powers =
+        [
             ("Heat vision", 7),
             ("Super-strength", 10),
             ("Flight", 8),
@@ -47,7 +48,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         item.UpdatedAt.Should().NotBe(hero.CreatedAt);
         item.UpdatedAt.Should().BeCloseTo(createdTimeStamp, TimeSpan.FromSeconds(10));
     }
-    
+
     [Fact]
     public async Task Command_WhenHeroDoesNotExist_ShouldReturnNotFound()
     {
@@ -56,7 +57,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var cmd = new UpdateHeroCommand(
             "foo",
             "bar",
-            new [] { new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 } });
+            [new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 }]);
         cmd.HeroId = heroId.Value;
         var client = GetAnonymousClient();
 

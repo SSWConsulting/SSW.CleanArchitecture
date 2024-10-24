@@ -1,6 +1,8 @@
 ﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
+namespace SSW.CleanArchitecture.WebApi.HealthChecks;
+
 public static class WebApplicationHealthCheckExtensions
 {
     public static WebApplication UseHealthChecks(this WebApplication app)
@@ -11,11 +13,12 @@ public static class WebApplicationHealthCheckExtensions
         // Detailed Report about each check
         // TODO: Because of the detailed information, this endpoint should be secured behind
         // an Authorization Policy (.RequireAuthorization()), or a specific secured port through firewall rules
-        app.UseHealthChecks("/health-report", new HealthCheckOptions
-        {
-            Predicate = _ => true,
-            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-        });
+        app.UseHealthChecks("/health-report",
+            new HealthCheckOptions
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
         return app;
     }

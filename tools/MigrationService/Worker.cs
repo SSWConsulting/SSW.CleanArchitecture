@@ -32,7 +32,7 @@ public class Worker(
             }
 
             sw.Stop();
-            logger.LogInformation($"DB creation and seeding took {sw.Elapsed} ");
+            logger.LogInformation("DB creation and seeding took {ElapsedTime}", sw.Elapsed);
         }
         catch (Exception ex)
         {

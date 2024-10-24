@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
-namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries.GetAllheroes;
+namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 
 public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)

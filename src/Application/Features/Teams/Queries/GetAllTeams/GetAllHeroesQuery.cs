@@ -1,5 +1,4 @@
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;

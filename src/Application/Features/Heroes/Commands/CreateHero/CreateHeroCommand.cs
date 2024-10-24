@@ -15,7 +15,7 @@ public sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
     public async Task<ErrorOr<Guid>> Handle(CreateHeroCommand request, CancellationToken cancellationToken)
     {
         var hero = Hero.Create(request.Name, request.Alias);
-        var powers  = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
+        var powers = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
         hero.UpdatePowers(powers);
 
         await dbContext.Heroes.AddAsync(hero, cancellationToken);
