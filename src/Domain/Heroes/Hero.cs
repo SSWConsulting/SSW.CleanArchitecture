@@ -4,7 +4,10 @@ using SSW.CleanArchitecture.Domain.Teams;
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
-public readonly record struct HeroId(Guid Value);
+public readonly record struct HeroId(Guid Value)
+{
+    public HeroId() : this(Guid.CreateVersion7()) { }
+}
 
 public class Hero : AggregateRoot<HeroId>
 {
@@ -20,7 +23,8 @@ public class Hero : AggregateRoot<HeroId>
 
     public static Hero Create(string name, string alias)
     {
-        var hero = new Hero { Id = new HeroId(Guid.NewGuid()) };
+        Guid.CreateVersion7();
+        var hero = new Hero { Id = new HeroId(Guid.CreateVersion7()) };
         hero.UpdateName(name);
         hero.UpdateAlias(alias);
 

@@ -20,7 +20,7 @@ public class Mission : Entity<MissionId>
         ThrowIfNullOrWhiteSpace(description);
         return new Mission
         {
-            Id = new MissionId(Guid.NewGuid()),
+            Id = new MissionId(Guid.CreateVersion7()),
             Description = description,
             Status = MissionStatus.InProgress
         };

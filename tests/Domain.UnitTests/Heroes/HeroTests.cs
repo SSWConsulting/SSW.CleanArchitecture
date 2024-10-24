@@ -100,7 +100,7 @@ public class HeroTests
     {
         // Act
         var hero = Hero.Create("name", "alias");
-        hero.Id = new HeroId(Guid.NewGuid());
+        hero.Id = new HeroId();
         hero.UpdatePowers([new Power("Super-strength", 10)]);
 
         // Assert
