@@ -16,8 +16,10 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         // Arrange
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
-        await AddEntityAsync(hero);
-        await AddEntityAsync(team);
+        Context.Heroes.Add(hero);
+        Context.Teams.Add(team);
+        await Context.SaveChangesAsync();
+
         var teamId = team.Id.Value;
         var heroId = hero.Id.Value;
         var client = GetAnonymousClient();

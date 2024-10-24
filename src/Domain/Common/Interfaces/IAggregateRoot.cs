@@ -1,14 +1,8 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Base;
-
-namespace SSW.CleanArchitecture.Domain.Common.Interfaces;
+﻿namespace SSW.CleanArchitecture.Domain.Common.Interfaces;
 
 public interface IAggregateRoot
 {
-    public IReadOnlyList<DomainEvent> DomainEvents { get; }
+    public void AddDomainEvent(IDomainEvent domainEvent);
 
-    public void AddDomainEvent(DomainEvent domainEvent);
-
-    public void RemoveDomainEvent(DomainEvent domainEvent);
-
-    public void ClearDomainEvents();
+    IReadOnlyList<IDomainEvent> PopDomainEvents();
 }

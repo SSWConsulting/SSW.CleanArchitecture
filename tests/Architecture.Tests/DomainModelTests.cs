@@ -9,8 +9,6 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class DomainModelTests(ITestOutputHelper outputHelper)
 {
-    private readonly ITestOutputHelper _outputHelper = outputHelper;
-
     [Fact]
     public void DomainModel_ShouldInheritsBaseClasses()
     {
@@ -28,11 +26,11 @@ public class DomainModelTests(ITestOutputHelper outputHelper)
             .Should()
             .Inherit(typeof(AggregateRoot<>))
             .Or().Inherit(typeof(Entity<>))
-            .Or().Inherit(typeof(DomainEvent))
+            .Or().ImplementInterface(typeof(IDomainEvent))
             .Or().ImplementInterface(typeof(IValueObject));
 
         // Assert
         result.GetResult().IsSuccessful.Should().BeTrue();
-        result.GetResult().DumpFailingTypes(_outputHelper);
+        result.GetResult().DumpFailingTypes(outputHelper);
     }
 }

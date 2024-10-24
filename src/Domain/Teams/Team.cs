@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using SSW.CleanArchitecture.Domain.Common.Base;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Domain.Teams;

@@ -18,7 +18,8 @@ public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOu
         var team = TeamFactory.Generate();
         team.AddHero(hero);
         team.ExecuteMission("Save the world");
-        await AddEntityAsync(team);
+        Context.Teams.Add(team);
+        await Context.SaveChangesAsync();
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
 

@@ -2,6 +2,7 @@ using Scalar.AspNetCore;
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
+using SSW.CleanArchitecture.WebApi.Extensions;
 using SSW.CleanArchitecture.WebApi.Features;
 using SSW.CleanArchitecture.WebApi.Filters;
 using SSW.CleanArchitecture.WebApi.HealthChecks;
@@ -39,5 +40,7 @@ app.MapHeroEndpoints();
 app.MapTeamEndpoints();
 
 app.MapDefaultEndpoints();
+
+app.UseEventualConsistencyMiddleware();
 
 app.Run();

@@ -13,14 +13,15 @@ namespace SSW.CleanArchitecture.Domain.Common.Base;
 /// </summary>
 public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {
-    private readonly List<DomainEvent> _domainEvents = [];
+    private readonly List<IDomainEvent> _domainEvents = [];
 
-    [NotMapped]
-    public IReadOnlyList<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+    public void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 
-    public void AddDomainEvent(DomainEvent domainEvent) => _domainEvents.Add(domainEvent);
+    public IReadOnlyList<IDomainEvent> PopDomainEvents()
+    {
+        var copy = _domainEvents.ToList().AsReadOnly();
+        _domainEvents.Clear();
 
-    public void RemoveDomainEvent(DomainEvent domainEvent) => _domainEvents.Remove(domainEvent);
-
-    public void ClearDomainEvents() => _domainEvents.Clear();
+        return copy;
+    }
 }

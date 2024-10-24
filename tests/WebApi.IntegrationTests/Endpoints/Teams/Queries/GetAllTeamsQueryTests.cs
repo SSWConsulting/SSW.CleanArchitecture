@@ -14,7 +14,8 @@ public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture, ITestOutputHe
         // Arrange
         const int entityCount = 10;
         var entities = TeamFactory.Generate(entityCount);
-        await AddEntitiesAsync(entities);
+        await Context.Teams.AddRangeAsync(entities);
+        await Context.SaveChangesAsync();
         var client = GetAnonymousClient();
 
         // Act

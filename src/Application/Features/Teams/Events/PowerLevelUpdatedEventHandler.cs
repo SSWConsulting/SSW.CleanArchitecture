@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
@@ -13,23 +14,23 @@ public class PowerLevelUpdatedEventHandler(
     public async Task Handle(PowerLevelUpdatedEvent notification, CancellationToken cancellationToken)
     {
         logger.LogInformation("PowerLevelUpdatedEventHandler: {HeroName} power updated to {PowerLevel}",
-            notification.HeroName, notification.HeroPowerLevel);
+            notification.Hero.Name, notification.Hero.PowerLevel);
 
-        if (notification.TeamId is null)
+        var hero = await dbContext.Heroes.FirstAsync(h => h.Id == notification.Hero.Id,
+            cancellationToken: cancellationToken);
+
+        if (hero.TeamId is null)
         {
-            logger.LogInformation("Hero {HeroName} is not on a team", notification.HeroName);
+            logger.LogInformation("Hero {HeroName} is not on a team - nothing to do", notification.Hero.Name);
             return;
         }
 
         var team = dbContext.Teams
-            .WithSpecification(new TeamByIdSpec(notification.TeamId))
+            .WithSpecification(new TeamByIdSpec(hero.TeamId))
             .FirstOrDefault();
 
         if (team is null)
-        {
-            logger.LogError("Team {TeamId} not found", notification.TeamId);
-            return;
-        }
+            throw new EventualConsistencyException(PowerLevelUpdatedEvent.TeamNotFound);
 
         team.ReCalculatePowerLevel();
         await dbContext.SaveChangesAsync(cancellationToken);

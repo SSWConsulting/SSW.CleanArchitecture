@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
@@ -19,9 +20,11 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     // TODO: Consider removing this as query results can be cached and cause bad test results
     //       Also, consider encapsulating this and only exposing a `Query` method that internally uses `AsNoTracking()`
     //       see: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/324
-    protected ApplicationDbContext Context { get; }
+    public IApplicationDbContext Context => _dbContext;
 
-    protected IQueryable<T> GetQueryable<T>() where T : class => Context.Set<T>().AsNoTracking();
+    private readonly ApplicationDbContext _dbContext;
+
+    protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();
 
     protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
     {
@@ -30,25 +33,17 @@ public abstract class IntegrationTestBase : IAsyncLifetime
 
         _scope = _fixture.ScopeFactory.CreateScope();
         Mediator = _scope.ServiceProvider.GetRequiredService<IMediator>();
-        Context = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    }
-
-    protected async Task AddEntityAsync<T>(T entity, CancellationToken cancellationToken = default) where T : class
-    {
-        await Context.Set<T>().AddAsync(entity, cancellationToken);
-        await Context.SaveChangesAsync(cancellationToken);
-    }
-
-    protected async Task AddEntitiesAsync<T>(IEnumerable<T> entities, CancellationToken cancellationToken = default)
-        where T : class
-    {
-        await Context.Set<T>().AddRangeAsync(entities, cancellationToken);
-        await Context.SaveChangesAsync(cancellationToken);
+        _dbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     }
 
     public async Task InitializeAsync()
     {
         await _fixture.ResetState();
+    }
+
+    protected async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await Context.SaveChangesAsync(cancellationToken);
     }
 
     protected HttpClient GetAnonymousClient() => _fixture.Factory.AnonymousClient.Value;
