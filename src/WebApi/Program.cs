@@ -9,7 +9,7 @@ using SSW.CleanArchitecture.WebApi.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-builder.Services.AddGlobalErrorHandler();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
@@ -36,11 +36,9 @@ app.UseStaticFiles();
 
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();
-
-app.MapDefaultEndpoints();
-
 app.UseEventualConsistencyMiddleware();
 
+app.MapDefaultEndpoints();
 app.UseExceptionHandler();
 
 app.Run();
