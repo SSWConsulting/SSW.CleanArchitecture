@@ -23,7 +23,10 @@ public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext
         if (team is null)
             return TeamErrors.NotFound;
 
-        team.ExecuteMission(request.Description);
+        var result = team.ExecuteMission(request.Description);
+        if (result.IsError)
+            return result;
+
         await dbContext.SaveChangesAsync(cancellationToken);
 
         return new Success();
