@@ -4,12 +4,12 @@ using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Extensions;
 using SSW.CleanArchitecture.WebApi.Features;
-using SSW.CleanArchitecture.WebApi.Filters;
 using SSW.CleanArchitecture.WebApi.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
@@ -31,16 +31,14 @@ else
 app.MapOpenApi();
 app.MapScalarApiReference(options => options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient));
 app.UseHealthChecks();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseDefaultExceptionHandler();
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();
+app.UseEventualConsistencyMiddleware();
 
 app.MapDefaultEndpoints();
-
-app.UseEventualConsistencyMiddleware();
+app.UseExceptionHandler();
 
 app.Run();
