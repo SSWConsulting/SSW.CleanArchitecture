@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Domain.Heroes;
 using System.Net;
 using System.Net.Http.Json;

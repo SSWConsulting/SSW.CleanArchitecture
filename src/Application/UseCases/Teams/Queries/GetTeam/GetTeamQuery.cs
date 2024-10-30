@@ -1,7 +1,7 @@
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetTeam;
 
 public record GetTeamQuery(Guid TeamId) : IRequest<TeamDto?>;
 

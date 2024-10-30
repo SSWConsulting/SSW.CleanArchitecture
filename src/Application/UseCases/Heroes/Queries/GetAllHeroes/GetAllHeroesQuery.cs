@@ -1,7 +1,7 @@
 using AutoMapper.QueryableExtensions;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 
 public record GetAllHeroesQuery : IRequest<IReadOnlyList<HeroDto>>;
 

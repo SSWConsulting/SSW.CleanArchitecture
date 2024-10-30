@@ -1,7 +1,7 @@
 ﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.CompleteMission;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CompleteMission;
 
 public sealed record CompleteMissionCommand(Guid TeamId) : IRequest<ErrorOr<Success>>;
 

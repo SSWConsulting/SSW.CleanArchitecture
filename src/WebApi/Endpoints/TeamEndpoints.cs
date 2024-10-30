@@ -1,15 +1,15 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.CompleteMission;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
-using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
-using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetTeam;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.AddHeroToTeam;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CompleteMission;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.ExecuteMission;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetTeam;
 using SSW.CleanArchitecture.WebApi.Extensions;
-using TeamDto = SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams.TeamDto;
+using TeamDto = SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams.TeamDto;
 
-namespace SSW.CleanArchitecture.WebApi.Features;
+namespace SSW.CleanArchitecture.WebApi.Endpoints;
 
 public static class TeamEndpoints
 {

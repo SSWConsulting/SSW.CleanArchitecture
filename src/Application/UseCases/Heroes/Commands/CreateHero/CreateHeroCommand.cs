@@ -1,7 +1,7 @@
 ﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
 
 public sealed record CreateHeroCommand(
     string Name,

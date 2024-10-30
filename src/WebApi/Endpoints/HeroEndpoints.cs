@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
-using SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
-using SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 using SSW.CleanArchitecture.WebApi.Extensions;
 
-namespace SSW.CleanArchitecture.WebApi.Features;
+namespace SSW.CleanArchitecture.WebApi.Endpoints;
 
 public static class HeroEndpoints
 {

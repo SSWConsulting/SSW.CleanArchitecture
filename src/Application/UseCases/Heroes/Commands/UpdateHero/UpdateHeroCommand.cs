@@ -2,7 +2,7 @@
 using SSW.CleanArchitecture.Domain.Heroes;
 using System.Text.Json.Serialization;
 
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 
 public sealed record UpdateHeroCommand(
     string Name,

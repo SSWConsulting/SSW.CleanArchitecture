@@ -2,7 +2,7 @@
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Text.Json.Serialization;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.ExecuteMission;
 
 public sealed record ExecuteMissionCommand(string Description) : IRequest<ErrorOr<Success>>
 {

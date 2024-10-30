@@ -1,4 +1,4 @@
-using SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;

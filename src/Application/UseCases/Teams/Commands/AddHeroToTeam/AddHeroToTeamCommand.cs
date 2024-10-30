@@ -2,7 +2,7 @@
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.AddHeroToTeam;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.AddHeroToTeam;
 
 public sealed record AddHeroToTeamCommand(Guid TeamId, Guid HeroId) : IRequest<ErrorOr<Success>>;
 

@@ -1,7 +1,7 @@
 ﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
 
 public sealed record CreateTeamCommand(string Name) : IRequest<ErrorOr<Success>>;
 

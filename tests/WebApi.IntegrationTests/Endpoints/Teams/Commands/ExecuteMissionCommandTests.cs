@@ -1,6 +1,6 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.ExecuteMission;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;

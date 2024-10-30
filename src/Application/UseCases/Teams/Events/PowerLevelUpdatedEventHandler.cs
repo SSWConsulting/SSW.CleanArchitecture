@@ -4,7 +4,7 @@ using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Application.Features.Teams.Events;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Events;
 
 public class PowerLevelUpdatedEventHandler(
     IApplicationDbContext dbContext,

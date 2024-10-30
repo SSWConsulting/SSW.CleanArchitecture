@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
 
 public class CreateHeroPowerDto
 {

@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.Teams.Queries.GetAllTeams;
+namespace SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
 
 public class TeamDto
 {

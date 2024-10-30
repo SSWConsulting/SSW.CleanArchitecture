@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Queries.GetAllHeroes;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 
 public class HeroDto
 {

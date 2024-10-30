@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
+namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 
 public class UpdateHeroPowerDto
 {

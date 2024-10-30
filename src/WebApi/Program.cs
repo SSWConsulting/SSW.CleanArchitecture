@@ -2,8 +2,8 @@ using Scalar.AspNetCore;
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
+using SSW.CleanArchitecture.WebApi.Endpoints;
 using SSW.CleanArchitecture.WebApi.Extensions;
-using SSW.CleanArchitecture.WebApi.Features;
 using SSW.CleanArchitecture.WebApi.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);

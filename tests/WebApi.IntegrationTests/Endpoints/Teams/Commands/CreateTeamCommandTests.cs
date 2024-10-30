@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Teams.Commands.CreateTeam;
+using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
 using System.Net;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Fixtures;
