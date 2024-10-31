@@ -3,9 +3,9 @@ using SSW.CleanArchitecture.Application.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Queries.QueryName;
 
-public record QueryNameQuery : IRequest<IReadOnlyList<EntityNameDto>>;
+public record QueryNameQuery : IRequest<ErrorOr<EntityNameDto>>;
 
-public class QueryNameQueryHandler : IRequestHandler<QueryNameQuery, IReadOnlyList<EntityNameDto>>
+public class QueryNameQueryHandler : IRequestHandler<QueryNameQuery, ErrorOr<EntityNameDto>>
 {
     private readonly IMapper _mapper;
     private readonly IApplicationDbContext _dbContext;
@@ -18,7 +18,7 @@ public class QueryNameQueryHandler : IRequestHandler<QueryNameQuery, IReadOnlyLi
         _dbContext = dbContext;
     }
 
-    public async Task<IReadOnlyList<EntityNameDto>> Handle(
+    public async Task<ErrorOr<EntityNameDto>> Handle(
         QueryNameQuery request,
         CancellationToken cancellationToken)
     {
