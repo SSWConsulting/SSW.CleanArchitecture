@@ -2,9 +2,9 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// NOTE: Double check that persistent DB code works
+// Ensure the port doesn't conflict with other docker containers (or remove it altogether)
 var sqlServer = builder
-    .AddSqlServer("sql")
+    .AddSqlServer("sql", port: 1800)
     .WithLifetime(ContainerLifetime.Persistent);
 
 var db = sqlServer
