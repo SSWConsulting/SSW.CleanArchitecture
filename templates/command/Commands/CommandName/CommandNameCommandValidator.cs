@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.EntityNames.Commands.CommandName;
+namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Commands.CommandName;
 
 public class CommandNameCommandValidator : AbstractValidator<CommandNameCommand>
 {

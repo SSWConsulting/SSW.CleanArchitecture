@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 
-namespace SSW.CleanArchitecture.Application.Features.EntityNames.Queries.QueryName;
+namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Queries.QueryName;
 
 public record QueryNameQuery : IRequest<IReadOnlyList<EntityNameDto>>;
 

@@ -1,6 +1,6 @@
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 
-namespace SSW.CleanArchitecture.Application.Features.EntityNames.Commands.CommandName;
+namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Commands.CommandName;
 
 public record CommandNameCommand() : IRequest<Guid>;
 
