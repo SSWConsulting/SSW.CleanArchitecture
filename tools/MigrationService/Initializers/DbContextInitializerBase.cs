@@ -21,10 +21,10 @@ public abstract class DbContextInitializerBase<T> where T : DbContext
         var strategy = DbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
+            // Create the database if it does not exist.
+            // Do this first so there is then a database to start a transaction against.
             if (!await dbCreator.ExistsAsync(cancellationToken))
             {
-                // Create the database if it does not exist.
-                // Do this first so there is then a database to start a transaction against.
                 await dbCreator.CreateAsync(cancellationToken);
             }
         });
