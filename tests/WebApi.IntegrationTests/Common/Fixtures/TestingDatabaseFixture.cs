@@ -28,7 +28,7 @@ public class TestingDatabaseFixture : IAsyncLifetime
         using var scope = ScopeFactory.CreateScope();
         var warehouseInitializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
         await warehouseInitializer.EnsureDatabaseAsync(default);
-        await warehouseInitializer.RunMigrationAsync(default);
+        await warehouseInitializer.CreateSchemaAsync(true, default);
         // await warehouseInitializer.SeedDataAsync(default);
 
         // NOTE: If there are any tables you want to skip being reset, they can be configured here
