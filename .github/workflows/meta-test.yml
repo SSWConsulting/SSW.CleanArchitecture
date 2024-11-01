@@ -47,7 +47,7 @@ jobs:
     # Tests that a query can be generated
     - name: Create a query
       run: |
-        cd src/Application/Features
+        cd src/Application/UseCases
         mkdir Products
         cd Products
         dotnet new ssw-ca-query --name GetProducts --entityName Product --slnName MyTestApp
@@ -61,7 +61,7 @@ jobs:
     # Tests that a command can be generated
     - name: Create a command
       run: |
-        cd src/Application/Features
+        cd src/Application/UseCases
         cd Products
         dotnet new ssw-ca-command --name CreateProduct --entityName Product --slnName MyTestApp
       
