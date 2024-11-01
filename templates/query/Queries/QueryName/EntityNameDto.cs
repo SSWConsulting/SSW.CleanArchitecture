@@ -1,4 +1,4 @@
-namespace SSW.CleanArchitecture.Application.Features.EntityNames.Queries.QueryName;
+namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Queries.QueryName;
 
 public class EntityNameDto
 {

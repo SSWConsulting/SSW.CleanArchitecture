@@ -1,6 +1,6 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Heroes.Commands.UpdateHero;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;

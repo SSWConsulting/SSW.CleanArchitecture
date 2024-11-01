@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
-using SSW.CleanArchitecture.Infrastructure.Persistence;
-using SSW.CleanArchitecture.WebApi.HealthChecks.EntityFrameworkDbContextHealthCheck;
+﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.WebApi.HealthChecks;
 using SSW.CleanArchitecture.WebApi.Services;
 
 namespace SSW.CleanArchitecture.WebApi;
-#pragma warning disable IDE0055
+// TODO: Can we remove this?
+// #pragma warning disable IDE0055
 
 public static class DependencyInjection
 {
@@ -17,38 +15,7 @@ public static class DependencyInjection
 
         services.AddOpenApi();
 
-        AddHealthChecks(services, config);
-    }
-
-    private static void AddHealthChecks(IServiceCollection services, IConfiguration config)
-    {
-        services.AddHealthChecks()
-            // Check 1: Check the SQL Server Connectivity (no EF, no DBContext, hardly anything to go wrong)
-            .AddSqlServer(
-                name: "SQL Server",
-                connectionString: config["ConnectionStrings:DefaultConnection"]!,
-                healthQuery: $"-- SqlServerHealthCheck{Environment.NewLine}SELECT 123;",
-                failureStatus: HealthStatus.Unhealthy,
-                tags: ["db", "sql", "sqlserver"])
-
-            // Check 2: Check the Entity Framework DbContext (requires the DbContext Options, DI, Interceptors, Configurations, etc. to all be correct), and 
-            // then run a sample query to test important data
-            // Note: Add TagWith("HealthCheck") to show up in SQL Profiling tools (usually as the opening comment) so that you know that the constant DB Queries are
-            // for the health check of the current application and not something strange/unidentified.
-            .AddEntityFrameworkDbContextCheck<ApplicationDbContext>(
-                name: "Entity Framework DbContext",
-                tags: ["db", "dbContext", "sql"],
-                testQuery: async (ctx, ct) =>
-                {
-                    // TODO: Replace the custom test query below with something appropriate for your project that is always expected to be valid
-                    _ = await ctx
-                        .Heroes
-                        // allows you to understand why you might see constant db queries in sql profile
-                        .TagWith("HealthCheck")
-                        .FirstOrDefaultAsync(ct);
-
-                    return new DbHealthCheckResult("Database Context is healthy");
-                });
+        services.AddHealthChecks(config);
     }
 }
-#pragma warning restore IDE0055
+// #pragma warning restore IDE0055

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SSW.CleanArchitecture.Application.Features.Heroes.Commands.CreateHero;
+using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
 using System.Net;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common.Fixtures;

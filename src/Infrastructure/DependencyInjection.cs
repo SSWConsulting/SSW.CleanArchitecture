@@ -10,7 +10,7 @@ public static class DependencyInjection
 {
     public static void AddInfrastructure(this IHostApplicationBuilder builder)
     {
-        builder.AddSqlServerDbContext<ApplicationDbContext>("clean-architecture",
+        builder.AddSqlServerDbContext<ApplicationDbContext>("Clean-Architecture",
             null,
             options =>
             {
@@ -23,11 +23,13 @@ public static class DependencyInjection
                 // options.UseExceptionProcessor();
             });
 
-        builder.Services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        var services = builder.Services;
 
-        builder.Services.AddScoped<EntitySaveChangesInterceptor>();
-        builder.Services.AddScoped<DispatchDomainEventsInterceptor>();
+        services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
-        builder.Services.AddSingleton(TimeProvider.System);
+        services.AddScoped<EntitySaveChangesInterceptor>();
+        services.AddScoped<DispatchDomainEventsInterceptor>();
+
+        services.AddSingleton(TimeProvider.System);
     }
 }
