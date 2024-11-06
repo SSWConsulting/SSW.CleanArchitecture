@@ -24,7 +24,7 @@ public class Worker(
 
             var warehouseInitializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
             await warehouseInitializer.EnsureDatabaseAsync(stoppingToken);
-            await warehouseInitializer.CreateSchemaAsync(false, stoppingToken);
+            await warehouseInitializer.CreateSchemaAsync(true, stoppingToken);
 
             if (environment.IsDevelopment())
             {
