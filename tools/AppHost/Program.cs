@@ -6,11 +6,11 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Ensure the port doesn't conflict with other docker containers (or remove it altogether)
 var sqlServer = builder
     .AddSqlServer("sql", port: 1800)
-    .WithDropDatabaseCommand()
     .WithLifetime(ContainerLifetime.Persistent);
 
 var db = sqlServer
-    .AddDatabase("clean-architecture");
+    .AddDatabase("clean-architecture")
+    .WithDropDatabaseCommand();
 
 var migrationService = builder.AddProject<MigrationService>("migrations")
     .WithReference(db)
