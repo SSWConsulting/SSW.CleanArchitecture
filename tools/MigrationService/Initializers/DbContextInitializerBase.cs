@@ -17,7 +17,6 @@ public abstract class DbContextInitializerBase<T> where T : DbContext
     public async Task EnsureDatabaseAsync(CancellationToken cancellationToken)
     {
         var dbCreator = DbContext.GetService<IRelationalDatabaseCreator>();
-
         var strategy = DbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
@@ -35,9 +34,6 @@ public abstract class DbContextInitializerBase<T> where T : DbContext
         var strategy = DbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
-            // Run migration in a transaction to avoid partial migration if it fails.
-            // await using var transaction = await DbContext.Database.BeginTransactionAsync(cancellationToken);
-
             if (useMigrations)
             {
                 await DbContext.Database.MigrateAsync(cancellationToken);
@@ -45,10 +41,11 @@ public abstract class DbContextInitializerBase<T> where T : DbContext
             else
             {
                 var dbCreator = DbContext.GetService<IRelationalDatabaseCreator>();
-                await dbCreator.CreateTablesAsync(cancellationToken);
+                if (!await dbCreator.HasTablesAsync(cancellationToken))
+                {
+                    await dbCreator.CreateTablesAsync(cancellationToken);
+                }
             }
-
-            // await transaction.CommitAsync(cancellationToken);
         });
     }
 }
