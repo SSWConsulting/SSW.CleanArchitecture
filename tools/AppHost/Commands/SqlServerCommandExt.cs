@@ -3,17 +3,17 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace AppHost.Commands;
 
-public static class SqlServerCommandExt
+public static class SqlServerDatabaseCommandExt
 {
-    public static IResourceBuilder<SqlServerServerResource> WithDropDatabaseCommand(
-        this IResourceBuilder<SqlServerServerResource> builder)
+    public static IResourceBuilder<SqlServerDatabaseResource> WithDropDatabaseCommand(
+        this IResourceBuilder<SqlServerDatabaseResource> builder)
     {
         builder.WithCommand(
             "drop-database",
             "Drop Database",
             async context =>
             {
-                var connectionString = await builder.Resource.GetConnectionStringAsync();
+                var connectionString = await builder.Resource.ConnectionStringExpression.GetValueAsync(default);
                 ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
 
                 var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
