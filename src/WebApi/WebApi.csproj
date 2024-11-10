@@ -23,7 +23,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0-rc.2.24474.3" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.0-rc.2.24474.3" />
-    <PackageReference Include="Scalar.AspNetCore" Version="1.2.21" />
+    <PackageReference Include="Scalar.AspNetCore" Version="1.2.34" />
   </ItemGroup>
 
   <ItemGroup>
