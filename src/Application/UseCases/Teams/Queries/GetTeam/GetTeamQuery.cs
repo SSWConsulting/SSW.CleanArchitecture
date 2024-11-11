@@ -3,11 +3,11 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetTeam;
 
-public record GetTeamQuery(Guid TeamId) : IRequest<TeamDto?>;
+public record GetTeamQuery(Guid TeamId) : IRequest<ErrorOr<TeamDto>>;
 
-public sealed class GetAllTeamsQueryHandler(IApplicationDbContext dbContext) : IRequestHandler<GetTeamQuery, TeamDto?>
+public sealed class GetAllTeamsQueryHandler(IApplicationDbContext dbContext) : IRequestHandler<GetTeamQuery, ErrorOr<TeamDto>>
 {
-    public async Task<TeamDto?> Handle(
+    public async Task<ErrorOr<TeamDto>> Handle(
         GetTeamQuery request,
         CancellationToken cancellationToken)
     {
@@ -22,6 +22,9 @@ public sealed class GetAllTeamsQueryHandler(IApplicationDbContext dbContext) : I
                 Heroes = t.Heroes.Select(h => new HeroDto { Id = h.Id.Value, Name = h.Name }).ToList()
             })
             .FirstOrDefaultAsync(cancellationToken);
+
+        if (team is null)
+            return TeamErrors.NotFound;
 
         return team;
     }
