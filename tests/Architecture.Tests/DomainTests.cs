@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class DomainModelTests(ITestOutputHelper outputHelper) : BaseTest
+public class DomainModel(ITestOutputHelper outputHelper) : TestBase
 {
     private static Type AggregateRoot = typeof(AggregateRoot<>);
     private static Type Entity = typeof(Entity<>);

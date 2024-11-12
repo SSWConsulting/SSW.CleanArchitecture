@@ -4,7 +4,7 @@ using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class ApplicationTests(ITestOutputHelper outputHelper) : BaseTest
+public class Application(ITestOutputHelper outputHelper) : TestBase
 {
     private static readonly Type IRequestHandler = typeof(IRequestHandler<,>);
 

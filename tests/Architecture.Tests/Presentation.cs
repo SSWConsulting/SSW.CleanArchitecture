@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class PresentationTests(ITestOutputHelper outputHelper) : BaseTest
+public class Presentation(ITestOutputHelper outputHelper) : TestBase
 {
     private static readonly Type IDbContext = typeof(IApplicationDbContext);
     private static readonly Type DbContext = typeof(ApplicationDbContext);

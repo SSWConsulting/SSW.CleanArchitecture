@@ -2,7 +2,7 @@ using SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class LayerTests : BaseTest
+public class Layer : TestBase
 {
     [Fact]
     public void DomainLayer_Should_NotHaveDependencyOnApplication()
