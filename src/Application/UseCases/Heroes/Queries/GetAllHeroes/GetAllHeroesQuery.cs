@@ -5,7 +5,7 @@ namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes
 
 public record GetAllHeroesQuery : IRequest<IReadOnlyList<HeroDto>>;
 
-public sealed class GetAllHeroesQueryHandler(
+public sealed class GetAllHeroesQueryHandlerXXXXXX(
     IMapper mapper,
     IApplicationDbContext dbContext) : IRequestHandler<GetAllHeroesQuery, IReadOnlyList<HeroDto>>
 {

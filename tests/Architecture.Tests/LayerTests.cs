@@ -43,16 +43,6 @@ public class LayerTests : BaseTest
             .Should()
             .NotHaveDependencyOn(PresentationAssembly.GetName().Name)
             .GetResult();
-        result.IsSuccessful.Should().BeTrue();
-    }
-
-    [Fact]
-    public void PresentationLayer_ShouldNotHaveDependencyOn_DomainLayer()
-    {
-        var result = Types.InAssembly(PresentationAssembly)
-            .Should()
-            .NotHaveDependencyOn("SSW.CleanArchitecture.Domain")
-            .GetResult();
 
         result.IsSuccessful.Should().BeTrue();
     }

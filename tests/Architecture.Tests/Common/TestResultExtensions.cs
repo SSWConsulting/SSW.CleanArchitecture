@@ -14,4 +14,18 @@ public static class TestResultExtensions
         foreach (var type in result.FailingTypes)
             outputHelper.WriteLine(type.FullName);
     }
+
+
+}
+
+public static class TypeExtensions
+{
+    public static void Dump(this IEnumerable<Type> types, ITestOutputHelper outputHelper)
+    {
+        if (!types.Any())
+            outputHelper.WriteLine("No types found.");
+
+        foreach (var type in types)
+            outputHelper.WriteLine(type.FullName);
+    }
 }

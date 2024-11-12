@@ -1,8 +1,10 @@
 ﻿using MediatR;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 using SSW.CleanArchitecture.Domain.Heroes;
+using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.WebApi.Extensions;
 
 namespace SSW.CleanArchitecture.WebApi.Endpoints;
@@ -27,6 +29,8 @@ public static class HeroEndpoints
                 Guid heroId,
                 UpdateHeroCommand command,
                 ISender sender,
+                // ApplicationDbContext dbContext,
+                // Hero hero,
                 CancellationToken ct) =>
             {
                 var hero = Hero.Create(command.Name, command.Alias);
