@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-using NetArchTest.Rules;
-using SSW.CleanArchitecture.Architecture.UnitTests.Common;
+﻿using SSW.CleanArchitecture.Architecture.UnitTests.Common;
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using System.Reflection;

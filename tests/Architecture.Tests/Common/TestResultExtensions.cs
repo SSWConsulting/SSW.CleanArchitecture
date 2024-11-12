@@ -1,5 +1,4 @@
-﻿using NetArchTest.Rules;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 

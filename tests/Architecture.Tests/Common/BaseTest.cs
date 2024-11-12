@@ -8,5 +8,5 @@ public abstract class BaseTest
     protected static readonly Assembly DomainAssembly = typeof(Domain.Common.Base.AggregateRoot<>).Assembly;
     protected static readonly Assembly ApplicationAssembly = typeof(Application.Common.Interfaces.IApplicationDbContext).Assembly;
     protected static readonly Assembly InfrastructureAssembly = typeof(Infrastructure.Persistence.ApplicationDbContext).Assembly;
-    protected static readonly Assembly WebApiAssembly = typeof(IWebApiMarker).Assembly;
+    protected static readonly Assembly PresentationAssembly = typeof(IWebApiMarker).Assembly;
 }

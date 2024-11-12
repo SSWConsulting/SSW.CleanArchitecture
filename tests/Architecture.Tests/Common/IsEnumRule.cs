@@ -1,5 +1,4 @@
 ﻿using Mono.Cecil;
-using NetArchTest.Rules;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
