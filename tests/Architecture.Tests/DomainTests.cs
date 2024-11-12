@@ -2,11 +2,10 @@
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using System.Reflection;
-using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class DomainModel(ITestOutputHelper outputHelper) : TestBase
+public class DomainModel : TestBase
 {
     private static Type AggregateRoot = typeof(AggregateRoot<>);
     private static Type Entity = typeof(Entity<>);
@@ -31,11 +30,11 @@ public class DomainModel(ITestOutputHelper outputHelper) : TestBase
             .Inherit(AggregateRoot)
             .Or().Inherit(Entity)
             .Or().ImplementInterface(DomainEvent)
-            .Or().ImplementInterface(ValueObject);
+            .Or().ImplementInterface(ValueObject)
+            .GetResult();
 
         // Assert
-        result.GetResult().IsSuccessful.Should().BeTrue();
-        result.GetResult().DumpFailingTypes(outputHelper);
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -61,33 +60,4 @@ public class DomainModel(ITestOutputHelper outputHelper) : TestBase
             failingTypes.Should().BeEmpty();
         }
     }
-
-    // [Fact]
-    // public void EntitiesAndAggregates_Should_Have_PrivateSetter()
-    // {
-    //     var entityTypes = Types.InAssembly(DomainAssembly)
-    //         .That()
-    //         .AreClasses()
-    //         .And()
-    //         .Inherit(Entity)
-    //         .Or()
-    //         .Inherit(AggregateRoot)
-    //         .GetTypes()
-    //         .Where(t => t != AggregateRoot && !t.FullName.EndsWith("Id"));
-    //
-    //
-    //     foreach (var entityType in entityTypes)
-    //     {
-    //         var properties = entityType.GetProperties();
-    //         foreach (var property in properties)
-    //         {
-    //             if (property.CanWrite)
-    //             {
-    //                 property.SetMethod.Should().NotBeNull()
-    //                     .And.Match(setMethod => setMethod.IsPrivate || setMethod.IsFamily || setMethod.IsFamilyOrAssembly,
-    //                         $"{property.Name} should have a private or protected setter.", property.DeclaringType?.FullName);
-    //             }
-    //         }
-    //     }
-    // }
 }

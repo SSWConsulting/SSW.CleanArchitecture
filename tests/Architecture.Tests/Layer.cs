@@ -12,7 +12,7 @@ public class Layer : TestBase
             .NotHaveDependencyOn(ApplicationAssembly.GetName().Name)
             .GetResult();
 
-        result.IsSuccessful.Should().BeTrue();
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public class Layer : TestBase
             .NotHaveDependencyOn(InfrastructureAssembly.GetName().Name)
             .GetResult();
 
-        result.IsSuccessful.Should().BeTrue();
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -33,7 +33,8 @@ public class Layer : TestBase
             .Should()
             .NotHaveDependencyOn(InfrastructureAssembly.GetName().Name)
             .GetResult();
-        result.IsSuccessful.Should().BeTrue();
+
+        result.Should().BeSuccessful();
     }
 
     [Fact]
@@ -44,6 +45,6 @@ public class Layer : TestBase
             .NotHaveDependencyOn(PresentationAssembly.GetName().Name)
             .GetResult();
 
-        result.IsSuccessful.Should().BeTrue();
+        result.Should().BeSuccessful();
     }
 }
