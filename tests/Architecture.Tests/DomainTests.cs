@@ -7,10 +7,10 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class DomainModel : TestBase
 {
-    private static Type AggregateRoot = typeof(AggregateRoot<>);
-    private static Type Entity = typeof(Entity<>);
-    private static Type DomainEvent = typeof(IDomainEvent);
-    private static Type ValueObject = typeof(IValueObject);
+    private static readonly Type AggregateRoot = typeof(AggregateRoot<>);
+    private static readonly Type Entity = typeof(Entity<>);
+    private static readonly Type DomainEvent = typeof(IDomainEvent);
+    private static readonly Type ValueObject = typeof(IValueObject);
 
     [Fact]
     public void DomainModel_ShouldInheritsBaseClasses()

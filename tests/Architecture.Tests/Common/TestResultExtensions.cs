@@ -14,4 +14,6 @@ public static class TestResultExtensions
         foreach (var type in result.FailingTypes)
             outputHelper.WriteLine(type.FullName);
     }
+
+    public static TestResultAssertions Should(this TestResult result) => new(result);
 }

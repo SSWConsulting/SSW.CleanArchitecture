@@ -2,11 +2,11 @@ using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System.Text;
 
-namespace SSW.CleanArchitecture.Architecture.UnitTests;
+namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 public class TestResultAssertions : ReferenceTypeAssertions<TestResult, TestResultAssertions>
 {
-    public TestResultAssertions(TestResult instance) :base(instance)
+    public TestResultAssertions(TestResult instance) : base(instance)
     {
     }
 
@@ -36,9 +36,4 @@ public class TestResultAssertions : ReferenceTypeAssertions<TestResult, TestResu
 
         return sb.ToString();
     }
-}
-
-public static class TestResultExtensions
-{
-    public static TestResultAssertions Should(this TestResult result) => new(result);
 }
