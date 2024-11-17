@@ -6,10 +6,11 @@ using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+[ClassDataSource<WebApplicationFactory>(Shared = SharedType.PerTestSession)]
+public class CreateHeroCommandTests(WebApplicationFactory fixture)
+    : IntegrationTestBase(fixture)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldCreateHero()
     {
         // Arrange

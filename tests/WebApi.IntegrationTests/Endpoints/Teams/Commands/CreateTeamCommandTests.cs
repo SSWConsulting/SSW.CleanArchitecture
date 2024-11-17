@@ -9,7 +9,7 @@ namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 public class CreateTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldCreateTeam()
     {
         // Arrange

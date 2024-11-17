@@ -13,7 +13,7 @@ namespace WebApi.IntegrationTests.Endpoints.Teams.Events;
 public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_UpdatePowerOnTeam()
     {
         // Arrange

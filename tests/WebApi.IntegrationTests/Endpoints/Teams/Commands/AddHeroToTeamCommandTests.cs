@@ -10,7 +10,7 @@ namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldAddHeroToTeam()
     {
         // Arrange
