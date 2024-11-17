@@ -1,9 +1,17 @@
 using SSW.CleanArchitecture.Domain.Heroes;
+using TUnit.Core.Logging;
 
 namespace SSW.CleanArchitecture.Domain.UnitTests.Heroes;
 
 public class HeroTests
 {
+    private readonly DefaultLogger _logger = new();
+
+    // public HeroTests()
+    // {
+    //     _logger = logger;
+    // }
+
     [Test]
     [Arguments("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "cc3431a8-4a31-4f76-af64-e8198279d7a4", false)]
     [Arguments("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "c8ad9974-ca93-44a5-9215-2f4d9e866c7a", true)]
@@ -27,6 +35,8 @@ public class HeroTests
     [Test]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
     {
+        _logger.LogError("Create_WithValidNameAndAlias_ShouldSucceed");
+
         // Arrange
         var name = "name";
         var alias = "alias";
