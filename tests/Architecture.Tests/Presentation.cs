@@ -9,7 +9,7 @@ public class Presentation : TestBase
     private static readonly Type IDbContext = typeof(IApplicationDbContext);
     private static readonly Type DbContext = typeof(ApplicationDbContext);
 
-    [Fact]
+    [Test]
     public void Endpoints_ShouldNotReferenceDbContext()
     {
         var types = Types
