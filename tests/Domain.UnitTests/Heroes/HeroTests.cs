@@ -4,9 +4,9 @@ namespace SSW.CleanArchitecture.Domain.UnitTests.Heroes;
 
 public class HeroTests
 {
-    [Theory]
-    [InlineData("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "cc3431a8-4a31-4f76-af64-e8198279d7a4", false)]
-    [InlineData("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "c8ad9974-ca93-44a5-9215-2f4d9e866c7a", true)]
+    [Test]
+    [Arguments("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "cc3431a8-4a31-4f76-af64-e8198279d7a4", false)]
+    [Arguments("c8ad9974-ca93-44a5-9215-2f4d9e866c7a", "c8ad9974-ca93-44a5-9215-2f4d9e866c7a", true)]
     public void HeroId_ShouldBeComparable(string stringGuid1, string stringGuid2, bool isEqual)
     {
         // Arrange
@@ -24,7 +24,7 @@ public class HeroTests
         id2.Value.Should().Be(guid2);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
     {
         // Arrange
@@ -40,7 +40,7 @@ public class HeroTests
         hero.Alias.Should().Be(alias);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithSameNameAndAlias_ShouldSucceed()
     {
         // Arrange
@@ -51,10 +51,10 @@ public class HeroTests
         Hero.Create(name, alias);
     }
 
-    [Theory]
-    [InlineData(null, "alias")]
-    [InlineData("name", null)]
-    [InlineData(null, null)]
+    [Test]
+    [Arguments(null, "alias")]
+    [Arguments("name", null)]
+    [Arguments(null, null)]
     public void Create_WithNullTitleOrAlias_ShouldThrow(string? name, string? alias)
     {
         // Arrange
@@ -66,7 +66,7 @@ public class HeroTests
         act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null*");
     }
 
-    [Fact]
+    [Test]
     public void AddPower_ShouldUpdateHeroPowerLevel()
     {
         // Act
@@ -79,7 +79,7 @@ public class HeroTests
         hero.Powers.Should().HaveCount(2);
     }
 
-    [Fact]
+    [Test]
     public void RemovePower_ShouldUpdateHeroPowerLevel()
     {
         // Act
@@ -95,7 +95,7 @@ public class HeroTests
         hero.Powers.Should().HaveCount(1);
     }
 
-    [Fact]
+    [Test]
     public void AddPower_ShouldRaisePowerLevelUpdatedEvent()
     {
         // Act
@@ -117,7 +117,7 @@ public class HeroTests
         hero.Powers.Should().ContainSingle("Super-strength");
     }
 
-    [Fact]
+    [Test]
     public void RemovePower_ShouldRaisePowerLevelUpdatedEvent()
     {
         // Act
