@@ -1,6 +1,6 @@
 # Replace AutoMapper with manual mapping
 
-- Status: Approved
+- Status: accepted
 - Deciders: Daniel Mackay, Matt Goldman
 - Date: 2024-11-18
 - Tags: mappers

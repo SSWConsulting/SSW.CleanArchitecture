@@ -1,4 +1,3 @@
-using Scalar.AspNetCore;
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
@@ -9,7 +8,7 @@ using SSW.CleanArchitecture.WebApi.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-builder.Services.AddProblemDetails();
+builder.Services.AddCustomProblemDetails();
 
 builder.Services.AddWebApi(builder.Configuration);
 builder.Services.AddApplication();
@@ -29,7 +28,7 @@ else
 }
 
 app.MapOpenApi();
-app.MapScalarApiReference(options => options.WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient));
+app.MapCustomScalarApiReference();
 app.UseHealthChecks();
 app.UseHttpsRedirection();
 app.UseStaticFiles();

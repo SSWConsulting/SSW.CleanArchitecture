@@ -1,6 +1,6 @@
 # Use Vogen to simplify strongly typed IDs
 
-- Status: approved
+- Status: accepted
 - Deciders: Daniel Mackay
 - Date: 2024-11-19
 - Tags: ddd, vogen, strongly-typed-ids
