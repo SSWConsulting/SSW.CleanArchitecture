@@ -9,8 +9,7 @@ public sealed record ExecuteMissionCommand(string Description) : IRequest<ErrorO
     [JsonIgnore] public Guid TeamId { get; set; }
 }
 
-// ReSharper disable once UnusedType.Global
-public sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext)
+internal sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<ExecuteMissionCommand, ErrorOr<Success>>
 {
     public async Task<ErrorOr<Success>> Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)

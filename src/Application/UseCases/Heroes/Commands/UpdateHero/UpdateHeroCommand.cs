@@ -13,8 +13,9 @@ public sealed record UpdateHeroCommand(
     public Guid HeroId { get; set; }
 }
 
-// ReSharper disable once UnusedType.Global
-public sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
+public record UpdateHeroPowerDto(string Name, int PowerLevel);
+
+internal sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<UpdateHeroCommand, ErrorOr<Guid>>
 {
     public async Task<ErrorOr<Guid>> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)

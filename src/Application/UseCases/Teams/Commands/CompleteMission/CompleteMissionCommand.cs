@@ -5,8 +5,7 @@ namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CompleteMiss
 
 public sealed record CompleteMissionCommand(Guid TeamId) : IRequest<ErrorOr<Success>>;
 
-// ReSharper disable once UnusedType.Global
-public sealed class CompleteMissionCommandHandler(IApplicationDbContext dbContext)
+internal sealed class CompleteMissionCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<CompleteMissionCommand, ErrorOr<Success>>
 {
     public async Task<ErrorOr<Success>> Handle(CompleteMissionCommand request, CancellationToken cancellationToken)

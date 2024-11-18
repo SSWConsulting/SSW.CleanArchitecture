@@ -6,8 +6,7 @@ namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.AddHeroToTea
 
 public sealed record AddHeroToTeamCommand(Guid TeamId, Guid HeroId) : IRequest<ErrorOr<Success>>;
 
-// ReSharper disable once UnusedType.Global
-public sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContext)
+internal sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<AddHeroToTeamCommand, ErrorOr<Success>>
 {
     public async Task<ErrorOr<Success>> Handle(AddHeroToTeamCommand request, CancellationToken cancellationToken)

@@ -25,7 +25,7 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
         Context.Teams.Add(team);
         await Context.SaveChangesAsync();
         powers.Add(new Power("Speed", 5));
-        var powerDtos = powers.Select(p => new UpdateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel });
+        var powerDtos = powers.Select(p => new UpdateHeroPowerDto(p.Name, p.PowerLevel));
         var cmd = new UpdateHeroCommand(hero.Name, hero.Alias, powerDtos);
         cmd.HeroId = hero.Id.Value;
         var client = GetAnonymousClient();
