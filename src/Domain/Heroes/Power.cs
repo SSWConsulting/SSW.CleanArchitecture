@@ -1,6 +1,4 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
-
-namespace SSW.CleanArchitecture.Domain.Heroes;
+﻿namespace SSW.CleanArchitecture.Domain.Heroes;
 
 public record Power : IValueObject
 {

@@ -2,10 +2,11 @@
 using SSW.CleanArchitecture.Domain.Common.Base;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using System.Reflection;
+using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
-public class DomainModel : TestBase
+public class DomainModel(ITestOutputHelper output) : TestBase
 {
     private static readonly Type AggregateRoot = typeof(AggregateRoot<>);
     private static readonly Type Entity = typeof(Entity<>);
@@ -19,10 +20,14 @@ public class DomainModel : TestBase
         var domainModels = Types.InAssembly(DomainAssembly)
             .That()
             .DoNotResideInNamespaceContaining("Common")
-            .And().DoNotHaveNameEndingWith("Id")
+            .And().DoNotHaveNameMatching(".*Id.*")
+            .And().DoNotHaveNameMatching(".*Vogen.*")
+            .And().DoNotHaveName("ThrowHelper")
             .And().DoNotHaveNameEndingWith("Spec")
             .And().DoNotHaveNameEndingWith("Errors")
             .And().MeetCustomRule(new IsNotEnumRule());
+
+        domainModels.GetTypes().Dump(output);
 
         // Act
         var result = domainModels

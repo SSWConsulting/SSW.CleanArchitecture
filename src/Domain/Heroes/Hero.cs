@@ -1,13 +1,11 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Base;
-using SSW.CleanArchitecture.Domain.Teams;
+﻿using SSW.CleanArchitecture.Domain.Teams;
+using Vogen;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
-public readonly record struct HeroId(Guid Value)
-{
-    public HeroId() : this(Guid.CreateVersion7()) { }
-}
+[ValueObject<Guid>]
+public readonly partial struct HeroId;
 
 public class Hero : AggregateRoot<HeroId>
 {
@@ -24,7 +22,7 @@ public class Hero : AggregateRoot<HeroId>
     public static Hero Create(string name, string alias)
     {
         Guid.CreateVersion7();
-        var hero = new Hero { Id = new HeroId(Guid.CreateVersion7()) };
+        var hero = new Hero { Id = HeroId.From(Guid.CreateVersion7()) };
         hero.UpdateName(name);
         hero.UpdateAlias(alias);
 

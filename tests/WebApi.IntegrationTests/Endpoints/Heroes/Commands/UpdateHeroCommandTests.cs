@@ -54,7 +54,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
     public async Task Command_WhenHeroDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange
-        var heroId = new HeroId();
+        var heroId = HeroId.From(Guid.NewGuid());
         var cmd = new UpdateHeroCommand(
             "foo",
             "bar",

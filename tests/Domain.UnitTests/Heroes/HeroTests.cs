@@ -12,8 +12,8 @@ public class HeroTests
         // Arrange
         Guid guid1 = Guid.Parse(stringGuid1);
         Guid guid2 = Guid.Parse(stringGuid2);
-        HeroId id1 = new(guid1);
-        HeroId id2 = new(guid2);
+        HeroId id1 = HeroId.From(guid1);
+        HeroId id2 = HeroId.From(guid2);
 
         // Act
         var areEqual = id1 == id2;
@@ -100,7 +100,7 @@ public class HeroTests
     {
         // Act
         var hero = Hero.Create("name", "alias");
-        hero.Id = new HeroId();
+        hero.Id = HeroId.From(Guid.NewGuid());
         hero.UpdatePowers([new Power("Super-strength", 10)]);
 
         // Assert

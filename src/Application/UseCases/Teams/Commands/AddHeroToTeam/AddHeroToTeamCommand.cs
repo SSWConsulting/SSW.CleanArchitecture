@@ -11,8 +11,8 @@ internal sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContex
 {
     public async Task<ErrorOr<Success>> Handle(AddHeroToTeamCommand request, CancellationToken cancellationToken)
     {
-        var teamId = new TeamId(request.TeamId);
-        var heroId = new HeroId(request.HeroId);
+        var teamId = TeamId.From(request.TeamId);
+        var heroId = HeroId.From(request.HeroId);
 
         var team = dbContext.Teams
             .WithSpecification(new TeamByIdSpec(teamId))

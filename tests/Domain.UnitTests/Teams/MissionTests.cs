@@ -12,8 +12,8 @@ public class MissionTests
         // Arrange
         Guid guid1 = Guid.Parse(stringGuid1);
         Guid guid2 = Guid.Parse(stringGuid2);
-        MissionId id1 = new(guid1);
-        MissionId id2 = new(guid2);
+        MissionId id1 = MissionId.From(guid1);
+        MissionId id2 = MissionId.From(guid2);
 
         // Act
         var areEqual = id1 == id2;

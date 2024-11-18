@@ -1,12 +1,11 @@
-﻿using ErrorOr;
-using SSW.CleanArchitecture.Domain.Common.Base;
-using SSW.CleanArchitecture.Domain.Common.Interfaces;
-using SSW.CleanArchitecture.Domain.Heroes;
+﻿using SSW.CleanArchitecture.Domain.Heroes;
+using Vogen;
 
 namespace SSW.CleanArchitecture.Domain.Teams;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
-public sealed record TeamId(Guid Value);
+[ValueObject<Guid>]
+public readonly partial struct TeamId;
 
 public class Team : AggregateRoot<TeamId>
 {
@@ -27,7 +26,7 @@ public class Team : AggregateRoot<TeamId>
     {
         ThrowIfNullOrWhiteSpace(name);
 
-        var team = new Team { Id = new TeamId(Guid.CreateVersion7()), Name = name, Status = TeamStatus.Available };
+        var team = new Team { Id = TeamId.From(Guid.CreateVersion7()), Name = name, Status = TeamStatus.Available };
 
         return team;
     }

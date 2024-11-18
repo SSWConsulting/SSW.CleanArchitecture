@@ -20,7 +20,7 @@ internal sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
 {
     public async Task<ErrorOr<Guid>> Handle(UpdateHeroCommand request, CancellationToken cancellationToken)
     {
-        var heroId = new HeroId(request.HeroId);
+        var heroId = HeroId.From(request.HeroId);
         var hero = await dbContext.Heroes
             .Include(h => h.Powers)
             .FirstOrDefaultAsync(h => h.Id == heroId, cancellationToken);
