@@ -29,7 +29,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var cmd = new UpdateHeroCommand(
             heroName,
             heroAlias,
-            powers.Select(p => new UpdateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel }));
+            powers.Select(p => new UpdateHeroPowerDto(p.Name, p.PowerLevel)));
         cmd.HeroId = hero.Id.Value;
         var client = GetAnonymousClient();
         var createdTimeStamp = DateTime.Now;
@@ -58,7 +58,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var cmd = new UpdateHeroCommand(
             "foo",
             "bar",
-            [new UpdateHeroPowerDto { Name = "Heat vision", PowerLevel = 7 }]);
+            [new UpdateHeroPowerDto("Heat vision", 7)]);
         cmd.HeroId = heroId.Value;
         var client = GetAnonymousClient();
 

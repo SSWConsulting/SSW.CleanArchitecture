@@ -22,7 +22,7 @@ public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var cmd = new CreateHeroCommand(
             "Clark Kent",
             "Superman",
-            powers.Select(p => new CreateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel }));
+            powers.Select(p => new CreateHeroPowerDto(p.Name, p.PowerLevel)));
         var client = GetAnonymousClient();
 
         // Act
