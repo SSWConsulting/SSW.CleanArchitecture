@@ -8,8 +8,8 @@ public record HeroDto(Guid Id, string Name, string Alias, int PowerLevel, IEnume
 
 public record HeroPowerDto(string Name, int PowerLevel);
 
-internal sealed class GetAllHeroesQueryHandler(
-    IApplicationDbContext dbContext) : IRequestHandler<GetAllHeroesQuery, IReadOnlyList<HeroDto>>
+internal sealed class GetAllHeroesQueryHandler(IApplicationDbContext dbContext)
+    : IRequestHandler<GetAllHeroesQuery, IReadOnlyList<HeroDto>>
 {
     public async Task<IReadOnlyList<HeroDto>> Handle(
         GetAllHeroesQuery request,
