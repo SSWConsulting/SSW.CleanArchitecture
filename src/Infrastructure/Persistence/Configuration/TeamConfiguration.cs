@@ -10,11 +10,6 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team>
     {
         builder.HasKey(t => t.Id);
 
-        // builder.Property(t => t.Id)
-        //     .HasConversion(x => x.Value,
-        //         x => new TeamId(x))
-        //     .ValueGeneratedNever();
-
         builder.Property(t => t.Name)
             .IsRequired();
 

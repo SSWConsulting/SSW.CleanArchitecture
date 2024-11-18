@@ -10,11 +10,6 @@ public class HeroConfiguration : IEntityTypeConfiguration<Hero>
     {
         builder.HasKey(t => t.Id);
 
-        // builder.Property(t => t.Id)
-        //     .HasConversion(x => x.Value,
-        //         x => new HeroId(x))
-        //     .ValueGeneratedNever();
-
         builder.Property(t => t.Name)
             .IsRequired();
 

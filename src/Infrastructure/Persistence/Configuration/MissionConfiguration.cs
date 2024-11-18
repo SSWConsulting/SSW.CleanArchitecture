@@ -10,11 +10,6 @@ public class MissionConfiguration : IEntityTypeConfiguration<Mission>
     {
         builder.HasKey(t => t.Id);
 
-        // builder.Property(t => t.Id)
-        //     .HasConversion(x => x.Value,
-        //         x => new MissionId(x))
-        //     .ValueGeneratedNever();
-
         builder.Property(t => t.Description)
             .IsRequired();
     }
