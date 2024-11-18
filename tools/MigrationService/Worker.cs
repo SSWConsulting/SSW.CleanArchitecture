@@ -1,5 +1,4 @@
 using MigrationService.Initializers;
-using OpenTelemetry.Trace;
 using System.Diagnostics;
 
 namespace MigrationService;

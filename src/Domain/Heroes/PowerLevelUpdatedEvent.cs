@@ -1,8 +1,4 @@
-﻿using ErrorOr;
-using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
-using SSW.CleanArchitecture.Domain.Common.Interfaces;
-
-namespace SSW.CleanArchitecture.Domain.Heroes;
+﻿namespace SSW.CleanArchitecture.Domain.Heroes;
 
 public record PowerLevelUpdatedEvent(Hero Hero) : IDomainEvent
 {

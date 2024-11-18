@@ -1,7 +1,4 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SSW.CleanArchitecture.Domain.Common.Base;
+﻿namespace SSW.CleanArchitecture.Domain.Common.Base;
 
 /// <summary>
 /// Cluster of objects treated as a single unit.

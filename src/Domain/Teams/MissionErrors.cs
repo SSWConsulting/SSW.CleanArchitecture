@@ -1,5 +1,3 @@
-using ErrorOr;
-
 namespace SSW.CleanArchitecture.Domain.Teams;
 
 public static class MissionErrors

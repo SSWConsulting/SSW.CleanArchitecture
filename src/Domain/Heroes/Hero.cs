@@ -1,5 +1,4 @@
 ﻿using SSW.CleanArchitecture.Domain.Teams;
-using Vogen;
 
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
