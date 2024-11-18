@@ -62,7 +62,6 @@ This is a template for creating a new project using [Clean Architecture](https:/
 - 📦 ErrorOr - fluent result pattern (instead of exceptions)
 - 📦 FluentValidation - for validating requests
     - as per [ssw.com.au/rules/use-fluent-validation/](https://ssw.com.au/rules/use-fluent-validation/)
-- 📦 AutoMapper - for mapping between objects
 - 🆔 Strongly Typed IDs - to combat primitive obsession
     - e.g. pass `CustomerId` type into methods instead of `int`, or `Guid`
     - Entity Framework can automatically convert the int, Guid, nvarchar(..) to strongly typed ID.
