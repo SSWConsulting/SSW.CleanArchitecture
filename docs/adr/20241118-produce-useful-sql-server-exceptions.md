@@ -25,3 +25,7 @@ Chosen option: "Option 1", because it does what we need and is far better than t
 
 - ✅ Strongly typed exceptions
 - ❌ Additional dependency added
+
+## Links
+
+- https://youtube.com/watch?v=QKwZlWvfh-o&si=yVnd5a7CVZaSV_Gr

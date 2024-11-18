@@ -49,3 +49,7 @@ Chosen option: "Option 2 - Manual Mapper", because it reduces the runtime errors
 - ✅ Reduced runtime issues due to missing fields or mappings
 - ✅ No need to learn a new library
 - ❌ More code needed for mapping
+
+## Links
+
+- https://www.youtube.com/watch?v=RsnEZdc3MrE
