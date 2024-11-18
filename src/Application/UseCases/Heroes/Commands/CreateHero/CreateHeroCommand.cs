@@ -8,8 +8,9 @@ public sealed record CreateHeroCommand(
     string Alias,
     IEnumerable<CreateHeroPowerDto> Powers) : IRequest<ErrorOr<Guid>>;
 
-// ReSharper disable once UnusedType.Global
-public sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
+public record CreateHeroPowerDto(string Name, int PowerLevel);
+
+internal sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<CreateHeroCommand, ErrorOr<Guid>>
 {
     public async Task<ErrorOr<Guid>> Handle(CreateHeroCommand request, CancellationToken cancellationToken)

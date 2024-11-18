@@ -5,8 +5,7 @@ namespace SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
 
 public sealed record CreateTeamCommand(string Name) : IRequest<ErrorOr<Success>>;
 
-// ReSharper disable once UnusedType.Global
-public sealed class CreateTeamCommandHandler(IApplicationDbContext dbContext)
+internal sealed class CreateTeamCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<CreateTeamCommand, ErrorOr<Success>>
 {
     public async Task<ErrorOr<Success>> Handle(CreateTeamCommand request, CancellationToken cancellationToken)

@@ -6,7 +6,7 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Application.UseCases.Teams.Events;
 
-public class PowerLevelUpdatedEventHandler(
+internal class PowerLevelUpdatedEventHandler(
     IApplicationDbContext dbContext,
     ILogger<PowerLevelUpdatedEventHandler> logger)
     : INotificationHandler<PowerLevelUpdatedEvent>
