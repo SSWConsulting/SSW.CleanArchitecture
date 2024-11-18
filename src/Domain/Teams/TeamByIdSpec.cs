@@ -1,7 +1,6 @@
-﻿using Ardalis.Specification;
+﻿namespace SSW.CleanArchitecture.Domain.Teams;
 
-namespace SSW.CleanArchitecture.Domain.Teams;
-
+// For more on the Specification Pattern see: https://www.ssw.com.au/rules/use-specification-pattern/
 public sealed class TeamByIdSpec : SingleResultSpecification<Team>
 {
     public TeamByIdSpec(TeamId teamId)

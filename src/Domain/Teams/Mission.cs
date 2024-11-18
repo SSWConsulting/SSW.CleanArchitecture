@@ -1,6 +1,4 @@
-﻿using Vogen;
-
-namespace SSW.CleanArchitecture.Domain.Teams;
+﻿namespace SSW.CleanArchitecture.Domain.Teams;
 
 // For strongly typed IDs, check out the rule: https://www.ssw.com.au/rules/do-you-use-strongly-typed-ids/
 [ValueObject<Guid>]

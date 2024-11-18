@@ -1,6 +1,4 @@
-﻿using SSW.CleanArchitecture.Domain.Common.Interfaces;
-
-namespace SSW.CleanArchitecture.Domain.Common.Base;
+﻿namespace SSW.CleanArchitecture.Domain.Common.Base;
 
 /// <summary>
 /// Tracks creation and modification of objects.

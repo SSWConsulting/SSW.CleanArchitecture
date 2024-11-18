@@ -1,5 +1,3 @@
-using ErrorOr;
-
 namespace SSW.CleanArchitecture.Domain.Heroes;
 
 public static class HeroErrors

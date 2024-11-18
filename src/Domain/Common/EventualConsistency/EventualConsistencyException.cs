@@ -1,5 +1,3 @@
-using ErrorOr;
-
 namespace SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 
 public class EventualConsistencyException : Exception

@@ -1,11 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using SSW.CleanArchitecture.Domain.Common.EventualConsistency;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
-using System.Transactions;
 
 namespace SSW.CleanArchitecture.Infrastructure.Middleware;
 

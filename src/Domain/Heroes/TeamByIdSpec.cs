@@ -1,7 +1,6 @@
-﻿using Ardalis.Specification;
+﻿namespace SSW.CleanArchitecture.Domain.Heroes;
 
-namespace SSW.CleanArchitecture.Domain.Heroes;
-
+// For more on the Specification Pattern see: https://www.ssw.com.au/rules/use-specification-pattern/
 public sealed class HeroByIdSpec : SingleResultSpecification<Hero>
 {
     public HeroByIdSpec(HeroId heroId)
