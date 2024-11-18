@@ -1,3 +1,4 @@
+using EntityFramework.Exceptions.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
@@ -19,8 +20,8 @@ public static class DependencyInjection
                     serviceProvider.GetRequiredService<EntitySaveChangesInterceptor>(),
                     serviceProvider.GetRequiredService<DispatchDomainEventsInterceptor>());
 
-                // TODO: Add this
-                // options.UseExceptionProcessor();
+                // Return strongly typed useful exceptions
+                options.UseExceptionProcessor();
             });
 
         var services = builder.Services;
