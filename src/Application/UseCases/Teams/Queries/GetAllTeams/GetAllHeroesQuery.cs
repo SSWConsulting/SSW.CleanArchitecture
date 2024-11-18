@@ -1,4 +1,3 @@
-using AutoMapper.QueryableExtensions;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 
 namespace SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
