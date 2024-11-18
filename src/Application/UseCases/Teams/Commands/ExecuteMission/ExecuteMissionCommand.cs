@@ -14,7 +14,7 @@ internal sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbConte
 {
     public async Task<ErrorOr<Success>> Handle(ExecuteMissionCommand request, CancellationToken cancellationToken)
     {
-        var teamId = new TeamId(request.TeamId);
+        var teamId = TeamId.From(request.TeamId);
         var team = dbContext.Teams
             .WithSpecification(new TeamByIdSpec(teamId))
             .FirstOrDefault();

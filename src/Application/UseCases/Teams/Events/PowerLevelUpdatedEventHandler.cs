@@ -26,7 +26,7 @@ internal sealed class PowerLevelUpdatedEventHandler(
         }
 
         var team = dbContext.Teams
-            .WithSpecification(new TeamByIdSpec(hero.TeamId))
+            .WithSpecification(new TeamByIdSpec(hero.TeamId.Value))
             .FirstOrDefault();
 
         if (team is null)

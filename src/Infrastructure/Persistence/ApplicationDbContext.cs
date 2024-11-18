@@ -3,12 +3,12 @@ using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
+using SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 using System.Reflection;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence;
 
-public class ApplicationDbContext(
-    DbContextOptions options)
+public class ApplicationDbContext(DbContextOptions options)
     : DbContext(options), IApplicationDbContext
 {
     public DbSet<Hero> Heroes => AggregateRootSet<Hero>();
@@ -26,8 +26,8 @@ public class ApplicationDbContext(
     {
         base.ConfigureConventions(configurationBuilder);
 
-        configurationBuilder.Properties<string>()
-            .HaveMaxLength(256);
+        configurationBuilder.Properties<string>().HaveMaxLength(256);
+        configurationBuilder.RegisterAllInVogenEfCoreConverters();
     }
 
     private DbSet<T> AggregateRootSet<T>() where T : class, IAggregateRoot => Set<T>();

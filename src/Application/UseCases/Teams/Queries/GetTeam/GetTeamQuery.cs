@@ -16,7 +16,7 @@ internal sealed class GetAllTeamsQueryHandler(IApplicationDbContext dbContext)
         GetTeamQuery request,
         CancellationToken cancellationToken)
     {
-        var teamId = new TeamId(request.TeamId);
+        var teamId = TeamId.From(request.TeamId);
 
         var team = await dbContext.Teams
             .Where(t => t.Id == teamId)

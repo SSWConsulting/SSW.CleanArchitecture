@@ -13,8 +13,8 @@ public class TeamTests
         // Arrange
         Guid guid1 = Guid.Parse(stringGuid1);
         Guid guid2 = Guid.Parse(stringGuid2);
-        TeamId id1 = new(guid1);
-        TeamId id2 = new(guid2);
+        TeamId id1 = TeamId.From(guid1);
+        TeamId id2 = TeamId.From(guid2);
 
         // Act
         var areEqual = id1 == id2;

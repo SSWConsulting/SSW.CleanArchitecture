@@ -10,7 +10,7 @@ internal sealed class CompleteMissionCommandHandler(IApplicationDbContext dbCont
 {
     public async Task<ErrorOr<Success>> Handle(CompleteMissionCommand request, CancellationToken cancellationToken)
     {
-        var teamId = new TeamId(request.TeamId);
+        var teamId = TeamId.From(request.TeamId);
         var team = dbContext.Teams
             .WithSpecification(new TeamByIdSpec(teamId))
             .FirstOrDefault();
