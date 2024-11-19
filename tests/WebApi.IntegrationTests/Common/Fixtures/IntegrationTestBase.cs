@@ -36,6 +36,11 @@ public abstract class IntegrationTestBaseV2 : IDisposable
         await _dbContext.SaveChangesAsync();
     }
 
+    protected async Task SaveAsync()
+    {
+        await _dbContext.SaveChangesAsync();
+    }
+
     protected HttpClient GetAnonymousClient() => Testing.AnonymousClient.Value;
 
     public void Dispose()

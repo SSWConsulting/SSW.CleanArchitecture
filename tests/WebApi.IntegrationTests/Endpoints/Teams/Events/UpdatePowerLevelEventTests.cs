@@ -5,6 +5,7 @@ using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
 using WebApi.IntegrationTests.Common.Fixtures;
 
@@ -33,6 +34,7 @@ public class UpdatePowerLevelEventTests : IntegrationTestBaseV2
         var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
 
         // Assert
+        await Wait.ForEventualConsistency();
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
             .FirstOrDefaultAsync();
