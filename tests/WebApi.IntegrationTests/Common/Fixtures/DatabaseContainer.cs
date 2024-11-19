@@ -13,6 +13,8 @@ public class DatabaseContainer : IAsyncDisposable
     private readonly MsSqlContainer _container = new MsSqlBuilder()
         .WithImage("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
         .WithName($"CleanArchitecture-IntegrationTests-{Guid.CreateVersion7()}")
+        // .WithCommand("sqlcmd -Q \"CREATE DATABASE [CleanArchitecture-IntegrationTests]\"")
+        // .WithCommand("/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P Password123 -Q \"CREATE DATABASE [MyDatabase]\"")
         .WithPassword("Password123")
         .WithPortBinding(1433, true)
         .WithAutoRemove(true)
@@ -20,12 +22,12 @@ public class DatabaseContainer : IAsyncDisposable
 
     private const int MaxRetries = 5;
 
-    public SqlConnection? ConnectionString { get; private set; }
+    public SqlConnection? Connection { get; private set; }
 
     public async Task InitializeAsync()
     {
         await StartWithRetry();
-        ConnectionString = new SqlConnection(_container.GetConnectionString());
+        Connection = new SqlConnection(_container.GetConnectionString());
     }
 
     private async Task StartWithRetry()

@@ -19,13 +19,13 @@ public static class Testing
     [BeforeEvery(Test)]
     public static async Task TestSetup(TestContext context)
     {
-        await _database.ResetAsync();
+        // Nothing to do yet
     }
 
     [AfterEvery(Test)]
     public static async Task TestCleanUp(TestContext context)
     {
-        // TODO: Anything to do here?
+        await _database.ResetAsync();
     }
 
     [After(Assembly)]

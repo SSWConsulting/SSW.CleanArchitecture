@@ -1,10 +1,6 @@
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using OpenTelemetry.Instrumentation.Http;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
-using TUnit.Core.Interfaces;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
 
@@ -14,15 +10,14 @@ namespace WebApi.IntegrationTests.Common.Fixtures;
 [NotInParallel]
 public abstract class IntegrationTestBaseV2 : IDisposable
 {
-    private readonly ApplicationDbContext _dbContext;
-    private readonly IServiceScope _scope;
-    protected readonly ISender Mediator;
+    private ApplicationDbContext _dbContext = null!;
+    private IServiceScope _scope = null!;
 
-    public IntegrationTestBaseV2()
+    [Before(Test)]
+    public void TestSetup()
     {
         _scope = Testing.CreateScope();
         _dbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        Mediator = _scope.ServiceProvider.GetRequiredService<ISender>();
     }
 
     protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();

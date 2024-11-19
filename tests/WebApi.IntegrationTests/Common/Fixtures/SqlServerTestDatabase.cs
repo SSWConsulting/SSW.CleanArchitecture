@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Respawn;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
@@ -9,6 +10,7 @@ public class SqlServerTestDatabase : IAsyncDisposable
 {
     private static DatabaseContainer _database = new();
     private Respawner _checkpoint = null!;
+    private string _connectionString = null!;
 
     /// <summary>
     /// Create and seed database
@@ -17,22 +19,34 @@ public class SqlServerTestDatabase : IAsyncDisposable
     {
         await _database.InitializeAsync();
 
+        var builder = new SqlConnectionStringBuilder(_database.Connection.ConnectionString)
+        {
+            InitialCatalog = "CleanArchitecture-IntegrationTests"
+        };
+
+        _connectionString = builder.ConnectionString;
+
+        // _connection = new SqlConnection(_database.Connection.ConnectionString);
+        // _connection.da("CleanArchitecture-IntegrationTests");
+
+        // _connection = _database.Connection;
+
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseSqlServer(_database.ConnectionString)
+            .UseSqlServer(_connectionString)
             .Options;
 
-        await using var dbContext = new ApplicationDbContext(options);
+        using var dbContext = new ApplicationDbContext(options);
         await dbContext.Database.MigrateAsync();
 
-        _checkpoint = await Respawner.CreateAsync(_database.ConnectionString,
+        _checkpoint = await Respawner.CreateAsync(_connectionString,
             new RespawnerOptions { TablesToIgnore = ["__EFMigrationsHistory"] });
     }
 
-    public DbConnection GetConnection() => _database.ConnectionString;
+    public DbConnection GetConnection() => new SqlConnection(_connectionString);
 
     public async Task ResetAsync()
     {
-        await _checkpoint.ResetAsync(_database.ConnectionString);
+        await _checkpoint.ResetAsync(_connectionString);
     }
 
     public async ValueTask DisposeAsync()
