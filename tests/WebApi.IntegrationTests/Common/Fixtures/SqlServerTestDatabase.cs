@@ -8,7 +8,7 @@ namespace WebApi.IntegrationTests.Common.Fixtures;
 
 public class SqlServerTestDatabase : IAsyncDisposable
 {
-    private static DatabaseContainer _database = new();
+    private readonly DatabaseContainer _database = new();
     private Respawner _checkpoint = null!;
     private string _connectionString = null!;
 
@@ -25,11 +25,6 @@ public class SqlServerTestDatabase : IAsyncDisposable
         };
 
         _connectionString = builder.ConnectionString;
-
-        // _connection = new SqlConnection(_database.Connection.ConnectionString);
-        // _connection.da("CleanArchitecture-IntegrationTests");
-
-        // _connection = _database.Connection;
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseSqlServer(_connectionString)

@@ -1,5 +1,4 @@
 using Microsoft.Data.SqlClient;
-using MigrationService.Initializers;
 using Polly;
 using Testcontainers.MsSql;
 
