@@ -1,3 +1,5 @@
+using Microsoft.Data.SqlClient;
+using MigrationService.Initializers;
 using Polly;
 using Testcontainers.MsSql;
 
@@ -18,12 +20,12 @@ public class DatabaseContainer : IAsyncDisposable
 
     private const int MaxRetries = 5;
 
-    public string? ConnectionString { get; private set; }
+    public SqlConnection? ConnectionString { get; private set; }
 
     public async Task InitializeAsync()
     {
         await StartWithRetry();
-        ConnectionString = _container.GetConnectionString();
+        ConnectionString = new SqlConnection(_container.GetConnectionString());
     }
 
     private async Task StartWithRetry()

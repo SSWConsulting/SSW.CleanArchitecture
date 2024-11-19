@@ -8,9 +8,7 @@ using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-[ClassDataSource<WebApplicationFactory>(Shared = SharedType.PerTestSession)]
-public class UpdateHeroCommandTests(WebApplicationFactory fixture)
-    : IntegrationTestBase(fixture)
+public class UpdateHeroCommandTests : IntegrationTestBaseV2
 {
     [Test]
     public async Task Command_ShouldUpdateHero()
@@ -19,8 +17,7 @@ public class UpdateHeroCommandTests(WebApplicationFactory fixture)
         var heroName = "2021-01-01T00:00:00Z";
         var heroAlias = "2021-01-01T00:00:00Z-alias";
         var hero = HeroFactory.Generate();
-        Context.Heroes.Add(hero);
-        await Context.SaveChangesAsync();
+        await AddAsync(hero);
         (string Name, int PowerLevel)[] powers =
         [
             ("Heat vision", 7),
@@ -40,7 +37,7 @@ public class UpdateHeroCommandTests(WebApplicationFactory fixture)
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        Hero item = await Context.Heroes.AsNoTracking().FirstAsync(dbHero => dbHero.Id == hero.Id);
+        var item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);
@@ -68,7 +65,7 @@ public class UpdateHeroCommandTests(WebApplicationFactory fixture)
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        Hero? item = await Context.Heroes.AsNoTracking().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId);
+        var item = await GetQueryable<Hero>().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId);
 
         item.Should().BeNull();
     }

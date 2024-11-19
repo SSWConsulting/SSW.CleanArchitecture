@@ -10,8 +10,7 @@ using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Events;
 
-public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class UpdatePowerLevelEventTests : IntegrationTestBaseV2
 {
     [Test]
     public async Task Command_UpdatePowerOnTeam()
@@ -22,8 +21,8 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
         List<Power> powers = [new Power("Strength", 10)];
         hero.UpdatePowers(powers);
         team.AddHero(hero);
-        Context.Teams.Add(team);
-        await Context.SaveChangesAsync();
+        await AddAsync(team);
+        // await Context.SaveChangesAsync();
         powers.Add(new Power("Speed", 5));
         var powerDtos = powers.Select(p => new UpdateHeroPowerDto { Name = p.Name, PowerLevel = p.PowerLevel });
         var cmd = new UpdateHeroCommand(hero.Name, hero.Alias, powerDtos);

@@ -14,7 +14,6 @@
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="JunitXml.TestLogger" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
-<!--    <PackageReference Include="Microsoft.NET.Test.Sdk" />-->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="NSubstitute" />
     <PackageReference Include="Respawn" />
@@ -22,31 +21,11 @@
     <PackageReference Include="Testcontainers.MsSql" />
     <PackageReference Include="Polly" />
     <PackageReference Include="tunit" />
-<!--    <PackageReference Include="xunit.runner.visualstudio">-->
-<!--      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
-<!--      <PrivateAssets>all</PrivateAssets>-->
-<!--    </PackageReference>-->
-<!--    <PackageReference Include="Meziantou.Extensions.Logging.Xunit" />-->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebApi\WebApi.csproj" />
     <ProjectReference Include="..\..\tools\MigrationService\MigrationService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Endpoints\Heroes\Queries\**" />
-    <Compile Remove="Endpoints\Teams\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Endpoints\Heroes\Queries\**" />
-    <EmbeddedResource Remove="Endpoints\Teams\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Endpoints\Heroes\Queries\**" />
-    <None Remove="Endpoints\Teams\**" />
   </ItemGroup>
 
 </Project>
