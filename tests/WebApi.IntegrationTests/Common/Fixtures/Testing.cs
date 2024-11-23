@@ -4,7 +4,7 @@ namespace WebApi.IntegrationTests.Common.Fixtures;
 
 public static class Testing
 {
-    private static SqlServerTestDatabase _database = new();
+    private static readonly SqlServerTestDatabase _database = new();
     private static CustomWebApplicationFactory _factory = null!;
     private static IServiceScopeFactory _scopeFactory = null!;
 
