@@ -174,7 +174,7 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
 
 > **NOTE:** The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
 
-4. Open https://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
+4. Open http://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
 
 ## 🚀 Publishing Template
 
