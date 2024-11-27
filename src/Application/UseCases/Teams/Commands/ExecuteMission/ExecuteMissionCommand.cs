@@ -32,7 +32,7 @@ internal sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbConte
     }
 }
 
-public class ExecuteMissionCommandValidator : AbstractValidator<ExecuteMissionCommand>
+internal sealed class ExecuteMissionCommandValidator : AbstractValidator<ExecuteMissionCommand>
 {
     public ExecuteMissionCommandValidator()
     {

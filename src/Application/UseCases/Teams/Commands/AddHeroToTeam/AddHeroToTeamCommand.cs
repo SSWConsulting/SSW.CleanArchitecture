@@ -35,7 +35,7 @@ internal sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContex
     }
 }
 
-public class AddHeroToTeamCommandValidator : AbstractValidator<AddHeroToTeamCommand>
+internal sealed class AddHeroToTeamCommandValidator : AbstractValidator<AddHeroToTeamCommand>
 {
     public AddHeroToTeamCommandValidator()
     {

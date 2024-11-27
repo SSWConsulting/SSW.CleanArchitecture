@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         var applicationAssembly = typeof(DependencyInjection).Assembly;
 
-        services.AddValidatorsFromAssembly(applicationAssembly);
+        services.AddValidatorsFromAssembly(applicationAssembly, includeInternalTypes: true);
 
         services.AddMediatR(config =>
         {
