@@ -26,7 +26,7 @@ internal sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
     }
 }
 
-public class CreateHeroCommandValidator : AbstractValidator<CreateHeroCommand>
+internal sealed class CreateHeroCommandValidator : AbstractValidator<CreateHeroCommand>
 {
     public CreateHeroCommandValidator()
     {

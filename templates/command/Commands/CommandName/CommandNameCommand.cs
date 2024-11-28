@@ -15,7 +15,7 @@ internal sealed class CommandNameCommandHandler(IApplicationDbContext dbContext)
     }
 }
 
-public class CommandNameCommandValidator : AbstractValidator<CommandNameCommand>
+internal sealed class CommandNameCommandValidator : AbstractValidator<CommandNameCommand>
 {
     public CommandNameCommandValidator()
     {

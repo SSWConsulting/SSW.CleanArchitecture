@@ -1,5 +1,3 @@
-// Global using directives
-
 global using Ardalis.Specification;
 global using static System.ArgumentException;
 global using static System.ArgumentNullException;

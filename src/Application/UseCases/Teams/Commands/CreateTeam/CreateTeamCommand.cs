@@ -19,7 +19,7 @@ internal sealed class CreateTeamCommandHandler(IApplicationDbContext dbContext)
     }
 }
 
-public class CreateTeamCommandValidator : AbstractValidator<CreateTeamCommand>
+internal sealed class CreateTeamCommandValidator : AbstractValidator<CreateTeamCommand>
 {
     public CreateTeamCommandValidator()
     {

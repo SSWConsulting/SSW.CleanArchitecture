@@ -39,7 +39,7 @@ internal sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
     }
 }
 
-public class UpdateHeroCommandValidator : AbstractValidator<UpdateHeroCommand>
+internal sealed class UpdateHeroCommandValidator : AbstractValidator<UpdateHeroCommand>
 {
     public UpdateHeroCommandValidator()
     {

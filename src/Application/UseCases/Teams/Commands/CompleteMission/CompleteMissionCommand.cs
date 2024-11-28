@@ -25,7 +25,7 @@ internal sealed class CompleteMissionCommandHandler(IApplicationDbContext dbCont
     }
 }
 
-public class CompleteMissionCommandValidator : AbstractValidator<CompleteMissionCommand>
+internal sealed class CompleteMissionCommandValidator : AbstractValidator<CompleteMissionCommand>
 {
     public CompleteMissionCommandValidator()
     {
