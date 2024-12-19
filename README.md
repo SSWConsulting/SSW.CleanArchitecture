@@ -101,6 +101,10 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 ## 🎉 Getting Started
 
+### Prerequisites
+- [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started)
+- [Dotnet 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+
 ### Installing the Template
 
 1. Install the SSW CA template
