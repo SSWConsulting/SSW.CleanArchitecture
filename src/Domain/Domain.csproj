@@ -7,6 +7,6 @@
     <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
     <PackageReference Include="ErrorOr" Version="2.0.1" />
     <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-    <PackageReference Include="Vogen" Version="5.0.5" />
+    <PackageReference Include="Vogen" Version="6.0.0" />
   </ItemGroup>
 </Project>
