@@ -220,4 +220,4 @@ You can also find a collection of commumity projects built on Clean Architecture
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome! See [Contributing](contributing.md) for more information.
+Contributions, issues and feature requests are welcome! See [Contributing](./CONTRIBUTING.md) for more information.
