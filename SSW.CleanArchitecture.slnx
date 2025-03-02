@@ -1,0 +1,25 @@
+﻿<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src\Application\Application.csproj" />
+    <Project Path="src\Domain\Domain.csproj" />
+    <Project Path="src\Infrastructure\Infrastructure.csproj" />
+    <Project Path="src\WebApi\WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests\Architecture.Tests\Architecture.Tests.csproj" />
+    <Project Path="tests\Domain.UnitTests\Domain.UnitTests.csproj" />
+    <Project Path="tests\WebApi.IntegrationTests\WebApi.IntegrationTests.csproj" Type="Classic C#" />
+    <File Path="tests\Directory.Packages.Props" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools\AppHost\AppHost.csproj" Type="Classic C#" />
+    <Project Path="tools\MigrationService\MigrationService.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>
