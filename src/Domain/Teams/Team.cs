@@ -8,7 +8,16 @@ public readonly partial struct TeamId;
 
 public class Team : AggregateRoot<TeamId>
 {
-    public string Name { get; private set; } = null!;
+    public string Name
+    {
+        get => _name;
+        private set
+        {
+            ThrowIfNullOrWhiteSpace(value, nameof(Name));
+            _name = value;
+        }
+    }
+
     public int TotalPowerLevel { get; private set; }
     public TeamStatus Status { get; private set; }
 
@@ -17,16 +26,14 @@ public class Team : AggregateRoot<TeamId>
     private Mission? CurrentMission => _missions.FirstOrDefault(m => m.Status == MissionStatus.InProgress);
 
     private readonly List<Hero> _heroes = [];
+    private string _name = null!;
     public IReadOnlyList<Hero> Heroes => _heroes.AsReadOnly();
 
     private Team() { }
 
     public static Team Create(string name)
     {
-        ThrowIfNullOrWhiteSpace(name);
-
         var team = new Team { Id = TeamId.From(Guid.CreateVersion7()), Name = name, Status = TeamStatus.Available };
-
         return team;
     }
 
