@@ -28,8 +28,8 @@ internal sealed class UpdateHeroCommandHandler(IApplicationDbContext dbContext)
         if (hero is null)
             return HeroErrors.NotFound;
 
-        hero.UpdateName(request.Name);
-        hero.UpdateAlias(request.Alias);
+        hero.Name = request.Name;
+        hero.Alias = request.Alias;
         var powers = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
         hero.UpdatePowers(powers);
 
