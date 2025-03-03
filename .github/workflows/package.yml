@@ -6,11 +6,6 @@ on:
     paths:
       - 'CleanArchitecture.nuspec'
     workflow_dispatch:
-      inputs:
-        reason:
-          description: 'Reason for manual trigger'
-          required: false
-          default: 'Manual package creation'
 
 jobs:
   publish:
