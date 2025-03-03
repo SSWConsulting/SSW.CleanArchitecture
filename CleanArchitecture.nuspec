@@ -33,5 +33,5 @@
     <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;**\.idea\**;CODE_OF_CONDUCT.yml" />
     <file src=".\.github\**" target="content\.github" exclude="CODEOWNERS;settings.yml;workflows\package.yml;workflows\update-settings.yml" />
   </files>
-
+<!--foo-->
 </package>
