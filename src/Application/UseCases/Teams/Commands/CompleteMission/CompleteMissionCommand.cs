@@ -18,7 +18,10 @@ internal sealed class CompleteMissionCommandHandler(IApplicationDbContext dbCont
         if (team is null)
             return TeamErrors.NotFound;
 
-        team.CompleteCurrentMission();
+        var error = team.CompleteCurrentMission();
+        if (error.IsError)
+            return error;
+
         await dbContext.SaveChangesAsync(cancellationToken);
 
         return new Success();

@@ -42,7 +42,6 @@ public class Hero : AggregateRoot<HeroId>
 
     public static Hero Create(string name, string alias)
     {
-        Guid.CreateVersion7();
         var hero = new Hero { Id = HeroId.From(Guid.CreateVersion7()), Name = name, Alias = alias };
 
         return hero;

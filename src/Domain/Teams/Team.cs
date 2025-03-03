@@ -47,11 +47,12 @@ public class Team : AggregateRoot<TeamId>
     public void RemoveHero(Hero hero)
     {
         ThrowIfNull(hero);
-        if (_heroes.Contains(hero))
-        {
-            TotalPowerLevel -= hero.PowerLevel;
-            _heroes.Remove(hero);
-        }
+
+        if (!_heroes.Contains(hero))
+            return;
+
+        TotalPowerLevel -= hero.PowerLevel;
+        _heroes.Remove(hero);
     }
 
     public ErrorOr<Success> ExecuteMission(string description)
@@ -59,9 +60,10 @@ public class Team : AggregateRoot<TeamId>
         ThrowIfNullOrWhiteSpace(description);
 
         if (Status != TeamStatus.Available)
-        {
             return TeamErrors.NotAvailable;
-        }
+
+        if (Heroes.Count == 0)
+            return TeamErrors.NoHeroes;
 
         var mission = Mission.Create(description);
         _missions.Add(mission);
@@ -73,14 +75,10 @@ public class Team : AggregateRoot<TeamId>
     public ErrorOr<Success> CompleteCurrentMission()
     {
         if (Status != TeamStatus.OnMission)
-        {
             return TeamErrors.NotOnMission;
-        }
 
         if (CurrentMission is null)
-        {
             return TeamErrors.NotOnMission;
-        }
 
         var result = CurrentMission.Complete();
         if (result.IsError)
