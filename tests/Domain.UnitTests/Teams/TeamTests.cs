@@ -98,6 +98,7 @@ public class TeamTests
     {
         // Arrange
         var team = Team.Create("name");
+        team.AddHero(Hero.Create("hero1", "alias1"));
 
         // Act
         team.ExecuteMission("Mission");
@@ -113,6 +114,7 @@ public class TeamTests
     {
         // Arrange
         var team = Team.Create("name");
+        team.AddHero(Hero.Create("hero1", "alias1"));
         team.ExecuteMission("Mission1");
 
         // Act
@@ -165,5 +167,36 @@ public class TeamTests
         // Assert
         result.IsError.Should().BeTrue();
         result.FirstError.Should().Be(TeamErrors.NotOnMission);
+    }
+
+    [Fact]
+    public void ExecuteMission_WhenNoHeroes_ShouldError()
+    {
+        // Arrange
+        var team = Team.Create("name");
+
+        // Act
+        var result = team.ExecuteMission("Mission");
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Should().Be(TeamErrors.NoHeroes);
+    }
+
+    [Fact]
+    public void ExecuteMission_AfterAddingHero_ShouldSucceed()
+    {
+        // Arrange
+        var team = Team.Create("name");
+        var hero = Hero.Create("hero1", "alias1");
+        var power1 = new Power("Foo", 10);
+        hero.UpdatePowers([power1]);
+        team.AddHero(hero);
+
+        // Act
+        var result = team.ExecuteMission("Mission");
+
+        // Assert
+        result.IsError.Should().BeFalse();
     }
 }

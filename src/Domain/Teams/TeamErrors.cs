@@ -13,4 +13,8 @@ public static class TeamErrors
     public static readonly Error NotFound = Error.NotFound(
         "Team.NotFound",
         "Team is not found");
+
+    public static readonly Error NoHeroes = Error.Conflict(
+        "Team.NoHeroes",
+        "The team has no heroes");
 }

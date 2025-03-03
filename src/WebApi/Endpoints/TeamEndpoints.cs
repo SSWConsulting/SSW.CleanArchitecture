@@ -55,7 +55,7 @@ public static class TeamEndpoints
                 {
                     var query = new GetTeamQuery(teamId);
                     var results = await sender.Send(query, ct);
-                    return TypedResults.Ok(results);
+                    return results.Match(TypedResults.Ok, CustomResult.Problem);
                 })
             .WithName("GetTeam")
             .ProducesGet<TeamDto>();
