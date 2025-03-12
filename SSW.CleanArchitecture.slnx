@@ -5,6 +5,7 @@
     <File Path="Directory.Build.props" />
     <File Path="global.json" />
     <File Path="README.md" />
+    <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src\Application\Application.csproj" />
@@ -16,7 +17,6 @@
     <Project Path="tests\Architecture.Tests\Architecture.Tests.csproj" />
     <Project Path="tests\Domain.UnitTests\Domain.UnitTests.csproj" />
     <Project Path="tests\WebApi.IntegrationTests\WebApi.IntegrationTests.csproj" Type="Classic C#" />
-    <File Path="tests\Directory.Packages.Props" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools\AppHost\AppHost.csproj" Type="Classic C#" />
