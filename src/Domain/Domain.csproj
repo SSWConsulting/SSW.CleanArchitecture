@@ -4,9 +4,9 @@
     <AssemblyName>SSW.CleanArchitecture.Domain</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
-    <PackageReference Include="ErrorOr" Version="2.0.1" />
-    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-    <PackageReference Include="Vogen" Version="7.0.0" />
+    <PackageReference Include="Ardalis.Specification" />
+    <PackageReference Include="ErrorOr" />
+    <PackageReference Include="MediatR.Contracts" />
+    <PackageReference Include="Vogen" />
   </ItemGroup>
 </Project>
