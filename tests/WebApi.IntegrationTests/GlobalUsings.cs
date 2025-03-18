@@ -1,3 +1,2 @@
-global using Xunit;
-global using Xunit.Abstractions;
+global using TUnit;
 global using FluentAssertions;

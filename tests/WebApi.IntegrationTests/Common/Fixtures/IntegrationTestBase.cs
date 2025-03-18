@@ -1,7 +1,5 @@
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
 namespace WebApi.IntegrationTests.Common.Fixtures;
@@ -9,48 +7,44 @@ namespace WebApi.IntegrationTests.Common.Fixtures;
 /// <summary>
 /// Integration tests inherit from this to access helper classes
 /// </summary>
-[Collection(TestingDatabaseFixtureCollection.Name)]
-public abstract class IntegrationTestBase : IAsyncLifetime
+[NotInParallel]
+public abstract class IntegrationTestBaseV2 : IDisposable
 {
-    private readonly IServiceScope _scope;
+    private ApplicationDbContext _dbContext = null!;
+    private IServiceScope _scope = null!;
 
-    private readonly TestingDatabaseFixture _fixture;
-    protected IMediator Mediator { get; }
-
-    // TODO: Consider removing this as query results can be cached and cause bad test results
-    //       Also, consider encapsulating this and only exposing a `Query` method that internally uses `AsNoTracking()`
-    //       see: https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/324
-    public IApplicationDbContext Context => _dbContext;
-
-    private readonly ApplicationDbContext _dbContext;
-
-    protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();
-
-    protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
+    [Before(Test)]
+    public void TestSetup()
     {
-        _fixture = fixture;
-        _fixture.Factory.Output = output;
-
-        _scope = _fixture.ScopeFactory.CreateScope();
-        Mediator = _scope.ServiceProvider.GetRequiredService<IMediator>();
+        _scope = Testing.CreateScope();
         _dbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     }
 
-    public async Task InitializeAsync()
+    protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();
+
+    protected async Task AddAsync<TEntity>(TEntity entity)
+        where TEntity : class
     {
-        await _fixture.ResetState();
+        await _dbContext.AddAsync(entity);
+        await _dbContext.SaveChangesAsync();
     }
 
-    protected async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    protected async Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities)
+        where TEntity : class
     {
-        await Context.SaveChangesAsync(cancellationToken);
+        await _dbContext.AddRangeAsync(entities);
+        await _dbContext.SaveChangesAsync();
     }
 
-    protected HttpClient GetAnonymousClient() => _fixture.Factory.AnonymousClient.Value;
+    protected async Task SaveAsync()
+    {
+        await _dbContext.SaveChangesAsync();
+    }
 
-    public Task DisposeAsync()
+    protected HttpClient GetAnonymousClient() => Testing.AnonymousClient.Value;
+
+    public void Dispose()
     {
         _scope.Dispose();
-        return Task.CompletedTask;
     }
 }
