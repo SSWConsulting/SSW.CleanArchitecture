@@ -36,13 +36,13 @@ public class PowerTests
         areEqual.Should().BeTrue();
     }
 
-    [Theory]
-    [InlineData(-1, true)]
-    [InlineData(0, true)]
-    [InlineData(1, false)]
-    [InlineData(9, false)]
-    [InlineData(10, false)]
-    [InlineData(11, true)]
+    [Test]
+    [Arguments(-1, true)]
+    [Arguments(0, true)]
+    [Arguments(1, false)]
+    [Arguments(9, false)]
+    [Arguments(10, false)]
+    [Arguments(11, true)]
     public void Power_WithInvalidPowerLevel_ShouldThrow(int powerLevel, bool shouldThrow)
     {
         // Arrange
