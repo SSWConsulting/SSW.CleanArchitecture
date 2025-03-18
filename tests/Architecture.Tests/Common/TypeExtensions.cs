@@ -9,9 +9,15 @@ public static class TypeExtensions
     public static void Dump(this IEnumerable<Type> types, ILogger outputHelper)
     {
         if (!types.Any())
+        {
             outputHelper.LogInformation("No types found.");
+            return;
+        }
 
         foreach (var type in types)
-            outputHelper.LogInformation(type.FullName);
+        {
+            if (type.FullName is not null)
+                outputHelper.LogInformation(type.FullName);
+        }
     }
 }

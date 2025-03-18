@@ -9,11 +9,11 @@ public class Worker(
     ILogger<Worker> logger) : BackgroundService
 {
     public const string ActivitySourceName = "Migrations";
-    private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
+    private static readonly ActivitySource _activitySource = new(ActivitySourceName);
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        using var activity = ActivitySource.StartActivity("Migrating database", ActivityKind.Client);
+        using var activity = _activitySource.StartActivity("Migrating database", ActivityKind.Client);
 
         try
         {

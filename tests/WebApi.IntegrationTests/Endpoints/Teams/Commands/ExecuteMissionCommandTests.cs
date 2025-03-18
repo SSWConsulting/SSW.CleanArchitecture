@@ -9,7 +9,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class ExecuteMissionCommandTests: IntegrationTestBase
+public class ExecuteMissionCommandTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldExecuteMission()

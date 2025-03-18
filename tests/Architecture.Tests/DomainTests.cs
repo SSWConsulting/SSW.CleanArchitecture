@@ -8,10 +8,10 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class DomainModel : TestBase
 {
-    private static readonly Type AggregateRoot = typeof(AggregateRoot<>);
-    private static readonly Type Entity = typeof(Entity<>);
-    private static readonly Type DomainEvent = typeof(IDomainEvent);
-    private static readonly Type ValueObject = typeof(IValueObject);
+    private static readonly Type _aggregateRoot = typeof(AggregateRoot<>);
+    private static readonly Type _entity = typeof(Entity<>);
+    private static readonly Type _domainEvent = typeof(IDomainEvent);
+    private static readonly Type _valueObject = typeof(IValueObject);
 
     [Test]
     public void DomainModel_ShouldInheritsBaseClasses()
@@ -32,10 +32,10 @@ public class DomainModel : TestBase
         // Act
         var result = domainModels
             .Should()
-            .Inherit(AggregateRoot)
-            .Or().Inherit(Entity)
-            .Or().ImplementInterface(DomainEvent)
-            .Or().ImplementInterface(ValueObject)
+            .Inherit(_aggregateRoot)
+            .Or().Inherit(_entity)
+            .Or().ImplementInterface(_domainEvent)
+            .Or().ImplementInterface(_valueObject)
             .GetResult();
 
         // Assert
@@ -47,11 +47,11 @@ public class DomainModel : TestBase
     {
         var entityTypes = Types.InAssembly(DomainAssembly)
             .That()
-            .Inherit(Entity)
+            .Inherit(_entity)
             .Or()
-            .Inherit(AggregateRoot)
+            .Inherit(_aggregateRoot)
             .GetTypes()
-            .Where(t => t != AggregateRoot);
+            .Where(t => t != _aggregateRoot);
 
         var failingTypes = new List<Type>();
 

@@ -18,15 +18,15 @@ public static class Testing
     }
 
     [BeforeEvery(Test)]
-    public static async Task TestSetup(TestContext context)
+    public static async Task TestSetup(TestContext _)
     {
         // Nothing to do yet
         await Task.CompletedTask;
     }
 
-    // NOTE: Could change this to class level if you want to reset the database less often
+    // NOTE: Could change this to class or assembly level if you want to reset the database less often
     [AfterEvery(Test)]
-    public static async Task TestCleanUp(TestContext context)
+    public static async Task TestCleanUp(TestContext _)
     {
         await _database.ResetAsync();
     }
@@ -39,7 +39,7 @@ public static class Testing
     }
 
     // NOTE: If you need an authenticated client, create a similar method that performance the authentication,
-    // adds the appropriate headers, and returns the authenticated client
+    // adds the appropriate headers and returns the authenticated client
     // For an example of this see https://github.com/SSWConsulting/Northwind365
     public static Lazy<HttpClient> AnonymousClient => new(_factory.CreateClient());
 

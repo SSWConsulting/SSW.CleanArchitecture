@@ -22,7 +22,7 @@ public class SqlServerTestDatabase : IAsyncDisposable
     {
         await _database.InitializeAsync();
 
-        var builder = new SqlConnectionStringBuilder(_database.Connection.ConnectionString)
+        var builder = new SqlConnectionStringBuilder(_database.Connection!.ConnectionString)
         {
             InitialCatalog = "CleanArchitecture-IntegrationTests"
         };

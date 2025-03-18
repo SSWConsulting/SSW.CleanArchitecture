@@ -6,8 +6,8 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class Presentation : TestBase
 {
-    private static readonly Type IDbContext = typeof(IApplicationDbContext);
-    private static readonly Type DbContext = typeof(ApplicationDbContext);
+    private static readonly Type _dbContextInterface = typeof(IApplicationDbContext);
+    private static readonly Type _dbContextImplementation = typeof(ApplicationDbContext);
 
     [Test]
     public void Endpoints_ShouldNotReferenceDbContext()
@@ -19,7 +19,7 @@ public class Presentation : TestBase
 
         var result = types
             .ShouldNot()
-            .HaveDependencyOnAny(DbContext.FullName, IDbContext.FullName)
+            .HaveDependencyOnAny(_dbContextImplementation.FullName, _dbContextInterface.FullName)
             .GetResult();
 
         result.Should().BeSuccessful();

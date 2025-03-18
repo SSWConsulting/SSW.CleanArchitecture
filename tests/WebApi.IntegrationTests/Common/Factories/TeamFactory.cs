@@ -5,7 +5,7 @@ namespace WebApi.IntegrationTests.Common.Factories;
 
 public static class TeamFactory
 {
-    private static readonly Faker<Team> TeamFaker = new Faker<Team>().CustomInstantiator(f =>
+    private static readonly Faker<Team> _teamFaker = new Faker<Team>().CustomInstantiator(f =>
     {
         var team = Team.Create(
             f.Company.CompanyName()
@@ -14,7 +14,7 @@ public static class TeamFactory
         return team;
     });
 
-    public static Team Generate() => TeamFaker.Generate();
+    public static Team Generate() => _teamFaker.Generate();
 
-    public static IReadOnlyList<Team> Generate(int count) => TeamFaker.Generate(count);
+    public static IReadOnlyList<Team> Generate(int count) => _teamFaker.Generate(count);
 }

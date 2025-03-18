@@ -52,9 +52,9 @@ public class TUnitDefaultLogger : ILogger
 {
     private readonly TUnit.Core.Logging.DefaultLogger _logger = new();
 
-    public IDisposable BeginScope<TState>(TState state)
+    public IDisposable? BeginScope<TState>(TState state) where TState : notnull
     {
-        return null!;
+        return null;
     }
 
     public bool IsEnabled(LogLevel logLevel)
@@ -62,7 +62,7 @@ public class TUnitDefaultLogger : ILogger
         return true;
     }
 
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
     {
         _logger.LogInformation(formatter(state, exception));
     }
