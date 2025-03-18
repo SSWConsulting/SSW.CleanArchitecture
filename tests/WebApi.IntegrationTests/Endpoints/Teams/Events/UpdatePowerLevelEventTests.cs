@@ -7,11 +7,11 @@ using System.Net;
 using System.Net.Http.Json;
 using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common.Utilities;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Events;
 
-public class UpdatePowerLevelEventTests : IntegrationTestBaseV2
+public class UpdatePowerLevelEventTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_UpdatePowerOnTeam()

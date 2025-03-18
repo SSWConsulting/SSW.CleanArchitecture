@@ -3,11 +3,11 @@ using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
 using SSW.CleanArchitecture.Domain.Heroes;
 using System.Net;
 using System.Net.Http.Json;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class CreateHeroCommandTests : IntegrationTestBaseV2
+public class CreateHeroCommandTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldCreateHero()

@@ -3,11 +3,11 @@ using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class CreateTeamCommandTests : IntegrationTestBaseV2
+public class CreateTeamCommandTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldCreateTeam()

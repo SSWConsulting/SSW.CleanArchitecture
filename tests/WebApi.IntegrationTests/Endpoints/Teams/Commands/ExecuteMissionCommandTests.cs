@@ -4,12 +4,12 @@ using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class ExecuteMissionCommandTests: IntegrationTestBaseV2
+public class ExecuteMissionCommandTests: IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldExecuteMission()

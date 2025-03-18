@@ -4,8 +4,11 @@ using Respawn;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using System.Data.Common;
 
-namespace WebApi.IntegrationTests.Common.Fixtures;
+namespace WebApi.IntegrationTests.Common.Database;
 
+/// <summary>
+/// Manages the schema and data for the database container
+/// </summary>
 public class SqlServerTestDatabase : IAsyncDisposable
 {
     private readonly DatabaseContainer _database = new();
@@ -13,7 +16,7 @@ public class SqlServerTestDatabase : IAsyncDisposable
     private string _connectionString = null!;
 
     /// <summary>
-    /// Create and seed database
+    /// Create and seed a database
     /// </summary>
     public async Task InitializeAsync()
     {
@@ -37,7 +40,7 @@ public class SqlServerTestDatabase : IAsyncDisposable
             new RespawnerOptions { TablesToIgnore = ["__EFMigrationsHistory"] });
     }
 
-    public DbConnection GetConnection() => new SqlConnection(_connectionString);
+    public DbConnection DbConnection => new SqlConnection(_connectionString);
 
     public async Task ResetAsync()
     {

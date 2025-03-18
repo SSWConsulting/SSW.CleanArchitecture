@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 
-namespace WebApi.IntegrationTests.Common.Fixtures;
+namespace WebApi.IntegrationTests.Common;
 
 /// <summary>
-/// Integration tests inherit from this to access helper classes
+/// Integration tests inherit from this to access helper functions
 /// </summary>
 [NotInParallel]
-public abstract class IntegrationTestBaseV2 : IDisposable
+public abstract class IntegrationTestBase : IDisposable
 {
     private ApplicationDbContext _dbContext = null!;
     private IServiceScope _scope = null!;
@@ -17,6 +17,8 @@ public abstract class IntegrationTestBaseV2 : IDisposable
     public void TestSetup()
     {
         _scope = Testing.CreateScope();
+
+        // Create a new scope for each test to ensure a clean state
         _dbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     }
 

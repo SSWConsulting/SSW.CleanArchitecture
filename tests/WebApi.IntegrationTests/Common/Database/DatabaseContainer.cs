@@ -2,10 +2,10 @@ using Microsoft.Data.SqlClient;
 using Polly;
 using Testcontainers.MsSql;
 
-namespace WebApi.IntegrationTests.Common.Fixtures;
+namespace WebApi.IntegrationTests.Common.Database;
 
 /// <summary>
-/// Wraper for SQL edge container
+/// Wrapper for SQL Server container
 /// </summary>
 public class DatabaseContainer : IAsyncDisposable
 {

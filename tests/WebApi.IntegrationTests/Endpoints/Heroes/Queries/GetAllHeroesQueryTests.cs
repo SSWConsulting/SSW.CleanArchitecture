@@ -1,11 +1,11 @@
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 
-public class GetAllHeroesQueryTests : IntegrationTestBaseV2
+public class GetAllHeroesQueryTests : IntegrationTestBase
 {
     [Test]
     public async Task Query_ShouldReturnAllHeroes()

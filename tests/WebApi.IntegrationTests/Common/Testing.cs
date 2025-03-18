@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using WebApi.IntegrationTests.Common.Database;
 
-namespace WebApi.IntegrationTests.Common.Fixtures;
+namespace WebApi.IntegrationTests.Common;
 
 public static class Testing
 {
@@ -12,7 +13,7 @@ public static class Testing
     public static async Task GlobalSetup()
     {
         await _database.InitializeAsync();
-        _factory = new WebApiTestFactory(_database.GetConnection());
+        _factory = new WebApiTestFactory(_database.DbConnection);
         _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
     }
 

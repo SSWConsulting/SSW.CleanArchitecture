@@ -2,12 +2,12 @@ using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class AddHeroToTeamCommandTests : IntegrationTestBaseV2
+public class AddHeroToTeamCommandTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldAddHeroToTeam()

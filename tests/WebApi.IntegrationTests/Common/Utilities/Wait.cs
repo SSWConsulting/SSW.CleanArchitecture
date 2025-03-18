@@ -1,4 +1,4 @@
-namespace WebApi.IntegrationTests.Common;
+namespace WebApi.IntegrationTests.Common.Utilities;
 
 internal static class Wait
 {

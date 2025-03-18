@@ -3,12 +3,12 @@ using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Domain.Heroes;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class UpdateHeroCommandTests : IntegrationTestBaseV2
+public class UpdateHeroCommandTests : IntegrationTestBase
 {
     [Test]
     public async Task Command_ShouldUpdateHero()

@@ -1,11 +1,11 @@
 using SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Queries;
 
-public class GetAllTeamsQueryTests : IntegrationTestBaseV2
+public class GetAllTeamsQueryTests : IntegrationTestBase
 {
     [Test]
     public async Task Query_ShouldReturnAllTeams()
