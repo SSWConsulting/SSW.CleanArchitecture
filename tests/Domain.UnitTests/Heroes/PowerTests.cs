@@ -4,7 +4,7 @@ namespace SSW.CleanArchitecture.Domain.UnitTests.Heroes;
 
 public class PowerTests
 {
-    [Fact]
+    [Test]
     public void Power_ShouldBeCreatable()
     {
         // Arrange
@@ -20,7 +20,7 @@ public class PowerTests
         power.PowerLevel.Should().Be(powerLevel);
     }
 
-    [Fact]
+    [Test]
     public void Power_ShouldBeComparable()
     {
         // Arrange

@@ -11,7 +11,7 @@ namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldUpdateHero()
     {
         // Arrange
@@ -50,7 +50,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         item.UpdatedAt.Should().BeCloseTo(createdTimeStamp, TimeSpan.FromSeconds(10));
     }
 
-    [Fact]
+    [Test]
     public async Task Command_WhenHeroDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange

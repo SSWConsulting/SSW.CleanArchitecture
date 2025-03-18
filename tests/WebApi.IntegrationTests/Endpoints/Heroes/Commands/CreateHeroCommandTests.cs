@@ -9,7 +9,7 @@ namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldCreateHero()
     {
         // Arrange

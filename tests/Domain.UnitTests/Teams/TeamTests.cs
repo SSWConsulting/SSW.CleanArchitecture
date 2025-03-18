@@ -25,7 +25,7 @@ public class TeamTests
         id2.Value.Should().Be(guid2);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
     {
         // Arrange
@@ -39,7 +39,7 @@ public class TeamTests
         team.Name.Should().Be(name);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithNullNameAndAlias_ShouldThrow()
     {
         // Arrange
@@ -52,7 +52,7 @@ public class TeamTests
         act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'name')");
     }
 
-    [Fact]
+    [Test]
     public void AddHero_ShouldUpdateTeamPowerLevel()
     {
         // Arrange
@@ -72,7 +72,7 @@ public class TeamTests
         team.TotalPowerLevel.Should().Be(14);
     }
 
-    [Fact]
+    [Test]
     public void RemoveHero_ShouldUpdateTeamPowerLevel()
     {
         // Arrange
@@ -93,7 +93,7 @@ public class TeamTests
         team.TotalPowerLevel.Should().Be(4);
     }
 
-    [Fact]
+    [Test]
     public void ExecuteMission_ShouldUpdateTeamStatus()
     {
         // Arrange
@@ -109,7 +109,7 @@ public class TeamTests
         team.Missions.Should().ContainSingle(x => x.Description == "Mission");
     }
 
-    [Fact]
+    [Test]
     public void ExecuteMission_WhenTeamNotAvailable_ShouldError()
     {
         // Arrange
@@ -125,7 +125,7 @@ public class TeamTests
         result.FirstError.Should().Be(TeamErrors.NotAvailable);
     }
 
-    [Fact]
+    [Test]
     public void CompleteCurrentMission_ShouldUpdateTeamStatus()
     {
         // Arrange
@@ -139,7 +139,7 @@ public class TeamTests
         team.Status.Should().Be(TeamStatus.Available);
     }
 
-    [Fact]
+    [Test]
     public void CompleteCurrentMission_WhenNoMissionHasBeenExecuted_ShouldThrow()
     {
         // Arrange
@@ -153,7 +153,7 @@ public class TeamTests
         result.FirstError.Should().Be(TeamErrors.NotOnMission);
     }
 
-    [Fact]
+    [Test]
     public void CompleteCurrentMission_WhenNotOnMission_ShouldError()
     {
         // Arrange
@@ -169,7 +169,7 @@ public class TeamTests
         result.FirstError.Should().Be(TeamErrors.NotOnMission);
     }
 
-    [Fact]
+    [Test]
     public void ExecuteMission_WhenNoHeroes_ShouldError()
     {
         // Arrange
@@ -183,7 +183,7 @@ public class TeamTests
         result.FirstError.Should().Be(TeamErrors.NoHeroes);
     }
 
-    [Fact]
+    [Test]
     public void ExecuteMission_AfterAddingHero_ShouldSucceed()
     {
         // Arrange

@@ -7,7 +7,7 @@ public class Application : TestBase
 {
     private static readonly Type IRequestHandler = typeof(IRequestHandler<,>);
 
-    [Fact]
+    [Test]
     public void CommandHandlers_ShouldHaveCorrectSuffix()
     {
         var types = Types
@@ -25,7 +25,7 @@ public class Application : TestBase
         result.Should().BeSuccessful();
     }
 
-    [Fact]
+    [Test]
     public void QueryHandlers_ShouldHaveCorrectSuffix()
     {
         var types = Types

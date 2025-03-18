@@ -1,15 +1,17 @@
-using Xunit.Abstractions;
+// using Xunit.Abstractions;
+
+using TUnit.Core.Logging;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 public static class TypeExtensions
 {
-    public static void Dump(this IEnumerable<Type> types, ITestOutputHelper outputHelper)
+    public static void Dump(this IEnumerable<Type> types, ILogger outputHelper)
     {
         if (!types.Any())
-            outputHelper.WriteLine("No types found.");
+            outputHelper.LogInformation("No types found.");
 
         foreach (var type in types)
-            outputHelper.WriteLine(type.FullName);
+            outputHelper.LogInformation(type.FullName);
     }
 }

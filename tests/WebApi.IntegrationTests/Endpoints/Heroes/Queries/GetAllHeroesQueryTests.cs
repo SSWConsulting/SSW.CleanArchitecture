@@ -8,7 +8,7 @@ namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Query_ShouldReturnAllHeroes()
     {
         // Arrange

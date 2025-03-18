@@ -12,7 +12,7 @@ namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldExecuteMission()
     {
         // Arrange

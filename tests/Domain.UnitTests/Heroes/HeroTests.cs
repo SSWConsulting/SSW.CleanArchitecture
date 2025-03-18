@@ -24,7 +24,7 @@ public class HeroTests
         id2.Value.Should().Be(guid2);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithValidNameAndAlias_ShouldSucceed()
     {
         // Arrange
@@ -40,7 +40,7 @@ public class HeroTests
         hero.Alias.Should().Be(alias);
     }
 
-    [Fact]
+    [Test]
     public void Create_WithSameNameAndAlias_ShouldSucceed()
     {
         // Arrange
@@ -66,7 +66,7 @@ public class HeroTests
         act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null*");
     }
 
-    [Fact]
+    [Test]
     public void AddPower_ShouldUpdateHeroPowerLevel()
     {
         // Act
@@ -79,7 +79,7 @@ public class HeroTests
         hero.Powers.Should().HaveCount(2);
     }
 
-    [Fact]
+    [Test]
     public void RemovePower_ShouldUpdateHeroPowerLevel()
     {
         // Act
@@ -95,7 +95,7 @@ public class HeroTests
         hero.Powers.Should().HaveCount(1);
     }
 
-    [Fact]
+    [Test]
     public void AddPower_ShouldRaisePowerLevelUpdatedEvent()
     {
         // Act
@@ -117,7 +117,7 @@ public class HeroTests
         hero.Powers.Should().ContainSingle("Super-strength");
     }
 
-    [Fact]
+    [Test]
     public void RemovePower_ShouldRaisePowerLevelUpdatedEvent()
     {
         // Act

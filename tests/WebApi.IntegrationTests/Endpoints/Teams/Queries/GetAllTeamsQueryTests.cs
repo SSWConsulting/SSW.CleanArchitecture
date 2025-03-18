@@ -8,7 +8,7 @@ namespace WebApi.IntegrationTests.Endpoints.Teams.Queries;
 public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
     : IntegrationTestBase(fixture, output)
 {
-    [Fact]
+    [Test]
     public async Task Query_ShouldReturnAllTeams()
     {
         // Arrange
