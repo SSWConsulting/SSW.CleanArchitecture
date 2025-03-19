@@ -4,13 +4,16 @@ using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
-public class TeamConfiguration : IEntityTypeConfiguration<Team>
+public class TeamConfiguration : AuditableConfiguration<Team>
 {
-    public void Configure(EntityTypeBuilder<Team> builder)
+    public override void Configure(EntityTypeBuilder<Team> builder)
     {
+        base.Configure(builder);
+
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Name)
+            .HasMaxLength(Team.NameMaxLength)
             .IsRequired();
 
         builder.HasMany(t => t.Missions)

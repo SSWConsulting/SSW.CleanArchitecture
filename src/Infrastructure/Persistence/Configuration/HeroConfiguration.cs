@@ -4,10 +4,12 @@ using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
-public class HeroConfiguration : IEntityTypeConfiguration<Hero>
+public class HeroConfiguration : AuditableConfiguration<Hero>
 {
-    public void Configure(EntityTypeBuilder<Hero> builder)
+    public override void Configure(EntityTypeBuilder<Hero> builder)
     {
+        base.Configure(builder);
+
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Name)
