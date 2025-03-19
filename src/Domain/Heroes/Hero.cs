@@ -43,7 +43,7 @@ public class Hero : AggregateRoot<HeroId>
 
     public IReadOnlyList<Power> Powers => _powers.AsReadOnly();
 
-    private Hero() { }
+    private Hero() { } // Needed for EF Core
 
     public static Hero Create(string name, string alias)
     {

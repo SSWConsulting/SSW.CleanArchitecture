@@ -6,7 +6,19 @@ public readonly partial struct MissionId;
 
 public class Mission : Entity<MissionId>
 {
-    public string Description { get; private set; } = null!;
+    private string _description = null!;
+    public const int DescriptionMaxLength = 500;
+
+    public string Description
+    {
+        get => _description;
+        private set
+        {
+            ThrowIfNullOrWhiteSpace(value, nameof(Description));
+            ThrowIfGreaterThan(value.Length, DescriptionMaxLength, nameof(Description));
+            _description = value;
+        }
+    }
 
     public MissionStatus Status { get; private set; }
 
@@ -15,7 +27,6 @@ public class Mission : Entity<MissionId>
     // NOTE: Internal so that missions can only be created by the aggregate
     internal static Mission Create(string description)
     {
-        ThrowIfNullOrWhiteSpace(description);
         return new Mission
         {
             Id = MissionId.From(Guid.CreateVersion7()),
