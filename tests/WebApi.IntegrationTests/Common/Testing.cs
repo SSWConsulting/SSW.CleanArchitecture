@@ -1,11 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
-using WebApi.IntegrationTests.Common.Database;
+using WebApi.IntegrationTests.Common.Infrastructure.Database;
+using WebApi.IntegrationTests.Common.Infrastructure.Web;
 
 namespace WebApi.IntegrationTests.Common;
 
 public static class Testing
 {
-    private static readonly SqlServerTestDatabase _database = new();
+    private static readonly TestDatabase _database = new();
     private static WebApiTestFactory _factory = null!;
     private static IServiceScopeFactory _scopeFactory = null!;
 
@@ -20,7 +21,7 @@ public static class Testing
     [BeforeEvery(Test)]
     public static async Task TestSetup(TestContext _)
     {
-        // Nothing to do yet
+        // NOTE: This is where you could set up any test data you want to be available for each test
         await Task.CompletedTask;
     }
 

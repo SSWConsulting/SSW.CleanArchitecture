@@ -7,7 +7,7 @@ using TUnit.Core.Logging;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
-namespace WebApi.IntegrationTests.Common;
+namespace WebApi.IntegrationTests.Common.Infrastructure.Web;
 
 /// <summary>
 /// Host builder (services, DI and configuration) for integration tests

@@ -4,14 +4,14 @@ using Respawn;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using System.Data.Common;
 
-namespace WebApi.IntegrationTests.Common.Database;
+namespace WebApi.IntegrationTests.Common.Infrastructure.Database;
 
 /// <summary>
 /// Manages the schema and data for the database container
 /// </summary>
-public class SqlServerTestDatabase : IAsyncDisposable
+public class TestDatabase : IAsyncDisposable
 {
-    private readonly DatabaseContainer _database = new();
+    private readonly SqlServerContainer _sqlServer = new();
     private Respawner _checkpoint = null!;
     private string _connectionString = null!;
 
@@ -20,9 +20,9 @@ public class SqlServerTestDatabase : IAsyncDisposable
     /// </summary>
     public async Task InitializeAsync()
     {
-        await _database.InitializeAsync();
+        await _sqlServer.InitializeAsync();
 
-        var builder = new SqlConnectionStringBuilder(_database.Connection!.ConnectionString)
+        var builder = new SqlConnectionStringBuilder(_sqlServer.Connection!.ConnectionString)
         {
             InitialCatalog = "CleanArchitecture-IntegrationTests"
         };
@@ -49,6 +49,6 @@ public class SqlServerTestDatabase : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-        await _database.DisposeAsync();
+        await _sqlServer.DisposeAsync();
     }
 }

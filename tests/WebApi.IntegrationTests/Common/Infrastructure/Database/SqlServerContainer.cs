@@ -2,12 +2,12 @@ using Microsoft.Data.SqlClient;
 using Polly;
 using Testcontainers.MsSql;
 
-namespace WebApi.IntegrationTests.Common.Database;
+namespace WebApi.IntegrationTests.Common.Infrastructure.Database;
 
 /// <summary>
 /// Wrapper for SQL Server container
 /// </summary>
-public class DatabaseContainer : IAsyncDisposable
+public class SqlServerContainer : IAsyncDisposable
 {
     private readonly MsSqlContainer _container = new MsSqlBuilder()
         .WithImage("mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")

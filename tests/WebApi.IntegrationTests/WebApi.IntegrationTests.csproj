@@ -35,4 +35,8 @@
     <ProjectReference Include="..\..\tools\MigrationService\MigrationService.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Infrastructure\" />
+  </ItemGroup>
+
 </Project>
