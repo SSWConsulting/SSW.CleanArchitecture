@@ -1,6 +1,4 @@
-﻿// using Xunit.Abstractions;
-
-using TUnit.Core.Logging;
+﻿using TUnit.Core.Logging;
 using TestResult = NetArchTest.Rules.TestResult;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;

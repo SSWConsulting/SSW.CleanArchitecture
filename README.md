@@ -68,9 +68,6 @@ This is a template for creating a new project using [Clean Architecture](https:/
 - 📁 Directory.Build.Props
     - Consistent build configuration across all projects in the solution
         - e.g. Treating Warnings as Errors for Release builds
-    - Custom per project
-        - e.g. for all test projects we can ensure that the exact same versions of common packages are referenced
-        - e.g. XUnit and NSubstitute packages for all test projects
 - ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
     - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
     - as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)

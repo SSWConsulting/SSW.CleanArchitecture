@@ -22,12 +22,6 @@
     <PackageReference Include="Testcontainers.MsSql" />
     <PackageReference Include="Polly" />
     <PackageReference Include="TUnit" />
-    <!--    <PackageReference Include="xunit" />-->
-<!--    <PackageReference Include="xunit.runner.visualstudio">-->
-<!--      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
-<!--      <PrivateAssets>all</PrivateAssets>-->
-<!--    </PackageReference>-->
-<!--    <PackageReference Include="Meziantou.Extensions.Logging.Xunit" />-->
   </ItemGroup>
 
   <ItemGroup>

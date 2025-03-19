@@ -1,5 +1,3 @@
-// using Xunit.Abstractions;
-
 using TUnit.Core.Logging;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
