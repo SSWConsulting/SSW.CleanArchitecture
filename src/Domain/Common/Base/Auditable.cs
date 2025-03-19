@@ -38,15 +38,15 @@ public abstract class Auditable : IAuditable
         }
     }
 
-    public void SetCreated(DateTimeOffset createdAt, string? createdBy)
+    public void SetCreated(TimeProvider timeProvider, string? createdBy)
     {
-        CreatedAt = createdAt;
+        CreatedAt = timeProvider.GetUtcNow();
         CreatedBy = createdBy ?? SystemUser;
     }
 
-    public void SetUpdated(DateTimeOffset updatedAt, string? updatedBy)
+    public void SetUpdated(TimeProvider timeProvider, string? updatedBy)
     {
-        UpdatedAt = updatedAt;
+        UpdatedAt = timeProvider.GetUtcNow();
         UpdatedBy = updatedBy ?? SystemUser;
     }
 }

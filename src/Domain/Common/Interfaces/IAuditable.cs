@@ -7,7 +7,7 @@ public interface IAuditable
     DateTimeOffset? UpdatedAt { get; }
     string? UpdatedBy { get; }
 
-    void SetCreated(DateTimeOffset createdAt, string? createdBy = null);
+    void SetCreated(TimeProvider timeProvider, string? createdBy = null);
 
-    void SetUpdated(DateTimeOffset updatedAt, string? updatedBy = null);
+    void SetUpdated(TimeProvider timeProvider, string? updatedBy = null);
 }
