@@ -6,10 +6,8 @@ namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class TeamConfiguration : AuditableConfiguration<Team>
 {
-    public override void Configure(EntityTypeBuilder<Team> builder)
+    public override void PostConfigure(EntityTypeBuilder<Team> builder)
     {
-        base.Configure(builder);
-
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Name)

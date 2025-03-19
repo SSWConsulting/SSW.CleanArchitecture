@@ -7,9 +7,8 @@ namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
 public class MissionConfiguration : AuditableConfiguration<Mission>
 {
-    public override void Configure(EntityTypeBuilder<Mission> builder)
+    public override void PostConfigure(EntityTypeBuilder<Mission> builder)
     {
-        base.Configure(builder);
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Description)

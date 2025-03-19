@@ -18,5 +18,9 @@ public abstract class AuditableConfiguration<T> : IEntityTypeConfiguration<T>
 
         builder.Property(e => e.UpdatedBy)
             .HasMaxLength(Auditable.UpdatedByMaxLength);
+
+        PostConfigure(builder);
     }
+
+    public abstract void PostConfigure(EntityTypeBuilder<T> builder);
 }
