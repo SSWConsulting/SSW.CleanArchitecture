@@ -4,8 +4,6 @@ using SSW.CleanArchitecture.Domain.Common.Base;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
-// DM: Add integration tests for property string lengths
-// DM: Test this all works
 public abstract class AuditableConfiguration<T> : IEntityTypeConfiguration<T>
     where T : Auditable
 {

@@ -1,4 +1,3 @@
-using EntityFramework.Exceptions.SqlServer;
 using MigrationService;
 using MigrationService.Initializers;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
