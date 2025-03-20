@@ -55,28 +55,30 @@ This is a template for creating a new project using [Clean Architecture](https:/
 - 🗄️ Entity Framework Core - for data access
     - Comes with Migrations & Data Seeding
     - as per [ssw.com.au/rules/rules-to-better-entity-framework/](https://ssw.com.au/rules/rules-to-better-entity-framework/)
-- 🧩 Specification Pattern - abstract EF Core away from your business logic
+- 🧩 [Specification Pattern](https://specification.ardalis.com/) - abstract EF Core away from your business logic
 - 🔀 CQRS - for separation of concerns
     - as per [ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/](https://ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer/)
-- 📦 MediatR - for decoupling your application
-- 📦 ErrorOr - fluent result pattern (instead of exceptions)
-- 📦 FluentValidation - for validating requests
+- 📦 [MediatR](https://github.com/jbogard/MediatR) - for decoupling your application
+- 📦 [ErrorOr](https://github.com/amantinband/error-or) - fluent result pattern (instead of exceptions)
+- 📦 [FluentValidation](https://docs.fluentvalidation.net/en/latest/) - for validating requests
     - as per [ssw.com.au/rules/use-fluent-validation/](https://ssw.com.au/rules/use-fluent-validation/)
-- 🆔 Strongly Typed IDs - to combat primitive obsession
+- 📦 [Vogen](https://github.com/SteveDunn/Vogen) - Strongly Typed IDs
+    - Combats primitive obsession 
     - e.g. pass `CustomerId` type into methods instead of `int`, or `Guid`
     - Entity Framework can automatically convert the int, Guid, nvarchar(..) to strongly typed ID.
-- 📁 Directory.Build.Props
-    - Consistent build configuration across all projects in the solution
-        - e.g. Treating Warnings as Errors for Release builds
-    - Custom per project
-        - e.g. for all test projects we can ensure that the exact same versions of common packages are referenced
-        - e.g. XUnit and NSubstitute packages for all test projects
+- 📁 `Directory.Build.Props`
+    - Centralized .NET SDK version
+    - Globally enable nullability
+    - Treating Warnings as Errors for Release builds
+- 📁 `Directory.Packages.Props`
+    - Centralized NuGet package versions
+    - No need to update the version in multiple places
 - ⚖️ EditorConfig - comes with the [SSW.EditorConfig](https://github.com/SSWConsulting/SSW.EditorConfig)
     - Maintain consistent coding styles for individual developers or teams of developers working on the same project using different IDEs
     - as per [ssw.com.au/rules/consistent-code-style/](https://ssw.com.au/rules/consistent-code-style/)
-
 - 🧪 Testing
     - as per [ssw.com.au/rules/rules-to-better-testing/](https://www.ssw.com.au/rules/rules-to-better-testing/)
+    - [TUnit](https://thomhurst.github.io/TUnit/) - Blazingly fast and customizable test framework
     - Simpler Unit Tests for Application
         - **No Entity Framework mocking required** thanks to **Specifications**
         - as per [ssw.com.au/rules/rules-to-better-unit-tests/](https://www.ssw.com.au/rules/rules-to-better-unit-tests/)

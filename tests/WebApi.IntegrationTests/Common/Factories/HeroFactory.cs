@@ -5,17 +5,17 @@ namespace WebApi.IntegrationTests.Common.Factories;
 
 public static class HeroFactory
 {
-    private static readonly Faker<Power> PowerFaker =
+    private static readonly Faker<Power> _powerFaker =
         new Faker<Power>().CustomInstantiator(f => new Power(f.Commerce.Product(), f.Random.Number(1, 10)));
 
-    private static readonly Faker<Hero> HeroFaker = new Faker<Hero>().CustomInstantiator(f =>
+    private static readonly Faker<Hero> _heroFaker = new Faker<Hero>().CustomInstantiator(f =>
     {
         var hero = Hero.Create(
             f.Person.FullName,
             f.Person.FirstName
         );
 
-        var powers = PowerFaker
+        var powers = _powerFaker
             .Generate(f.Random.Number(1, 5));
 
         hero.UpdatePowers(powers);
@@ -23,7 +23,7 @@ public static class HeroFactory
         return hero;
     });
 
-    public static Hero Generate() => HeroFaker.Generate();
+    public static Hero Generate() => _heroFaker.Generate();
 
-    public static IEnumerable<Hero> Generate(int count) => HeroFaker.Generate(count);
+    public static IEnumerable<Hero> Generate(int count) => _heroFaker.Generate(count);
 }

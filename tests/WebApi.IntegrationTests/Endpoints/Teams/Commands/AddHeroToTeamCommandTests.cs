@@ -2,23 +2,21 @@ using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class AddHeroToTeamCommandTests : IntegrationTestBase
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldAddHeroToTeam()
     {
         // Arrange
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
-        Context.Heroes.Add(hero);
-        Context.Teams.Add(team);
-        await Context.SaveChangesAsync();
+        await AddAsync(hero);
+        await AddAsync(team);
 
         var teamId = team.Id.Value;
         var heroId = hero.Id.Value;

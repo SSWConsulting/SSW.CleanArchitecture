@@ -1,21 +1,20 @@
 using SSW.CleanArchitecture.Application.UseCases.Teams.Queries.GetAllTeams;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Queries;
 
-public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class GetAllTeamsQueryTests : IntegrationTestBase
 {
-    [Fact]
+    [Test]
     public async Task Query_ShouldReturnAllTeams()
     {
         // Arrange
         const int entityCount = 10;
         var entities = TeamFactory.Generate(entityCount);
-        await Context.Teams.AddRangeAsync(entities);
-        await Context.SaveChangesAsync();
+        await AddRangeAsync(entities);
+        // await Context.SaveChangesAsync();
         var client = GetAnonymousClient();
 
         // Act

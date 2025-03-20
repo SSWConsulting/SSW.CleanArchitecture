@@ -1,6 +1,7 @@
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System.Text;
+using TestResult = NetArchTest.Rules.TestResult;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
