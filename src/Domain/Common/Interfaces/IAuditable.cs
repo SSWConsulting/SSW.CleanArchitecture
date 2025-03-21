@@ -3,11 +3,11 @@
 public interface IAuditable
 {
     DateTimeOffset CreatedAt { get; }
-    string? CreatedBy { get; } // TODO: String as userId? (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/76)
+    string CreatedBy { get; }
     DateTimeOffset? UpdatedAt { get; }
-    string? UpdatedBy { get; } // TODO: String as userId? (https://github.com/SSWConsulting/SSW.CleanArchitecture/issues/76)
+    string? UpdatedBy { get; }
 
-    void SetCreated(DateTimeOffset createdAt, string? createdBy);
+    void SetCreated(TimeProvider timeProvider, string? createdBy = null);
 
-    void SetUpdated(DateTimeOffset updatedAt, string? updatedBy);
+    void SetUpdated(TimeProvider timeProvider, string? updatedBy = null);
 }

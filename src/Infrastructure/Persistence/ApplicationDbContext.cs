@@ -26,7 +26,6 @@ public class ApplicationDbContext(DbContextOptions options)
     {
         base.ConfigureConventions(configurationBuilder);
 
-        configurationBuilder.Properties<string>().HaveMaxLength(256);
         configurationBuilder.RegisterAllInVogenEfCoreConverters();
     }
 

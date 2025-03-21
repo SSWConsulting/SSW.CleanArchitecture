@@ -24,21 +24,23 @@ public class EntitySaveChangesInterceptor(ICurrentUserService currentUserService
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public void UpdateEntities(DbContext? context)
+    private void UpdateEntities(DbContext? context)
     {
         if (context is null)
             return;
 
         foreach (var entry in context.ChangeTracker.Entries<IAuditable>())
+        {
             if (entry.State is EntityState.Added)
             {
-                entry.Entity.SetCreated(timeProvider.GetUtcNow(), currentUserService.UserId);
+                entry.Entity.SetCreated(timeProvider, currentUserService.UserId);
             }
             else if (entry.State is EntityState.Added or EntityState.Modified ||
                      entry.HasChangedOwnedEntities())
             {
-                entry.Entity.SetUpdated(timeProvider.GetUtcNow(), currentUserService.UserId);
+                entry.Entity.SetUpdated(timeProvider, currentUserService.UserId);
             }
+        }
     }
 }
 

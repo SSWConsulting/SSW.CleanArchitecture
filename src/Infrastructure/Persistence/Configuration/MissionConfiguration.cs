@@ -1,16 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SSW.CleanArchitecture.Domain.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Teams;
 
 namespace SSW.CleanArchitecture.Infrastructure.Persistence.Configuration;
 
-public class MissionConfiguration : IEntityTypeConfiguration<Mission>
+public class MissionConfiguration : AuditableConfiguration<Mission>
 {
-    public void Configure(EntityTypeBuilder<Mission> builder)
+    public override void PostConfigure(EntityTypeBuilder<Mission> builder)
     {
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Description)
+            .HasMaxLength(Mission.DescriptionMaxLength)
             .IsRequired();
     }
 }

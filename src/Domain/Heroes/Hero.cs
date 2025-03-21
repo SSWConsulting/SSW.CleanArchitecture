@@ -8,6 +8,9 @@ public readonly partial struct HeroId;
 
 public class Hero : AggregateRoot<HeroId>
 {
+    public const int NameMaxLength = 100;
+    public const int AliasMaxLength = 100;
+
     private readonly List<Power> _powers = [];
 
     private string _name = null!;
@@ -19,6 +22,7 @@ public class Hero : AggregateRoot<HeroId>
         set
         {
             ThrowIfNullOrWhiteSpace(value, nameof(Name));
+            ThrowIfGreaterThan(value.Length, NameMaxLength, nameof(Name));
             _name = value;
         }
     }
@@ -29,6 +33,7 @@ public class Hero : AggregateRoot<HeroId>
         set
         {
             ThrowIfNullOrWhiteSpace(value, nameof(Alias));
+            ThrowIfGreaterThan(value.Length, AliasMaxLength, nameof(Alias));
             _alias = value;
         }
     }
@@ -38,7 +43,7 @@ public class Hero : AggregateRoot<HeroId>
 
     public IReadOnlyList<Power> Powers => _powers.AsReadOnly();
 
-    private Hero() { }
+    private Hero() { } // Needed for EF Core
 
     public static Hero Create(string name, string alias)
     {
