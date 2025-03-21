@@ -10,5 +10,12 @@
         <AnalysisMode>Recommended</AnalysisMode>
         
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    </PropertyGroup>
+
+        <!-- Disable whitespace rule -->
+        <NoWarn>$(NoWarn);IDE0055</NoWarn>
+
+        <!-- Disable "must have curly braces for if/else" -->
+        <NoWarn>$(NoWarn);IDE0011</NoWarn>
+
+</PropertyGroup>
 </Project>
