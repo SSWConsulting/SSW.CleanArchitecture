@@ -23,9 +23,9 @@ jobs:
       - name: Install and Build Log4brains
         run: |
           npm install -g log4brains
-          echo $pwd
+          echo $PWD
           log4brains build --out build-log4brains
-          echo $pwd
+          echo $PWD
 
 
       - name: Deploy
