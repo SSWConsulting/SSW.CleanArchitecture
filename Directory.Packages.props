@@ -12,6 +12,7 @@
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.1.0" />
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.1.0" />
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
+      <PackageVersion Include="AwesomeAssertions" Version="8.0.2"/>
     <PackageVersion Include="Azure.Identity" Version="1.13.0" />
     <PackageVersion Include="Bogus" Version="35.6.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2">
@@ -20,7 +21,6 @@
     </PackageVersion>
     <PackageVersion Include="EntityFrameworkCore.Exceptions.SqlServer" Version="8.1.3" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
-    <PackageVersion Include="FluentAssertions" Version="6.12.2" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageVersion Include="JunitXml.TestLogger" Version="4.1.0" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
