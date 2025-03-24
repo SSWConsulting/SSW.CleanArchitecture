@@ -24,7 +24,7 @@ jobs:
         run: |
           npm install -g log4brains
           echo $pwd
-          log4brains build --basePath /${GITHUB_REPOSITORY#*/}
+          log4brains build --out build-log4brains
           echo $pwd
 
 
@@ -32,5 +32,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          folder: .log4brains/out
+          folder: build-log4brains
           target-folder: ''
