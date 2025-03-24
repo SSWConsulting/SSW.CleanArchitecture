@@ -27,7 +27,9 @@ jobs:
           log4brains build --out build-log4brains
           echo $PWD
           ls -al
-          cd ..
+          cd docs
+          ls -al
+          cd adr
           ls -al
 
 
