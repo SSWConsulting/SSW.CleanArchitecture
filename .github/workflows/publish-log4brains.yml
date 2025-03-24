@@ -39,5 +39,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          folder: build-log4brains
+          folder: .log4brains/out
           target-folder: ''
