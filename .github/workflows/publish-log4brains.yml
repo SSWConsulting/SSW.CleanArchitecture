@@ -18,17 +18,16 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: "21"
 
       - name: Install and Build Log4brains
         run: |
           npm install -g log4brains
-          log4brains build --basePath /${GITHUB_REPOSITORY#*/}
+          log4brains build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
           folder: .log4brains/out
           target-folder: ''
