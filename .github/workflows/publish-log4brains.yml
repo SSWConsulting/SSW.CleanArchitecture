@@ -24,7 +24,7 @@ jobs:
         run: |
           npm install -g log4brains
           echo $PWD
-          log4brains build --out build-log4brains --basePath /${GITHUB_REPOSITORY#*/} 
+          log4brains build --basePath /${GITHUB_REPOSITORY#*/} 
           echo $PWD
           ls -al
           cd docs
