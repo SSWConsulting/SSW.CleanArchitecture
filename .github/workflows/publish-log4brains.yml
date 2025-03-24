@@ -23,17 +23,7 @@ jobs:
       - name: Install and Build Log4brains
         run: |
           npm install -g log4brains
-          echo $PWD
-          log4brains build --basePath /${GITHUB_REPOSITORY#*/} 
-          echo $PWD
-          ls -al
-          cd docs
-          ls -al
-          cd adr
-          ls -al
-          cd /
-          ls -al
-
+          log4brains build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.7.3
