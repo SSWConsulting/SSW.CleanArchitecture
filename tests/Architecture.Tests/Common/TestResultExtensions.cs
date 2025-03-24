@@ -1,4 +1,5 @@
-﻿using Xunit.Abstractions;
+﻿using FluentAssertions.Execution;
+using Xunit.Abstractions;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
@@ -15,5 +16,5 @@ public static class TestResultExtensions
             outputHelper.WriteLine(type.FullName);
     }
 
-    public static TestResultAssertions Should(this TestResult result) => new(result);
+    public static TestResultAssertions Should(this TestResult result) => new(result, AssertionChain.GetOrCreate());
 }
