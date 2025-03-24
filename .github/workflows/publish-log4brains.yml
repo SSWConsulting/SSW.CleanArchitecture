@@ -27,6 +27,8 @@ jobs:
           log4brains build --out build-log4brains
           echo $PWD
           ls -al
+          cd ..
+          ls -al
 
 
       - name: Deploy
