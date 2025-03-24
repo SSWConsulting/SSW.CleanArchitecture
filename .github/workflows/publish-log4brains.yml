@@ -23,12 +23,11 @@ jobs:
       - name: Install and Build Log4brains
         run: |
           npm install -g log4brains
-          log4brains build --basePath ""
+          log4brains build --basePath /${GITHUB_REPOSITORY#*/}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
           folder: .log4brains/out
           target-folder: ''
