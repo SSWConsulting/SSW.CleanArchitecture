@@ -1,5 +1,3 @@
-using Xunit.Abstractions;
-
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 public static class TypeExtensions

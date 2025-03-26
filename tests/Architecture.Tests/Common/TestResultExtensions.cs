@@ -1,5 +1,5 @@
 ﻿using FluentAssertions.Execution;
-using Xunit.Abstractions;
+using TestResult = NetArchTest.Rules.TestResult;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
