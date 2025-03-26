@@ -1,7 +1,7 @@
 # Migrate to Awesome Assertions
 
 - Status: accepted
-- Deciders: Daniel Mackay, Luke Cooke, Matt Wicks, Anton Polkanov, Matt Parker 
+- Deciders: Daniel Mackay, Luke Cooke, Anton Polkanov, Matt Parker
 - Date: 2025-03-26
 - Tags: testing, unit-tests, assertions, awesome-assertions, fluent-assertions
 
