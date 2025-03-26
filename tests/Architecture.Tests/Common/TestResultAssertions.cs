@@ -6,15 +6,19 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 public class TestResultAssertions : ReferenceTypeAssertions<TestResult, TestResultAssertions>
 {
-    public TestResultAssertions(TestResult instance) : base(instance)
+    private readonly AssertionChain _chain;
+
+    public TestResultAssertions(TestResult instance, AssertionChain chain) : base(instance, chain)
     {
+        _chain = chain;
     }
 
     protected override string Identifier => "TestResult";
 
+    [CustomAssertion]
     public AndConstraint<TestResultAssertions> BeSuccessful(string because = "", params object[] becauseArgs)
     {
-        Execute.Assertion
+        _chain
             .BecauseOf(because, becauseArgs)
             .Given(() => Subject)
             .ForCondition(s => s.IsSuccessful)
