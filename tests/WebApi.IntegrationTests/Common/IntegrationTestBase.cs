@@ -7,7 +7,7 @@ namespace WebApi.IntegrationTests.Common;
 /// <summary>
 /// Integration tests inherit from this to access helper classes
 /// </summary>
-[Collection(TestingDatabaseFixtureCollection.Name)]
+[Collection<TestingDatabaseFixtureCollection>]
 public abstract class IntegrationTestBase : IAsyncLifetime
 {
     private readonly IServiceScope _scope;
