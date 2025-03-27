@@ -1,6 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using MigrationService.Initializers;
-using Respawn;
 using WebApi.IntegrationTests.Common.Infrastructure.Database;
 using WebApi.IntegrationTests.Common.Infrastructure.Web;
 
