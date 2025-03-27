@@ -14,7 +14,7 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
         // Arrange
         const int entityCount = 10;
         var entities = HeroFactory.Generate(entityCount);
-        await AddAsync(entities);
+        await AddRangeAsync(entities);
         var client = GetAnonymousClient();
 
         // Act

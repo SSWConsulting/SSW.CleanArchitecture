@@ -16,9 +16,8 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         // Arrange
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
+        await AddAsync(team);
         await AddAsync(hero);
-        team.AddHero(hero);
-        await SaveAsync();
 
         var teamId = team.Id.Value;
         var heroId = hero.Id.Value;
