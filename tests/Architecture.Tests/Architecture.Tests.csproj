@@ -6,11 +6,11 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="AwesomeAssertions"/>
     <PackageReference Include="coverlet.collector">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="JunitXml.TestLogger" />
     <PackageReference Include="NetArchTest.Rules" />
     <PackageReference Include="TUnit" />

@@ -1,21 +1,18 @@
-﻿using TUnit.Core.Logging;
-using TestResult = NetArchTest.Rules.TestResult;
+﻿using TestResult = NetArchTest.Rules.TestResult;
 
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
+
 public static class TestResultExtensions
 {
-    public static void DumpFailingTypes(this TestResult result, ILogger logger)
+    public static void DumpFailingTypes(this TestResult result, ITestOutputHelper outputHelper)
     {
         if (result.IsSuccessful)
             return;
 
-        logger.LogInformation("Failing Types:");
+        outputHelper.WriteLine("Failing Types:");
 
         foreach (var type in result.FailingTypes)
-        {
-            if (type.FullName is not null)
-                logger.LogInformation(type.FullName);
-        }
+            outputHelper.WriteLine(type.FullName);
     }
 
     public static TestResultAssertions Should(this TestResult result) => new(result);

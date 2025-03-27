@@ -3,6 +3,7 @@ name: Publish Log4brains
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch: # Add this line to allow manual triggering
 
 jobs:
   build-and-publish:
@@ -17,7 +18,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: "21"
 
       - name: Install and Build Log4brains
         run: |
@@ -25,9 +26,8 @@ jobs:
           log4brains build --basePath /${GITHUB_REPOSITORY#*/}
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.6.9
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: .log4brains/out
-          TARGET_FOLDER: ''
+          token: ${{ secrets.GITHUB_TOKEN }}
+          folder: .log4brains/out
+          target-folder: ''
