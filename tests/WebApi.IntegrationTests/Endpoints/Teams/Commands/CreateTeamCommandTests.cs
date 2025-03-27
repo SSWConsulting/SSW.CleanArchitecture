@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.CreateTeam;
+using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
@@ -21,7 +22,7 @@ public class CreateTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputH
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);
-        var item = await Context.Teams.AsNoTracking().FirstAsync();
+        var item = await GetQueryable<Team>().FirstAsync();
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);

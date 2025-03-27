@@ -4,8 +4,8 @@ using SSW.CleanArchitecture.Application.UseCases.Teams.Commands.ExecuteMission;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
@@ -19,8 +19,7 @@ public class ExecuteMissionCommandTests(TestingDatabaseFixture fixture, ITestOut
         var hero = HeroFactory.Generate();
         var team = TeamFactory.Generate();
         team.AddHero(hero);
-        Context.Teams.Add(team);
-        await Context.SaveChangesAsync();
+        await AddAsync(team);
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
         var request = new ExecuteMissionCommand("Save the world");

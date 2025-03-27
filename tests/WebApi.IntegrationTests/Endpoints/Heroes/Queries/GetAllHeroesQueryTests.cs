@@ -1,7 +1,7 @@
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 
@@ -14,8 +14,7 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
         // Arrange
         const int entityCount = 10;
         var entities = HeroFactory.Generate(entityCount);
-        await Context.Heroes.AddRangeAsync(entities);
-        await Context.SaveChangesAsync();
+        await AddAsync(entities);
         var client = GetAnonymousClient();
 
         // Act

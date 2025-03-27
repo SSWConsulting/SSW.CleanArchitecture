@@ -1,0 +1,52 @@
+using Microsoft.Extensions.DependencyInjection;
+using MigrationService.Initializers;
+using Respawn;
+using WebApi.IntegrationTests.Common.Infrastructure.Database;
+using WebApi.IntegrationTests.Common.Infrastructure.Web;
+
+namespace WebApi.IntegrationTests.Common;
+
+/// <summary>
+/// Initializes and resets the database before and after each test
+/// </summary>
+// ReSharper disable once ClassNeverInstantiated.Global
+public class TestingDatabaseFixture : IAsyncLifetime
+{
+    private readonly TestDatabase _database = new();
+    private WebApiTestFactory _factory = null!;
+    private IServiceScopeFactory _scopeFactory = null!;
+
+    /// <summary>
+    /// Global initializer for tests
+    /// </summary>
+    public async ValueTask InitializeAsync()
+    {
+        await _database.InitializeAsync();
+        _factory = new WebApiTestFactory(_database.DbConnection);
+        _scopeFactory = _factory.Services.GetRequiredService<IServiceScopeFactory>();
+    }
+
+    /// <summary>
+    /// Setup for each test
+    /// </summary>
+    public async Task ResetState()
+    {
+        await _database.ResetAsync();
+    }
+
+    /// <summary>
+    /// Global clean-up for tests
+    /// </summary>
+    public async ValueTask DisposeAsync()
+    {
+        await _database.DisposeAsync();
+        await _factory.DisposeAsync();
+    }
+
+    // NOTE: If you need an authenticated client, create a similar method that performance the authentication,
+    // adds the appropriate headers and returns the authenticated client
+    // For an example of this see https://github.com/SSWConsulting/Northwind365
+    public Lazy<HttpClient> AnonymousClient => new(_factory.CreateClient());
+
+    public IServiceScope CreateScope() => _scopeFactory.CreateScope();
+}
