@@ -14,7 +14,10 @@ public static class TestResultExtensions
         logger.LogInformation("Failing Types:");
 
         foreach (var type in result.FailingTypes)
-            logger.LogInformation(type.FullName);
+        {
+            if (type.FullName is not null)
+                logger.LogInformation(type.FullName);
+        }
     }
 
     public static TestResultAssertions Should(this TestResult result) => new(result, AssertionChain.GetOrCreate());
