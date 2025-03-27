@@ -52,7 +52,7 @@
     <PackageVersion Include="Scalar.AspNetCore" Version="1.2.39" />
     <PackageVersion Include="Testcontainers" Version="4.0.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.0.0" />
-    <PackageVersion Include="TUnit" Version="0.18.40" />
+    <PackageVersion Include="TUnit" Version="0.19.17" />
     <PackageVersion Include="Vogen" Version="7.0.0" />
   </ItemGroup>
 </Project>
