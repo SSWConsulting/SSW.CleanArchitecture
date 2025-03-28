@@ -27,7 +27,7 @@ public class DomainModel : TestBase
             .And().DoNotHaveNameEndingWith("Errors")
             .And().MeetCustomRule(new IsNotEnumRule());
 
-        domainModels.GetTypes().Dump(new DefaultLogger());
+        domainModels.GetTypes().Dump(TestContext.Current.GetDefaultLogger());
 
         // Act
         var result = domainModels
