@@ -26,22 +26,20 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
         // Redirect application logging to test output
         builder.ConfigureLogging(logging =>
         {
-            logging.ClearProviders();
+            // logging.ClearProviders();
             // DM: Fix up
-            // logging.AddProvider(new TUnitLoggerProvider());
+            // logging.AddProvider(new TestLoggerProvider());
         });
 
         builder.UseSetting("ConnectionStrings:clean-architecture", _dbConnection.ConnectionString);
     }
 }
 
-// public class TUnitLoggerProvider : ILoggerProvider
+// public class TestLoggerProvider : ILoggerProvider
 // {
 //     public ILogger CreateLogger(string categoryName)
 //     {
-//         var logger = TestContext.Current?.GetDefaultLogger();
-//         ArgumentNullException.ThrowIfNull(logger);
-//         return logger;
+//         return new TestLogger();
 //     }
 //
 //     public void Dispose()
@@ -49,11 +47,9 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
 //         // Dispose resources if any
 //     }
 // }
-
-// public class TUnitDefaultLogger : ILogger
-// {
-//     private readonly TUnit.Core.Logging.DefaultLogger _logger = new();
 //
+// public class TestLogger : ILogger
+// {
 //     public IDisposable? BeginScope<TState>(TState state) where TState : notnull
 //     {
 //         return null;
@@ -66,6 +62,13 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
 //
 //     public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
 //     {
-//         _logger.LogInformation(formatter(state, exception));
+//         var msg = formatter(state, exception);
+//         Console.WriteLine(msg);
+//
+//         var logger = TestContext.Current?.GetDefaultLogger();
+//         if (logger == null)
+//             return;
+//
+//         logger.LogInformation(formatter(state, exception));
 //     }
 // }
