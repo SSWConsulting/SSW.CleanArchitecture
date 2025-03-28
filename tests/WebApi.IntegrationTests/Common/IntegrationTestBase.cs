@@ -29,7 +29,7 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     /// </summary>
     public async ValueTask InitializeAsync()
     {
-        await _fixture.ResetState();
+        await _fixture.TestSetup();
     }
 
     protected IQueryable<T> GetQueryable<T>() where T : class => _dbContext.Set<T>().AsNoTracking();

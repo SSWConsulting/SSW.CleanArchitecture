@@ -5,7 +5,7 @@ using WebApi.IntegrationTests.Common.Infrastructure.Web;
 namespace WebApi.IntegrationTests.Common;
 
 /// <summary>
-/// Initializes and resets the database before and after each test
+/// Initializes and resets the database before and after each test. Shared across all integration tests.
 /// </summary>
 // ReSharper disable once ClassNeverInstantiated.Global
 public class TestingDatabaseFixture : IAsyncLifetime
@@ -27,13 +27,13 @@ public class TestingDatabaseFixture : IAsyncLifetime
     /// <summary>
     /// Setup for each test
     /// </summary>
-    public async Task ResetState()
+    public async Task TestSetup()
     {
         await _database.ResetAsync();
     }
 
     /// <summary>
-    /// Global clean-up for tests
+    /// Global cleanup for tests
     /// </summary>
     public async ValueTask DisposeAsync()
     {
