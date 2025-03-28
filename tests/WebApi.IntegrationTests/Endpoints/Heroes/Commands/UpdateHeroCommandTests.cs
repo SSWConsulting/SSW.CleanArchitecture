@@ -3,23 +3,21 @@ using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.UpdateHero;
 using SSW.CleanArchitecture.Domain.Heroes;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class UpdateHeroCommandTests : IntegrationTestBase
 {
-    [Fact]
+    [Test]
     public async Task Command_ShouldUpdateHero()
     {
         // Arrange
         var heroName = "2021-01-01T00:00:00Z";
         var heroAlias = "2021-01-01T00:00:00Z-alias";
         var hero = HeroFactory.Generate();
-        Context.Heroes.Add(hero);
-        await Context.SaveChangesAsync();
+        await AddAsync(hero);
         (string Name, int PowerLevel)[] powers =
         [
             ("Heat vision", 7),
@@ -35,11 +33,11 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var createdTimeStamp = DateTime.Now;
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        Hero item = await Context.Heroes.AsNoTracking().FirstAsync(dbHero => dbHero.Id == hero.Id);
+        var item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id, CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);
@@ -50,7 +48,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         item.UpdatedAt.Should().BeCloseTo(createdTimeStamp, TimeSpan.FromSeconds(10));
     }
 
-    [Fact]
+    [Test]
     public async Task Command_WhenHeroDoesNotExist_ShouldReturnNotFound()
     {
         // Arrange
@@ -67,7 +65,7 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        Hero? item = await Context.Heroes.AsNoTracking().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId);
+        var item = await GetQueryable<Hero>().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId);
 
         item.Should().BeNull();
     }

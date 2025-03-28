@@ -4,7 +4,7 @@ namespace SSW.CleanArchitecture.Architecture.UnitTests;
 
 public class Layer : TestBase
 {
-    [Fact]
+    [Test]
     public void DomainLayer_Should_NotHaveDependencyOnApplication()
     {
         var result = Types.InAssembly(DomainAssembly)
@@ -15,7 +15,7 @@ public class Layer : TestBase
         result.Should().BeSuccessful();
     }
 
-    [Fact]
+    [Test]
     public void DomainLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
     {
         var result = Types.InAssembly(DomainAssembly)
@@ -26,7 +26,7 @@ public class Layer : TestBase
         result.Should().BeSuccessful();
     }
 
-    [Fact]
+    [Test]
     public void ApplicationLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
     {
         var result = Types.InAssembly(ApplicationAssembly)
@@ -37,7 +37,7 @@ public class Layer : TestBase
         result.Should().BeSuccessful();
     }
 
-    [Fact]
+    [Test]
     public void InfrastructureLayer_ShouldNotHaveDependencyOn_PresentationLayer()
     {
         var result = Types.InAssembly(InfrastructureAssembly)
