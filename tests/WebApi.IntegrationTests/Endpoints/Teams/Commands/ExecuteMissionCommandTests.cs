@@ -19,23 +19,21 @@ public class ExecuteMissionCommandTests : IntegrationTestBase
         var team = TeamFactory.Generate();
         team.AddHero(hero);
         await AddAsync(team);
-        // Context.Teams.Add(team);
-        // await Context.SaveChangesAsync();
         var teamId = team.Id.Value;
         var client = GetAnonymousClient();
         var request = new ExecuteMissionCommand("Save the world");
 
         // Act
-        var result = await client.PostAsJsonAsync($"/api/teams/{teamId}/execute-mission", request);
+        var result = await client.PostAsJsonAsync($"/api/teams/{teamId}/execute-mission", request, CancellationToken);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
         var mission = updatedTeam!.Missions.First();
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);
-        updatedTeam!.Missions.Should().HaveCount(1);
+        updatedTeam.Missions.Should().HaveCount(1);
         updatedTeam.Status.Should().Be(TeamStatus.OnMission);
         mission.Status.Should().Be(MissionStatus.InProgress);
     }

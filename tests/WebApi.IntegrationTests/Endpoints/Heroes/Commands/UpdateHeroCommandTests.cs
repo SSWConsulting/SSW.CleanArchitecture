@@ -33,11 +33,11 @@ public class UpdateHeroCommandTests : IntegrationTestBase
         var createdTimeStamp = DateTime.Now;
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        var item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id);
+        var item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id, CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);

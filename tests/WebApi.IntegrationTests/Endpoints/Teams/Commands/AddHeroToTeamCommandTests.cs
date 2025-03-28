@@ -23,12 +23,12 @@ public class AddHeroToTeamCommandTests : IntegrationTestBase
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null);
+        var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null, CancellationToken);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
         updatedTeam.Should().NotBeNull();

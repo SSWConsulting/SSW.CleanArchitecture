@@ -17,11 +17,11 @@ public class CreateTeamCommandTests : IntegrationTestBase
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsJsonAsync("/api/teams", cmd);
+        var result = await client.PostAsJsonAsync("/api/teams", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);
-        var item = await GetQueryable<Team>().FirstAsync();
+        var item = await GetQueryable<Team>().FirstAsync(CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);

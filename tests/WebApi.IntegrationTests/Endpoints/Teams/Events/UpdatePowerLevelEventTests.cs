@@ -23,7 +23,6 @@ public class UpdatePowerLevelEventTests : IntegrationTestBase
         hero.UpdatePowers(powers);
         team.AddHero(hero);
         await AddAsync(team);
-        // await Context.SaveChangesAsync();
         powers.Add(new Power("Speed", 5));
         var powerDtos = powers.Select(p => new UpdateHeroPowerDto(p.Name, p.PowerLevel));
         var cmd = new UpdateHeroCommand(hero.Name, hero.Alias, powerDtos);
@@ -31,13 +30,13 @@ public class UpdatePowerLevelEventTests : IntegrationTestBase
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd, CancellationToken);
 
         // Assert
         await Wait.ForEventualConsistency();
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         updatedTeam!.TotalPowerLevel.Should().Be(15);

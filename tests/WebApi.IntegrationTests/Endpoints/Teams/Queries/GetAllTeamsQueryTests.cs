@@ -14,11 +14,10 @@ public class GetAllTeamsQueryTests : IntegrationTestBase
         const int entityCount = 10;
         var entities = TeamFactory.Generate(entityCount);
         await AddRangeAsync(entities);
-        // await Context.SaveChangesAsync();
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<TeamDto[]>("/api/teams");
+        var result = await client.GetFromJsonAsync<TeamDto[]>("/api/teams", CancellationToken);
 
         // Assert
         result.Should().NotBeNull();

@@ -49,4 +49,6 @@ public abstract class IntegrationTestBase : IDisposable
     {
         _scope.Dispose();
     }
+
+    protected CancellationToken CancellationToken => TestContext.Current?.CancellationToken ?? CancellationToken.None;
 }

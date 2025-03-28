@@ -23,12 +23,12 @@ public class CompleteMissionCommandTests : IntegrationTestBase
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null);
+        var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null, CancellationToken);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
         var mission = updatedTeam!.Missions.First();
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);

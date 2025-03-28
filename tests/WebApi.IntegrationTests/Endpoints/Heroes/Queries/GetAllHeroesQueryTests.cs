@@ -17,7 +17,7 @@ public class GetAllHeroesQueryTests : IntegrationTestBase
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes");
+        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes", CancellationToken);
 
         // Assert
         result.Should().NotBeNull();
