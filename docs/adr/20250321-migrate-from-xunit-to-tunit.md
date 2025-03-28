@@ -11,13 +11,13 @@ xUnit has been a populate testing framework for a some time. There are some good
 
 ## Decision Drivers
 
-- Fast test execution
-- Ease of use - sharing state
-- Ease of use - with integration test setup
+- Fast test execution (ideally)
+- Ease of use - sharing state & integration test setup/cleanup
+- Code coverage support in IDEs
 
 ## Considered Options
 
-1. xUnit
+1. xUnit v3
 2. NUnit
 3. TUnit
 
@@ -32,14 +32,13 @@ Chosen option: "Option 3 - TUnit", because it is blazingly fast, and the hooks i
 
 ## Pros and Cons of the Options <!-- optional -->
 
-### Option 1 - xUnit
+### Option 1 - xUnit v3
 
 - ✅ 4.3k stars (over 14 years)
 - ✅ By default, state is not shared between tests
 - ✅ Well supported test framework
+- ✅ Code coverage works in IDEs
 - ❌ Complicated sharing of state
-- ❌ Difficult to understand how
-- ❌ Smaller set of test features
 - ❌ Maintained mainly by 1 person (Brad Wilson)
 
 [//]: # (TODO: show screenshot of integration test setup)
@@ -60,6 +59,7 @@ Chosen option: "Option 3 - TUnit", because it is blazingly fast, and the hooks i
 - ✅ Easy to customise setup / clean up at different levels (i.e. per test, class, or assembly. This is great for integration tests)
 - ✅ Leverages new .NET testing framework
 - ✅ Excellent Documentation
+- ❌ Code coverage doesn't work in IDEs
 - ❌ Maintained mainly by 1 person (Tom Hurst)
 
 [//]: # (TODO: show screenshot of integration test setup)
