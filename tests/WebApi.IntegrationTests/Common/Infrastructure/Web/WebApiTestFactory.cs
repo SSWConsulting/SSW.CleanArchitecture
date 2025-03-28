@@ -21,10 +21,10 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         // Redirect application logging to test output
-        builder.ConfigureLogging(x =>
+        builder.ConfigureLogging(_ =>
         {
-            x.ClearProviders();
-            x.AddFilter(level => level >= LogLevel.Information);
+            // x.ClearProviders();
+            // x.AddFilter(level => level >= LogLevel.Information);
             // TODO: This doesnt work anymore - need to investigate
             // x.Services.AddSingleton<ILoggerProvider>(new XUnitLoggerProvider(Output));
         });
