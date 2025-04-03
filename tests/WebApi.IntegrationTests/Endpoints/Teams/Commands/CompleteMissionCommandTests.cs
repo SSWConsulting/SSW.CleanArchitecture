@@ -7,8 +7,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class CompleteMissionCommandTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_ShouldCompleteMission()
@@ -23,12 +22,12 @@ public class CompleteMissionCommandTests(TestingDatabaseFixture fixture, ITestOu
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null);
+        var result = await client.PostAsync($"/api/teams/{teamId}/complete-mission", null, CancellationToken);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
         var mission = updatedTeam!.Missions.First();
 
         result.StatusCode.Should().Be(HttpStatusCode.OK);

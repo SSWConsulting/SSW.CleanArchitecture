@@ -8,8 +8,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class UpdateHeroCommandTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_ShouldUpdateHero()
@@ -34,11 +33,11 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var createdTimeStamp = DateTime.Now;
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        Hero item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id);
+        Hero item = await GetQueryable<Hero>().FirstAsync(dbHero => dbHero.Id == hero.Id, CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);
@@ -62,11 +61,11 @@ public class UpdateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PutAsJsonAsync("/heroes", cmd);
+        var result = await client.PutAsJsonAsync("/heroes", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        Hero? item = await GetQueryable<Hero>().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId);
+        Hero? item = await GetQueryable<Hero>().FirstOrDefaultAsync(dbHero => dbHero.Id == heroId, CancellationToken);
 
         item.Should().BeNull();
     }

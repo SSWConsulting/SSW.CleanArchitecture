@@ -7,8 +7,7 @@ using WebApi.IntegrationTests.Common;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class CreateTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class CreateTeamCommandTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_ShouldCreateTeam()
@@ -18,11 +17,11 @@ public class CreateTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsJsonAsync("/api/teams", cmd);
+        var result = await client.PostAsJsonAsync("/api/teams", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);
-        var item = await GetQueryable<Team>().FirstAsync();
+        var item = await GetQueryable<Team>().FirstAsync(CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);

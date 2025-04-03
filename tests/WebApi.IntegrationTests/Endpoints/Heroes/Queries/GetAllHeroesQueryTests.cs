@@ -5,8 +5,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 
-public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Query_ShouldReturnAllHeroes()
@@ -18,7 +17,7 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes");
+        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes", CancellationToken);
 
         // Assert
         result.Should().NotBeNull();

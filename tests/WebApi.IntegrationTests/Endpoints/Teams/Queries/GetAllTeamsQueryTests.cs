@@ -5,8 +5,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Queries;
 
-public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Query_ShouldReturnAllTeams()
@@ -18,7 +17,7 @@ public class GetAllTeamsQueryTests(TestingDatabaseFixture fixture, ITestOutputHe
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<TeamDto[]>("/api/teams");
+        var result = await client.GetFromJsonAsync<TeamDto[]>("/api/teams", CancellationToken);
 
         // Assert
         result.Should().NotBeNull();

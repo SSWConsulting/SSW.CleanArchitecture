@@ -7,8 +7,7 @@ using WebApi.IntegrationTests.Common.Factories;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Commands;
 
-public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_ShouldAddHeroToTeam()
@@ -24,12 +23,12 @@ public class AddHeroToTeamCommandTests(TestingDatabaseFixture fixture, ITestOutp
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null);
+        var result = await client.PostAsync($"/api/teams/{teamId}/heroes/{heroId}", null, CancellationToken);
 
         // Assert
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
         updatedTeam.Should().NotBeNull();

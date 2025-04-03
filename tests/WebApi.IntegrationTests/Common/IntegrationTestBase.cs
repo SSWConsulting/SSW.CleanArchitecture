@@ -14,12 +14,9 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     private readonly TestingDatabaseFixture _fixture;
     private readonly ApplicationDbContext _dbContext;
 
-    protected IntegrationTestBase(TestingDatabaseFixture fixture, ITestOutputHelper output)
+    protected IntegrationTestBase(TestingDatabaseFixture fixture)
     {
         _fixture = fixture;
-        // TODO: Figure out a nice way to pass output to the factory. Ideally we would do this in via the constructor, but that's not possible as xUnit creates the fixture.
-        // _fixture.Factory.Output = output;
-
         _scope = _fixture.CreateScope();
         _dbContext = _scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     }
@@ -37,23 +34,25 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     protected async Task AddAsync<TEntity>(TEntity entity)
         where TEntity : class
     {
-        await _dbContext.AddAsync(entity);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.AddAsync(entity, CancellationToken);
+        await _dbContext.SaveChangesAsync(CancellationToken);
     }
 
     protected async Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities)
         where TEntity : class
     {
-        await _dbContext.AddRangeAsync(entities);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.AddRangeAsync(entities, CancellationToken);
+        await _dbContext.SaveChangesAsync(CancellationToken);
     }
 
     protected async Task SaveAsync()
     {
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(CancellationToken);
     }
 
     protected HttpClient GetAnonymousClient() => _fixture.AnonymousClient.Value;
+
+    protected CancellationToken CancellationToken => TestContext.Current.CancellationToken;
 
     public ValueTask DisposeAsync()
     {
