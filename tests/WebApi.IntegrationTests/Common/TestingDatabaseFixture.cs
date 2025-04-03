@@ -15,7 +15,7 @@ public class TestingDatabaseFixture : IAsyncLifetime
     private IServiceScopeFactory _scopeFactory = null!;
 
     /// <summary>
-    /// Global initializer for tests
+    /// Global setup for tests
     /// </summary>
     public async ValueTask InitializeAsync()
     {
@@ -48,3 +48,6 @@ public class TestingDatabaseFixture : IAsyncLifetime
 
     public IServiceScope CreateScope() => _scopeFactory.CreateScope();
 }
+
+[CollectionDefinition]
+public class TestingDatabaseFixtureCollection : ICollectionFixture<TestingDatabaseFixture>;
