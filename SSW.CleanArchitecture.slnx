@@ -14,7 +14,6 @@
     <Project Path="src\WebApi\WebApi.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="Foo.Tests\Foo.Tests.csproj" Type="Classic C#" />
     <Project Path="tests\Architecture.Tests\Architecture.Tests.csproj" />
     <Project Path="tests\Domain.UnitTests\Domain.UnitTests.csproj" />
     <Project Path="tests\WebApi.IntegrationTests\WebApi.IntegrationTests.csproj" Type="Classic C#" />
