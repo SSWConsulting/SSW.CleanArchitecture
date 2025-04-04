@@ -11,13 +11,11 @@ public sealed record CreateHeroCommand(
 
 public record CreateHeroPowerDto(string Name, int PowerLevel);
 
-internal sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext, ILogger<CreateHeroCommandHandler> logger)
+internal sealed class CreateHeroCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<CreateHeroCommand, ErrorOr<Guid>>
 {
     public async Task<ErrorOr<Guid>> Handle(CreateHeroCommand request, CancellationToken cancellationToken)
     {
-        logger.LogError("Creating hero with name: {Name} and alias: {Alias}", request.Name, request.Alias);
-
         var hero = Hero.Create(request.Name, request.Alias);
         var powers = request.Powers.Select(p => new Power(p.Name, p.PowerLevel));
         hero.UpdatePowers(powers);
