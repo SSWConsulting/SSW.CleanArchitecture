@@ -32,7 +32,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test --no-build --no-restore --configuration Release --logger "junit;LogFilePath=test-result.xml"
+      run: dotnet test --no-build --no-restore --configuration Release -- --report-xunit-trx"
 
     - name: Publish
       run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
@@ -53,5 +53,3 @@ jobs:
       if: success() || failure()
       run: |
         cat test-summary.md >> $GITHUB_STEP_SUMMARY
-
-    
