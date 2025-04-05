@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;
+using SSW.CleanArchitecture.Domain.Heroes;
 using System.Net;
 using System.Net.Http.Json;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Commands;
 
-public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class CreateHeroCommandTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_ShouldCreateHero()
@@ -26,11 +26,11 @@ public class CreateHeroCommandTests(TestingDatabaseFixture fixture, ITestOutputH
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PostAsJsonAsync("/api/heroes", cmd);
+        var result = await client.PostAsJsonAsync("/api/heroes", cmd, CancellationToken);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.Created);
-        var item = await Context.Heroes.AsNoTracking().FirstAsync();
+        var item = await GetQueryable<Hero>().FirstAsync(CancellationToken);
 
         item.Should().NotBeNull();
         item.Name.Should().Be(cmd.Name);

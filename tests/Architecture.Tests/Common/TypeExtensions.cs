@@ -1,5 +1,3 @@
-using Xunit.Abstractions;
-
 namespace SSW.CleanArchitecture.Architecture.UnitTests.Common;
 
 public static class TypeExtensions
@@ -10,6 +8,11 @@ public static class TypeExtensions
             outputHelper.WriteLine("No types found.");
 
         foreach (var type in types)
+        {
+            if (type.FullName is null)
+                continue;
+
             outputHelper.WriteLine(type.FullName);
+        }
     }
 }

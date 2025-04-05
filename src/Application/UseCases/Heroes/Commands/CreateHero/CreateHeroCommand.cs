@@ -1,4 +1,5 @@
-﻿using SSW.CleanArchitecture.Application.Common.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Domain.Heroes;
 
 namespace SSW.CleanArchitecture.Application.UseCases.Heroes.Commands.CreateHero;

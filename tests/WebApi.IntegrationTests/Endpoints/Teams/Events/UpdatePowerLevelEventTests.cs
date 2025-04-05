@@ -5,13 +5,13 @@ using SSW.CleanArchitecture.Domain.Heroes;
 using SSW.CleanArchitecture.Domain.Teams;
 using System.Net;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
+using WebApi.IntegrationTests.Common.Utilities;
 
 namespace WebApi.IntegrationTests.Endpoints.Teams.Events;
 
-public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Command_UpdatePowerOnTeam()
@@ -22,8 +22,7 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
         List<Power> powers = [new Power("Strength", 10)];
         hero.UpdatePowers(powers);
         team.AddHero(hero);
-        Context.Teams.Add(team);
-        await Context.SaveChangesAsync();
+        await AddAsync(team);
         powers.Add(new Power("Speed", 5));
         var powerDtos = powers.Select(p => new UpdateHeroPowerDto(p.Name, p.PowerLevel));
         var cmd = new UpdateHeroCommand(hero.Name, hero.Alias, powerDtos);
@@ -31,12 +30,13 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture, ITestOut
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd);
+        var result = await client.PutAsJsonAsync($"/api/heroes/{cmd.HeroId}", cmd, CancellationToken);
 
         // Assert
+        await Wait.ForEventualConsistency();
         var updatedTeam = await GetQueryable<Team>()
             .WithSpecification(new TeamByIdSpec(team.Id))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(CancellationToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);
         updatedTeam!.TotalPowerLevel.Should().Be(15);

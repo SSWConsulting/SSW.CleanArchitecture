@@ -1,12 +1,11 @@
 using SSW.CleanArchitecture.Application.UseCases.Heroes.Queries.GetAllHeroes;
 using System.Net.Http.Json;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Factories;
-using WebApi.IntegrationTests.Common.Fixtures;
 
 namespace WebApi.IntegrationTests.Endpoints.Heroes.Queries;
 
-public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputHelper output)
-    : IntegrationTestBase(fixture, output)
+public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture) : IntegrationTestBase(fixture)
 {
     [Fact]
     public async Task Query_ShouldReturnAllHeroes()
@@ -14,12 +13,11 @@ public class GetAllHeroesQueryTests(TestingDatabaseFixture fixture, ITestOutputH
         // Arrange
         const int entityCount = 10;
         var entities = HeroFactory.Generate(entityCount);
-        await Context.Heroes.AddRangeAsync(entities);
-        await Context.SaveChangesAsync();
+        await AddRangeAsync(entities);
         var client = GetAnonymousClient();
 
         // Act
-        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes");
+        var result = await client.GetFromJsonAsync<HeroDto[]>("/api/heroes", CancellationToken);
 
         // Assert
         result.Should().NotBeNull();
