@@ -14,7 +14,7 @@
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.1.0" />
     <PackageVersion Include="AwesomeAssertions" Version="8.1.0" />
     <PackageVersion Include="Azure.Identity" Version="1.13.0" />
-    <PackageVersion Include="Bogus" Version="35.6.1" />
+    <PackageVersion Include="Bogus" Version="35.6.2" />
     <PackageVersion Include="coverlet.collector" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
