@@ -11,12 +11,12 @@ public class ValidationErrorOrResultBehavior<TRequest, TResponse>(IValidator<TRe
         CancellationToken cancellationToken)
     {
         if (validator is null)
-            return await next();
+            return await next(cancellationToken);
 
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (validationResult.IsValid)
-            return await next();
+            return await next(cancellationToken);
 
         var errors = validationResult.Errors
             .ConvertAll(error => Error.Validation(
