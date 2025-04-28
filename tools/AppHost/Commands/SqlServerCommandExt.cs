@@ -24,7 +24,7 @@ public static class SqlServerDatabaseCommandExt
 
                 return CommandResults.Success();
             },
-            null);
+            null); // Intentionally using 'null' for the command state resolver as this command does not require health status checks. Downstream code is expected to handle 'null' appropriately.
         return builder;
     }
 }
