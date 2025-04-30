@@ -141,7 +141,7 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 1. Create a query
 
 ```bash
-cd src/Application/Features
+cd src/Application/UseCases
 mkdir {{FeatureName}}
 cd {{FeatureName}}
 dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --slnName {{SolutionName}}
@@ -150,7 +150,7 @@ dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --slnName {
 2. Create a command
 
 ```bash
-cd src/Application/Features
+cd src/Application/UseCases
 mkdir {{FeatureName}}
 cd {{FeatureName}}
 dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnName {{SolutionName}}
