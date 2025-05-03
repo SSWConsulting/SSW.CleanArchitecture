@@ -1,6 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
+using WebApi.IntegrationTests.Common;
 using WebApi.IntegrationTests.Common.Infrastructure.Database;
 using WebApi.IntegrationTests.Common.Infrastructure.Web;
+
+[assembly: CaptureConsole]
+[assembly: CaptureTrace]
+[assembly: AssemblyFixture(typeof(TestingDatabaseFixture))]
 
 namespace WebApi.IntegrationTests.Common;
 
@@ -49,5 +54,5 @@ public class TestingDatabaseFixture : IAsyncLifetime
     public IServiceScope CreateScope() => _scopeFactory.CreateScope();
 }
 
-[CollectionDefinition]
-public class TestingDatabaseFixtureCollection : ICollectionFixture<TestingDatabaseFixture>;
+// [CollectionDefinition]
+// public class TestingDatabaseFixtureCollection : ICollectionFixture<TestingDatabaseFixture>;

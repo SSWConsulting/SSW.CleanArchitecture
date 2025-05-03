@@ -1,2 +1,2 @@
-[assembly: CaptureConsole]
-[assembly: CaptureTrace]
+// [assembly: CaptureConsole]
+// [assembly: CaptureTrace]
