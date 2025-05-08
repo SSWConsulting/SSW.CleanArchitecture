@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using SqlServerDatabaseResource = Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource;
 
 namespace AppHost.Commands;
 
@@ -11,9 +12,9 @@ public static class SqlServerDatabaseCommandExt
         builder.WithCommand(
             "drop-database",
             "Drop Database",
-            async context =>
+            async _ =>
             {
-                var connectionString = await builder.Resource.ConnectionStringExpression.GetValueAsync(default);
+                var connectionString = await builder.Resource.ConnectionStringExpression.GetValueAsync(CancellationToken.None);
                 ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
 
                 var optionsBuilder = new DbContextOptionsBuilder<DbContext>();
@@ -23,15 +24,7 @@ public static class SqlServerDatabaseCommandExt
 
                 return CommandResults.Success();
             },
-            context =>
-            {
-                if (context.ResourceSnapshot.HealthStatus is HealthStatus.Healthy)
-                {
-                    return ResourceCommandState.Enabled;
-                }
-
-                return ResourceCommandState.Disabled;
-            });
+            null); // Intentionally using 'null' for the command state resolver as this command does not require health status checks. Downstream code is expected to handle 'null' appropriately.
         return builder;
     }
 }
