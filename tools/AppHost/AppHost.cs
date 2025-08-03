@@ -3,9 +3,9 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Ensure the port doesn't conflict with other docker containers (or remove it altogether)
 var sqlServer = builder
-    .AddSqlServer("sql", port: 1800)
+    // If desired, set SQL Server Port to a constant value
+    .AddSqlServer("sql" /*, port: 1800*/)
     .WithLifetime(ContainerLifetime.Persistent);
 
 var db = sqlServer
