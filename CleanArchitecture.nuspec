@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
-  <metadata>
+    <metadata>
 
-    <id>SSW.CleanArchitecture.Template</id>
-    <version>2025.07.02</version>
-    <title>SSW Clean Architecture Template</title>
-    <authors>SSW</authors>
-    <description>SSW Clean Architecture Solution Template for .NET.</description>
-    <summary>
-      This is a solution template for creating a WebAPI with ASP.NET Core following the principles of Clean Architecture.
-    </summary>
-    <releaseNotes>
-    </releaseNotes>
+        <id>SSW.CleanArchitecture.Template</id>
+        <version>2025.08.03</version>
+        <title>SSW Clean Architecture Template</title>
+        <authors>SSW</authors>
+        <description>SSW Clean Architecture Solution Template for .NET.</description>
+        <summary>
+            This is a solution template for creating a WebAPI with ASP.NET Core following the principles of Clean Architecture.
+        </summary>
+        <releaseNotes>
+        </releaseNotes>
 
-    <projectUrl>https://github.com/SSWConsulting/SSW.CleanArchitecture</projectUrl>
-    <repository type="git" url="https://github.com/SSWConsulting/SSW.CleanArchitecture.git" branch="main" />
+        <projectUrl>https://github.com/SSWConsulting/SSW.CleanArchitecture</projectUrl>
+        <repository type="git" url="https://github.com/SSWConsulting/SSW.CleanArchitecture.git" branch="main"/>
 
-    <license type="expression">MIT</license>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>clean-architecture project template csharp dotnet ssw</tags>
-    <icon>icon.png</icon>
+        <license type="expression">MIT</license>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>clean-architecture project template csharp dotnet ssw</tags>
+        <icon>icon.png</icon>
 
-    <packageTypes>
-      <packageType name="Template" />
-    </packageTypes>
+        <packageTypes>
+            <packageType name="Template"/>
+        </packageTypes>
 
-  </metadata>
+    </metadata>
 
-  <files>
-    <file src=".template.config\icon.png" target="" />
-    <file src="README.md" />
-    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;**\.idea\**;CODE_OF_CONDUCT.yml" />
-    <file src=".\.github\**" target="content\.github" exclude="CODEOWNERS;settings.yml;workflows\package.yml;workflows\update-settings.yml" />
-  </files>
+    <files>
+        <file src=".template.config\icon.png" target=""/>
+        <file src="README.md"/>
+        <file src=".\**" target="content"
+              exclude="**\bin\**;**\obj\**;**\.vs\**;**\.vscode\**;**\.git\**;**\.github\**;**\LICENSE;**\.idea\**;CODE_OF_CONDUCT.yml"/>
+        <file src=".\.github\**" target="content\.github" exclude="CODEOWNERS;settings.yml;workflows\package.yml;workflows\update-settings.yml"/>
+    </files>
 </package>
