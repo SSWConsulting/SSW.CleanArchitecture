@@ -18,7 +18,7 @@ var migrationService = builder.AddProject<MigrationService>("migrations")
 
 builder
     .AddProject<WebApi>("api")
-    .WithEndpoint("https", endpoint => endpoint.IsProxied = false)
+    .WithExternalHttpEndpoints()
     .WithReference(db)
     .WaitForCompletion(migrationService);
 
