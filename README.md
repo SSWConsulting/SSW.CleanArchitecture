@@ -109,29 +109,32 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 1. Install the SSW CA template
 
-```bash
-dotnet new install SSW.CleanArchitecture.Template
-```
-
-> NOTE: The template only needs to be installed once. Running this command again will update your version of the template.
+    ```bash
+    dotnet new install SSW.CleanArchitecture.Template
+    ```
+    
+> [!NOTE]
+> The template only needs to be installed once. Running this command again will update your version of the template.
 
 2. Create a new directory
 
-```bash
-mkdir Northwind365
-cd Northwind365
-```
+    ```bash
+    mkdir Northwind365
+    cd Northwind365
+    ```
 
 3. Create a new solution
 
-```bash
-dotnet new ssw-ca
-```
+    ```bash
+    dotnet new ssw-ca
+    ```
 
-> NOTE: `name` is optional; if you don't specify it, the directory name will be used as the solution name and project namespaces.
+> [!NOTE]
+> `name` is optional; if you don't specify it, the directory name will be used as the solution name and project namespaces.
+
 
 Alternatively, you can specify the `name` and `output` directory as follows:
-
+    
 ```bash
 dotnet new ssw-ca --name {{SolutionName}} --output .\
 ```
@@ -140,21 +143,21 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 
 1. Create a query
 
-```bash
-cd src/Application/UseCases
-mkdir {{FeatureName}}
-cd {{FeatureName}}
-dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --slnName {{SolutionName}}
-```
+    ```bash
+    cd src/Application/UseCases
+    mkdir {{FeatureName}}
+    cd {{FeatureName}}
+    dotnet new ssw-ca-query --name {{QueryName}} --entityName {{Entity}} --slnName {{SolutionName}}
+    ```
 
 2. Create a command
 
-```bash
-cd src/Application/UseCases
-mkdir {{FeatureName}}
-cd {{FeatureName}}
-dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnName {{SolutionName}}
-```
+    ```bash
+    cd src/Application/UseCases
+    mkdir {{FeatureName}}
+    cd {{FeatureName}}
+    dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnName {{SolutionName}}
+    ```
 
 ### Running the Solution
 
@@ -176,7 +179,8 @@ dotnet new ssw-ca-command --name {{CommandName}} --entityName {{Entity}} --slnNa
     dotnet run
     ```
 
-> **NOTE:** The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
+> [!NOTE]
+> The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
 
 3. Open https://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
 
@@ -218,8 +222,9 @@ This will setup the following:
     azd up
     ```
 
-   > **NOTE:** `azd up` combines `azd provision` and `azd deploy` commands to create the resources and deploy the application. If running this from a CI/CD
-   > pipeline, you can use `azd provision` and `azd deploy` separately in the appropriate places.
+> [!NOTE]
+> `azd up` combines `azd provision` and `azd deploy` commands to create the resources and deploy the application. If running this from a CI/CD
+> pipeline, you can use `azd provision` and `azd deploy` separately in the appropriate places.
 
 ## 🚀 Publishing Template
 
@@ -232,7 +237,8 @@ Template will be published to NuGet.org when changes are made to `CleanArchitect
 3. `package` GitHub Action will run and publish the new version to NuGet.org
 4. Create a GitHub release to document the changes
 
-> **NOTE:** We are now using CalVer for versioning. The version number should be in the format `YYYY.M.D` (e.g. `2024.2.12`).
+> [!NOTE]
+> We are now using CalVer for versioning. The version number should be in the format `YYYY.M.D` (e.g. `2024.2.12`).
 
 <!-- TODO Issue #99: Getting Started using the dotnet new template -->
 
