@@ -36,15 +36,17 @@ var db = sqlServer
 var migrationService = builder.AddProject<MigrationService>("migrations")
     .PublishAsAzureAppServiceWebsite((_, site) =>
     {
+        const string envNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
+
         // Needed for hosted service to run
         site.SiteConfig.IsAlwaysOn = true;
 
         // Dynamically set environment, so we can enable seeding of data (only happens in 'development')
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var environment = Environment.GetEnvironmentVariable(envNetCoreEnvironment);
         if (string.IsNullOrWhiteSpace(environment))
             return;
 
-        var envSetting = new AppServiceNameValuePair { Name = "ASPNETCORE_ENVIRONMENT", Value = environment };
+        var envSetting = new AppServiceNameValuePair { Name = envNetCoreEnvironment, Value = environment };
         site.SiteConfig.AppSettings.Add(new BicepValue<AppServiceNameValuePair>(envSetting));
     })
     .WithReference(db)
