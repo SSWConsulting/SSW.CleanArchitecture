@@ -1,13 +1,12 @@
+using Aspire.Hosting.Azure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using SqlServerDatabaseResource = Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource;
 
 namespace AppHost.Commands;
 
 public static class SqlServerDatabaseCommandExt
 {
-    public static IResourceBuilder<SqlServerDatabaseResource> WithDropDatabaseCommand(
-        this IResourceBuilder<SqlServerDatabaseResource> builder)
+    public static IResourceBuilder<AzureSqlDatabaseResource> WithDropDatabaseCommand(
+        this IResourceBuilder<AzureSqlDatabaseResource> builder)
     {
         builder.WithCommand(
             "drop-database",
@@ -25,6 +24,7 @@ public static class SqlServerDatabaseCommandExt
                 return CommandResults.Success();
             },
             null); // Intentionally using 'null' for the command state resolver as this command does not require health status checks. Downstream code is expected to handle 'null' appropriately.
+
         return builder;
     }
 }
