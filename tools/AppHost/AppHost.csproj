@@ -13,7 +13,6 @@
     <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights"/>
     <PackageReference Include="Aspire.Hosting.Azure.AppService"/>
     <PackageReference Include="Aspire.Hosting.Azure.Sql"/>
-    <!--    <PackageReference Include="Aspire.Hosting.SqlServer" />-->
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
   </ItemGroup>
 
