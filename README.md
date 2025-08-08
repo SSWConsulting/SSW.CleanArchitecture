@@ -196,30 +196,30 @@ This will setup the following:
 
 1. Authenticate with Azure
 
-```bash
-azd auth login
-```
+    ```bash
+    azd auth login
+    ```
 
 2. Initialize AZD for the project
 
-```bash
-azd init
-```
+    ```bash
+    azd init
+    ```
 
 3. Update environment variables
 
-```bash
-azd env set ASPNETCORE_ENVIRONMENT Development
-```
+    ```bash
+    azd env set ASPNETCORE_ENVIRONMENT Development
+    ```
 
 4. Deploy to Azure
 
-```bash
-azd up
-```
+    ```bash
+    azd up
+    ```
 
-> **NOTE:** `azd up` combines `azd provision` and `azd deploy` commands to create the resources and deploy the application. If running this from a CI/CD
-> pipeline, you can use `azd provision` and `azd deploy` separately in the appropriate places.
+   > **NOTE:** `azd up` combines `azd provision` and `azd deploy` commands to create the resources and deploy the application. If running this from a CI/CD
+   > pipeline, you can use `azd provision` and `azd deploy` separately in the appropriate places.
 
 ## 🚀 Publishing Template
 
