@@ -29,6 +29,6 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
             // x.Services.AddSingleton<ILoggerProvider>(new XUnitLoggerProvider(Output));
         });
 
-        builder.UseSetting("ConnectionStrings:clean-architecture", _dbConnection.ConnectionString);
+        builder.UseSetting("ConnectionStrings:CleanArchitecture", _dbConnection.ConnectionString);
     }
 }
