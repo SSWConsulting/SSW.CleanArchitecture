@@ -21,13 +21,13 @@ public class Worker(
             using var scope = serviceProvider.CreateScope();
             var environment = scope.ServiceProvider.GetRequiredService<IHostEnvironment>();
 
-            var warehouseInitializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-            await warehouseInitializer.EnsureDatabaseAsync(stoppingToken);
-            await warehouseInitializer.CreateSchemaAsync(true, stoppingToken);
+            var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
+            await initializer.EnsureDatabaseAsync(stoppingToken);
+            await initializer.CreateSchemaAsync(true, stoppingToken);
 
             if (environment.IsDevelopment())
             {
-                await warehouseInitializer.SeedDataAsync(stoppingToken);
+                await initializer.SeedDataAsync(stoppingToken);
             }
 
             sw.Stop();
