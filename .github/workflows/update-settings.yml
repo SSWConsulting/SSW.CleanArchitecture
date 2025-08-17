@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # If this is a PR, dry-run the PR and watch for errors
       - name: Dry-run settings in the PR
@@ -30,7 +30,7 @@ jobs:
       # Explicitly checkout main branch to ensure production settings are reset
       - name: Switch to main for production settings
         if: github.event_name == 'pull_request'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
 
