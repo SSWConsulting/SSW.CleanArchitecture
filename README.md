@@ -104,6 +104,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
 ### Prerequisites
 - [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started)
 - [Dotnet 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) (optional)
 
 ### Installing the Template
 
@@ -183,6 +184,42 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 > The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
 
 3. Open https://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
+
+### EF Migrations
+Due to .NET Aspire orchestrating the application startup and migration runner, EF migrations need to be handled a little differently to normal.
+
+#### Adding a Migration
+Adding new migrations is still the same old command you would expect, but with a couple of specific parameters to account for the separation of concerns. This can be performed via native dotnet tooling or through the Aspire CLI:
+
+1. Run either of following commands from the root of the solution.
+
+```bash
+dotnet ef migrations add YourMigrationName --project ./src/Infrastructure/Infrastructure.csproj --startup-project ./src/WebApi/WebApi.csproj --output-dir ./Persistence/Migrations
+```
+
+```bash
+aspire exec --resource api -- dotnet ef migrations add YourMigrationName --project ../Infrastructure/Infrastructure.csproj --output-dir ./Persistence/Migrations
+```
+
+#### Applying a Migration
+.NET Aspire handles this for you - just start the project!
+
+#### Removing a Migration
+This is where things need to be done a little differently and requires the Aspire CLI.
+
+1. Enable the `exec` function:
+
+```bash
+aspire config set features.execCommandEnabled true
+```
+
+2. Pass the EF migration shell command through Aspire from the root of the solution:
+
+```bash
+aspire exec --resource api -- dotnet ef migrations remove --project ..\Infrastructure --force
+```
+> [!NOTE]
+> The `--force` flag is needed because .NET Aspire will start the application when this command is run, which triggers the migrations to run. This will apply your migrations to the database, and make EF Core unhappy when it tries to delete the latest migration. This should therefore be used with caution - a safer approach is to "roll forward" and create new migrations that safely undo the undesired change(s).
 
 ## Deploying to Azure
 
