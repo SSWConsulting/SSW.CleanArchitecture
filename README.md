@@ -104,6 +104,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
 ### Prerequisites
 - [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started)
 - [Dotnet 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+- [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling)
 
 ### Installing the Template
 
@@ -188,29 +189,31 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 Due to .NET Aspire orchestrating the application startup and migration runner, EF migrations need to be handled a little differently to normal.
 
 #### Adding a Migration
-Adding new migrations is still the same old command you would expect, but with a couple of specific parameters to account for the separation of concerns:
+Adding new migrations is still the same old command you would expect, but with a couple of specific parameters to account for the separation of concerns. This can be performed via native dotnet tooling or through the Aspire CLI:
 
-1. Run the following command from the root of the solution.
+1. Run either of following commands from the root of the solution.
 
 ```bash
 dotnet ef migrations add YourMigrationName --project ./src/Infrastructure/Infrastructure.csproj --startup-project ./src/WebApi/WebApi.csproj --output-dir ./Persistence/Migrations
+```
+
+```bash
+aspire exec --resource api -- dotnet ef migrations add YourMigrationName --project ../Infrastructure/Infrastructure.csproj --output-dir ./Persistence/Migrations
 ```
 
 #### Applying a Migration
 .NET Aspire handles this for you - just start the project!
 
 #### Removing a Migration
-This is where things need to be done a little differently.
+This is where things need to be done a little differently and requires the Aspire CLI.
 
-1. Install the [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling)
-
-2. Enable the `exec` function:
+1. Enable the `exec` function:
 
 ```bash
 aspire config set features.execCommandEnabled true
 ```
 
-3. Pass the EF migration shell command through Aspire from the root of the solution:
+2. Pass the EF migration shell command through Aspire from the root of the solution:
 
 ```bash
 aspire exec --resource api -- dotnet ef migrations remove --project ..\Infrastructure --force
