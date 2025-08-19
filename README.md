@@ -104,7 +104,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
 ### Prerequisites
 - [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started)
 - [Dotnet 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-- [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling)
+- [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) (optional)
 
 ### Installing the Template
 
