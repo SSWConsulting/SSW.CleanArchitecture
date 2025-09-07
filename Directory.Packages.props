@@ -12,7 +12,7 @@
     <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.4.0"/>
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="9.4.2"/>
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="9.4.0"/>
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="9.4.0"/>
     <PackageVersion Include="AwesomeAssertions" Version="9.1.0"/>
