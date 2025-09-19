@@ -34,14 +34,14 @@ public abstract class IntegrationTestBase : IAsyncLifetime
     protected async Task AddAsync<TEntity>(TEntity entity)
         where TEntity : class
     {
-        await _dbContext.AddAsync(entity, CancellationToken);
+        _dbContext.Add(entity);
         await _dbContext.SaveChangesAsync(CancellationToken);
     }
 
     protected async Task AddRangeAsync<TEntity>(IEnumerable<TEntity> entities)
         where TEntity : class
     {
-        await _dbContext.AddRangeAsync(entities, CancellationToken);
+        _dbContext.AddRange(entities);
         await _dbContext.SaveChangesAsync(CancellationToken);
     }
 
