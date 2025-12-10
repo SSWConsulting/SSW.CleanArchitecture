@@ -9,8 +9,7 @@ public static class WebApplicationExt
     {
         var group = app
             .MapGroup($"api/{groupName}")
-            .WithTags(groupName)
-            .WithOpenApi();
+            .WithTags(groupName);
 
         return group;
     }
