@@ -15,8 +15,8 @@
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>
     <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" />
 
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
-    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+    <!--    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />-->
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience"/>
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery"/>
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
