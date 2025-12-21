@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>SSW.CleanArchitecture.Infrastructure</RootNamespace>
     <AssemblyName>SSW.CleanArchitecture.Infrastructure</AssemblyName>
@@ -14,9 +14,6 @@
     
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>
     <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" />
-    <!-- TODO: Remove when Aspire updates KubernetesClient dependency to fix https://github.com/advisories/GHSA-w7r3-mgwf-4mqq -->
-    <PackageReference Include="KubernetesClient" />
-
     <PackageReference Include="Microsoft.Extensions.Http.Resilience"/>
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery"/>
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />

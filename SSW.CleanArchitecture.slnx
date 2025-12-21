@@ -1,4 +1,4 @@
-﻿<Solution>
+<Solution>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
@@ -16,10 +16,10 @@
   <Folder Name="/tests/">
     <Project Path="tests\Architecture.Tests\Architecture.Tests.csproj" />
     <Project Path="tests\Domain.UnitTests\Domain.UnitTests.csproj" />
-    <Project Path="tests\WebApi.IntegrationTests\WebApi.IntegrationTests.csproj" Type="Classic C#" />
+    <Project Path="tests\WebApi.IntegrationTests\WebApi.IntegrationTests.csproj" />
   </Folder>
   <Folder Name="/tools/">
-    <Project Path="tools\AppHost\AppHost.csproj" Type="Classic C#" />
-    <Project Path="tools\MigrationService\MigrationService.csproj" Type="Classic C#" />
+    <Project Path="tools\AppHost\AppHost.csproj" />
+    <Project Path="tools\MigrationService\MigrationService.csproj" />
   </Folder>
 </Solution>
