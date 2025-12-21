@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Ardalis.Specification" Version="9.3.1" />
     <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
-    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="13.0.2" />
+    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="13.1.0" />
     <PackageVersion Include="Aspire.Hosting.Azure.AppService" Version="13.0.2-preview.1.25603.5" />
     <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.0.2" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
