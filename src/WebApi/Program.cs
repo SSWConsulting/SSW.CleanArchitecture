@@ -1,5 +1,6 @@
 using SSW.CleanArchitecture.Application;
 using SSW.CleanArchitecture.Infrastructure;
+using SSW.CleanArchitecture.Infrastructure.ServiceDefaults;
 using SSW.CleanArchitecture.WebApi;
 using SSW.CleanArchitecture.WebApi.Endpoints;
 using SSW.CleanArchitecture.WebApi.Extensions;
@@ -31,7 +32,6 @@ app.MapOpenApi();
 app.MapCustomScalarApiReference();
 app.UseHealthChecks();
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 app.MapHeroEndpoints();
 app.MapTeamEndpoints();

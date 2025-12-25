@@ -8,22 +8,24 @@ on:
 
 jobs:
   build:
-    name: "Build" 
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Cache
-      uses: actions/cache@v4
-      with:    
+      uses: actions/cache@v5
+      with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}    
-        restore-keys: |      
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
           ${{ runner.os }}-nuget-
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
+      with:
+        global-json-file: global.json
 
     - name: Restore dependencies
       run: dotnet restore
@@ -32,24 +34,35 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test --no-build --no-restore --configuration Release -- --report-xunit-trx
+      run: |
+        dotnet test --no-build --no-restore --configuration Release \
+          --report-xunit-trx \
+          --coverage \
+          --coverage-output-format cobertura \
+          --coverage-output coverage.cobertura.xml \
+          --no-progress
+
+    - name: Publish Test Results
+      if: always()
+      run: |
+        dotnet tool install --global dotnet-reportgenerator-globaltool
+
+        reportgenerator \
+          -reports:"$(pwd)/**/coverage.cobertura.xml" \
+          -targetdir:"$(pwd)" \
+          -filefilters:"+*;-**/*.g.cs" \
+          -reporttypes:MarkdownSummaryGithub
+
+        cat SummaryGithub.md >> $GITHUB_STEP_SUMMARY
 
     - name: Publish
+      if: github.event_name != 'pull_request'
       run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+      if: github.event_name != 'pull_request'
+      uses: actions/upload-artifact@v6
       with:
         name: published-files
         path: ./publish
 
-    - name: Test Report
-      uses: test-summary/action@v2
-      if: success() || failure()
-      with:
-        paths: ./**/test-result.xml
-        output: test-summary.md
-    - name: Output job summary
-      if: success() || failure()
-      run: |
-        cat test-summary.md >> $GITHUB_STEP_SUMMARY

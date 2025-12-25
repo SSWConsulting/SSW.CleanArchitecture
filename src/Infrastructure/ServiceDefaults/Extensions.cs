@@ -2,18 +2,14 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-// TODO: Investigate and fix IDE0055 warnings on Unix (runners)
-#pragma warning disable IDE0055
+namespace SSW.CleanArchitecture.Infrastructure.ServiceDefaults;
 
-// ReSharper disable once CheckNamespace
-#pragma warning disable IDE0130
-namespace Microsoft.Extensions.Hosting;
-#pragma warning restore IDE0130
 // Adds common .NET Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
 // This project should be referenced by each service project in your solution.
 // To learn more about using this project, see https://aka.ms/dotnet/aspire/service-defaults
@@ -120,4 +116,4 @@ public static class Extensions
         return app;
     }
 }
-#pragma warning restore IDE0055
+

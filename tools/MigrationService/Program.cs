@@ -3,6 +3,7 @@ using MigrationService.Initializers;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
+using SSW.CleanArchitecture.Infrastructure.ServiceDefaults;
 
 var builder = Host.CreateApplicationBuilder(args);
 

@@ -26,7 +26,7 @@ public static class DependencyInjection
 
         var services = builder.Services;
 
-        services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
+        services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
         services.AddScoped<EntitySaveChangesInterceptor>();
         services.AddScoped<DispatchDomainEventsInterceptor>();
