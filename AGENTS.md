@@ -1,6 +1,6 @@
-# SSW Clean Architecture - Copilot Instructions
+# SSW Clean Architecture - AGENTS.md
 
-This is a .NET 9 Clean Architecture template using Domain-Driven Design (DDD) tactical patterns, CQRS with MediatR, and .NET Aspire for orchestration.
+This is a .NET 10 Clean Architecture template using Domain-Driven Design (DDD) tactical patterns, CQRS with MediatR, and .NET Aspire for orchestration.
 
 ## Architecture Overview
 
