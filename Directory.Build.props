@@ -1,21 +1,24 @@
 <Project>
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <TreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
-        <CodeAnalysisTreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</CodeAnalysisTreatWarningsAsErrors>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</CodeAnalysisTreatWarningsAsErrors>
 
-        <AnalysisLevel>latest</AnalysisLevel>
-        <AnalysisMode>Recommended</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>Recommended</AnalysisMode>
 
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-        <!-- Disable whitespace rule -->
-        <NoWarn>$(NoWarn);IDE0055</NoWarn>
+    <!-- Disable whitespace rule -->
+    <NoWarn>$(NoWarn);IDE0055</NoWarn>
 
-        <!-- Disable "must have curly braces for if/else" -->
-        <NoWarn>$(NoWarn);IDE0011</NoWarn>
+    <!-- Disable "must have curly braces for if/else" -->
+    <NoWarn>$(NoWarn);IDE0011</NoWarn>
 
-    </PropertyGroup>
+    <!-- Disable logging warning -->
+    <NoWarn>$(NoWarn);CA1873</NoWarn>
+
+  </PropertyGroup>
 </Project>
