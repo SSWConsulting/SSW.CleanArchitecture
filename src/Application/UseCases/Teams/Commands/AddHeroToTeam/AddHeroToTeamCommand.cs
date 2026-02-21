@@ -15,14 +15,14 @@ internal sealed class AddHeroToTeamCommandHandler(IApplicationDbContext dbContex
         var heroId = HeroId.From(request.HeroId);
 
         var team = dbContext.Teams
-            .WithSpecification(new TeamByIdSpec(teamId))
+            .WithSpecification(TeamSpec.ById(teamId))
             .FirstOrDefault();
 
         if (team is null)
             return TeamErrors.NotFound;
 
         var hero = dbContext.Heroes
-            .WithSpecification(new HeroByIdSpec(heroId))
+            .WithSpecification(HeroSpec.ById(heroId))
             .FirstOrDefault();
 
         if (hero is null)
