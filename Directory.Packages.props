@@ -5,15 +5,14 @@
   <ItemGroup>
     <PackageVersion Include="Ardalis.Specification" Version="9.3.1" />
     <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
-    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="13.1.0" />
-    <PackageVersion Include="Aspire.Hosting.Azure.AppService" Version="13.0.2-preview.1.25603.5" />
-    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.1.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="13.1.1" />
+    <PackageVersion Include="Aspire.Hosting.Azure.AppService" Version="13.1.1-preview.1.26105.8" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.1.1" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.2" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.0" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.1" />
     <PackageVersion Include="AwesomeAssertions" Version="9.3.0" />
     <PackageVersion Include="Azure.Identity" Version="1.13.0" />
     <PackageVersion Include="Bogus" Version="35.6.5" />
