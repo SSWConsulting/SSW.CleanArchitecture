@@ -16,7 +16,7 @@ internal sealed class ExecuteMissionCommandHandler(IApplicationDbContext dbConte
     {
         var teamId = TeamId.From(request.TeamId);
         var team = dbContext.Teams
-            .WithSpecification(new TeamByIdSpec(teamId))
+            .WithSpecification(TeamSpec.ById(teamId))
             .FirstOrDefault();
 
         if (team is null)
