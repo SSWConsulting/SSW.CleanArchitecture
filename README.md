@@ -102,9 +102,9 @@ This is a template for creating a new project using [Clean Architecture](https:/
 ## 🎉 Getting Started
 
 ### Prerequisites
-- [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started)
-- [Dotnet 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
-- [.NET Aspire CLI](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling) (optional)
+- [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started) / [OrbStack](https://orbstack.dev/)
+- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+- [Aspire CLI](https://aspire.dev/get-started/install-cli/)
 
 ### Installing the Template
 
@@ -162,28 +162,16 @@ dotnet new ssw-ca --name {{SolutionName}} --output .\
 
 ### Running the Solution
 
-1. Change directory
-
-    Windows:
-    ```ps
-    cd tools\AppHost\
-    ```
-
-    Mac/Linux:
-    ```bash
-    cd tools/AppHost/
-    ```
-
-2. Run the solution
+1. Run the solution
 
     ```bash
-    dotnet run
+    aspire run
     ```
 
 > [!NOTE]
 > The first time you run the solution, it may take a while to download the docker images, create the DB, and seed the data.
 
-3. Open https://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
+2. Open https://localhost:7255/scalar/v1 in your browser to see it running ️🏃‍♂️
 
 ### EF Migrations
 Due to .NET Aspire orchestrating the application startup and migration runner, EF migrations need to be handled a little differently to normal.
