@@ -35,7 +35,7 @@ public class UpdatePowerLevelEventTests(TestingDatabaseFixture fixture) : Integr
         // Assert
         await Wait.ForEventualConsistency();
         var updatedTeam = await GetQueryable<Team>()
-            .WithSpecification(new TeamByIdSpec(team.Id))
+            .WithSpecification(TeamSpec.ById(team.Id))
             .FirstOrDefaultAsync(CancellationToken);
 
         result.StatusCode.Should().Be(HttpStatusCode.NoContent);

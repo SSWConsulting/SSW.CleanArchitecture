@@ -7,7 +7,7 @@ This file covers conventions, migrations, and all coding patterns for the Domain
 - **No AutoMapper** - Use manual mapping with `Select()` projections
 - **Strongly-typed IDs** - All entities use Vogen `[ValueObject<Guid>]`
 - **Factory methods** - Create aggregates via static `Create()` methods, not constructors
-- **Specifications** - Query logic in Domain layer (e.g., `TeamByIdSpec`)
+- **Specifications** - One class per aggregate in Domain layer (`{Aggregate}Spec`), with static factory methods per query
 - **FluentValidation** - Validators in same folder as Command/Query
 - **Awesome Assertions** - Use `Should()` syntax in tests
 - **Code generation** - Reference existing code in `src/Application/UseCases/Heroes/` as patterns
@@ -135,4 +135,31 @@ Use `ErrorOr<T>` for commands, not exceptions. Handle with `.Match()` at the HTT
 
 ```csharp
 result.Match(success => TypedResults.Ok(success), CustomResult.Problem);
+```
+
+## Specifications
+
+Location: `src/Domain/{Feature}/{Aggregate}Spec.cs`
+
+Each aggregate has a single specification class that extends `SingleResultSpecification<T>`. Static factory methods build and configure instances. This groups all queries for an aggregate in one place for discoverability.
+
+```csharp
+// src/Domain/Heroes/HeroSpec.cs
+public sealed class HeroSpec : SingleResultSpecification<Hero>
+{
+    public static HeroSpec ById(HeroId heroId)
+    {
+        var spec = new HeroSpec();
+        spec.Query.Where(h => h.Id == heroId);
+        return spec;
+    }
+
+    // Add further factory methods here as new queries are needed
+}
+```
+
+Usage in commands:
+
+```csharp
+dbContext.Heroes.WithSpecification(HeroSpec.ById(heroId)).FirstOrDefault();
 ```
