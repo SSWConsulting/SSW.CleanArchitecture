@@ -38,7 +38,7 @@ jobs:
       run: dotnet publish src/WebApi/WebApi.csproj --no-build --no-restore --configuration Release --output ./publish
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: published-files
         path: ./publish
