@@ -4,6 +4,8 @@ namespace SSW.CleanArchitecture.Application.UseCases.EntityNames.Commands.Comman
 
 public record CommandNameCommand() : IRequest<ErrorOr<Success>>;
 
+// dbContext is injected ready for the persistence you are about to write. Delete the pragmas once Handle reads it.
+#pragma warning disable CS9113 // Parameter is unread
 internal sealed class CommandNameCommandHandler(IApplicationDbContext dbContext)
     : IRequestHandler<CommandNameCommand, ErrorOr<Success>>
 {
@@ -14,6 +16,7 @@ internal sealed class CommandNameCommandHandler(IApplicationDbContext dbContext)
         throw new NotImplementedException();
     }
 }
+#pragma warning restore CS9113
 
 internal sealed class CommandNameCommandValidator : AbstractValidator<CommandNameCommand>
 {
