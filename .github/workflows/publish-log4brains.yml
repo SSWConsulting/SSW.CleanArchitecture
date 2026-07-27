@@ -5,14 +5,27 @@ on:
     branches: [ "main" ]
   workflow_dispatch: # Add this line to allow manual triggering
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Pages rejects overlapping deployments, so queue them instead of cancelling an
+# in-flight one and leaving the site half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          persist-credentials: false # required by JamesIves/github-pages-deploy-action
           fetch-depth: 0 # required by Log4brains to work correctly (needs the whole Git history)
 
       - name: Install Node
@@ -20,14 +33,19 @@ jobs:
         with:
           node-version: "21"
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
       - name: Install and Build Log4brains
         run: |
           npm install -g log4brains
           log4brains build --basePath /${GITHUB_REPOSITORY#*/}
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.8.0
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          folder: .log4brains/out
-          target-folder: ''
+          path: .log4brains/out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
