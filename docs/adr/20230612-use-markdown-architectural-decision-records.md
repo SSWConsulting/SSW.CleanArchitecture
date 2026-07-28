@@ -37,6 +37,10 @@ The "Log4brains patch" performs the following modifications to the original temp
 - Add a `draft` status, to enable collaborative writing.
 - Add a `Tags` field.
 
+See the SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records) for the fields an ADR should capture.
+
 ## Links
 
 - Relates to [Use Log4brains to manage the ADRs](20230612-use-log4brains-to-manage-the-adrs.md)
+- [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records)
+- [Do you make awesome documentation?](https://www.ssw.com.au/rules/awesome-documentation)

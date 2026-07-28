@@ -30,4 +30,5 @@ See the SSW Rule [Do you use strongly typed database exceptions?](https://www.ss
 
 ## Links
 
-- https://www.ssw.com.au/rules/strongly-typed-database-exceptions
+- [Do you use strongly typed database exceptions?](https://www.ssw.com.au/rules/strongly-typed-database-exceptions)
+- [Do you catch exceptions precisely?](https://www.ssw.com.au/rules/do-you-catch-exceptions-precisely)

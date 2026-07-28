@@ -31,6 +31,8 @@ There are several problems with using exceptions as flow control:
 
 Chosen option: "Option 2 - Use Result Pattern for Validation and Flow Control", because exceptions should only be used for exceptional circumstances, and NOT for flow control.
 
+See the SSW Rule [Do you use the result pattern?](https://www.ssw.com.au/rules/do-you-use-the-result-pattern) for the wider guidance behind this decision.
+
 ### Consequences <!-- optional -->
 
 - Dependency on additional nuget packages
@@ -65,6 +67,8 @@ The result pattern could be implemented via:
 
 ## Links <!-- optional -->
 
+- [Do you use the result pattern?](https://www.ssw.com.au/rules/do-you-use-the-result-pattern)
+- [Do you catch exceptions precisely?](https://www.ssw.com.au/rules/do-you-catch-exceptions-precisely)
 - https://ardalis.com/avoid-using-exceptions-determine-api-status/
 - https://blog.nimblepros.com/blogs/getting-started-with-ardalis-result/
 - https://github.com/ardalis/Result

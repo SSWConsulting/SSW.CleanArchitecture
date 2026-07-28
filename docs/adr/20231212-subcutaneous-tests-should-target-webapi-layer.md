@@ -25,6 +25,8 @@ Previously, the Subcutaneous tests were targeting the Application Layer. This wa
 
 Chosen option: "Option 2: Change Subcutaneous tests to target the WebApi Layer", because the subcutaneous tests should be testing as much of the stack as possible.  There is no downside to this option.
 
+See the SSW Rule [Do you use subcutaneous tests?](https://www.ssw.com.au/rules/subcutaneous-tests) for what these tests are and why they sit just below the UI.
+
 ## Pros and Cons of the Options
 
 ### Option 1: Leave the Subcutaneous tests targeting the Application Layer
@@ -42,3 +44,10 @@ In this option specifically we've decided hardcode the API routes as opposed to 
 - ✅ Serialization tested
 - ✅ Web Authentication/Authorization tested
 - ⚠️ Some contract testing (routes only)
+
+## Links
+
+- [Do you use subcutaneous tests?](https://www.ssw.com.au/rules/subcutaneous-tests)
+- [Do you use IApiMarker with WebApplicationFactory?](https://www.ssw.com.au/rules/use-iapimarker-with-webapplicationfactory)
+- [Do you know the most popular unit and integration testing frameworks for .NET applications?](https://www.ssw.com.au/rules/testing-tools)
+- [Do you understand the "testing pyramid" models?](https://www.ssw.com.au/rules/testing-pyramid)
