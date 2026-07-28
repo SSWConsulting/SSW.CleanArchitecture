@@ -32,7 +32,7 @@ Version 7 will remain fully open-source indefinitely and receive bugfixes and ot
 
 Chosen option: "Option 5 - Awesome Assertions", because we get the same experience as FluentAssertions, but it is free for commercial use. It is also easy to migrate from FluentAssertions to Awesome Assertions.
 
-The SSW Rule [Do you know the most popular unit and integration testing frameworks for .NET](https://www.ssw.com.au/rules/testing-tools) still points at FluentAssertions and Shouldly. It predates the FluentAssertions licence change, so this ADR diverges from it until the rule is updated.
+The SSW Rule [Do you know the most popular unit and integration testing frameworks for .NET applications?](https://www.ssw.com.au/rules/testing-tools) still points at FluentAssertions and Shouldly. It predates the FluentAssertions licence change, so this ADR diverges from it until the rule is updated.
 
 ## Pros and Cons of the Options <!-- optional -->
 
@@ -79,5 +79,5 @@ https://awesomeassertions.org/
 
 ## Links
 
-- [Do you know the most popular unit and integration testing frameworks for .NET](https://www.ssw.com.au/rules/testing-tools)
+- [Do you know the most popular unit and integration testing frameworks for .NET applications?](https://www.ssw.com.au/rules/testing-tools)
 - [Do you follow naming conventions for tests and test projects?](https://www.ssw.com.au/rules/follow-naming-conventions-for-tests-and-test-projects)

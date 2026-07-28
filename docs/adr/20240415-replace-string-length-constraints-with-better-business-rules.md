@@ -29,7 +29,7 @@ and instead opt to add more rules which adhere more to the example business logi
 Chosen option: "Replace string length constraints with non-technical requirement", because we want to
 keep the example of guard clauses in the code.
 
-See the SSW Rule [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns). Dropping arbitrary column lengths is that same principle applied to string constraints.
+Related SSW Rule: [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns). That rule keeps length and validation constraints but moves them into the EF Core configuration. This ADR goes further and drops the arbitrary ones altogether, which is why "no example of linking domain constraints to infrastructure implementation" is listed below as a downside.
 
 ## Pros and Cons of the Options <!-- optional -->
 

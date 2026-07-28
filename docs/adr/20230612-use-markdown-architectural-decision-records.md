@@ -20,8 +20,6 @@ Which format and structure should these records follow?
 
 ## Decision Outcome
 
-See the SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records) for the fields an ADR should capture.
-
 Chosen option: "MADR 2.1.2 with Log4brains patch", because
 
 - Implicit assumptions should be made explicit.
@@ -38,6 +36,8 @@ The "Log4brains patch" performs the following modifications to the original temp
 - Change the ADR filenames format (`NNN-adr-name` becomes `YYYYMMDD-adr-name`), to avoid conflicts during Git merges.
 - Add a `draft` status, to enable collaborative writing.
 - Add a `Tags` field.
+
+See the SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records) for the fields an ADR should capture.
 
 ## Links
 

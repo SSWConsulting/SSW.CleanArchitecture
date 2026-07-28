@@ -30,7 +30,7 @@ Enum generation needs to also be considered as this is often a painpoint
 
 Chosen option: "NSwag (runtime only)", because the NSwag repo is more active than the Swashbuckle one. The removal of NSwag.MSBuild also improved build times. 
 
-See the SSW Rule [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi) for the SSW position on generated API documentation.
+This decision was later revisited. See [Use .NET OpenAPI and Scalar over NSwag and Swagger](20241023-use-net-openapi-and-scalar-over-nswag-and-swagger.md).
 
 ### Consequences <!-- optional -->
 
@@ -71,5 +71,6 @@ Same as option 1 but without MSBuild step
 
 ## Links
 
+- Superseded by [Use .NET OpenAPI and Scalar over NSwag and Swagger](20241023-use-net-openapi-and-scalar-over-nswag-and-swagger.md)
 - [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi)
 - [Do you generate API clients?](https://www.ssw.com.au/rules/generate-api-clients)

@@ -38,7 +38,7 @@ This inconsistency, makes integrating with our APIs difficult.
 
 Chosen option: "Option 2 - Use TypedResults", because it allows us to guarantee our APIs return what they say they do.
 
-See the SSW Rule [Do you return the correct response code?](https://www.ssw.com.au/rules/do-you-return-the-correct-response-code). `TypedResults` is how we enforce that at compile time instead of by convention.
+See the SSW Rule [Do you return the correct response code?](https://www.ssw.com.au/rules/do-you-return-the-correct-response-code). Picking the right code is still on the developer, but `TypedResults` makes the compiler check that the advertised codes match the ones the handler can actually return.
 
 ### Consequences <!-- optional -->
 
