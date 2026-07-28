@@ -49,4 +49,3 @@ See the SSW Rule [Do you understand the difference between anemic and rich domai
 - [Do you understand the difference between anemic and rich domain models?](https://www.ssw.com.au/rules/anemic-vs-rich-domain-models)
 - [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
 - [Do you use ubiquitous language?](https://www.ssw.com.au/rules/ubiquitous-language)
-- [Clean Architecture - Do you know the main principles?](https://www.ssw.com.au/rules/clean-architecture)

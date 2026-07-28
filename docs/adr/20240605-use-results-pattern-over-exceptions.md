@@ -69,7 +69,6 @@ The result pattern could be implemented via:
 
 - [Do you use the result pattern?](https://www.ssw.com.au/rules/do-you-use-the-result-pattern)
 - [Do you catch exceptions precisely?](https://www.ssw.com.au/rules/do-you-catch-exceptions-precisely)
-- [Do you return the correct response code?](https://www.ssw.com.au/rules/do-you-return-the-correct-response-code)
 - https://ardalis.com/avoid-using-exceptions-determine-api-status/
 - https://blog.nimblepros.com/blogs/getting-started-with-ardalis-result/
 - https://github.com/ardalis/Result

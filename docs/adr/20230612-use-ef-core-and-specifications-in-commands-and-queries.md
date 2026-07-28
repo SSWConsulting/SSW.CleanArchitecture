@@ -65,7 +65,5 @@ See the SSW Rule [Do you use the Specification pattern in your software design?]
 ## Links
 
 - [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern)
-- [Do you use the repository pattern for data access?](https://www.ssw.com.au/rules/do-you-use-the-repository-pattern-for-data-access)
 - [Do you keep business logic out of the presentation layer?](https://www.ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer)
 - [Do you optimize your EF Core queries?](https://www.ssw.com.au/rules/optimize-ef-core-queries)
-- [Do you only project properties you need?](https://www.ssw.com.au/rules/only-project-properties-you-need)
