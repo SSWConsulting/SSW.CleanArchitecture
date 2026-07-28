@@ -20,6 +20,8 @@ Which format and structure should these records follow?
 
 ## Decision Outcome
 
+See the SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records) for the fields an ADR should capture.
+
 Chosen option: "MADR 2.1.2 with Log4brains patch", because
 
 - Implicit assumptions should be made explicit.
@@ -40,3 +42,5 @@ The "Log4brains patch" performs the following modifications to the original temp
 ## Links
 
 - Relates to [Use Log4brains to manage the ADRs](20230612-use-log4brains-to-manage-the-adrs.md)
+- [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records)
+- [Do you make awesome documentation?](https://www.ssw.com.au/rules/awesome-documentation)

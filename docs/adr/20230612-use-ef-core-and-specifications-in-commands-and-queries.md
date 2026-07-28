@@ -26,6 +26,10 @@ The current approach of using Repositories and Specifications for queries did no
 
 Chosen **Option 2 - EF Core + Specifications**, because it provides a good balance of query reusability, efficient querying of the DB, and allows for aggregate roots to be loaded in a consistent way.
 
+See the SSW Rule [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern) for the wider guidance behind this decision.
+
+We deliberately step away from [Do you use the repository pattern for data access?](https://www.ssw.com.au/rules/do-you-use-the-repository-pattern-for-data-access). `DbContext` already gives us the abstraction that rule is after, and a repository layered on top of it blocks efficient projection onto DTOs.
+
 ### Consequences
 
 - ❌ Unable to unit test commands and queries.  Will need to leverage integration tests due to EF Core.
@@ -59,3 +63,11 @@ Chosen **Option 2 - EF Core + Specifications**, because it provides a good balan
 - ❌ Cannot be unit tested
 - ❌ Commands/Queries Cannot be unit tested
 - ❌ Dependency on EF Core added to Application
+
+## Links
+
+- [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern)
+- [Do you use the repository pattern for data access?](https://www.ssw.com.au/rules/do-you-use-the-repository-pattern-for-data-access)
+- [Do you use the Mediator pattern with CQRS?](https://www.ssw.com.au/rules/use-the-mediator-pattern-with-cqrs)
+- [Do you optimize your EF Core queries?](https://www.ssw.com.au/rules/optimize-ef-core-queries)
+- [Do you only project properties you need?](https://www.ssw.com.au/rules/only-project-properties-you-need)

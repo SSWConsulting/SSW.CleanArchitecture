@@ -20,3 +20,10 @@ Which tool(s) should we use to manage these records?
 ## Decision Outcome
 
 Chosen option: "Log4brains", because it includes the features of all the other tools, and even more.
+
+See the SSW Rule [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records), which also recommends Log4brains.
+
+## Links
+
+- [Do you use Architectural Decision Records (ADRs)?](https://www.ssw.com.au/rules/architectural-decision-records)
+- [Do you make awesome documentation?](https://www.ssw.com.au/rules/awesome-documentation)

@@ -29,6 +29,8 @@ and instead opt to add more rules which adhere more to the example business logi
 Chosen option: "Replace string length constraints with non-technical requirement", because we want to
 keep the example of guard clauses in the code.
 
+See the SSW Rule [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns). Dropping arbitrary column lengths is that same principle applied to string constraints.
+
 ## Pros and Cons of the Options <!-- optional -->
 
 ### 1. Replace string length constraints with non-technical requirement
@@ -49,3 +51,8 @@ keep the example of guard clauses in the code.
 - ❌ Shared constraint values for different entities / across aggregate root
 - ❌ Template starts with limit to string length which might not be needed / different value needed for different projects
 
+## Links
+
+- [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns)
+- [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
+- [Do you understand the difference between anemic and rich domain models?](https://www.ssw.com.au/rules/anemic-vs-rich-domain-models)

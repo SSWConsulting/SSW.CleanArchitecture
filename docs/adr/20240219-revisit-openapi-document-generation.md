@@ -30,6 +30,8 @@ Enum generation needs to also be considered as this is often a painpoint
 
 Chosen option: "NSwag (runtime only)", because the NSwag repo is more active than the Swashbuckle one. The removal of NSwag.MSBuild also improved build times. 
 
+See the SSW Rule [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi) for the SSW position on generated API documentation.
+
 ### Consequences <!-- optional -->
 
 - ✅ Clients that generate code can use nswag to generate their own code with a nice enum experience
@@ -67,4 +69,7 @@ Same as option 1 but without MSBuild step
 - ❌ Now serving a runtime generated file instead of a static file
 - ❌ NSwag still uses Newtonsoft.Json internally - although it is moving to System.Text.Json in the next major version v15
 
+## Links
 
+- [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi)
+- [Do you generate API clients?](https://www.ssw.com.au/rules/generate-api-clients)
