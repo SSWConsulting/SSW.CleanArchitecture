@@ -1,7 +1,7 @@
 # Produce useful SQL Server exceptions
 
 - Status: accepted
-- Deciders: Daniel Mackay
+- Deciders: Daniel Mackay, Anton Polkanov
 - Date: 2024-11-18
 - Tags: ef-core
 
