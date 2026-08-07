@@ -10,6 +10,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" VersionOverride="10.0.5" />
     <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>
