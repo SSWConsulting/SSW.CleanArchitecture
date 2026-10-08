@@ -1,7 +1,7 @@
 # Produce useful SQL Server exceptions
 
 - Status: accepted
-- Deciders: Daniel Mackay
+- Deciders: Daniel Mackay, Anton Polkanov
 - Date: 2024-11-18
 - Tags: ef-core
 
@@ -19,6 +19,8 @@ EF Core typically throws `DbUpdateException` which doesn’t tell you much until
 
 Chosen option: "Option 1", because it does what we need and is far better than the default EF Core exceptions.
 
+See the SSW Rule [Do you use strongly typed database exceptions?](https://www.ssw.com.au/rules/strongly-typed-database-exceptions) for the wider guidance behind this decision.
+
 ## Pros and Cons of the Options
 
 ### Option 1 - EntityFrameworkCore.Exceptions.SqlServer
@@ -28,4 +30,5 @@ Chosen option: "Option 1", because it does what we need and is far better than t
 
 ## Links
 
-- https://youtube.com/watch?v=QKwZlWvfh-o&si=yVnd5a7CVZaSV_Gr
+- [Do you use strongly typed database exceptions?](https://www.ssw.com.au/rules/strongly-typed-database-exceptions)
+- [Do you catch exceptions precisely?](https://www.ssw.com.au/rules/do-you-catch-exceptions-precisely)

@@ -7,6 +7,8 @@ public record QueryNameQuery : IRequest<ErrorOr<EntityNameDto>>;
 
 public record EntityNameDto(/* Add properties here */);
 
+// dbContext is injected ready for the query you are about to write. Delete the pragmas once Handle reads it.
+#pragma warning disable CS9113 // Parameter is unread
 internal sealed class QueryNameQueryHandler(IApplicationDbContext dbContext)
     : IRequestHandler<QueryNameQuery, ErrorOr<EntityNameDto>>
 {
@@ -17,3 +19,4 @@ internal sealed class QueryNameQueryHandler(IApplicationDbContext dbContext)
         throw new NotImplementedException();
     }
 }
+#pragma warning restore CS9113

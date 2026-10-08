@@ -21,6 +21,8 @@ Currently, we use NSwag to generate our OpenAPI (Swagger) specification file. .N
 
 Chosen option: "Option 3 - `Microsoft.AspNetCore.OpenApi` with [Scalar](https://github.com/scalar/scalar)", because we should use the built-in .NET library for generating OpenAPI spec files, and Scalar is a modern, lightweight, and fast alternative to Swagger UI.
 
+See the SSW Rule [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi), which also names Scalar as an option.
+
 ## Pros and Cons of the Options <!-- optional -->
 
 ### 1. NSwag with Swagger UI
@@ -44,6 +46,8 @@ Chosen option: "Option 3 - `Microsoft.AspNetCore.OpenApi` with [Scalar](https://
 
 ## Links <!-- optional -->
 
+- [Do you document your Web API?](https://www.ssw.com.au/rules/do-you-document-your-webapi)
+- [Do you generate API clients?](https://www.ssw.com.au/rules/generate-api-clients)
 - https://github.com/scalar/scalar
 - https://github.com/RicoSuter/NSwag/
 - https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-9.0

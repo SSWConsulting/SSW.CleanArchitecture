@@ -23,6 +23,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <!-- TODO: Remove when Microsoft.AspNetCore.OpenApi updates its Microsoft.OpenApi dependency to fix https://github.com/advisories/GHSA-v5pm-xwqc-g5wc -->
+    <PackageReference Include="Microsoft.OpenApi" />
     <PackageReference Include="Scalar.AspNetCore" />
   </ItemGroup>
   

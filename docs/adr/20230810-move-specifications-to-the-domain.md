@@ -28,6 +28,8 @@ The primary use cases for specifications are to:
 
 Chosen option: **Option 1 - Store Specfications in the Domain Layer**, as it allows us to move more business logic to the Domain Layer in a persistent ignorant way, and makes it easier to keep the specs up to date when the aggregate root changes.
 
+See the SSW Rule [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern) for the wider guidance behind this decision. [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns) is where the persistence ignorance decision driver comes from.
+
 ## Pros and Cons of the Options
 
 ### Option 1 - Store Specfications in the Domain Layer
@@ -40,3 +42,9 @@ Chosen option: **Option 1 - Store Specfications in the Domain Layer**, as it all
 
 - ✅ Keep Domain Layer cleaner
 - ❌ Specs used to load aggregate roots are now stored in a separate location from the aggregates they are used to load.  This makes it harder to keep the specs up to date when the aggregate root changes 
+
+## Links
+
+- [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern)
+- [Do you keep your domain layer independent of the data access concerns?](https://www.ssw.com.au/rules/keep-your-domain-layer-independent-of-the-data-access-concerns)
+- [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
