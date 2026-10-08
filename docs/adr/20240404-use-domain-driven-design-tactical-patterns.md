@@ -24,6 +24,8 @@ We would like to default to using DDD in the template and provide a good example
 
 Chosen option: "Option 2 - Rich Domain Model with DDD", because it helps set developers up for success when building complex applications.  It's easier to go from a rich domain model to an anemic domain model than the other way around.
 
+See the SSW Rule [Do you understand the difference between anemic and rich domain models?](https://www.ssw.com.au/rules/anemic-vs-rich-domain-models) for the wider guidance behind this decision.
+
 ### Consequences <!-- optional -->
 
 - Need to create a new Domain model to show the usefulness of DDD.  This will require most layers to be rebuilt.
@@ -41,3 +43,9 @@ Chosen option: "Option 2 - Rich Domain Model with DDD", because it helps set dev
 - ✅ More flexible for complex applications
 - ❌ Overkill for trivial applications
 - ❌ More complex to understand
+
+## Links
+
+- [Do you understand the difference between anemic and rich domain models?](https://www.ssw.com.au/rules/anemic-vs-rich-domain-models)
+- [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
+- [Do you use ubiquitous language?](https://www.ssw.com.au/rules/ubiquitous-language)

@@ -24,6 +24,8 @@ The previous approach created a separate class file per specification (e.g., `Te
 
 Chosen option: **Option 2 - Single class per aggregate with static factory methods**, because it groups all specifications for an aggregate in one discoverable location and reduces file count without sacrificing clarity.
 
+See the SSW Rule [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern) for the pattern itself. This ADR only changes how the specs are organised.
+
 The class itself extends `SingleResultSpecification<T>` and static factory methods configure instances via `spec.Query`, following a consistent naming convention (`{Aggregate}Spec`).
 
 ```csharp
@@ -68,3 +70,8 @@ dbContext.Heroes.WithSpecification(HeroSpec.ById(heroId)).FirstOrDefault();
 - ✅ Consistent naming convention (`{Aggregate}Spec`)
 - ✅ No inner class boilerplate
 - ❌ Slightly more verbose per specification entry
+
+## Links
+
+- [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern)
+- [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
