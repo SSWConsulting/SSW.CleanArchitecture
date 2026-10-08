@@ -31,7 +31,7 @@
     <!-- TODO: Remove when Aspire updates StreamJsonRpc's MessagePack dependency to fix https://github.com/advisories/GHSA-hv8m-jj95-wg3x -->
     <PackageVersion Include="MessagePack" Version="2.5.302" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.3"/>
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3"/>
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5"/>
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.3"/>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
       <PrivateAssets>all</PrivateAssets>
