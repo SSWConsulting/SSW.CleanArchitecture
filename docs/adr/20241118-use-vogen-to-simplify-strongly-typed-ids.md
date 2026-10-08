@@ -24,6 +24,8 @@ Strongly typed IDs are a great way to combat primitive obsession. However, they 
 
 Chosen option: "Option 2 - Vogen", because configuration, validation, and usage of strongly typed IDs is much simpler (espeicially from the EF Core point of view).
 
+The SSW Rule [Do you use Strongly Typed IDs to avoid Primitive Obsession](https://www.ssw.com.au/rules/strongly-typed-ids) covers the manual approach. This ADR picks the library that removes the boilerplate.
+
 ## Pros and Cons of the Options <!-- optional -->
 
 ### Option 1 - Manual Approach
@@ -42,5 +44,7 @@ Chosen option: "Option 2 - Vogen", because configuration, validation, and usage 
 
 ## Links
 
+- [Do you use Strongly Typed IDs to avoid Primitive Obsession](https://www.ssw.com.au/rules/strongly-typed-ids)
+- [Do you know when to use value objects?](https://www.ssw.com.au/rules/when-to-use-value-objects)
 - https://stevedunn.github.io/Vogen/overview.html
 - https://github.com/SteveDunn/Vogen

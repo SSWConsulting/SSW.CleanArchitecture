@@ -26,6 +26,8 @@ Aggregate roots can be instantiated in a way that satisfies all the decision dri
 
 Chosen **Option 1. Factory Methods**, because it is the only option that meets all the decision drivers.
 
+See the SSW Rule [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models), which lists factory methods as one of the ways to keep an aggregate encapsulated.
+
 ## Consequences
 
 - Private constructors can be used to ensure that aggregates are always in a valid state
@@ -48,3 +50,9 @@ Chosen **Option 1. Factory Methods**, because it is the only option that meets a
 ### 3. `required init` properties
 
 - ❌ Properties need to be passed to constructors to ensure they are in a valid state on object creation.  Can't use `required init` properties as they then become unmodifiable
+
+## Links
+
+- [Do you encapsulate domain models in Domain-Driven Design?](https://www.ssw.com.au/rules/encapsulate-domain-models)
+- [Do you understand the difference between anemic and rich domain models?](https://www.ssw.com.au/rules/anemic-vs-rich-domain-models)
+- [Do you know when to use value objects?](https://www.ssw.com.au/rules/when-to-use-value-objects)

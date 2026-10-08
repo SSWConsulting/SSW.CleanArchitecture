@@ -26,6 +26,8 @@ The current approach of using Repositories and Specifications for queries did no
 
 Chosen **Option 2 - EF Core + Specifications**, because it provides a good balance of query reusability, efficient querying of the DB, and allows for aggregate roots to be loaded in a consistent way.
 
+See the SSW Rule [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern) for the wider guidance behind this decision.
+
 ### Consequences
 
 - ❌ Unable to unit test commands and queries.  Will need to leverage integration tests due to EF Core.
@@ -59,3 +61,9 @@ Chosen **Option 2 - EF Core + Specifications**, because it provides a good balan
 - ❌ Cannot be unit tested
 - ❌ Commands/Queries Cannot be unit tested
 - ❌ Dependency on EF Core added to Application
+
+## Links
+
+- [Do you use the Specification pattern in your software design?](https://www.ssw.com.au/rules/use-specification-pattern)
+- [Do you keep business logic out of the presentation layer?](https://www.ssw.com.au/rules/keep-business-logic-out-of-the-presentation-layer)
+- [Do you optimize your EF Core queries?](https://www.ssw.com.au/rules/optimize-ef-core-queries)
