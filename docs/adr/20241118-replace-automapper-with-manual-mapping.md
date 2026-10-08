@@ -52,4 +52,6 @@ Chosen option: "Option 2 - Manual Mapper", because it reduces the runtime errors
 
 ## Links
 
+- [Do you use unique DTOs per use case?](https://www.ssw.com.au/rules/unique-dtos-per-endpoint)
+- [Do you know the difference between data transfer objects and view models?](https://www.ssw.com.au/rules/the-difference-between-data-transfer-objects-and-view-models)
 - https://www.youtube.com/watch?v=RsnEZdc3MrE

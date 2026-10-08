@@ -1,7 +1,7 @@
 # Produce useful SQL Server exceptions
 
 - Status: accepted
-- Deciders: Daniel Mackay
+- Deciders: Daniel Mackay, Anton Polkanov
 - Date: 2024-11-18
 - Tags: ef-core
 
@@ -30,4 +30,5 @@ See the SSW Rule [Do you use strongly typed database exceptions?](https://www.ss
 
 ## Links
 
-- https://www.ssw.com.au/rules/strongly-typed-database-exceptions
+- [Do you use strongly typed database exceptions?](https://www.ssw.com.au/rules/strongly-typed-database-exceptions)
+- [Do you catch exceptions precisely?](https://www.ssw.com.au/rules/do-you-catch-exceptions-precisely)
