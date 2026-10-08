@@ -30,19 +30,19 @@
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <!-- TODO: Remove when Aspire updates StreamJsonRpc's MessagePack dependency to fix https://github.com/advisories/GHSA-hv8m-jj95-wg3x -->
     <PackageVersion Include="MessagePack" Version="2.5.302" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.3"/>
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.5"/>
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.3"/>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.5"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5"/>
     <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3"/>
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.3"/>
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5"/>
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.5"/>
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.3.0"/>
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3"/>
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.5"/>
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.3.0"/>
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0"/>
     <!-- TODO: Remove when Microsoft.AspNetCore.OpenApi updates its Microsoft.OpenApi dependency to fix https://github.com/advisories/GHSA-v5pm-xwqc-g5wc -->
@@ -57,8 +57,8 @@
     <PackageVersion Include="Polly" Version="8.6.6"/>
     <PackageVersion Include="Respawn" Version="7.0.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.13.1"/>
-    <PackageVersion Include="Testcontainers" Version="4.10.0"/>
-    <PackageVersion Include="Testcontainers.MsSql" Version="4.10.0"/>
+    <PackageVersion Include="Testcontainers" Version="4.15.0"/>
+    <PackageVersion Include="Testcontainers.MsSql" Version="4.15.0"/>
     <PackageVersion Include="Vogen" Version="8.0.4"/>
     <PackageVersion Include="xunit.v3" Version="3.2.2"/>
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5">
