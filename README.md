@@ -103,7 +103,7 @@ This is a template for creating a new project using [Clean Architecture](https:/
 
 ### Prerequisites
 - [Docker](https://www.docker.com/get-started/) / [Podman](https://podman.io/get-started) / [OrbStack](https://orbstack.dev/)
-- [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
+- [.NET 11 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/11.0)
 - [Aspire CLI](https://aspire.dev/get-started/install-cli/)
 
 ### Installing the Template
