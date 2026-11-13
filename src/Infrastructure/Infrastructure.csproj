@@ -13,6 +13,10 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"/>
+    <!-- Lifts the provider to the same EF Core version as Microsoft.EntityFrameworkCore. Aspire's
+         integration otherwise pulls in an older SqlServer/Relational pair, and mixed EF Core
+         versions fail at runtime with MissingMethodException. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="EntityFrameworkCore.Exceptions.SqlServer" />
     <!-- TODO: Remove when Aspire updates KubernetesClient dependency to fix https://github.com/advisories/GHSA-w7r3-mgwf-4mqq -->
     <PackageReference Include="KubernetesClient" />
