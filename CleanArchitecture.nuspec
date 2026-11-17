@@ -3,7 +3,7 @@
     <metadata>
 
         <id>SSW.CleanArchitecture.Template</id>
-        <version>2026.03.10</version>
+        <version>2026.11.17</version>
         <title>SSW Clean Architecture Template</title>
         <authors>SSW</authors>
         <description>SSW Clean Architecture Solution Template for .NET.</description>
@@ -11,6 +11,11 @@
             This is a solution template for creating a WebAPI with ASP.NET Core following the principles of Clean Architecture.
         </summary>
         <releaseNotes>
+            - Upgraded to .NET 11 (SDK 11.0.100), with EF Core, ASP.NET Core and Microsoft.Extensions packages on 11.0.0
+            - Upgraded Aspire to 13.6.5 and OpenTelemetry to patched versions, resolving NuGet audit vulnerabilities that failed Release builds
+            - Fixed generated query and command scaffolds failing to build in Release (CS9113)
+            - Linked the ADRs to the relevant SSW rules
+            - Updated GitHub Actions to their latest major versions
         </releaseNotes>
 
         <projectUrl>https://github.com/SSWConsulting/SSW.CleanArchitecture</projectUrl>
