@@ -24,5 +24,13 @@ jobs:
       - name: Create the package
         run: nuget pack CleanArchitecture.nuspec -NoDefaultExcludes
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+
+      # Pushed with the .NET CLI rather than nuget.exe: nuget.exe runs on Mono, which
+      # keeps its own certificate store. Ubuntu's mono-complete does not populate it,
+      # so HTTPS calls to nuget.org fail certificate validation.
       - name: Publish the package
-        run: nuget push *.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} 
+        run: dotnet nuget push ./*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key "$NUGET_API_KEY"
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
