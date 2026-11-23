@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Logging;
+using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.WebApi;
 using System.Data.Common;
 
@@ -29,6 +30,6 @@ public class WebApiTestFactory : WebApplicationFactory<IWebApiMarker>
             // x.Services.AddSingleton<ILoggerProvider>(new XUnitLoggerProvider(Output));
         });
 
-        builder.UseSetting("ConnectionStrings:CleanArchitecture", _dbConnection.ConnectionString);
+        builder.UseSetting($"ConnectionStrings:{ConnectionStringNames.CleanArchitecture}", _dbConnection.ConnectionString);
     }
 }

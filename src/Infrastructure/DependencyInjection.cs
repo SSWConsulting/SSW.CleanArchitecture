@@ -11,7 +11,7 @@ public static class DependencyInjection
 {
     public static void AddInfrastructure(this IHostApplicationBuilder builder)
     {
-        builder.AddSqlServerDbContext<ApplicationDbContext>("CleanArchitecture",
+        builder.AddSqlServerDbContext<ApplicationDbContext>(ConnectionStringNames.CleanArchitecture,
             null,
             options =>
             {
