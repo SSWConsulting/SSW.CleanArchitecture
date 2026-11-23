@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.6.5">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Aspire.Hosting.AppHost supplies the AppHost build targets and Aspire.Hosting.Dotnet
+         supplies AddDotnetProject; the AppHost is a plain Microsoft.NET.Sdk project. -->
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.Dotnet" />
     <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights" />
     <PackageReference Include="Aspire.Hosting.Azure.AppService" />
     <PackageReference Include="Aspire.Hosting.Azure.Sql" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\WebApi\WebApi.csproj" />
-    <ProjectReference Include="..\MigrationService\MigrationService.csproj" />
-  </ItemGroup>
+  <!-- WebApi and MigrationService are registered by path with AddDotnetProject, which builds
+       them itself, so the AppHost holds no ProjectReference to either. -->
 
 </Project>

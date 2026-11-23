@@ -5,14 +5,16 @@
   <ItemGroup>
     <PackageVersion Include="Ardalis.Specification" Version="9.3.1" />
     <PackageVersion Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
-    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="13.6.5" />
-    <PackageVersion Include="Aspire.Hosting.Azure.AppService" Version="13.6.5" />
-    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.6.5" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="17.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.ApplicationInsights" Version="17.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.AppService" Version="17.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="17.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Dotnet" Version="17.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="9.0.0" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.6.5" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="17.0.0" />
     <PackageVersion Include="AwesomeAssertions" Version="9.4.0" />
     <PackageVersion Include="Azure.Identity" Version="1.13.0" />
     <PackageVersion Include="Bogus" Version="35.6.5" />
@@ -24,7 +26,8 @@
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageVersion Include="JunitXml.TestLogger" Version="4.1.0" />
-    <!-- TODO: Remove when Aspire updates KubernetesClient dependency to fix https://github.com/advisories/GHSA-w7r3-mgwf-4mqq -->
+    <!-- Transitive via AspNetCore.HealthChecks.UI 9.0.0, which pulls KubernetesClient 15.0.1;
+         pinned to clear NU1902 (GHSA-w7r3-mgwf-4mqq, moderate severity). -->
     <PackageVersion Include="KubernetesClient" Version="19.0.2"/>
     <PackageVersion Include="MediatR" Version="14.1.0"/>
     <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
@@ -43,11 +46,11 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0"/>
     <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.17.0"/>
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.17.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.0"/>
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0"/>
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.21.0"/>
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.21.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.21.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.21.0"/>
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.21.0"/>
     <PackageVersion Include="Polly" Version="8.6.6"/>
     <PackageVersion Include="Respawn" Version="7.0.0" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.13.1"/>

@@ -1,7 +1,6 @@
 using AppHost.Commands;
 using Azure.Provisioning;
 using Azure.Provisioning.AppService;
-using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -36,7 +35,8 @@ var db = sqlServer
     .AddDatabase("CleanArchitecture", "clean-architecture")
     .WithDropDatabaseCommand();
 
-var migrationService = builder.AddProject<MigrationService>("migrations")
+// Paths are relative to this AppHost project's directory.
+var migrationService = builder.AddDotnetProject("migrations", "../MigrationService/MigrationService.csproj")
     .PublishAsAzureAppServiceWebsite((_, site) =>
     {
         const string envNetCoreEnvironment = "ASPNETCORE_ENVIRONMENT";
@@ -56,7 +56,7 @@ var migrationService = builder.AddProject<MigrationService>("migrations")
     .WaitFor(sqlServer);
 
 var api = builder
-    .AddProject<WebApi>("api")
+    .AddDotnetProject("api", "../../src/WebApi/WebApi.csproj")
     .WithExternalHttpEndpoints()
     .WithReference(db)
     .WaitForCompletion(migrationService);
