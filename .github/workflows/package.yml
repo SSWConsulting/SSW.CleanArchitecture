@@ -11,6 +11,10 @@ jobs:
   publish:
     name: Publish to NuGet.org
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Lets the job request a GitHub OIDC token, which NuGet.org exchanges for a publish key.
+      id-token: write
     steps:
       - uses: actions/checkout@v7
 
@@ -24,5 +28,23 @@ jobs:
       - name: Create the package
         run: nuget pack CleanArchitecture.nuspec -NoDefaultExcludes
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+
+      # Trusted Publishing: NuGet.org checks the OIDC token against the policy registered for this
+      # repository and workflow file, then issues a key that lasts one hour. Keep this step
+      # directly before the push so the key cannot expire first. NUGET_USER is the nuget.org
+      # profile name of the policy's creator, not an email address.
+      - name: NuGet login
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      # Pushed with the .NET CLI rather than nuget.exe: nuget.exe runs on Mono, which
+      # keeps its own certificate store. Ubuntu's mono-complete does not populate it,
+      # so HTTPS calls to nuget.org fail certificate validation.
       - name: Publish the package
-        run: nuget push *.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} 
+        run: dotnet nuget push ./*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key "$NUGET_API_KEY"
+        env:
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
