@@ -110,8 +110,8 @@ public static class Extensions
         // See https://aka.ms/dotnet/aspire/healthchecks for details before enabling these endpoints in non-development environments.
         if (app.Environment.IsDevelopment())
         {
-            // All health checks must pass for app to be considered ready to accept traffic after starting
-            app.MapHealthChecks("/health");
+            // /health is not mapped here: WebApi registers it as middleware (WebApplicationHealthCheckExtensions.UseHealthChecks)
+            // so it is available in every environment, and that middleware short-circuits before routing would reach a mapped endpoint.
 
             // Only health checks tagged with the "live" tag must pass for app to be considered alive
             app.MapHealthChecks("/alive", new HealthCheckOptions { Predicate = r => r.Tags.Contains("live") });

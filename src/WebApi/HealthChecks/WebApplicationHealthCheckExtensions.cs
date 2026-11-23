@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.WebApi.HealthChecks.EntityFrameworkDbContextHealthCheck;
 
@@ -29,11 +30,20 @@ public static class WebApplicationHealthCheckExtensions
 
     public static void AddHealthChecks(this IServiceCollection services, IConfiguration config)
     {
+        // Same connection name the DbContext registers with, so both checks probe the database the app actually uses
+        var connectionString = config.GetConnectionString(ConnectionStringNames.CleanArchitecture);
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException(
+                $"Connection string 'ConnectionStrings:{ConnectionStringNames.CleanArchitecture}' is missing. " +
+                "Run the app through the Aspire AppHost, or set it in configuration.");
+        }
+
         services.AddHealthChecks()
             // Check 1: Check the SQL Server Connectivity (no EF, no DBContext, hardly anything to go wrong)
             .AddSqlServer(
                 name: "SQL Server",
-                connectionString: config["ConnectionStrings:DefaultConnection"]!,
+                connectionString: connectionString,
                 healthQuery: $"-- SqlServerHealthCheck{Environment.NewLine}SELECT 123;",
                 failureStatus: HealthStatus.Unhealthy,
                 tags: ["db", "sql", "sqlserver"])

@@ -1,6 +1,7 @@
 using MigrationService;
 using MigrationService.Initializers;
 using SSW.CleanArchitecture.Application.Common.Interfaces;
+using SSW.CleanArchitecture.Infrastructure;
 using SSW.CleanArchitecture.Infrastructure.Persistence;
 using SSW.CleanArchitecture.Infrastructure.Persistence.Interceptors;
 
@@ -19,7 +20,7 @@ builder.Services.AddScoped<EntitySaveChangesInterceptor>();
 builder.Services.AddScoped<ICurrentUserService, MigrationUserService>();
 builder.Services.AddSingleton(TimeProvider.System);
 
-builder.AddSqlServerDbContext<ApplicationDbContext>("CleanArchitecture",
+builder.AddSqlServerDbContext<ApplicationDbContext>(ConnectionStringNames.CleanArchitecture,
     null,
     options =>
     {
